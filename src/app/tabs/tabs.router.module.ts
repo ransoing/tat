@@ -2,9 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { TabsPage } from './tabs.page';
-import { HomePage } from '../home/home.page';
-import { AboutPage } from '../about/about.page';
-import { ContactPage } from '../contact/contact.page';
+import { HomePage, RedFlagsPage, ReportPage, ResourcesPage, VolunteerPage } from '../pages';
 
 const routes: Routes = [
   {
@@ -22,14 +20,24 @@ const routes: Routes = [
         component: HomePage
       },
       {
-        path: 'about',
-        outlet: 'about',
-        component: AboutPage
+        path: 'report',
+        outlet: 'report',
+        component: ReportPage
       },
       {
-        path: 'contact',
-        outlet: 'contact',
-        component: ContactPage
+        path: 'red-flags',
+        outlet: 'red-flags',
+        component: RedFlagsPage
+      },
+      {
+        path: 'resources',
+        outlet: 'resources',
+        component: ResourcesPage
+      },
+      {
+        path: 'volunteer',
+        outlet: 'volunteer',
+        component: VolunteerPage
       }
     ]
   },

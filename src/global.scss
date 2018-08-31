@@ -3,10 +3,72 @@
 @import "~@ionic/angular/css/structure.css";
 @import "~@ionic/angular/css/typography.css";
 @import "~@ionic/angular/css/colors.css";
-
 @import "~@ionic/angular/css/padding.css";
 @import "~@ionic/angular/css/float-elements.css";
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
+// import custom font
+@font-face {
+    font-family: 'Barlow Condensed';
+    font-style: normal;
+    font-weight: 400;
+    src: url('./assets/fonts/BarlowCondensed-Light.ttf');
+}
+
+@font-face {
+    font-family: 'Gotham';
+    src: url('./assets/fonts/GothamBook-Italic.woff2') format('woff2'),
+        url('./assets/fonts/GothamBook-Italic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Gotham';
+    src: url('./assets/fonts/Gotham-Book.woff2') format('woff2'),
+        url('./assets/fonts/Gotham-Book.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gotham';
+    src: url('./assets/fonts/Gotham-BlackItalic.woff2') format('woff2'),
+        url('./assets/fonts/Gotham-BlackItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Gotham';
+    src: url('./assets/fonts/Gotham-Black.woff2') format('woff2'),
+        url('./assets/fonts/Gotham-Black.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+
+
+
+// ionic doesn't seem to import the variables scss file in the proper order (after ionic base styles).
+// include it here to properly override the base styles.
+@import "./theme/variables.scss";
+
+ion-title,
+h1 {
+    font-family: var( --title-font-family );
+    font-size: 240%;
+}
+
+ion-content {
+    li { margin-bottom: calc( var(--ion-margin) / 2 ) }
+    h1:first-child { margin-top: 0 }
+}
+
+ion-header > ion-toolbar {
+    height: 0;
+}
+
+.statusbar { background: black }

@@ -3,22 +3,23 @@ $primary-color: #2e90d0;
 .wrap {
     display: block;
     align-items: center;
-    padding: 0.7em 1em;
-    margin-bottom: 0.7em;
+    padding: 0.3em 0.5em;
     position: relative;
 
     background: url('../../../assets/image-buttons/default.jpg') center center;
     background-color: #3e7c96;
     background-size: cover;
 
-    font-size: 170%;
+    font-family: var( --title-font-family );
+    font-size: 240%;
     
     color: white;
     cursor: pointer;
     
     .hint {
         display: none;
-        font-size: 50%;
+        font-size: 35%;
+        font-family: var( --ion-font-family );
     }
 
     .alert-dot {
@@ -39,13 +40,13 @@ $primary-color: #2e90d0;
     }
 
     &.tall {
-        padding-top: 2.2em;
-        padding-bottom: 2.2em;
+        padding-top: 1.3em;
+        padding-bottom: 1.3em;
     }
 
     &.has-hint {
-        padding-top: 0.4em;
-        padding-bottom: 0.4em;
+        padding-top: 0.08em;
+        padding-bottom: 0.22em;
         .hint { display: block }
     }
 

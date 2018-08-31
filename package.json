@@ -5,7 +5,7 @@
   "homepage": "http://ionicframework.com/",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ionic serve -l",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -44,6 +44,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~10.9.2",
     "codelyzer": "~4.4.2",
+    "ionic": "^4.1.1",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~3.0.0",

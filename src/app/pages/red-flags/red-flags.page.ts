@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-red-flags',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RedFlagsPage implements OnInit {
 
-  constructor() { }
+  constructor( public navCtrl: NavController ) { }
 
   ngOnInit() {
   }

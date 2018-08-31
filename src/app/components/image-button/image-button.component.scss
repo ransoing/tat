@@ -1,0 +1,59 @@
+$primary-color: #2e90d0;
+
+.wrap {
+    display: block;
+    align-items: center;
+    padding: 0.7em 1em;
+    margin-bottom: 0.7em;
+    position: relative;
+
+    background: url('../../../assets/image-buttons/default.jpg') center center;
+    background-color: #3e7c96;
+    background-size: cover;
+
+    font-size: 170%;
+    
+    color: white;
+    cursor: pointer;
+    
+    .hint {
+        display: none;
+        font-size: 50%;
+    }
+
+    .alert-dot {
+        display: none;
+        width: 0.3em;
+        height: 0.3em;
+        position: absolute;
+        right: 0.5em;
+        top: calc( 50% - 0.15em );
+
+        border-radius: 10em;
+        background: $primary-color;
+    }
+
+    &:hover, &:active {
+        background-blend-mode: overlay; /* safari may not support luminosity, so declare overlay */
+        background-blend-mode: luminosity;
+    }
+
+    &.tall {
+        padding-top: 2.2em;
+        padding-bottom: 2.2em;
+    }
+
+    &.has-hint {
+        padding-top: 0.4em;
+        padding-bottom: 0.4em;
+        .hint { display: block }
+    }
+
+    &.required {
+        border-left: 6px solid $primary-color;
+    }
+
+    &.not-completed {
+        .alert-dot { display: block }
+    }
+}

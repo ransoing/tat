@@ -32,7 +32,7 @@
               },
               {
                 "glob": "**/*.svg",
-                "input": "src/assets/custom-ion-icons",
+                "input": "custom-ion-icons",
                 "output": "./svg"
               }
             ],

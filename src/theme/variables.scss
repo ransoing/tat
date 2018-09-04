@@ -80,7 +80,7 @@
   /** other colors **/
   --ion-text-color: #fff;
   --ion-background-color: #000;
-  --ion-tabbar-background-color: #000;
+  --ion-tabbar-background-color: var( --ion-color-dark-shade );
   --ion-tabbar-text-color: #fff;
   --ion-tabbar-text-color-active: var( --ion-color-primary );
 
@@ -91,9 +91,7 @@
   /** other **/
   --ion-margin: 16px;
 
-  /** I don't like the text in the nav tabs getting larger when the tab is selected.
-  The shadow DOM sets the --label-transform when the tab is active, and I can't override
-  this, but I can override --label-transform for non-active tabs. Let's set it the same
-  as the active tab value. **/
-  --label-transform: scale3d( 1.16667, 1.16667, 1 );
+  // change bad styling for nav tabs
+  --label-transform: translateY( 5px );
+  --icon-transform-selected: none;
 }

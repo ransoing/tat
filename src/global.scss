@@ -60,6 +60,8 @@ ion-title,
 h1 {
     font-family: var( --title-font-family );
     font-size: 240%;
+
+    ion-icon { font-size: 73% }
 }
 
 ion-content {
@@ -72,3 +74,11 @@ ion-header > ion-toolbar {
 }
 
 .statusbar { background: black }
+
+.modal-close-btn {
+    position: absolute;
+    top: var( --ion-padding );
+    right: var( --ion-padding );
+    font-size: 300%;
+    cursor: pointer;
+}

@@ -14,8 +14,4 @@ export class WhatToReportComponent implements OnInit {
   ngOnInit() {
   }
 
-  dismiss() {
-    this.modal.dismiss();
-  }
-
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { WhatToReportComponent } from '../../modals/what-to-report/what-to-report.component';
+import { WhatToReportComponent } from '../../modals';
 
 @Component({
   selector: 'app-report',

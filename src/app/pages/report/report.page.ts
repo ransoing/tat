@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
 import { WhatToReportComponent } from '../../modals';
+import { ModalService } from '../../services';
 
 @Component({
   selector: 'app-report',
@@ -9,17 +9,11 @@ import { WhatToReportComponent } from '../../modals';
 })
 export class ReportPage implements OnInit {
 
-  constructor( public modalController: ModalController ) { }
+  WhatToReportComponent = WhatToReportComponent;
+  
+  constructor( public modalService: ModalService ) {}
 
   ngOnInit() {
-  }
-
-  async openWhatToReportModal() {
-    const modal = await this.modalController.create({
-      component: WhatToReportComponent,
-      componentProps: {}
-    });
-    return await modal.present();
   }
 
 }

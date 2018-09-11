@@ -6,7 +6,9 @@
     display: flex;
     padding: calc( var(--ion-padding)/2 ) 0 var( --ion-padding ) 0;
 
-    > * {
+    > a {
         flex: 1 1 50%;
+        color: white;
+        cursor: pointer;
     }
 }

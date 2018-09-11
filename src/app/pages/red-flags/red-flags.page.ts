@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { ModalService } from '../../services';
+import { CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent } from '../../modals';
 
 @Component({
   selector: 'app-red-flags',
@@ -8,7 +10,12 @@ import { NavController } from '@ionic/angular';
 })
 export class RedFlagsPage implements OnInit {
 
-  constructor( public navCtrl: NavController ) { }
+  CaseStudyAComponent = CaseStudyAComponent;
+  CaseStudyBComponent = CaseStudyBComponent;
+  CaseStudyCComponent = CaseStudyCComponent;
+  CaseStudyDComponent = CaseStudyDComponent;
+
+  constructor( public navCtrl: NavController, public modalService: ModalService ) { }
 
   ngOnInit() {
   }

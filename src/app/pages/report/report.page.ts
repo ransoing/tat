@@ -10,7 +10,7 @@ import { ModalService } from '../../services';
 export class ReportPage implements OnInit {
 
   WhatToReportComponent = WhatToReportComponent;
-  
+
   constructor( public modalService: ModalService ) {}
 
   ngOnInit() {

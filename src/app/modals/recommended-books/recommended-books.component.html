@@ -5,4 +5,24 @@
   <h1>Recommended Books</h1>
   <ion-icon name="md-close" class="modal-close-btn" (click)="modal.dismiss()"></ion-icon>
 
+  <div class="book-list" padding-bottom>
+    <div *ngFor="let book of books">
+      <img src="../../../assets/images/books/{{book.image}}">
+      <div class="book-title">{{book.title}}</div>
+      <div class="book-byline">{{book.byline}}</div>
+    </div>
+  </div>
+
+  <hr margin-top>
+
+  <h2>Documentary Recommendations</h2>
+
+  <div class="book-list">
+    <div *ngFor="let film of films">
+      <img src="../../../assets/images/documentaries/{{film.image}}">
+      <div class="book-title">{{film.title}}</div>
+      <div class="book-byline">{{film.byline}}</div>
+    </div>
+  </div>
+
 </ion-content>

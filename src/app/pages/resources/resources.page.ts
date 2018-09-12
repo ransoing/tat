@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, ModalController } from '@ionic/angular';
-import { AboutTatComponent } from '../../modals/';
+import { NavController } from '@ionic/angular';
+import { AboutTatComponent, RecommendedBooksComponent, HumanTraffickingLawsComponent } from '../../modals/';
+import { ModalService } from '../../services';
 
 @Component({
   selector: 'app-resources',
@@ -9,19 +10,13 @@ import { AboutTatComponent } from '../../modals/';
 })
 export class ResourcesPage implements OnInit {
 
-  constructor( public modalController: ModalController, public navCtrl: NavController ) { }
+  constructor( public modalService: ModalService, public navCtrl: NavController ) { }
+
+  AboutTatComponent = AboutTatComponent;
+  RecommendedBooksComponent = RecommendedBooksComponent;
+  HumanTraffickingLawsComponent = HumanTraffickingLawsComponent;
 
   ngOnInit() {
   }
-
-  async openModal( component: any, props: any = {} ) {
-    const modal = await this.modalController.create({
-      component: component,
-      componentProps: props
-    });
-    return await modal.present();
-  }
-
-  openAboutTatModal() { this.openModal(AboutTatComponent) }
 
 }

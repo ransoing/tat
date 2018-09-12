@@ -1,0 +1,23 @@
+.book-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 30px;
+    justify-items: center;
+    align-items: start;
+
+    width: 100%;
+
+    > * {
+        width: 140px;
+        img { width: 100% }
+        .book-title {
+            font-weight: bold;
+            font-size: 122%;
+            padding-top: 0.25em;
+        }
+        .book-byline {
+            font-style: italic;
+            font-size: 90%;
+        }
+    }
+}

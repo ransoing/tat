@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MiscService } from '../../services/misc/misc.service';
+import { MiscService } from '../../services';
 
 @Component({
   selector: 'app-case-study-b',

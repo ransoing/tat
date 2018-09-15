@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MiscService } from '../../services/misc/misc.service';
 
 @Component({
   selector: 'app-case-study-b',
@@ -9,7 +10,7 @@ export class CaseStudyBComponent implements OnInit {
 
   public modal: HTMLIonModalElement;
   
-  constructor() { }
+  constructor( public miscService: MiscService ) { }
 
   ngOnInit() {
   }

@@ -1,7 +1,7 @@
 import { IonicModule } from '@ionic/angular';
-import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CommonComponentsModule } from '../components/common-components.module';
 import { FormsModule } from '@angular/forms';
 
 import { TabsPageRoutingModule } from './tabs.router.module';
@@ -14,6 +14,7 @@ import { HomePageModule, RedFlagsPageModule, ReportPageModule, ResourcesPageModu
     CommonModule,
     FormsModule,
     TabsPageRoutingModule,
+    CommonComponentsModule,
     HomePageModule, RedFlagsPageModule, ReportPageModule, ResourcesPageModule, VolunteerPageModule
   ],
   declarations: [TabsPage]

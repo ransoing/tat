@@ -1,7 +1,6 @@
 import { Injectable }     from '@angular/core';
 import { CanDeactivate, Router, NavigationStart, RouterEvent, ActivatedRouteSnapshot }    from '@angular/router';
 import { ModalService } from './services';
-import { NavController } from '@ionic/angular';
 import { Location } from '@angular/common';
 
 @Injectable()

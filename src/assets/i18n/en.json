@@ -1,0 +1,17 @@
+{
+  "nav": {
+    "home": "Home",
+    "report": "Report",
+    "redFlags": "Red Flags",
+    "resources": "Resources",
+    "volunteer": "Volunteer"
+  },
+  "pages": {
+    "home": {
+      "reportActivity": "Report Activity",
+      "redFlags": "@:nav.redFlags",
+      "resources": "@:nav.resources",
+      "volunteer": "@:nav.volunteer"
+    }
+  }
+}

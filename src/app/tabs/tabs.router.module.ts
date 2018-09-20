@@ -9,38 +9,38 @@ const routes: Routes = [
   {
     path: 'tabs',
     component: TabsPage,
-    canActivate: [ModalGuard],
+    canDeactivate: [ModalGuard],
     children: [
       {
         path: '',
         redirectTo: '/tabs/(home:home)',
         pathMatch: 'full',
-        canActivate: [ModalGuard]
+        canDeactivate: [ModalGuard]
       }, {
         path: 'home',
         outlet: 'home',
         component: HomePage,
-        canActivate: [ModalGuard]
+        canDeactivate: [ModalGuard]
       }, {
         path: 'report',
         outlet: 'report',
         component: ReportPage,
-        canActivate: [ModalGuard]
+        canDeactivate: [ModalGuard]
       }, {
         path: 'red-flags',
         outlet: 'red-flags',
         component: RedFlagsPage,
-        canActivate: [ModalGuard]
+        canDeactivate: [ModalGuard]
       }, {
         path: 'resources',
         outlet: 'resources',
         component: ResourcesPage,
-        canActivate: [ModalGuard]
+        canDeactivate: [ModalGuard]
       }, {
         path: 'volunteer',
         outlet: 'volunteer',
         component: VolunteerPage,
-        canActivate: [ModalGuard]
+        canDeactivate: [ModalGuard]
       }
     ]
   }, {

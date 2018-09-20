@@ -25,13 +25,6 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      
-      this.platform.backButton.subscribe( () => {
-        if ( this.routerOutlet && this.routerOutlet.canGoBack() ) {
-          //this.routerOutlet.pop();
-          alert( 'Hardware back button pushed' );
-        }
-      });
     });
   }
 }

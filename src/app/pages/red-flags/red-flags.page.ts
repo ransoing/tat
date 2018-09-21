@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { ModalService } from '../../services';
+import { ModalService, MiscService } from '../../services';
 import { CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent } from '../../modals';
 
 @Component({
@@ -15,7 +15,7 @@ export class RedFlagsPage implements OnInit {
   CaseStudyCComponent = CaseStudyCComponent;
   CaseStudyDComponent = CaseStudyDComponent;
 
-  constructor( public navCtrl: NavController, public modalService: ModalService ) { }
+  constructor( public navCtrl: NavController, public modalService: ModalService, public miscService: MiscService ) { }
 
   ngOnInit() {
   }

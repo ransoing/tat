@@ -26,6 +26,12 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.translate.setDefaultLang( 'en' ); // @@ get the device's default language. Use spanish if that's what it is, otherwise use english.
       this.translate.use( 'en' );
+      window.addEventListener( 'keypress', (e) => {
+        // @@
+        if ( e.key === 'q' ) {
+          this.translate.use( this.translate.currentLang === 'en' ? 'es' : 'en' );
+        }
+      });
 
       this.statusBar.styleDefault();
       this.splashScreen.hide();

@@ -6,12 +6,52 @@
     "resources": "Resources",
     "volunteer": "Volunteer"
   },
-  "pages": {
-    "home": {
-      "reportActivity": "Report Activity",
-      "redFlags": "@:nav.redFlags",
-      "resources": "@:nav.resources",
-      "volunteer": "@:nav.volunteer"
+  "home": {
+    "reportActivity": "Report Activity",
+    "redFlags": "@:nav.redFlags",
+    "resources": "@:nav.resources",
+    "volunteer": "@:nav.volunteer"
+  },
+  "redFlags": {
+    "title": "@:home.redFlags",
+    "example": "Example",
+    "intro": {
+      "p1": "Human trafficking is modern-day slavery. Traffickers use force, fraud and coercion to control their victims. Any minor engaged in commercial sex is a victim of human trafficking. While the initial purchase of victims may occur online, the real-time sale of victims can happen in many locations, including truck stops, restaurants, rest areas, hotels/motels, strip clubs, private homes, etc.",
+      "p2": "Truckers are the eyes and the ears of our nation’s highways. If you see a minor working any of those areas or suspect that the person selling sex is under someone else’s control in order to make a quota, call the National Hotline and report your tip.",
+      "warning": "Warning: Please do not approach traffickers.",
+      "p3": "Allow law enforcement to deal with traffickers and recover victims. Approaching traffickers is not only dangerous for you and their victims but could lead to problems in the eventual prosecution of traffickers."
+    },
+    "questions": {
+      "title": "Questions",
+      "subtitle": "If you suspect someone is a victim of human trafficking, here are some questions to ask him/her.",
+      "1": "Do you keep your own money? If not, who does?",
+      "2": "Do your parents/siblings/relatives know where you are? If not, why not?",
+      "3": "When was the last time you saw your family?",
+      "4": "Are you physically or sexually abused?",
+      "5": "Are you or your family threatened?",
+      "6": "What is the nature of the threats?"
+    },
+    "flags": {
+      "subtitle": "Trafficking Red Flags to look for:",
+      "1": "Lack of knowledge of their whereabouts; not in control of ID/passport",
+      "2": "Restricted or controlled communication-not allowed to speak for self",
+      "3": "CB chatter about “commercial company” or flashing lights signaling “buyer” location",
+      "4": "Acknowledgement of a pimp and making a quota",
+      "5": "Signs of branding or tattooing of trafficker’s name (often on the neck)",
+      "6": "A van or RV that seems out of place out by trucks; a vehicle dropping someone off at a truck and picking them up 15–20 minutes later"
+    },
+    "post1": "If you haven't seen the TAT Training DVD you can go to our",
+    "post1Link": "education portal to complete your TAT Training",
+    "post2": "If you have seen the TAT Training DVD and reviewed this content, please register as TAT Trained",
+    "post2Link": "here",
+    "caseStudy": {
+      "title": "Case Study",
+      "readFullStory": "Read Full Story",
+      "watchVideo": "Watch Video",
+      "a": "<p>On Jan. 9, 2018, professional driver Arian Taylor pulled into a Compton, California business to make a delivery at 3:30 a.m. Shortly thereafter, he received a knock on his cab door, only to find a 19-year-old young woman standing outside his truck. As he spoke with her, he learned that her friend’s older boyfriend was trying to force her into prostitution. After she had refused and argued with him, he dumped her in the parking lot and sped off.</p><p>She was cold, exhausted, had no money, no identification, was carrying everything she owned in her arms and was desperate to get back home to Las Vegas. At that point, Arian told her, “I will find a way to get you home.” After getting her warm and giving her water to drink, Arian looked at one of the two TAT stickers prominently displayed on his window (which the victim had been eye-level with when she knocked on his door) and called the National Human Trafficking Hotline.</p><p>They worked with him to secure the woman shelter for the night, a pre-paid cab ride to get her to that shelter and a chaperoned train ride back to Las Vegas the next day, where she was reunited with a family member. Arian took care of the young women until she was placed in the cab, and even gave her his personal cell phone number in case she needed anything else.</p>",
+      "b": "Laura Sorensen and Aldair Hodza, who made national news when arrested on Jan. 6, 2015 in VA at a truck stop. According to the incident report, officers were called to the scene at 3:20 p.m. and were allowed inside the RV by the occupants, who said they were in the area on vacation and to visit Sorenson’s daughter. The officers, however, observed that the alleged victim appeared frightened and exhibited signs of malnutrition. A State Police trooper took the young woman outside, where she began to weep and beg the trooper not to let her return to the RV. She told the trooper she was being held against her will and had been abused sexually and physically by the suspects. She also said the suspects threatened to kill or injure her family. She said she had infections all over her body and couldn’t remember the last time she had anything to eat or drink, adding that several days had passed.",
+      "c": "William had parked in a truck stop for the evening when an underage girl knocked on his truck door and solicited him for sex. After William told the girl he was not interested, he observed her knocking on the doors of several other trucks before getting into one. During this time, William also saw an adult man walking around the lot and noticed that he appeared to be watching the girl closely.",
+      "d": "Branding is used to indicate ownership by a trafficker. These are some examples of what branding can look like, and where it can be on the body."
     }
   }
 }

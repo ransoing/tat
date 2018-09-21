@@ -3,66 +3,58 @@
 </ion-header>
 
 <ion-content padding>
-  <h1>Red Flags</h1>
-  <p>
-    Human trafficking is modern-day slavery. Traffickers use force, fraud and coercion to control their victims. Any minor engaged in commercial sex is a victim of human trafficking. While the initial purchase of victims may occur online, the real-time sale of victims can happen in many locations, including truck stops, restaurants, rest areas, hotels/motels, strip clubs, private homes, etc.
-  </p>
-  <p>
-    Truckers are the eyes and the ears of our nation’s highways. If you see a minor working any of those areas or suspect that the person selling sex is under someone else’s control in order to make a quota, call the National Hotline and report your tip.
-  </p>
-  <p>
-    <b>Warning: Please do not approach traffickers.</b> Allow law enforcement to deal with traffickers and recover victims. Approaching traffickers is not only dangerous for you and their victims but could lead to problems in the eventual prosecution of traffickers.
-  </p>
+  <h1>{{ 'redFlags.title' | translate }}</h1>
+
+  <p>{{ 'redFlags.intro.p1' | translate }}</p>
+  <p>{{ 'redFlags.intro.p2' | translate }}</p>
+  <p><b>{{ 'redFlags.intro.warning' | translate }}</b> {{ 'redFlags.intro.p3' | translate }}</p>
+
   <hr>
 
-  <h1>Questions</h1>
+  <h1>{{ 'redFlags.questions.title' | translate }}</h1>
   <p>
-    <b>If you suspect someone is a victim of human trafficking, here are some questions to ask him/her.</b>
+    <b>{{ 'redFlags.questions.subtitle' | translate }}</b>
   </p>
   <ul>
-    <li>Do you keep your own money? If not, who does?</li>
-    <li>Do your parents/siblings/relatives know where you are? If not, why not?</li>
+    <li>{{ 'redFlags.questions.1' | translate }}</li>
+    <li>{{ 'redFlags.questions.2' | translate }}</li>
   </ul>
 
-  <image-button image="red-flags.example-1.jpg" (click)="modalService.open(CaseStudyAComponent)">Example</image-button>
+  <image-button image="red-flags.example-1.jpg" (click)="modalService.open(CaseStudyAComponent)">{{ 'redFlags.example' | translate }}</image-button>
 
   <ul>
-    <li>When was the last time you saw your family?</li>
-    <li>Are you physically or sexually abused?</li>
+    <li>{{ 'redFlags.questions.3' | translate }}</li>
+    <li>{{ 'redFlags.questions.4' | translate }}</li>
   </ul>
 
-  <image-button image="red-flags.example-2.jpg" (click)="modalService.open(CaseStudyBComponent)">Example</image-button>
+  <image-button image="red-flags.example-2.jpg" (click)="modalService.open(CaseStudyBComponent)">{{ 'redFlags.example' | translate }}</image-button>
 
   <ul>
-    <li>Are you or your family threatened?</li>
-    <li>What is the nature of the threats?</li>
+    <li>{{ 'redFlags.questions.5' | translate }}</li>
+    <li>{{ 'redFlags.questions.6' | translate }}</li>
   </ul>
 
-  <p><b>Trafficking Red Flags to look for:</b></p>
+  <p><b>{{ 'redFlags.flags.subtitle' | translate }}</b></p>
 
   <ul>
-    <li>Lack of knowledge of their whereabouts; not in control of ID/passport</li>
-    <li>Restricted or controlled communication-not allowed to speak for self</li>
-    <li>CB chatter about “commercial company” or flashing lights signaling "buyer" location</li>
-    <li>Acknowledgement of a pimp and making a quota</li>
+    <li>{{ 'redFlags.flags.1' | translate }}</li>
+    <li>{{ 'redFlags.flags.2' | translate }}</li>
+    <li>{{ 'redFlags.flags.3' | translate }}</li>
+    <li>{{ 'redFlags.flags.4' | translate }}</li>
   </ul>
 
-  <image-button image="red-flags.example-3.jpg" (click)="modalService.open(CaseStudyCComponent)">Example</image-button>
+  <image-button image="red-flags.example-3.jpg" (click)="modalService.open(CaseStudyCComponent)">{{ 'redFlags.example' | translate }}</image-button>
 
   <ul>
-    <li>Signs of branding or tattooing of trafficker’s name (often on the neck)</li>
+    <li>{{ 'redFlags.flags.5' | translate }}</li>
   </ul>
 
-  <image-button image="red-flags.example-4.jpg" (click)="modalService.open(CaseStudyDComponent)">Example</image-button>
+  <image-button image="red-flags.example-4.jpg" (click)="modalService.open(CaseStudyDComponent)">{{ 'redFlags.example' | translate }}</image-button>
 
   <ul>
-    <li>A van or RV that seems out of place out by trucks; a vehicle dropping someone off at a truck and picking them up 15&ndash;20 minutes later</li>
+    <li>{{ 'redFlags.flags.6' | translate }}</li>
   </ul>
 
-  <p>
-    If you haven't seen the TAT Training DVD you can go to our <a href="">education portal to complete your TAT Training</a>.
-  </p>
-  <p>
-    If you have seen the TAT Training DVD and reviewed this content, please register as TAT Trained <a href="">here</a>.
-  </p>
+  <p>{{ 'redFlags.post1' | translate }} <a (click)="miscService.openExternalLink('@@')">{{ 'redFlags.post1Link' | translate }}</a>.</p>
+  <p>{{ 'redFlags.post2' | translate }} <a (click)="miscService.openExternalLink('@@')">{{ 'redFlags.post2Link' | translate }}</a>.</p>
 </ion-content>

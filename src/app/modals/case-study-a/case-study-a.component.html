@@ -2,10 +2,8 @@
   <ion-toolbar></ion-toolbar>
 </ion-header>
 <ion-content fullscreen padding>
-  <h1>Case Study</h1>
+  <h1>{{ 'redFlags.caseStudy.title' | translate }}</h1>
   <ion-icon name="md-close" class="modal-close-btn" (click)="modal.dismiss()"></ion-icon>
 
-  <p>On Jan. 9, 2018, professional driver Arian Taylor pulled into a Compton, California business to make a delivery at 3:30 a.m. Shortly thereafter, he received a knock on his cab door, only to find a 19-year-old young woman standing outside his truck. As he spoke with her, he learned that her friend’s older boyfriend was trying to force her into prostitution. After she had refused and argued with him, he dumped her in the parking lot and sped off.</p>
-  <p>She was cold, exhausted, had no money, no identification, was carrying everything she owned in her arms and was desperate to get back home to Las Vegas. At that point, Arian told her, &ldquo;I will find a way to get you home.&rdquo; After getting her warm and giving her water to drink, Arian looked at one of the two TAT stickers prominently displayed on his window (which the victim had been eye-level with when she knocked on his door) and called the National Human Trafficking Hotline.</p>
-  <p>They worked with him to secure the woman shelter for the night, a pre-paid cab ride to get her to that shelter and a chaperoned train ride back to Las Vegas the next day, where she was reunited with a family member. Arian took care of the young women until she was placed in the cab, and even gave her his personal cell phone number in case she needed anything else.</p>
+  <div [innerHTML]="'redFlags.caseStudy.a' | translate"></div>
 </ion-content>

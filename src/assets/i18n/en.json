@@ -53,5 +53,17 @@
       "c": "William had parked in a truck stop for the evening when an underage girl knocked on his truck door and solicited him for sex. After William told the girl he was not interested, he observed her knocking on the doors of several other trucks before getting into one. During this time, William also saw an adult man walking around the lot and noticed that he appeared to be watching the girl closely.",
       "d": "Branding is used to indicate ownership by a trafficker. These are some examples of what branding can look like, and where it can be on the body."
     }
+  },
+  "report": {
+    "title": "@:home.reportActivity",
+    "intro": "<p><b>Immediately:</b> If you’re watching a crime in progress, call 911 and then call the hotline. If you’re at a truck stop/travel plaza or any other place of business, please notify the manager-on-duty of the suspicious activity; she/he needs to be aware of what is taking place on their property and assist in ending it.</p><p>Anti-Trafficking Hotline Advocates are available 24/7 to take reports of potential human trafficking. All reports are confidential and you may remain anonymous. Interpreters are available. The information you provide will be reviewed by the National Hotline and forwarded to specialized law enforcement and/or service providers where appropriate.</p>",
+    "callHotline": "Call Hotline",
+    "USA": "USA",
+    "textBtn": "Text INFO or HELP",
+    "emailBtn": "Email Report",
+    "emailBtnHint": "A phone call is strongly preferred",
+    "callCanadaHotline": "Call Canada Hotline",
+    "callMexicoHotline": "Call Mexico Hotline",
+    "whatToReportBtn": "What to Report"
   }
 }

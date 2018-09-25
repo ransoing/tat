@@ -65,5 +65,17 @@
     "callCanadaHotline": "@@",
     "callMexicoHotline": "@@",
     "whatToReportBtn": "Qué reportar"
+  },
+  "whatToReport": {
+    "title": "@:report.whatToReportBtn",
+    "intro": "Para que las autoridades policiacas abran una investigación en relación con su reporte, necesitan información con base en la cual puedan actuar. Esta información incluiría:",
+    "cars": "Vehículos",
+    "carsText": "¿Hay vehículos involucrados en la actividad de los sospechosos? Anote la marca, el modelo, el color, el número de placas, etc.",
+    "people": "Personas",
+    "peopleText": "¿Quién está involucrado en la actividad? Tome nota de la estatura, peso, color de cabello, color de ojos, edad, etc. Tome una foto si puede para mostrarle a las autoridades cuando llegue al lugar de los hechos.",
+    "dateTime": "Fecha y hora",
+    "dateTimeText": "¿Cuándo sucedió la actividad sospechosa? ¿Qué día y a qué hora?",
+    "location": "Ubicación",
+    "locationText": "¿Dónde se llevó a cabo la actividad sospechosa? ¿Tiene usted una dirección? Sea tan especifico como pueda."
   }
 }

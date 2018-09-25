@@ -3,21 +3,21 @@
 </ion-header>
 
 <ion-content fullscreen padding>
-  <h1>What to Report</h1>
+  <h1>{{ 'whatToReport.title' | translate }}</h1>
   <ion-icon name="md-close" class="modal-close-btn" (click)="modal.dismiss()"></ion-icon>
 
-  <p>For law enforcement to open an investigation on your tip, they need &ldquo;actionable information.&rdquo; This would include:</p>
+  <p>{{ 'whatToReport.intro' | translate }}</p>
   
-  <h1><ion-icon name="boxycar"></ion-icon> Cars</h1>
-  <p>Are there any vehicles involved in the suspects activity? Record the make, model, color, license plate number, etc.</p>
+  <h1><ion-icon name="boxycar"></ion-icon> {{ 'whatToReport.cars' | translate }}</h1>
+  <p>{{ 'whatToReport.carsText' | translate }}</p>
 
-  <h1><ion-icon name="volunteer"></ion-icon> People</h1>
-  <p>Who is involved in the activity? Make note of height, weight, hair color, eye color, age, etc.</p>
+  <h1><ion-icon name="volunteer"></ion-icon> {{ 'whatToReport.people' | translate }}</h1>
+  <p>{{ 'whatToReport.peopleText' | translate }}</p>
 
-  <h1><ion-icon name="clock2"></ion-icon> Date &amp; Time</h1>
-  <p>When did the suspicious activity happen? What day and what time?</p>
+  <h1><ion-icon name="clock2"></ion-icon> {{ 'whatToReport.dateTime' | translate }}</h1>
+  <p>{{ 'whatToReport.dateTimeText' | translate }}</p>
 
-  <h1><ion-icon name="location"></ion-icon> Location</h1>
-  <p>Where did the suspicious activity take place? Do you have an address? Be as specific as you can.</p>
+  <h1><ion-icon name="location"></ion-icon> {{ 'whatToReport.location' | translate }}</h1>
+  <p>{{ 'whatToReport.locationText' | translate }}</p>
   
 </ion-content>

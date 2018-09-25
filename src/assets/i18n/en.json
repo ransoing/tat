@@ -65,5 +65,17 @@
     "callCanadaHotline": "Call Canada Hotline",
     "callMexicoHotline": "Call Mexico Hotline",
     "whatToReportBtn": "What to Report"
+  },
+  "whatToReport": {
+    "title": "@:report.whatToReportBtn",
+    "intro": "For law enforcement to open an investigation on your tip, they need “actionable information.” This would include:",
+    "cars": "Cars",
+    "carsText": "Are there any vehicles involved in the suspects activity? Record the make, model, color, license plate number, etc.",
+    "people": "People",
+    "peopleText": "Who is involved in the activity? Make note of height, weight, hair color, eye color, age, etc. Take photos if possible to show to the authorities when they arrive.",
+    "dateTime": "Date & Time",
+    "dateTimeText": "When did the suspicious activity happen? What day and what time?",
+    "location": "Location",
+    "locationText": "Where did the suspicious activity take place? Do you have an address? Be as specific as you can."
   }
 }

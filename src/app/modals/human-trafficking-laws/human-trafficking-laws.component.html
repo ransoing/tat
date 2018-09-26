@@ -2,21 +2,21 @@
   <ion-toolbar></ion-toolbar>
 </ion-header>
 <ion-content fullscreen padding>
-  <h1>Human Trafficking Laws</h1>
+  <h1>{{ 'resources.laws.title' | translate }}</h1>
   <ion-icon name="md-close" class="modal-close-btn" (click)="modal.dismiss()"></ion-icon>
 
-  <p><strong>Did you know?</strong></p>
+  <p><strong>{{ 'resources.laws.intro' | translate }}</strong></p>
 
-  <p><em>Human trafficking is the recruitment, transportation, transfer, harboring or obtaining of persons through force, fraud and coercion for the purpose of exploitation.</em></p>
+  <p><em>{{ 'resources.laws.intro2' | translate }}</em></p>
 
   <ul>
-    <li>All 50 states and D.C. have a law criminalizing sex trafficking</li>
-    <li>31 states have a buyer applicable trafficking law that prohibits a mistake of age defense in prosecutions for buying a commercial sex act with any minor under 18</li>
-    <li>Some states punish sex purchasers the same as traffickers, generally with felony level crimes</li>
-    <li>Washington identifies anyone who purchases a sexually explicit act as a human trafficker guilty of a class-A felony</li>
-    <li>There is a lifetime ban on a CDL for any individual who uses their CMV in committing a felony involving a severe form of human trafficking</li>
+    <li>{{ 'resources.laws.bullets.1' | translate }}</li>
+    <li>{{ 'resources.laws.bullets.2' | translate }}</li>
+    <li>{{ 'resources.laws.bullets.3' | translate }}</li>
+    <li>{{ 'resources.laws.bullets.4' | translate }}</li>
+    <li>{{ 'resources.laws.bullets.5' | translate }}</li>
   </ul>
 
-  <p><a>Learn more about the human trafficking laws in the US.</a></p>
+  <p><a (click)="miscService.openExternalLink('http://truckersagainsttrafficking.org/human-trafficking-laws/')">{{ 'resources.laws.linkText' | translate }}</a></p>
 
 </ion-content>

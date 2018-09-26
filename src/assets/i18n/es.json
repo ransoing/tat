@@ -77,5 +77,63 @@
     "dateTimeText": "¿Cuándo sucedió la actividad sospechosa? ¿Qué día y a qué hora?",
     "location": "Ubicación",
     "locationText": "¿Dónde se llevó a cabo la actividad sospechosa? ¿Tiene usted una dirección? Sea tan especifico como pueda."
+  },
+  "resources": {
+    "title": "@:nav.resources",
+    "intro": "Use los siguientes recursos para conocer más acerca de la trata de personas y cómo usted puede ayudar a combatirla.",
+    "btns": {
+      "videos": "Videos",
+      "recommendedBooks": "Libros Recomendados",
+      "humanTraffickingLaws": "Leyes Sobre la Trata de Personas ",
+      "aboutTAT": "Acerca de TAT",
+      "volunteerLogin": "Login (acceso) de Voluntarios"
+    },
+    "books": {
+      "title": "@:resources.btns.recommendedBooks",
+      "subtitle": "con sus títulos en inglés",
+      "by": "de",
+      "or": "o",
+      "documentaries": "Documentales recomendados"
+    },
+    "laws": {
+      "title": "@:resources.btns.humanTraffickingLaws",
+      "intro": "¿Sabía usted que…?",
+      "intro2": "La trata de personas es el reclutamiento, transporte, transferencia, alojamiento u obtención de personas por medio de la fuerza, el fraude y la coerción con fines de explotación.",
+      "bullets": {
+        "1": "Los 50 estados de EEUU y el Distrito de Columbia tienen una nueva ley que penaliza la trata de personas para explotación sexual",
+        "2": "31 estados tienen una ley contra la trata que se impone a los compradores, la cual prohíbe la defensa con base en error en la edad en los juicios por comprar un acto sexual de una persona menor de 18 años de edad",
+        "3": "Algunos estados castigan a los compradores de sexo de la misma forma que a los tratantes, generalmente con delitos de carácter grave",
+        "4": "Washington identifica a cualquier persona que compre un acto sexual explícito como tratante de personas culpable de un delito grave tipo A",
+        "5": "Hay una prohibición de por vida para obtener licencia de conducir comercia para la persona que use su vehículo comercial en la comisión de un delito grave que conlleve una forma grave de trata de personas"
+      },
+      "linkText": "¿Desea saber más acerca de las leyes contra la trata de personas en los Estados Unidos?"
+    },
+    "about": {
+      "title": "Acerca de TAT",
+      "intro": "Existimos para educar, equipar, empoderar y movilizar a los miembros de la industria camionera y de autobuses para combatir la explotación sexual a nivel nacional como parte ordinaria de sus trabajos.",
+      "goals": {
+        "header": "Nuestras tres metas son:",
+        "1": "Saturar a la industria camionera y conexas con materiales de TAT",
+        "2": "Colaborar con las autoridades y las agencias gubernamentales para facilitar la investigación de la trata de personas",
+        "3": "Movilizar los recursos de nuestros colaboradores para combatir este delito"
+      },
+      "annualReportLink": {
+        "1": "Conozca el impacto que TAT y nuestros colaboradores tuvieron en el 2017 por medio de nuestro",
+        "2": "Reporte Anual"
+      },
+      "tatLink": {
+        "1": "Conozca más sobre TAT y nuestros programas en nuestra",
+        "2": "página de Internet"
+      },
+      "credits": "Esta aplicación fue creada por Ransom Christofferson y Alexander Ramsey Creative LLC.",
+      "supportLink": {
+        "1": "Para apoyo comuníquese:",
+        "2": "info@TruckersAgainstTrafficking.org"
+      },
+      "freedomDriversLink": {
+        "1": "Siga nuestras exhibiciones informativas en camiones, Freedom Drivers Project, por medio del",
+        "2": "calendario de eventos"
+      }
+    }
   }
 }

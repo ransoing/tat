@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MiscService } from '../../services';
 
 @Component({
   selector: 'app-about-tat',
@@ -9,7 +10,7 @@ export class AboutTatComponent implements OnInit {
 
   public modal: HTMLIonModalElement;
   
-  constructor() { }
+  constructor( private miscService: MiscService ) { }
 
   ngOnInit() {
   }

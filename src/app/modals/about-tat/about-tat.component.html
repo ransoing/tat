@@ -2,25 +2,37 @@
   <ion-toolbar></ion-toolbar>
 </ion-header>
 <ion-content fullscreen padding>
-  <h1>About Truckers Against Trafficking</h1>
+  <h1>{{ 'resources.about.title' | translate }}</h1>
   <ion-icon name="md-close" class="modal-close-btn" (click)="modal.dismiss()"></ion-icon>
 
-  <p>We exist to educate, equip, empower, and mobilize members of the trucking and busing industries to combat domestic sex trafficking as a regular part of their jobs.</p>
+  <p>{{ 'resources.about.intro' | translate }}</p>
 
-  <p><strong>Our three goals are</strong></p>
+  <p><strong>{{ 'resources.about.goals.header' | translate }}</strong></p>
   <ul>
-    <li>Saturate trucking and related industries with TAT materials</li>
-    <li>Partner with law enforcement and government agencies to facilitate the investigation of human trafficking</li>
-    <li>Marshal the resources of our partners to combat this crime</li>
+    <li>{{ 'resources.about.goals.1' | translate }}</li>
+    <li>{{ 'resources.about.goals.2' | translate }}</li>
+    <li>{{ 'resources.about.goals.3' | translate }}</li>
   </ul>
 
-  <p>Learn about the impact TAT and our partners made in 2017 through our <a>Annual Report</a>.
+  <p>
+    {{ 'resources.about.annualReportLink.1' | translate }}
+    <a (click)="miscService.openExternalLink('http://online.flipbuilder.com/wqwq/mseo/mobile/index.html')">{{ 'resources.about.annualReportLink.2' | translate }}</a>.
+  </p>
+
+  <p>
+    {{ 'resources.about.tatLink.1' | translate }}
+    <a (click)="miscService.openExternalLink('http://truckersagainsttrafficking.org/')">{{ 'resources.about.tatLink.2' | translate }}</a>.
+  </p>
 
   <hr>
 
-  <p>This app was developed by Ransom Christofferson and designed by Alexander Ramsey Creative LLC.</p>
+  <p>{{ 'resources.about.credits' | translate }}</p>
 
-  <p>For support, contact: <a>info@TruckersAgainstTrafficking.org</a></p>
+  <p>{{ 'resources.about.supportLink.1' | translate }}
+    <a (click)="miscService.openExternalLink('mailto:info@truckersagainsttrafficking.org')">{{ 'resources.about.supportLink.2' | translate }}</a>.
+  </p>
 
-  <p>Follow our show trailer, the Freedom Drivers Project, through the <a>events calendar</a>.</p>
+  <p>{{ 'resources.about.freedomDriversLink.1' | translate }}
+    <a (click)="miscService.openExternalLink('http://truckersagainsttrafficking.org/fdp-tour-schedule/')">{{ 'resources.about.freedomDriversLink.2' | translate }}</a>.
+  </p>
 </ion-content>

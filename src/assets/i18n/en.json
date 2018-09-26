@@ -77,5 +77,63 @@
     "dateTimeText": "When did the suspicious activity happen? What day and what time?",
     "location": "Location",
     "locationText": "Where did the suspicious activity take place? Do you have an address? Be as specific as you can."
+  },
+  "resources": {
+    "title": "@:nav.resources",
+    "intro": "Use the resources below to learn more about trafficking and how you can get involved.",
+    "btns": {
+      "videos": "Videos",
+      "recommendedBooks": "Recommended Books",
+      "humanTraffickingLaws": "Human Trafficking Laws",
+      "aboutTAT": "About TAT",
+      "volunteerLogin": "Volunteer Login"
+    },
+    "books": {
+      "title": "@:resources.btns.recommendedBooks",
+      "subtitle": "",
+      "by": "by",
+      "or": "or",
+      "documentaries": "Documentary Recommendations"
+    },
+    "laws": {
+      "title": "@:resources.btns.humanTraffickingLaws",
+      "intro": "Did you know?",
+      "intro2": "Human trafficking is the recruitment, transportation, transfer, harboring or obtaining of persons through force, fraud and coercion for the purpose of exploitation.",
+      "bullets": {
+        "1": "All 50 states and D.C. have a law criminalizing sex trafficking",
+        "2": "31 states have a buyer applicable trafficking law that prohibits a mistake of age defense in prosecutions for buying a commercial sex act with any minor under 18",
+        "3": "Some states punish sex purchasers the same as traffickers, generally with felony level crimes",
+        "4": "Washington identifies anyone who purchases a sexually explicit act as a human trafficker guilty of a class-A felony",
+        "5": "There is a lifetime ban on a CDL for any individual who uses their CMV in committing a felony involving a severe form of human trafficking"
+      },
+      "linkText": "Learn more about the human trafficking laws in the US."
+    },
+    "about": {
+      "title": "About Truckers Against Trafficking",
+      "intro": "We exist to educate, equip, empower, and mobilize members of the trucking and busing industries to combat domestic sex trafficking as a regular part of their jobs.",
+      "goals": {
+        "header": "Our three goals are:",
+        "1": "Saturate trucking and related industries with TAT materials",
+        "2": "Partner with law enforcement and government agencies to facilitate the investigation of human trafficking",
+        "3": "Marshal the resources of our partners to combat this crime"
+      },
+      "annualReportLink": {
+        "1": "Learn about the impact TAT and our partners made in 2017 through our",
+        "2": "annual report"
+      },
+      "tatLink": {
+        "1": "Learn more about TAT and our programs on our",
+        "2": "website"
+      },
+      "credits": "This app was developed by Ransom Christofferson and designed by Alexander Ramsey Creative LLC.",
+      "supportLink": {
+        "1": "For support, contact:",
+        "2": "info@TruckersAgainstTrafficking.org"
+      },
+      "freedomDriversLink": {
+        "1": "Follow our show trailer, the Freedom Drivers Project, through the",
+        "2": "events calendar"
+      }
+    }
   }
 }

@@ -2,26 +2,27 @@
   <ion-toolbar></ion-toolbar>
 </ion-header>
 <ion-content fullscreen padding>
-  <h1>Recommended Books</h1>
+  <h1>{{ 'resources.books.title' | translate }}</h1>
+  <h5 class="subtitle">{{ 'resources.books.subtitle' | translate }}</h5>
   <ion-icon name="md-close" class="modal-close-btn" (click)="modal.dismiss()"></ion-icon>
 
   <div class="book-list" padding-bottom>
     <div *ngFor="let book of books">
-      <img src="../../../assets/images/books/{{book.image}}">
+      <img src="../../../assets/images/books/{{book.image}}" (click)="miscService.openExternalLink(book.link)">
       <div class="book-title">{{book.title}}</div>
-      <div class="book-byline">{{book.byline}}</div>
+      <div class="book-byline">{{ 'resources.books.by' | translate }} {{book.byline}}</div>
     </div>
   </div>
 
   <hr margin-top>
 
-  <h2>Documentary Recommendations</h2>
+  <h2>{{ 'resources.books.documentaries' | translate }}</h2>
 
   <div class="book-list">
     <div *ngFor="let film of films">
-      <img src="../../../assets/images/documentaries/{{film.image}}">
+      <img src="../../../assets/images/documentaries/{{film.image}}" (click)="miscService.openExternalLink(film.link)">
       <div class="book-title">{{film.title}}</div>
-      <div class="book-byline">{{film.byline}}</div>
+      <div class="book-byline">{{film.byline}}<span *ngIf="film.bylineAlt"> {{ 'resources.books.or' | translate }} {{film.bylineAlt}}</span></div>
     </div>
   </div>
 

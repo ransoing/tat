@@ -134,6 +134,25 @@
         "1": "Siga nuestras exhibiciones informativas en camiones, Freedom Drivers Project, por medio del",
         "2": "calendario de eventos"
       }
+    },
+    "videos": {
+      "title": "@:resources.btns.videos",
+      "video1": {
+        "title": "Video de capacitación de TAT",
+        "description": "<p>Escuche lo que dicen los choferes de camiones que han presenciado la trata de personas en sus rutas, escuche al FBI, a una víctima que fue rescatada gracias a la llamada de un chofer, y reciba información acerca de formas concretas en las cuales los miembros de la industria camionera y de las áreas de descanso pueden combatir este delito en el transcurso de su trabajo diario.</p>"
+      },
+      "video2": {
+        "title": "¡Sea un agente de cambio!",
+        "description": "<p>Escuche la historia de Kevin Kimmel quien ganó el premio Harriet Tubman del 2015 y quien fue un agente del cambio en las carreteras.</p>"
+      },
+      "video3": {
+        "title": "Capacitación de TAT con la participación de las autoridades policíacas",
+        "description": "<p>Truckers Against Trafficking presenta esta capacitación sobre trata de personas e información sobre como las autoridades pueden investigar y procesar judicialmente este delito.</p><p>Gracias a nuestros patrocinadores Help Inc. y Vigilant Solutions y a nuestros colaboradores de iEmpathize por ayudar a hacer posible este video.</p>"
+      },
+      "video4": {
+        "title": "Webinar de la Tarjeta de Cartera TAT",
+        "description": "Una breve capacitación sobre los elementos que integran la tarjeta de cartera de TAT."
+      }
     }
   }
 }

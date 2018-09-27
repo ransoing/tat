@@ -134,6 +134,25 @@
         "1": "Follow our show trailer, the Freedom Drivers Project, through the",
         "2": "events calendar"
       }
+    },
+    "videos": {
+      "title": "@:resources.btns.videos",
+      "video1": {
+        "title": "TAT Training Video",
+        "description": "<p>Hear from truckers who have seen human trafficking on their routes, the FBI, a trafficking victim rescued through the call of a trucker, and information on concrete ways members of the trucking/travel plaza industry can fight this crime in the course of their daily work.</p>"
+      },
+      "video2": {
+        "title": "Be a Changemaker!",
+        "description": "<p>Hear the story of Kevin Kimmel the 2015 Harriet Tubman Award winner and change maker of the highway.</p>"
+      },
+      "video3": {
+        "title": "TAT Law Enforcement Training",
+        "description": "<p>Truckers Against Trafficking presents this training on human trafficking and information on how law enforcement can investigate and prosecute this crime.</p><p>Thank you to our sponsors Help Inc. and Vigilant Solutions and our partners at iEmpathize for helping to make this training video possible.</p>"
+      },
+      "video4": {
+        "title": "TAT Wallet Card Webinar",
+        "description": "<p>A brief training on the elements of the TAT wallet card.</p>"
+      }
     }
   }
 }

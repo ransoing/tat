@@ -5,4 +5,17 @@
   <h1>Videos</h1>
   <ion-icon name="md-close" class="modal-close-btn" (click)="modal.dismiss()"></ion-icon>
 
+  <div *ngFor="let video of videos">
+    <hr>
+    <p><strong>{{ video.title | translate }}</strong></p>
+    <div [innerHTML]="video.desc | translate"></div>
+    <div *ngIf="video.type == 'vimeo'" style="padding:56.25% 0 0 0;position:relative;">
+      <iframe [src]="domSanitizer.bypassSecurityTrustResourceUrl('https://player.vimeo.com/video/' + video.id + '?title=0&portrait=0')" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      <script src="https://player.vimeo.com/api/player.js"></script>
+    </div>
+    <div *ngIf="video.type == 'youtube'" style="padding:56.25% 0 0 0;position:relative;">
+      <iframe [src]="domSanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + video.id + '?rel=0')" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
+    </div>
+  </div>
+
 </ion-content>

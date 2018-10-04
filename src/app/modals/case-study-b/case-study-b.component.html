@@ -6,6 +6,10 @@
   <ion-icon name="md-close" class="modal-close-btn" (click)="modal.dismiss()"></ion-icon>
 
   <p>{{ 'redFlags.caseStudy.b' | translate }}</p>
-  <p><a (click)="miscService.openExternalLink('@@')">{{ 'redFlags.caseStudy.watchVideo' | translate }}</a></p>
-  <p><a (click)="miscService.openExternalLink('@@')">{{ 'redFlags.caseStudy.readFullStory' | translate }}</a></p>
+  <p><a (click)="showVideo = !showVideo">&#65339;{{ showVideo ? '&#65293;' : '&#65291;' }}&#65341; {{ 'redFlags.caseStudy.watchVideo' | translate }}</a></p>
+  <div *ngIf="showVideo" style="padding:56.25% 0 0 0;position:relative;">
+    <iframe src="https://www.youtube.com/embed/Oufu2oahutA?rel=0')" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
+  </div>
+  <p><a (click)="showFullStory = !showFullStory">&#65339;{{ showFullStory ? '&#65293;' : '&#65291;' }}&#65341; {{ 'redFlags.caseStudy.readFullStory' | translate }}</a></p>
+  <p *ngIf="showFullStory">Full story.</p>
 </ion-content>

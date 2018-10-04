@@ -2,11 +2,11 @@
 <widget id="org.truckersagainsttrafficking.walletcard" version="3.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Truckers Against Trafficking</name>
     <description>Make the call, save lives. Use this simple app to help you identify and report instances of human trafficking.</description>
-    <author href="http://www.truckersagainsttrafficking.org/" email="appdev@truckersagainsttrafficking.org">Truckers Against Trafficking</author>
+    <author email="appdev@truckersagainsttrafficking.org" href="http://www.truckersagainsttrafficking.org/">Truckers Against Trafficking</author>
     <content src="index.html" />
     <access origin="*" />
-    <access origin="mailto:*" launch-external="yes" />
-    <access origin="tel:*" launch-external="yes" />
+    <access launch-external="yes" origin="mailto:*" />
+    <access launch-external="yes" origin="tel:*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />

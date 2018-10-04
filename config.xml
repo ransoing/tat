@@ -5,6 +5,8 @@
     <author href="http://www.truckersagainsttrafficking.org/" email="appdev@truckersagainsttrafficking.org">Truckers Against Trafficking</author>
     <content src="index.html" />
     <access origin="*" />
+    <access origin="mailto:*" launch-external="yes" />
+    <access origin="tel:*" launch-external="yes" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />

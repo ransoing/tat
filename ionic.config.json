@@ -1,6 +1,8 @@
 {
   "name": "tat",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular",
   "pro_id": "a00dad4b"
 }

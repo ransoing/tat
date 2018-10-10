@@ -11,5 +11,5 @@
     <iframe src="https://www.youtube.com/embed/Oufu2oahutA?rel=0')" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
   </div>
   <p><a (click)="showFullStory = !showFullStory">&#65339;{{ showFullStory ? '&#65293;' : '&#65291;' }}&#65341; {{ 'redFlags.caseStudy.readFullStory' | translate }}</a></p>
-  <p *ngIf="showFullStory">Full story.</p>
+  <div *ngIf="showFullStory" [innerHTML]="'redFlags.caseStudy.bFull' | translate"></div>
 </ion-content>

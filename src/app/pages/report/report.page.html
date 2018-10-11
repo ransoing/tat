@@ -9,7 +9,12 @@
 
   <image-button image="report.hotline.jpg" [tall]="true">{{ 'report.callHotline' | translate }} <span class="short-text">({{ 'report.USA' | translate }})</span></image-button>
   <image-button image="report.text.jpg">{{ 'report.textBtn' | translate }}</image-button>
-  <image-button image="report.email.jpg" hint="{{ 'report.emailBtnHint' | translate }}">{{ 'report.emailBtn' | translate }}</image-button>
+  <image-button
+  image="report.email.jpg"
+  hint="{{ 'report.emailBtnHint' | translate }}"
+  (click)="modalService.open(EmailReportComponent)">
+    {{ 'report.emailBtn' | translate }}
+  </image-button>
 
   <div class="alt-hotlines">
     <a>{{ 'report.callCanadaHotline' | translate }}</a>

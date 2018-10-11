@@ -1,0 +1,155 @@
+<ion-header>
+  <ion-toolbar></ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen padding>
+  <h1>{{ 'emailReport.title' | translate }}</h1>
+  <ion-icon name="md-close" class="modal-close-btn" (click)="modal.dismiss()"></ion-icon>
+
+  <p>{{ 'emailReport.intro' | translate }}</p>
+
+  <ion-list>
+
+    <!-- victim -->
+    <ion-item>
+      <ion-checkbox [(ngModel)]="form.contactedVictim" color="primary"></ion-checkbox>
+      Have you seen someone you suspect is a victim?
+    </ion-item>
+
+    <ion-item *ngIf="form.contactedVictim">
+      <fieldset>
+        <ion-list lines="full">
+          <ion-item>
+            <ion-label>Victim's gender</ion-label>
+            <ion-select [(ngModel)]="form.victimDetails.gender" placeholder="Select One">
+              <ion-select-option value="Unknown">Unknown</ion-select-option>
+              <ion-select-option value="Female">Female</ion-select-option>
+              <ion-select-option value="Male">Male</ion-select-option>
+              <ion-select-option value="Other">Other</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Appearance</ion-label>
+            <ion-textarea [(ngModel)]="form.victimDetails.appearance" placeholder="Describe the victim's height, weight, ethnicity, hair color, eye color, age, etc."></ion-textarea>
+          </ion-item>
+
+          <ion-item>Check the red flags that apply:</ion-item>
+          <ion-item>
+            <ion-checkbox [(ngModel)]="form.victimDetails.hasRestrictedCommunication" color="primary"></ion-checkbox>
+            The victim has restricted or controlled communication &mdash; not allowed to speak for self
+          </ion-item>
+          <ion-item>
+            <ion-checkbox [(ngModel)]="form.victimDetails.isDisheveled" color="primary"></ion-checkbox>
+            The victim has a disheveled or unkempt appearance, is alone, scared, or crying
+          </ion-item>
+          <ion-item>
+            <ion-checkbox [(ngModel)]="form.victimDetails.isMinor" color="primary"></ion-checkbox>
+            The victim is a minor traveling without adult supervision
+          </ion-item>
+          <ion-item>
+            <ion-checkbox [(ngModel)]="form.victimDetails.offersSex" color="primary"></ion-checkbox>
+            The victim offers to exchange sex for a ride, meal, etc.
+          </ion-item>
+          <ion-item>
+            <ion-checkbox [(ngModel)]="form.victimDetails.doesNotKnow" color="primary"></ion-checkbox>
+            The victim does not know the person who is picking him/her up
+          </ion-item>
+          <ion-item>
+            <ion-checkbox [(ngModel)]="form.victimDetails.hasPimp" color="primary"></ion-checkbox>
+            The victim shows any acknowledgement that she/he has a pimp and is making a quota
+          </ion-item>
+          <ion-item>
+            <ion-checkbox [(ngModel)]="form.victimDetails.hasBranding" color="primary"></ion-checkbox>
+            The victim has signs of branding or tattooing of the trafficker's name (often on the neck)
+          </ion-item>
+          <ion-item>
+            <ion-checkbox [(ngModel)]="form.victimDetails.hasLackOfKnowledge" color="primary"></ion-checkbox>
+            The victim has a lack of knowledge of the community or his/her whereabouts
+          </ion-item>
+          <ion-item>
+            <ion-checkbox [(ngModel)]="form.victimDetails.hasNoId" color="primary"></ion-checkbox>
+            The victim is not in control of his/her own identification documents (ID/passport)
+          </ion-item>
+          
+          <ion-item>
+            <ion-label position="stacked">Other notes</ion-label>
+            <ion-textarea [(ngModel)]="form.victimDetails.other" placeholder="Enter other notes here"></ion-textarea>
+          </ion-item>
+        </ion-list>
+      </fieldset>
+    </ion-item>
+
+    <!-- people -->
+    <ion-item>
+      <ion-checkbox [(ngModel)]="form.people" color="primary"></ion-checkbox>
+      Do you see any other people (buyer or traffickers, etc) involved in the suspicious activity?
+    </ion-item>
+
+    <ion-item *ngIf="form.people">
+      <fieldset>
+        <ion-item>
+          <ion-label position="stacked">Description of other people</ion-label>
+          <ion-textarea [(ngModel)]="form.peopleDetails" placeholder="Describe what makes them suspicious and record their height, weight, ethnicity, hair color, eye color, age, etc."></ion-textarea>
+        </ion-item>
+      </fieldset>
+    </ion-item>
+
+    <!-- cars -->
+    <ion-item>
+      <ion-checkbox [(ngModel)]="form.cars" color="primary"></ion-checkbox>
+      Are there any vehicles involved in the suspicious activity?
+    </ion-item>
+
+    <ion-item *ngIf="form.cars">
+      <fieldset>
+        <ion-item>
+          <ion-label position="stacked">Description of cars</ion-label>
+          <ion-textarea [(ngModel)]="form.carsDetails" placeholder="For all vehicles involved, record how they're involved and the make, model, color, license plate, etc."></ion-textarea>
+        </ion-item>
+      </fieldset>
+    </ion-item>
+
+    <!-- time -->
+    <ion-item>When did the suspicious activity happen?</ion-item>
+    <ion-item>
+      <ion-label>Date</ion-label>
+      <ion-datetime [(ngModel)]="form.date" displayFormat="MMMM DD, YYYY" placeholder="Select date"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>Time</ion-label>
+      <ion-datetime [(ngModel)]="form.time" displayFormat="h:mm a" placeholder="Select time"></ion-datetime>
+    </ion-item>
+
+    <!-- place -->
+    <ion-item>
+      <ion-label position="stacked">Where did the suspicious activity take place?</ion-label>
+      <ion-textarea [(ngModel)]="form.location" placeholder="Enter your location"></ion-textarea>
+    </ion-item>
+
+    <!-- additional info -->
+    <ion-item>
+      <ion-label position="stacked">Additional information about the suspicious situation</ion-label>
+      <ion-textarea [(ngModel)]="form.additional" placeholder="Enter additional info"></ion-textarea>
+    </ion-item>
+
+    <!-- phone -->
+    <ion-item>
+      <ion-label position="stacked">Your phone number, for follow up from the hotline</ion-label>
+      <ion-input [(ngModel)]="form.phone" type="tel" placeholder="Phone number"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <p>If you have taken photos, show them to law enforcement.</p>
+  <p>The button below will open up your email program.</p>
+
+  <ion-button fill="solid" color="primary" size="default" (click)="buildReportEmail()">
+    <ion-icon name="mail"></ion-icon>
+    &nbsp;Email your report
+  </ion-button>
+
+  <ion-button fill="clear" color="danger" size="default" (click)="resetReportForm()">
+    Reset the form
+  </ion-button>
+  
+</ion-content>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { WhatToReportComponent } from '../../modals';
+import { WhatToReportComponent, EmailReportComponent } from '../../modals';
 import { ModalService } from '../../services';
 
 @Component({
@@ -10,6 +10,7 @@ import { ModalService } from '../../services';
 export class ReportPage implements OnInit {
 
   WhatToReportComponent = WhatToReportComponent;
+  EmailReportComponent = EmailReportComponent;
 
   constructor( public modalService: ModalService ) {}
 

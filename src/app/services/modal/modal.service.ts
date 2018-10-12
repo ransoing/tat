@@ -28,7 +28,8 @@ constructor( public modalController: ModalController ) { }
     modal.onDidDismiss().then( data => this.stack.pop() );
 
     // show the modal
-    return await modal.present();
+    modal.present();
+    return modal;
   }
 
 }

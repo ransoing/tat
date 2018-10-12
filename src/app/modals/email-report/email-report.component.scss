@@ -1,3 +1,19 @@
 fieldset { width: 100% }
 ion-textarea { height: 5em }
-ion-item { margin-bottom: 0.75em }
+ion-item {
+    margin-bottom: 0.75em;
+    padding-bottom: 0.75em;
+    border-bottom: 1px solid rgba( 255, 255, 255, 0.25 );
+
+    &.no-border { border-bottom-color: transparent }
+    &.no-padding { margin-bottom: 0; padding-bottom: 0 }
+}
+
+fieldset ion-item:last-child {
+    @extend ion-item.no-border;
+    @extend ion-item.no-padding;
+}
+
+p.like-ion-item {
+    padding-left: 1em;
+}

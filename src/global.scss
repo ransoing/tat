@@ -93,19 +93,20 @@ ion-header > ion-toolbar {
 
 .statusbar { background: black }
 
-ion-modal {
-    .modal-close-btn {
-        position: fixed;
-        top: var( --ion-padding );
-        right: var( --ion-padding );
-        z-index: 100;
-        font-size: 300%;
-        cursor: pointer;
-        background: rgba(0,0,0,0.7);
-        border-radius: 50%;
-    }
+.modal-close-btn {
+    position: fixed;
+    top: var( --ion-padding );
+    right: var( --ion-padding );
+    z-index: 100;
+    font-size: 300%;
+    cursor: pointer;
+    background: rgba(0,0,0,0.7);
+    border-radius: 50%;
+}
 
-    ion-content h1:first-child {
+ion-modal ion-content,
+ion-content.like-modal {
+    h1:first-child {
         padding-right: 1.3em;
     }
 }

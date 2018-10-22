@@ -32,16 +32,24 @@ import {
   PlacesComponent, EmailReportComponent, WhatToReportComponent, VideosComponent, RecommendedBooksComponent, AboutTatComponent, HumanTraffickingLawsComponent,
   CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent
 } from './modals';
+import {
+  POSPart1Page, POSPart2Page, POSPart3Page, POSPart4Page, POSPart5Page, POSPart6Page,
+  PORPart1Page, PORPart2Page, PORPart3Page, PORPart4Page, PORPart5Page
+} from './pages';
 
 @NgModule({
   declarations: [
     AppComponent,
     PlacesComponent, EmailReportComponent, WhatToReportComponent, VideosComponent, RecommendedBooksComponent, AboutTatComponent, HumanTraffickingLawsComponent,
-    CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent
+    CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent,
+    POSPart1Page, POSPart2Page, POSPart3Page, POSPart4Page, POSPart5Page, POSPart6Page,
+    PORPart1Page, PORPart2Page, PORPart3Page, PORPart4Page, PORPart5Page
   ],
   entryComponents: [
     PlacesComponent, EmailReportComponent, WhatToReportComponent, VideosComponent, RecommendedBooksComponent, AboutTatComponent, HumanTraffickingLawsComponent,
-    CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent
+    CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent,
+    POSPart1Page, POSPart2Page, POSPart3Page, POSPart4Page, POSPart5Page, POSPart6Page,
+    PORPart1Page, PORPart2Page, PORPart3Page, PORPart4Page, PORPart5Page
   ],
   imports: [
     BrowserModule,

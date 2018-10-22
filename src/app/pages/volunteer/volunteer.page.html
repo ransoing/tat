@@ -8,9 +8,9 @@
     Thank you for volunteering with TAT! Your time in preparation, volunteering and follow up not only helps further our mission, but further exemplifies how passionate this industry is about fighting this heinous crime. Below are the items you will need throughout the volunteer process. We are thrilled to have you as part of the team.
   </p>
   <image-button image="volunteer.training-video.jpg" [required]="true" [completed]="false">Training Video</image-button>
-  <image-button image="volunteer.pre-outreach-survey.jpg" [required]="true">Pre-Outreach Survey</image-button>
+  <image-button image="volunteer.pre-outreach-survey.jpg" [required]="true" (click)="navCtrl.navigateRoot('/pos-1')">Pre-Outreach Survey</image-button>
   <image-button image="volunteer.resources.jpg">Resources</image-button>
-  <image-button image="volunteer.post-outreach-report.jpg" [required]="true">Post-Outreach Report</image-button>
+  <image-button image="volunteer.post-outreach-report.jpg" [required]="true" (click)="navCtrl.navigateRoot('/por-1')">Post-Outreach Report</image-button>
   <image-button image="volunteer.hours-log.jpg" [required]="true">Hours Log</image-button>
   <image-button image="volunteer.photos.jpg">Photos</image-button>
   <image-button image="volunteer.testimonial.jpg">Testimonial</image-button>

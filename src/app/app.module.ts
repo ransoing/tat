@@ -16,10 +16,13 @@ import { SelfReferentialCompiler } from './translate-compiler';
 
 // ionic
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+
+// native cordova/ionic
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Dialogs } from '@ionic-native/dialogs/ngx';
 import { Network } from '@ionic-native/network/ngx';
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 
 // app
 import { AppRoutingModule } from './app-routing.module';
@@ -59,10 +62,7 @@ import {
     }),
   ],
   providers: [
-    StatusBar,
-    SplashScreen,
-    Dialogs,
-    Network,
+    StatusBar, SplashScreen, Dialogs, Network, AndroidPermissions,
     ModalGuard,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

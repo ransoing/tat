@@ -113,3 +113,15 @@ ion-modal {
 ion-alert .alert-title {
     color: black !important;
 }
+
+ion-input, ion-textarea {
+    border: 2px solid #333;
+    margin-top: 0.5em;
+}
+ion-textarea {
+    padding-left: 0.5em;
+    border-width: 0 0 2px 2px;
+}
+ion-input {
+    border-width: 0 0 2px 0;
+}

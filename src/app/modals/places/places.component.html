@@ -6,6 +6,12 @@
   <h1>{{ 'places.title' | translate }}</h1>
   <ion-icon name="md-close" class="modal-close-btn" (click)="modal.dismiss()"></ion-icon>
 
-  <button (click)="doIt()"></button>
+  <div *ngIf="places.length === 0">Loading...</div>
+  <ion-list *ngIf="places.length > 0">
+    <ion-item *ngFor="let place of places">
+      <ion-label>{{place.name}}</ion-label>
+      <ion-radio (click)="onPlaceClick(place)"></ion-radio>
+    </ion-item>
+  </ion-list>
   
 </ion-content>

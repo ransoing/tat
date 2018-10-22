@@ -81,7 +81,10 @@
   },
   "emailReport": {
     "title": "Email a Report",
-    "intro": "For law enforcement to open an investigation on your tip, they need key pieces of information. Record what you know about the incident."
+    "intro": "For law enforcement to open an investigation on your tip, they need key pieces of information. Record what you know about the incident.",
+    "places": {
+      "title": "Choose your location"
+    }
   },
   "resources": {
     "title": "@:nav.resources",

@@ -79,6 +79,13 @@
     "location": "Ubicación",
     "locationText": "¿Dónde se llevó a cabo la actividad sospechosa? ¿Tiene usted una dirección? Sea tan especifico como pueda."
   },
+  "emailReport": {
+    "title": "@@",
+    "intro": "@@",
+    "places": {
+      "title": "@@"
+    }
+  },
   "resources": {
     "title": "@:nav.resources",
     "intro": "Use los siguientes recursos para conocer más acerca de la trata de personas y cómo usted puede ayudar a combatirla.",

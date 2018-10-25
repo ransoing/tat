@@ -126,3 +126,10 @@ ion-textarea {
 ion-input {
     border-width: 0 0 2px 0;
 }
+
+.large-btn {
+    --width: 200px;
+    --height: 3.5em;
+}
+
+ion-textarea { height: 5em }

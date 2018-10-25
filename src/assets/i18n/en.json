@@ -161,5 +161,34 @@
         "description": "<p>A brief training on the elements of the TAT wallet card.</p>"
       }
     }
+  },
+  "preOutreachSurvey": {
+    "title": "Pre-Outreach Survey",
+    "next": "Next",
+    "1": {
+      "intro": "What locations do you plan on visiting? List the name and address for each location:",
+      "locationTypes": {
+        "school": "CDL School",
+        "company": "Trucking Company",
+        "truckStop": "Truck Stop"
+      },
+      "location": "Location",
+      "fields": {
+        "name": "Location name",
+        "address1": "Address line 1",
+        "address2": "Address line 2",
+        "city": "City",
+        "state": "State",
+        "zip": "Zip"
+      },
+      "removeLocation": "Remove last location",
+      "addLocation": "Add another location"
+    },
+    "2": {
+      "intro": "After watching the training video, do you feel equipped for your outreach?",
+      "unequipped": "Why do you feel unequipped, and what questions do you have for TAT staff?",
+      "yes": "Yes",
+      "no": "No"
+    }
   }
 }

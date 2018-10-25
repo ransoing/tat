@@ -2,8 +2,32 @@
   <ion-toolbar></ion-toolbar>
 </ion-header>
 <ion-content class="like-modal" fullscreen padding>
-  <h1>Page</h1>
+  <h1>{{ 'preOutreachSurvey.title' | translate }}</h1>
   <ion-icon name="md-chevronleft" class="modal-close-btn" (click)="navCtrl.goBack()"></ion-icon>
 
-  <a (click)="navCtrl.navigateRoot('/pos-3')">Next</a>
+  <p>{{ 'preOutreachSurvey.2.intro' | translate }}</p>
+
+  <ion-radio-group padding-top padding-bottom [(ngModel)]="formsService.preOutreachForm.feelEquipped">
+    <ion-item>
+      <ion-label>{{ 'preOutreachSurvey.2.yes' | translate }}</ion-label>
+      <ion-radio slot="start" value="yes"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>{{ 'preOutreachSurvey.2.no' | translate }}</ion-label>
+      <ion-radio slot="start" value="no"></ion-radio>
+    </ion-item>
+  </ion-radio-group>
+
+  <ion-item *ngIf="formsService.preOutreachForm.feelEquipped === 'no'">
+    <ion-label position="floating"></ion-label>
+    <ion-textarea [(ngModel)]="formsService.preOutreachForm.feelEquippedQuestions" placeholder="{{ 'preOutreachSurvey.2.unequipped' | translate }}"></ion-textarea>
+  </ion-item>
+
+  <p text-center padding-top>
+    <ion-button class="large-btn" fill="solid" color="primary" (click)="navCtrl.navigateRoot('/pos-3')">
+      {{ 'preOutreachSurvey.next' | translate }}
+    </ion-button>
+  </p>
+
 </ion-content>

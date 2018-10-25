@@ -5,10 +5,9 @@ import { Injectable } from '@angular/core';
 })
 export class MiscService {
 
-constructor() { }
+  constructor() { }
 
   public openExternalLink( url ) {
       window.open( url, '_system' );
   }
-
 }

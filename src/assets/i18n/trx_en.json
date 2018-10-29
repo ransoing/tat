@@ -1,10 +1,70 @@
 {
   "emailReport": {
-    "intro": "For law enforcement to open an investigation on your tip, they need key pieces of information. Record what you know about the incident.",
-    "places": {
-      "title": "Choose your location"
+    "additional": {
+      "label": "Additional information about the suspicious situation",
+      "placeholder": "Enter additional info"
     },
-    "title": "Email a Report"
+    "cars": {
+      "label": "Description of cars",
+      "placeholder": "For all vehicles involved, record how they're involved and the make, model, color, license plate, etc."
+    },
+    "checkboxes": {
+      "cars": "Are there any vehicles involved in the suspicious activity?",
+      "otherPeople": "Do you see any other people (buyer or traffickers, etc) involved in the suspicious activity?",
+      "seenVictim": "Have you seen someone you suspect is a victim?"
+    },
+    "emailButton": "Email your report",
+    "intro": "For law enforcement to open an investigation on your tip, they need key pieces of information. Record what you know about the incident.",
+    "notes": "<p>If you have taken photos, show them to law enforcement.</p>\n  <p>The button below will open up your email program.</p>",
+    "otherPeople": {
+      "label": "Description of other people",
+      "placeholder": "Describe what makes them suspicious and record their height, weight, ethnicity, hair color, eye color, age, etc."
+    },
+    "phone": {
+      "label": "Your phone number, for follow up from the hotline",
+      "placeholder": "Phone number"
+    },
+    "resetButton": "Reset the form",
+    "title": "Email a Report",
+    "victim": {
+      "appearance": {
+        "label": "Appearance",
+        "placeholder": "Describe the victim's height, weight, ethnicity, hair color, eye color, age, etc."
+      },
+      "flags": {
+        "doesNotKnow": "The victim does not know the person who is picking him/her up",
+        "hasBranding": "The victim has signs of branding or tattooing of the trafficker's name (often on the neck)",
+        "hasLackOfKnowledge": "The victim has a lack of knowledge of the community or his/her whereabouts",
+        "hasNoId": "The victim is not in control of his/her own identification documents (ID/passport)",
+        "hasPimp": "The victim shows any acknowledgement that she/he has a pimp and is making a quota",
+        "hasRestrictedCommunication": "The victim has restricted or controlled communication — not allowed to speak for self",
+        "isDisheveled": "The victim has a disheveled or unkempt appearance, is alone, scared, or crying",
+        "isMinor": "The victim is a minor traveling without adult supervision",
+        "label": "Check the red flags that apply",
+        "offersSex": "The victim offers to exchange sex for a ride, meal, etc."
+      },
+      "gender": {
+        "female": "Female",
+        "label": "Victim's gender",
+        "male": "Male",
+        "other": "Other",
+        "selectOne": "Select One",
+        "unknown": "Unknown"
+      },
+      "otherNotes": {
+        "label": "Other notes",
+        "placeholder": "Enter other notes here"
+      }
+    },
+    "when": {
+      "date": "Date",
+      "label": "When did the suspicious activity happen?",
+      "time": "Time"
+    },
+    "where": {
+      "label": "Where did the suspicious activity take place?",
+      "placeholder": "Enter your location"
+    }
   },
   "home": {
     "redFlags": "@:nav.redFlags",
@@ -176,7 +236,8 @@
         "description": "<p>A brief training on the elements of the TAT wallet card.</p>",
         "title": "TAT Wallet Card Webinar"
       }
-    }
+    },
+    "videosTitle": "@:resources.btns.videos"
   },
   "volunteer": {
     "hoursLog": "Hours Log",

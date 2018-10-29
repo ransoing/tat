@@ -1,4 +1,19 @@
 {
+  "emailReport": {
+    "additional": {},
+    "cars": {},
+    "checkboxes": {},
+    "otherPeople": {},
+    "phone": {},
+    "victim": {
+      "appearance": {},
+      "flags": {},
+      "gender": {},
+      "otherNotes": {}
+    },
+    "when": {},
+    "where": {}
+  },
   "home": {
     "redFlags": "Señales de advertencia",
     "reportActivity": "Reporte la Actividad",
@@ -13,11 +28,6 @@
     "volunteer": "Voluntarios"
   },
   "preOutreachSurvey": {
-    "1": {
-      "fields": {},
-      "locationTypes": {}
-    },
-    "2": {},
     "no": "No",
     "title": "@:volunteer.preOutreachSurvey",
     "yes": "Sí"
@@ -147,7 +157,8 @@
         "description": "Una breve capacitación sobre los elementos que integran la tarjeta de cartera de TAT.",
         "title": "Webinar de la Tarjeta de Cartera TAT"
       }
-    }
+    },
+    "videosTitle": "@:resources.btns.videos"
   },
   "volunteer": {
     "hoursLog": "Registro de horas",

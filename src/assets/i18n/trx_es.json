@@ -1,4 +1,69 @@
 {
+  "emailReport": {
+    "additional": {
+      "label": "Información adicional acerca de la situación sospechosa",
+      "placeholder": "Anote información adicional"
+    },
+    "cars": {
+      "label": "Descripción de los carros",
+      "placeholder": "Anote la marca, modelo, color, número de placas, etc. de todos los vehículos involucrados"
+    },
+    "checkboxes": {
+      "cars": "¿Hay vehículos involucrados en la actividad sospechosa?",
+      "otherPeople": "¿Ve usted a otras personas (como compradores o tratantes, etc) tomando parte en la actividad sospechosa?",
+      "seenVictim": "¿Ha visto a una persona que usted sospecha es víctima?"
+    },
+    "emailButton": "Envíe su reporte por correo electrónico",
+    "intro": "Para que las autoridades policíacas puedan abrir una investigación con base en la información que usted les dé, necesitarán información clave. Anote lo que sepa sobre el incidente.",
+    "notes": "<p>Si tomó fotos, muéstreselas a las autoridades policíacas.</p><p>El siguiente botón abrirá su programa de correo electrónico.</p>",
+    "otherPeople": {
+      "label": "Descripción de las otras personas",
+      "placeholder": "Describa qué los hace sospechosos y anote su estatura, peso, raza, color de pelo, edad, etc."
+    },
+    "phone": {
+      "label": "Su número de teléfono, para seguimiento por parte de la línea de ayuda",
+      "placeholder": "Número de teléfono"
+    },
+    "resetButton": "Reinicie su reporte",
+    "title": "Envíe un reporte por correo electrónico",
+    "victim": {
+      "appearance": {
+        "label": "Apariencia",
+        "placeholder": "Describa la estatura, peso, raza, color de pelo, color de ojos, edad, etc."
+      },
+      "flags": {
+        "doesNotKnow": "La víctima no conoce a la persona que le va a recoger",
+        "hasBranding": "La víctima tiene señales de “marca” o tatuaje del nombre del traficante (normalmente en el cuello)",
+        "hasLackOfKnowledge": "La víctima no conoce la comunidad o el lugar donde se encuentra",
+        "hasNoId": "La víctima no tiene control de sus documentos propios de identidad (Identificación o pasaporte)",
+        "hasPimp": "La víctima reconoce de alguna manera que tiene un padrote o tiene que cumplir con una cuota",
+        "hasRestrictedCommunication": "La comunicación de la víctima ha sido restringida o controlada — no se le permite hablar por sí misma",
+        "isDisheveled": "La víctima tiene apariencia descuidada o desaliñada, está sola, con miedo o llorando",
+        "isMinor": "La víctima es una persona menor de edad que viaja sin supervisión de un adulto",
+        "label": "Marque  las señales de advertencia que correspondan",
+        "offersSex": "La víctima ofrece sexo a cambio de un aventón, de comida, etc."
+      },
+      "gender": {
+        "female": "Mujer",
+        "label": "Sexo de la víctima",
+        "male": "Hombre",
+        "other": "Otro",
+        "selectOne": "Seleccione uno",
+        "unknown": "Desconocido"
+      },
+      "otherNotes": {
+        "label": "Otras notas",
+        "placeholder": "Escriba aqui notas adicionales"
+      }
+    },
+    "when": {
+      "label": "¿Cuándo ocurrió la actividad sospechosa?"
+    },
+    "where": {
+      "label": "¿Dónde se llevó a cabo la actividad sospechosa?",
+      "placeholder": "Anote la ubicación suya"
+    }
+  },
   "home": {
     "redFlags": "Señales de advertencia",
     "reportActivity": "Reporte la Actividad",
@@ -6,7 +71,9 @@
     "volunteer": "@:nav.volunteer"
   },
   "misc": {
+    "date": "Fecha",
     "no": "No",
+    "time": "Hora",
     "yes": "Sí"
   },
   "nav": {
@@ -17,19 +84,9 @@
     "volunteer": "Voluntarios"
   },
   "postOutreachReport": {
-    "1": {},
-    "2": {
-      "cdl": {},
-      "truckStop": {},
-      "truckingCompany": {}
-    },
-    "3": {},
     "title": "@:volunteer.postOutreachReport"
   },
   "preOutreachSurvey": {
-    "2": {},
-    "3": {},
-    "4": {},
     "title": "@:volunteer.preOutreachSurvey"
   },
   "redFlags": {
@@ -77,9 +134,13 @@
   },
   "report": {
     "USA": "EE.UU.",
+    "callCanadaHotline": "Llame a la línea de ayuda de Canadá",
+    "callHotline": "Llame a la línea de ayuda",
+    "callMexicoHotline": "Llame a la línea de ayuda de México",
     "emailBtn": "Reporte por correo electrónico",
     "emailBtnHint": "Es mucho más recomendable que usted haga una llamada",
     "intro": "<p><b>Inmediatamente:</b> Si usted ve que se está cometiendo un delito, llame al 911 y luego llame a la línea de ayuda. Si usted está en una parada de camiones o lugar de descanso para viajeros o en cualquier otro lugar de negocios, por favor avísele al gerente en turno sobre la actividad sospechosa, esa persona debe enterarse de lo que está sucediendo en la propiedad y ayudar a ponerle fin.</p><p>Los operadores de la línea de ayuda contra la trata de personas están disponibles las 24 horas del día, los 7 días de la semana, para tomar reportes de posibles casos de trata de personas. Todos los reportes son confidenciales y usted puede permanecer anónimo. Se cuenta con intérpretes de idiomas. La información que usted proporcione será revisada por la línea de ayuda nacional y se enviará a autorizadas policíacas especializadas y/o a proveedores de servicios cuando sea adecuado.</p>",
+    "textBtn": "Envíe un texto que diga INFO o HELP (Información o ayuda)",
     "title": "@:home.reportActivity",
     "whatToReportBtn": "Qué reportar"
   },
@@ -164,7 +225,10 @@
     "hoursLog": "Registro de horas",
     "intro": "¡Gracias por participar como voluntario con TAT! Su tiempo en preparación, voluntariado y seguimiento no solamente nos ayuda a avanzar con nuestra misión, sino que demuestra la dedicación de esta industria para combatir este atroz delito. A continuación, le proporcionamos lo que necesitara en el proceso de voluntario. Estamos encantados de que forme parte de nuestro equipo.",
     "photos": "Fotos",
+    "postOutreachReport": "Encuesta para contestar después de hacer la visita al gerente general o encargado de seguridad",
+    "preOutreachSurvey": "Encuesta para contestar antes de hacer la visita al gerente general o encargado de seguridad",
     "resources": "Recursos",
+    "testimonial": "Testimonio",
     "title": "@:nav.volunteer",
     "trainingVideo": "Video de capacitación"
   },

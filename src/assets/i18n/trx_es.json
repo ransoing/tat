@@ -168,6 +168,15 @@
     "title": "@:nav.volunteer",
     "trainingVideo": "Video de capacitación"
   },
+  "volunteerResources": {
+    "infographicTitle": "TAT en cifras",
+    "intro": "Estos recursos están aquí para ayudarle a hablar acerca del alcance de la trata de personas, así como el impacto que la industria camionera puede tener si cuenta con la capacitación y está equipada para responder.",
+    "moreLink1": "Encuentre más en la página de recursos del",
+    "moreLink2": "sitio web de TAT",
+    "statsLink1": "Estadísticas de la trata de personas por estado proporcionadas",
+    "statsLink2": "por la línea de ayuda",
+    "title": "@:volunteer.resources"
+  },
   "whatToReport": {
     "cars": "Vehículos",
     "carsText": "¿Hay vehículos involucrados en la actividad de los sospechosos? Anote la marca, el modelo, el color, el número de placas, etc.",

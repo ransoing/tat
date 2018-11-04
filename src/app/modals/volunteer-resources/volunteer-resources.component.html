@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar></ion-toolbar>
+</ion-header>
+<ion-content fullscreen padding>
+  <h1>{{ 'volunteerResources.title' | translate }}</h1>
+  <ion-icon name="md-close" class="modal-close-btn" (click)="modal.dismiss()"></ion-icon>
+
+  <p>{{ 'volunteerResources.intro' | translate }}</p>
+
+  <p><b>{{ 'volunteerResources.infographicTitle' | translate }}</b></p>
+  <!-- @@ get this infographic live from some reliable URL (managed by Directus? or some WP plugin?) -->
+  <img class="infographic" src="http://truckersagainsttrafficking.org/wp-content/uploads/2018/06/TATbyNumbersResch-01-6.11.18-compressed-2.jpg" alt="{{ 'volunteerResources.infographicTitle' | translate }}">
+
+  <p>
+    <a (click)="miscService.openExternalLink('https://humantraffickinghotline.org/states')">{{ 'volunteerResources.statsLink1' | translate }}</a>
+    {{ 'volunteerResources.statsLink2' | translate }}.
+  </p>
+
+  <p>
+    {{ 'volunteerResources.moreLink1' | translate }}
+    <a (click)="miscService.openExternalLink('http://truckersagainsttrafficking.org/')">{{ 'volunteerResources.moreLink2' | translate }}</a>.
+  </p>
+</ion-content>

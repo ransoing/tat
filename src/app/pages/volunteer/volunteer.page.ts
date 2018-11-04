@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { VolunteerResourcesComponent } from '../../modals';
+import { ModalService } from '../../services';
 
 @Component({
   selector: 'app-volunteer',
@@ -8,7 +10,12 @@ import { NavController } from '@ionic/angular';
 })
 export class VolunteerPage implements OnInit {
 
-  constructor( public navCtrl: NavController ) { }
+  VolunteerResourcesComponent = VolunteerResourcesComponent;
+
+  constructor(
+    public navCtrl: NavController,
+    public modalService: ModalService
+  ) { }
 
   ngOnInit() {
   }

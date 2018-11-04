@@ -9,7 +9,7 @@
   </p>
   <image-button image="volunteer.training-video.jpg" [required]="true" [completed]="false">{{ 'volunteer.trainingVideo' | translate }}</image-button>
   <image-button image="volunteer.pre-outreach-survey.jpg" [required]="true" (click)="navCtrl.navigateRoot('/pos-1')">{{ 'volunteer.preOutreachSurvey' | translate }}</image-button>
-  <image-button image="volunteer.resources.jpg">{{ 'volunteer.resources' | translate }}</image-button>
+  <image-button image="volunteer.resources.jpg" (click)="modalService.open(VolunteerResourcesComponent)">{{ 'volunteer.resources' | translate }}</image-button>
   <image-button image="volunteer.post-outreach-report.jpg" [required]="true" (click)="navCtrl.navigateRoot('/por-1')">{{ 'volunteer.postOutreachReport' | translate }}</image-button>
   <image-button image="volunteer.hours-log.jpg" [required]="true">{{ 'volunteer.hoursLog' | translate }}</image-button>
   <image-button image="volunteer.photos.jpg">{{ 'volunteer.photos' | translate }}</image-button>

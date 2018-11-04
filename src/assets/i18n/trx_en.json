@@ -301,6 +301,16 @@
     "title": "@:nav.volunteer",
     "trainingVideo": "Training Video"
   },
+  "volunteerResources": {
+    "imgAlt": "You must be connected to the internet to load this infographic.",
+    "infographicTitle": "TAT by the Numbers",
+    "intro": "These resources are to help you share the scope of human trafficking as well as the impact the trucking industry can have when trained and equipped to respond.",
+    "moreLink1": "Find more on the resources page of the",
+    "moreLink2": "TAT website",
+    "statsLink1": "Human Trafficking Hotline Statistics",
+    "statsLink2": "by state",
+    "title": "@:volunteer.resources"
+  },
   "whatToReport": {
     "cars": "Cars",
     "carsText": "Are there any vehicles involved in the suspects activity? Record the make, model, color, license plate number, etc.",

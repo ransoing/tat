@@ -10,3 +10,4 @@ export { VideosComponent } from './videos/videos.component';
 export { WhatToReportComponent } from './what-to-report/what-to-report.component';
 export { EmailReportComponent } from './email-report/email-report.component';
 export { PlacesComponent } from './places/places.component';
+export { VolunteerResourcesComponent } from './volunteer-resources/volunteer-resources.component';

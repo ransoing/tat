@@ -14,8 +14,6 @@ export * from './pre-outreach-survey/part-1/pos-part-1.page';
 export * from './pre-outreach-survey/part-2/pos-part-2.page';
 export * from './pre-outreach-survey/part-3/pos-part-3.page';
 export * from './pre-outreach-survey/part-4/pos-part-4.page';
-export * from './pre-outreach-survey/part-5/pos-part-5.page';
-export * from './pre-outreach-survey/part-6/pos-part-6.page';
 export * from './post-outreach-report/part-1/por-part-1.page';
 export * from './post-outreach-report/part-2/por-part-2.page';
 export * from './post-outreach-report/part-3/por-part-3.page';

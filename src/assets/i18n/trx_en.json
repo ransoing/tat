@@ -72,6 +72,16 @@
     "resources": "@:nav.resources",
     "volunteer": "@:nav.volunteer"
   },
+  "misc": {
+    "error": "Error",
+    "next": "Next",
+    "no": "No",
+    "ok": "OK",
+    "pleaseWait": "Please wait...",
+    "submit": "Submit",
+    "success": "Success",
+    "yes": "Yes"
+  },
   "nav": {
     "home": "Home",
     "redFlags": "Red Flags",
@@ -101,12 +111,22 @@
     },
     "2": {
       "intro": "After watching the training video, do you feel equipped for your outreach?",
-      "unequipped": "Why do you feel unequipped, and what questions do you have for TAT staff?"
+      "unequipped": "Why do you feel unequipped, and what questions do you have for TAT staff?",
+      "unequippedPlaceholder": "Please write an explanation"
     },
-    "next": "Next",
-    "no": "No",
-    "title": "@:volunteer.preOutreachSurvey",
-    "yes": "Yes"
+    "3": {
+      "intro": "Have you contacted the general manager (or other contact) to make an appointment?",
+      "strategy": "What is your strategy for approaching the general manager?",
+      "strategyPlaceholder": "Please write a brief description"
+    },
+    "4": {
+      "addressQuestion": "What is a good mailing address to send them to?",
+      "intro": "Are you ready to receive TAT materials?",
+      "name": "Name"
+    },
+    "submitError": "Please make sure you have an internet connection and try again.",
+    "submitSuccess": "Thank you for completing this survey.",
+    "title": "@:volunteer.preOutreachSurvey"
   },
   "redFlags": {
     "caseStudy": {

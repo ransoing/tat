@@ -1,24 +1,13 @@
 {
-  "emailReport": {
-    "additional": {},
-    "cars": {},
-    "checkboxes": {},
-    "otherPeople": {},
-    "phone": {},
-    "victim": {
-      "appearance": {},
-      "flags": {},
-      "gender": {},
-      "otherNotes": {}
-    },
-    "when": {},
-    "where": {}
-  },
   "home": {
     "redFlags": "Señales de advertencia",
     "reportActivity": "Reporte la Actividad",
     "resources": "@:nav.resources",
     "volunteer": "@:nav.volunteer"
+  },
+  "misc": {
+    "no": "No",
+    "yes": "Sí"
   },
   "nav": {
     "home": "Inicio",
@@ -28,9 +17,10 @@
     "volunteer": "Voluntarios"
   },
   "preOutreachSurvey": {
-    "no": "No",
-    "title": "@:volunteer.preOutreachSurvey",
-    "yes": "Sí"
+    "2": {},
+    "3": {},
+    "4": {},
+    "title": "@:volunteer.preOutreachSurvey"
   },
   "redFlags": {
     "caseStudy": {

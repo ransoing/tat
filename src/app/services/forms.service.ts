@@ -12,10 +12,10 @@ export class FormsService {
   public resetPreOutreachForm() {
     this.preOutreachForm = {
       locations: [],
-      feelEquipped: 'yes',
+      feelEquipped: undefined,
       feelEquippedQuestions: '',
-      contactedManager: true,
-      readyToReceive: true,
+      contactedManager: undefined,
+      readyToReceive: undefined,
       strategy: '',
       materialsAddress: {
         name: '',
@@ -32,7 +32,7 @@ export class FormsService {
 
   public addPreOutreachFormLocation() {
     this.preOutreachForm.locations.push({
-      locationType: 'cdlSchool',
+      locationType: '',
       locationName: '',
       address1: '',
       address2: '',

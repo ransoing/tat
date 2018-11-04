@@ -3,9 +3,7 @@ import { NavController } from '@ionic/angular';
 import { FormsService } from '../../../services';
 
 @Component({
-  selector: 'app-pos-part-1',
-  templateUrl: 'pos-part-1.page.html',
-  styleUrls: ['pos-part-1.page.scss']
+  templateUrl: 'pos-part-1.page.html'
 })
 export class POSPart1Page {
   constructor(

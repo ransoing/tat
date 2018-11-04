@@ -8,6 +8,7 @@ export class FormsService {
   constructor() { }
 
   preOutreachForm: any = false;
+  postOutreachForm: any = false;
 
   public resetPreOutreachForm() {
     this.preOutreachForm = {
@@ -40,6 +41,32 @@ export class FormsService {
       state: '',
       zip: ''
     });
+  }
+
+  public resetPostOutreachForm() {
+    this.postOutreachForm = {
+      meetingDescription: '',
+      accomplishments: {
+        truckStop: {
+          willDistribute: false,
+          willTrainWithMaterials: false,
+          wantsInPersonTraining: false,
+          wantsOutreach: false
+        },
+        cdl: {
+          willTrain: false,
+          willPassOnInfo: false
+        },
+        truckingCompany: {
+          willTrain: false
+        }
+      },
+      willFollowUp: undefined,
+      followUp: {
+        date: undefined,
+        strategy: ''
+      }
+    }
   }
 
 }

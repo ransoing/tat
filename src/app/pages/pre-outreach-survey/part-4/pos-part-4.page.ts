@@ -40,7 +40,11 @@ export class POSPart4Page {
           buttons: [await this.trx.t( 'misc.ok' )]
         });
         alert.present();
-        alert.onDidDismiss().then( () => this.navCtrl.navigateRoot( '/tabs/(volunteer:volunteer)' ) );
+        alert.onDidDismiss().then( () => {
+          // clear the form and navigate back to the volunteer homepage
+          this.formsService.preOutreachForm = false;
+          this.navCtrl.navigateRoot( '/tabs/(volunteer:volunteer)' );
+        });
       } else {
         // @@ on error
         const alert = await this.alertController.create({

@@ -7,7 +7,7 @@
 
   <p>{{ 'preOutreachSurvey.1.intro' | translate }}</p>
 
-  <div padding-top padding-bottom *ngFor="let location of formsService.preOutreachForm.locations; let i = index">
+  <div padding-top padding-bottom margin-bottom *ngFor="let location of formsService.preOutreachForm.locations; let i = index">
     <h5>{{ 'preOutreachSurvey.1.location' | translate }} {{i+1}}</h5>
     <ion-radio-group [(ngModel)]="location.locationType">
       <ion-item>

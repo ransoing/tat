@@ -116,15 +116,25 @@ ion-alert .alert-title {
 }
 
 ion-input, ion-textarea {
-    border: 2px solid #333;
     margin-top: 0.5em;
+    border: 2px solid #333;
+    border-width: 0 0 2px 0;
 }
 ion-textarea {
     padding-left: 0.5em;
     border-width: 0 0 2px 2px;
 }
-ion-input {
-    border-width: 0 0 2px 0;
+ion-item.item-datetime {
+    margin-top: 0.5em;
+    &:after {
+        display: block;
+        content: '';
+        border-bottom: 2px solid #333;
+    }
+}
+
+ion-item {
+    --padding-start: 0;
 }
 
 .large-btn {
@@ -133,3 +143,7 @@ ion-input {
 }
 
 ion-textarea { height: 5em }
+
+ion-label.sc-ion-label-md-h {
+    white-space: normal;
+}

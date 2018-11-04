@@ -19,13 +19,10 @@
     </ion-item>
   </ion-radio-group>
 
-  <div *ngIf="formsService.preOutreachForm.contactedManager === 'yes'">
-    <p>{{ 'preOutreachSurvey.3.strategy' | translate }}</p>
-    <ion-item>
-      <ion-label position="floating"></ion-label>
-      <ion-textarea [(ngModel)]="formsService.preOutreachForm.strategy" placeholder="{{ 'preOutreachSurvey.3.strategyPlaceholder' | translate }}"></ion-textarea>
-    </ion-item>
-  </div>
+  <ion-item padding-top *ngIf="formsService.preOutreachForm.contactedManager === 'yes'">
+    <ion-label position="stacked">{{ 'preOutreachSurvey.3.strategy' | translate }}</ion-label>
+    <ion-textarea [(ngModel)]="formsService.preOutreachForm.strategy" placeholder="{{ 'preOutreachSurvey.3.strategyPlaceholder' | translate }}"></ion-textarea>
+  </ion-item>
 
   <p text-center padding-top>
     <ion-button

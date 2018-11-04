@@ -1,11 +1,20 @@
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { FormsService } from '../../../services';
 
 @Component({
-  selector: 'app-por-part-2',
-  templateUrl: 'por-part-2.page.html',
-  styleUrls: ['por-part-2.page.scss']
+  templateUrl: 'por-part-2.page.html'
 })
 export class PORPart2Page {
-  constructor( public navCtrl: NavController ) { }
+
+  private locationType = 'truckStop'; // 'truckStop' 'cdl' 'truckingCompany'
+
+  constructor(
+    public navCtrl: NavController,
+    public formsService: FormsService
+  ) {
+    if ( formsService.postOutreachForm === false ) {
+      formsService.resetPostOutreachForm();
+    }
+  }
 }

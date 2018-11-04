@@ -16,6 +16,16 @@
     "resources": "Recursos",
     "volunteer": "Voluntarios"
   },
+  "postOutreachReport": {
+    "1": {},
+    "2": {
+      "cdl": {},
+      "truckStop": {},
+      "truckingCompany": {}
+    },
+    "3": {},
+    "title": "@:volunteer.postOutreachReport"
+  },
   "preOutreachSurvey": {
     "2": {},
     "3": {},

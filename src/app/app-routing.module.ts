@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ModalGuard } from './modal-guard.service';
 import {
   POSPart1Page, POSPart2Page, POSPart3Page, POSPart4Page,
-  PORPart1Page, PORPart2Page, PORPart3Page, PORPart4Page, PORPart5Page
+  PORPart1Page, PORPart2Page, PORPart3Page
 } from './pages';
 
 const routes: Routes = [
@@ -14,9 +14,7 @@ const routes: Routes = [
   { path: 'pos-4', component: POSPart4Page, canDeactivate: [ModalGuard] },
   { path: 'por-1', component: PORPart1Page, canDeactivate: [ModalGuard] },
   { path: 'por-2', component: PORPart2Page, canDeactivate: [ModalGuard] },
-  { path: 'por-3', component: PORPart3Page, canDeactivate: [ModalGuard] },
-  { path: 'por-4', component: PORPart4Page, canDeactivate: [ModalGuard] },
-  { path: 'por-5', component: PORPart5Page, canDeactivate: [ModalGuard] },
+  { path: 'por-3', component: PORPart3Page, canDeactivate: [ModalGuard] }
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

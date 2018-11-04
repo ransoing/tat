@@ -19,13 +19,10 @@
     </ion-item>
   </ion-radio-group>
 
-  <div *ngIf="formsService.preOutreachForm.feelEquipped === 'no'">
-    <p>{{ 'preOutreachSurvey.2.unequipped' | translate }}</p>
-    <ion-item>
-      <ion-label position="floating"></ion-label>
-      <ion-textarea [(ngModel)]="formsService.preOutreachForm.feelEquippedQuestions" placeholder="{{ 'preOutreachSurvey.2.unequippedPlaceholder' | translate }}"></ion-textarea>
-    </ion-item>
-  </div>
+  <ion-item padding-top *ngIf="formsService.preOutreachForm.feelEquipped === 'no'">
+    <ion-label position="stacked">{{ 'preOutreachSurvey.2.unequipped' | translate }}</ion-label>
+    <ion-textarea [(ngModel)]="formsService.preOutreachForm.feelEquippedQuestions" placeholder="{{ 'preOutreachSurvey.2.unequippedPlaceholder' | translate }}"></ion-textarea>
+  </ion-item>
 
   <p text-center padding-top>
     <ion-button

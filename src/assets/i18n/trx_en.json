@@ -57,9 +57,7 @@
       }
     },
     "when": {
-      "date": "Date",
-      "label": "When did the suspicious activity happen?",
-      "time": "Time"
+      "label": "When did the suspicious activity happen?"
     },
     "where": {
       "label": "Where did the suspicious activity take place?",
@@ -73,6 +71,7 @@
     "volunteer": "@:nav.volunteer"
   },
   "misc": {
+    "date": "Date",
     "error": "Error",
     "next": "Next",
     "no": "No",
@@ -80,6 +79,7 @@
     "pleaseWait": "Please wait...",
     "submit": "Submit",
     "success": "Success",
+    "time": "Time",
     "yes": "Yes"
   },
   "nav": {
@@ -88,6 +88,37 @@
     "report": "Report",
     "resources": "Resources",
     "volunteer": "Volunteer"
+  },
+  "postOutreachReport": {
+    "1": {
+      "intro": "How did the meeting go?",
+      "placeholder": "Please write a brief description"
+    },
+    "2": {
+      "cdl": {
+        "willPassOnInfo": "CDL instructor plans to pass on TAT information to other faculty",
+        "willTrain": "CDL instructor will begin using TAT training with students"
+      },
+      "intro": "Which of the following were you able to accomplish? Please check all that apply:",
+      "truckStop": {
+        "wantsInPersonTraining": "Truck stop has asked for an in-person training for all employees",
+        "wantsOutreach": "Truck stop is open to having an outreach at their location to speak with drivers in an appropriate format",
+        "willDistribute": "Truck stop is now distributing TAT materials at their location",
+        "willTrainWithMaterials": "Truck stop will now train employees with TAT materials"
+      },
+      "truckingCompany": {
+        "willTrain": "Trucking company plans to show their drivers the TAT training video and hand out wallet cards"
+      }
+    },
+    "3": {
+      "intro": "Do you plan to follow up with your contact?",
+      "strategy": "What is your strategy for the next visit?",
+      "strategyPlaceholder": "Please write a brief description",
+      "when": "When do you plan to do the follow-up?"
+    },
+    "submitError": "Please make sure you have an internet connection and try again.",
+    "submitSuccess": "Thank you for completing this report.",
+    "title": "@:volunteer.postOutreachReport"
   },
   "preOutreachSurvey": {
     "1": {

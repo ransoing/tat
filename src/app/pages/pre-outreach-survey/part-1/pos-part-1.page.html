@@ -12,17 +12,17 @@
     <ion-radio-group [(ngModel)]="location.locationType">
       <ion-item>
         <ion-label>{{ 'preOutreachSurvey.1.locationTypes.school' | translate }}</ion-label>
-        <ion-radio slot="start" value="cdlSchool"></ion-radio>
+        <ion-radio slot="start" [value]="OutreachLocationType.CDLSchool"></ion-radio>
       </ion-item>
 
       <ion-item>
         <ion-label>{{ 'preOutreachSurvey.1.locationTypes.company' | translate }}</ion-label>
-        <ion-radio slot="start" value="truckingCompany"></ion-radio>
+        <ion-radio slot="start" [value]="OutreachLocationType.TruckingCompany"></ion-radio>
       </ion-item>
 
       <ion-item>
         <ion-label>{{ 'preOutreachSurvey.1.locationTypes.truckStop' | translate }}</ion-label>
-        <ion-radio slot="start" value="truckStop"></ion-radio>
+        <ion-radio slot="start" [value]="OutreachLocationType.TruckStop"></ion-radio>
       </ion-item>
     </ion-radio-group>
 

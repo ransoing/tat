@@ -10,7 +10,7 @@ export class POSPart3Page {
     public navCtrl: NavController,
     public formsService: FormsService
   ) {
-    if ( formsService.preOutreachForm === false ) {
+    if ( formsService.preOutreachForm === undefined ) {
       formsService.resetPreOutreachForm();
     }
   }

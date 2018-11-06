@@ -2,22 +2,22 @@
   <ion-toolbar></ion-toolbar>
 </ion-header>
 <ion-content fullscreen padding>
-  <h1>{{ 'volunteerResources.title' | translate }}</h1>
+  <h1>{{ 'volunteer.resources.title' | translate }}</h1>
   <ion-icon name="md-close" class="modal-close-btn" (click)="modal.dismiss()"></ion-icon>
 
-  <p>{{ 'volunteerResources.intro' | translate }}</p>
+  <p>{{ 'volunteer.resources.intro' | translate }}</p>
 
-  <p><b>{{ 'volunteerResources.infographicTitle' | translate }}</b></p>
+  <p><b>{{ 'volunteer.resources.infographicTitle' | translate }}</b></p>
   <!-- @@ get this infographic live from some reliable URL (managed by Directus? or some WP plugin?) -->
-  <img class="infographic" src="http://truckersagainsttrafficking.org/wp-content/uploads/2018/06/TATbyNumbersResch-01-6.11.18-compressed-2.jpg" alt="{{ 'volunteerResources.infographicTitle' | translate }}">
+  <img class="infographic" src="http://truckersagainsttrafficking.org/wp-content/uploads/2018/06/TATbyNumbersResch-01-6.11.18-compressed-2.jpg" alt="{{ 'volunteer.resources.infographicTitle' | translate }}">
 
   <p>
-    <a (click)="miscService.openExternalLink('https://humantraffickinghotline.org/states')">{{ 'volunteerResources.statsLink1' | translate }}</a>
-    {{ 'volunteerResources.statsLink2' | translate }}.
+    <a (click)="miscService.openExternalLink('https://humantraffickinghotline.org/states')">{{ 'volunteer.resources.statsLink1' | translate }}</a>
+    {{ 'volunteer.resources.statsLink2' | translate }}.
   </p>
 
   <p>
-    {{ 'volunteerResources.moreLink1' | translate }}
-    <a (click)="miscService.openExternalLink('http://truckersagainsttrafficking.org/')">{{ 'volunteerResources.moreLink2' | translate }}</a>.
+    {{ 'volunteer.resources.moreLink1' | translate }}
+    <a (click)="miscService.openExternalLink('http://truckersagainsttrafficking.org/')">{{ 'volunteer.resources.moreLink2' | translate }}</a>.
   </p>
 </ion-content>

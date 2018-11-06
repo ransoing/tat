@@ -13,7 +13,7 @@ export class PORPart3Page {
     public alertController: AlertController,
     public trx: TrxService
   ) {
-    if ( formsService.postOutreachForm === false ) {
+    if ( formsService.postOutreachForm === undefined ) {
       formsService.resetPostOutreachForm();
     }
   }
@@ -40,8 +40,8 @@ export class PORPart3Page {
         alert.present();
         alert.onDidDismiss().then( () => {
           // clear the form and navigate back to the volunteer homepage
-          this.formsService.preOutreachForm = false;
-          this.navCtrl.navigateRoot( '/tabs/(volunteer:volunteer)' );
+          this.navCtrl.navigateRoot( '/tabs/(volunteer:volunteer)' )
+          .then( () => this.formsService.resetPostOutreachForm() );
         });
       } else {
         // @@ on error

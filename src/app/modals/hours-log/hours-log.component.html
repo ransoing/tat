@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar></ion-toolbar>
+</ion-header>
+<ion-content fullscreen padding>
+  <h1>{{ 'volunteer.hoursLog.title' | translate }}</h1>
+  <ion-icon name="md-close" class="modal-close-btn" (click)="modal.dismiss()"></ion-icon>
+
+  <p>{{ 'volunteer.hoursLog.intro' | translate }}</p>
+
+  <p text-center padding-top>
+    <ion-button
+    class="large-btn"
+    fill="solid"
+    color="primary"
+    (click)="navCtrl.navigateRoot('/pos-3')">
+      {{ 'volunteer.hoursLog.addEntry' | translate }}
+    </ion-button>
+  </p>
+
+  <article>
+    <hr>
+    <header>
+      April 4, 2018<br>
+      <small>6 hours</small>
+    </header>
+    <p>Bla bla bla.</p>
+  </article>
+
+  <article>
+    <hr>
+    <header>
+      April 4, 2018<br>
+      <small>6 hours</small>
+    </header>
+    <p>Bla bla bla.</p>
+  </article>
+
+</ion-content>

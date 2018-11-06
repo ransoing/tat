@@ -117,19 +117,19 @@ ion-alert .alert-title {
 
 ion-input, ion-textarea {
     margin-top: 0.5em;
-    border: 2px solid #333;
-    border-width: 0 0 2px 0;
+    border: var( --input-border-width ) solid var( --input-border-color );
+    border-width: 0 0 var( --input-border-width ) 0;
 }
 ion-textarea {
     padding-left: 0.5em;
-    border-width: 0 0 2px 2px;
+    border-width: 0 0 var( --input-border-width ) var( --input-border-width );
 }
 ion-item.item-datetime {
     margin-top: 0.5em;
     &:after {
         display: block;
         content: '';
-        border-bottom: 2px solid #333;
+        border-bottom: var( --input-border-width ) solid var( --input-border-color );
     }
 }
 

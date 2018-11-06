@@ -118,7 +118,7 @@
     },
     "submitError": "Please make sure you have an internet connection and try again.",
     "submitSuccess": "Thank you for completing this report.",
-    "title": "@:volunteer.postOutreachReport"
+    "title": "@:volunteer.btns.postOutreachReport"
   },
   "preOutreachSurvey": {
     "1": {
@@ -157,7 +157,7 @@
     },
     "submitError": "Please make sure you have an internet connection and try again.",
     "submitSuccess": "Thank you for completing this survey.",
-    "title": "@:volunteer.preOutreachSurvey"
+    "title": "@:volunteer.btns.preOutreachSurvey"
   },
   "redFlags": {
     "caseStudy": {
@@ -291,25 +291,32 @@
     "videosTitle": "@:resources.btns.videos"
   },
   "volunteer": {
-    "hoursLog": "Hours Log",
+    "btns": {
+      "hoursLog": "Hours Log",
+      "photos": "Photos",
+      "postOutreachReport": "Post-Outreach Report",
+      "preOutreachSurvey": "Pre-Outreach Survey",
+      "resources": "Resources",
+      "testimonial": "Testimonial",
+      "trainingVideo": "Training Video"
+    },
+    "hoursLog": {
+      "addEntry": "Add new entry",
+      "intro": "Logging your hours here not only allows you to see the impact you’re making, but allows us to share that work with our partners and sponsors. Thank you!",
+      "title": "@:volunteer.btns.hoursLog"
+    },
     "intro": "Thank you for volunteering with TAT! Your time in preparation, volunteering and follow up not only helps further our mission, but further exemplifies how passionate this industry is about fighting this heinous crime. Below are the items you will need throughout the volunteer process. We are thrilled to have you as part of the team.",
-    "photos": "Photos",
-    "postOutreachReport": "Post-Outreach Report",
-    "preOutreachSurvey": "Pre-Outreach Survey",
-    "resources": "Resources",
-    "testimonial": "Testimonial",
-    "title": "@:nav.volunteer",
-    "trainingVideo": "Training Video"
-  },
-  "volunteerResources": {
-    "imgAlt": "You must be connected to the internet to load this infographic.",
-    "infographicTitle": "TAT by the Numbers",
-    "intro": "These resources are to help you share the scope of human trafficking as well as the impact the trucking industry can have when trained and equipped to respond.",
-    "moreLink1": "Find more on the resources page of the",
-    "moreLink2": "TAT website",
-    "statsLink1": "Human Trafficking Hotline Statistics",
-    "statsLink2": "by state",
-    "title": "@:volunteer.resources"
+    "resources": {
+      "imgAlt": "You must be connected to the internet to load this infographic.",
+      "infographicTitle": "TAT by the Numbers",
+      "intro": "These resources are to help you share the scope of human trafficking as well as the impact the trucking industry can have when trained and equipped to respond.",
+      "moreLink1": "Find more on the resources page of the",
+      "moreLink2": "TAT website",
+      "statsLink1": "Human Trafficking Hotline Statistics",
+      "statsLink2": "by state",
+      "title": "@:volunteer.btns.resources"
+    },
+    "title": "@:nav.volunteer"
   },
   "whatToReport": {
     "cars": "Cars",

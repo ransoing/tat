@@ -10,7 +10,7 @@ export class PORPart1Page {
     public navCtrl: NavController,
     public formsService: FormsService
   ) {
-    if ( formsService.postOutreachForm === false ) {
+    if ( formsService.postOutreachForm === undefined ) {
       formsService.resetPostOutreachForm();
     }
   }

@@ -244,6 +244,9 @@
     "logHours": {
       "description": {}
     },
+    "photos": {
+      "title": "@:volunteer.btns.photos"
+    },
     "resources": {
       "infographicTitle": "TAT en cifras",
       "intro": "Estos recursos están aquí para ayudarle a hablar acerca del alcance de la trata de personas, así como el impacto que la industria camionera puede tener si cuenta con la capacitación y está equipada para responder.",

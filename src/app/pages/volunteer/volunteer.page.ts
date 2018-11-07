@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { VolunteerResourcesComponent, HoursLogComponent, FeedbackComponent } from '../../modals';
+import { VolunteerResourcesComponent, HoursLogComponent, FeedbackComponent, PhotosComponent } from '../../modals';
 import { ModalService } from '../../services';
 
 @Component({
@@ -13,6 +13,7 @@ export class VolunteerPage implements OnInit {
   private VolunteerResourcesComponent = VolunteerResourcesComponent;
   private HoursLogComponent = HoursLogComponent;
   private FeedbackComponent = FeedbackComponent;
+  private PhotosComponent = PhotosComponent;
 
   constructor(
     public navCtrl: NavController,

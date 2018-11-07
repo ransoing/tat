@@ -328,6 +328,10 @@
       "submitSuccess": "Your answers were successfully submitted. Thank you for your time!",
       "title": "Add new log entry"
     },
+    "photos": {
+      "intro": "Share the work we're doing together with your friends and family!",
+      "title": "@:volunteer.btns.photos"
+    },
     "resources": {
       "imgAlt": "You must be connected to the internet to load this infographic.",
       "infographicTitle": "TAT by the Numbers",

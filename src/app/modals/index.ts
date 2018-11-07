@@ -14,3 +14,4 @@ export { VolunteerResourcesComponent } from './volunteer-resources/volunteer-res
 export { HoursLogComponent } from './hours-log/hours-log.component';
 export { HoursLogFormComponent } from './hours-log-form/hours-log-form.component';
 export { FeedbackComponent } from './feedback/feedback.component';
+export { PhotosComponent } from './photos/photos.component';

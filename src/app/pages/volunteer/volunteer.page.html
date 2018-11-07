@@ -8,10 +8,10 @@
     {{ 'volunteer.intro' | translate }}
   </p>
   <image-button image="volunteer.training-video.jpg" [required]="true" [completed]="false">{{ 'volunteer.btns.trainingVideo' | translate }}</image-button>
-  <image-button image="volunteer.pre-outreach-survey.jpg" [required]="true" (click)="navCtrl.navigateRoot('/pos-1')">{{ 'volunteer.btns.preOutreachSurvey' | translate }}</image-button>
-  <image-button image="volunteer.resources.jpg" (click)="modalService.open(VolunteerResourcesComponent)">{{ 'volunteer.btns.resources' | translate }}</image-button>
-  <image-button image="volunteer.post-outreach-report.jpg" [required]="true" (click)="navCtrl.navigateRoot('/por-1')">{{ 'volunteer.btns.postOutreachReport' | translate }}</image-button>
-  <image-button image="volunteer.hours-log.jpg" (click)="modalService.open(HoursLogComponent)" [required]="true">{{ 'volunteer.btns.hoursLog' | translate }}</image-button>
-  <image-button image="volunteer.photos.jpg">{{ 'volunteer.btns.photos' | translate }}</image-button>
-  <image-button image="volunteer.testimonial.jpg" (click)="modalService.open(FeedbackComponent)">{{ 'volunteer.btns.testimonial' | translate }}</image-button>
+  <image-button image="volunteer.pre-outreach-survey.jpg"  (click)="navCtrl.navigateRoot('/pos-1')" [required]="true">{{ 'volunteer.btns.preOutreachSurvey' | translate }}</image-button>
+  <image-button image="volunteer.resources.jpg"            (click)="modalService.open(VolunteerResourcesComponent)">{{ 'volunteer.btns.resources' | translate }}</image-button>
+  <image-button image="volunteer.post-outreach-report.jpg" (click)="navCtrl.navigateRoot('/por-1')" [required]="true">{{ 'volunteer.btns.postOutreachReport' | translate }}</image-button>
+  <image-button image="volunteer.hours-log.jpg"            (click)="modalService.open(HoursLogComponent)" [required]="true">{{ 'volunteer.btns.hoursLog' | translate }}</image-button>
+  <image-button image="volunteer.photos.jpg"               (click)="modalService.open(PhotosComponent)">{{ 'volunteer.btns.photos' | translate }}</image-button>
+  <image-button image="volunteer.testimonial.jpg"          (click)="modalService.open(FeedbackComponent)">{{ 'volunteer.btns.testimonial' | translate }}</image-button>
 </ion-content>

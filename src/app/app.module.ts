@@ -29,8 +29,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ModalGuard } from './modal-guard.service';
 import {
-  PlacesComponent, EmailReportComponent, WhatToReportComponent, VideosComponent, RecommendedBooksComponent, AboutTatComponent,
-  HumanTraffickingLawsComponent, VolunteerResourcesComponent, HoursLogComponent, HoursLogFormComponent, FeedbackComponent,
+  PlacesComponent, EmailReportComponent, WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
+  AboutTatComponent, HumanTraffickingLawsComponent, VolunteerResourcesComponent, HoursLogComponent,
+  HoursLogFormComponent, FeedbackComponent, PhotosComponent,
   CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent
 } from './modals';
 import {
@@ -41,15 +42,17 @@ import {
 @NgModule({
   declarations: [
     AppComponent,
-    PlacesComponent, EmailReportComponent, WhatToReportComponent, VideosComponent, RecommendedBooksComponent, AboutTatComponent,
-    HumanTraffickingLawsComponent, VolunteerResourcesComponent, HoursLogComponent, HoursLogFormComponent, FeedbackComponent,
+    PlacesComponent, EmailReportComponent, WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
+    AboutTatComponent, HumanTraffickingLawsComponent, VolunteerResourcesComponent, HoursLogComponent,
+    HoursLogFormComponent, FeedbackComponent, PhotosComponent,
     CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent,
     POSPart1Page, POSPart2Page, POSPart3Page, POSPart4Page,
     PORPart1Page, PORPart2Page, PORPart3Page
   ],
   entryComponents: [
-    PlacesComponent, EmailReportComponent, WhatToReportComponent, VideosComponent, RecommendedBooksComponent, AboutTatComponent,
-    HumanTraffickingLawsComponent, VolunteerResourcesComponent, HoursLogComponent, HoursLogFormComponent, FeedbackComponent,
+    PlacesComponent, EmailReportComponent, WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
+    AboutTatComponent, HumanTraffickingLawsComponent, VolunteerResourcesComponent, HoursLogComponent,
+    HoursLogFormComponent, FeedbackComponent, PhotosComponent,
     CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent,
     POSPart1Page, POSPart2Page, POSPart3Page, POSPart4Page,
     PORPart1Page, PORPart2Page, PORPart3Page

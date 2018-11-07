@@ -37,7 +37,7 @@ export class POSPart4Page {
         const alert = await this.alertController.create({
           header: await this.trx.t( 'misc.success' ),
           message: await this.trx.t( 'preOutreachSurvey.submitSuccess' ),
-          buttons: [await this.trx.t( 'misc.ok' )]
+          buttons: [await this.trx.t( 'misc.close' )]
         });
         alert.present();
         alert.onDidDismiss().then( () => {
@@ -49,7 +49,7 @@ export class POSPart4Page {
         // @@ on error
         const alert = await this.alertController.create({
           header: await this.trx.t( 'misc.error' ),
-          message: await this.trx.t( 'preOutreachSurvey.submitError' ),
+          message: await this.trx.t( 'misc.submitError' ),
           buttons: [await this.trx.t( 'misc.ok' )]
         });
         alert.present();

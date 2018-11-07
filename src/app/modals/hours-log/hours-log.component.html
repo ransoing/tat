@@ -12,7 +12,7 @@
     class="large-btn"
     fill="solid"
     color="primary"
-    (click)="navCtrl.navigateRoot('/pos-3')">
+    (click)="modalService.open(HoursLogFormComponent)">
       {{ 'volunteer.hoursLog.addEntry' | translate }}
     </ion-button>
   </p>
@@ -21,7 +21,7 @@
     <hr>
     <header>
       April 4, 2018<br>
-      <small>6 hours</small>
+      <small>6 {{ 'volunteer.hoursLog.hours' | translate }}</small>
     </header>
     <p>Bla bla bla.</p>
   </article>
@@ -30,7 +30,7 @@
     <hr>
     <header>
       April 4, 2018<br>
-      <small>6 hours</small>
+      <small>6 {{ 'volunteer.hoursLog.hours' | translate }}</small>
     </header>
     <p>Bla bla bla.</p>
   </article>

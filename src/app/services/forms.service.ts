@@ -61,6 +61,14 @@ export interface IHoursLogForm {
   hours: number
 }
 
+export interface IFeedbackForm {
+  advice: string,
+  bestPart: string,
+  improvements: string
+}
+
+
+//***************************************************************/
 
 @Injectable({
   providedIn: 'root',
@@ -72,6 +80,7 @@ export class FormsService {
   preOutreachForm: IPreOutreachForm;
   postOutreachForm: IPostOutreachForm;
   hoursForm: IHoursLogForm;
+  feedbackForm: IFeedbackForm;
 
   public resetPreOutreachForm() {
     this.preOutreachForm = {
@@ -137,6 +146,14 @@ export class FormsService {
       description: '',
       date: undefined,
       hours: undefined
+    };
+  }
+
+  public resetFeedbackForm() {
+    this.feedbackForm = {
+      advice: '',
+      bestPart: '',
+      improvements: ''
     };
   }
 }

@@ -20,7 +20,7 @@
   </ion-radio-group>
 
   <div *ngIf="formsService.postOutreachForm.willFollowUp === 'yes'" padding-top>
-    <p>{{ 'postOutreachReport.3.when' | translate }}</p>
+    <p class="like-ion-label">{{ 'postOutreachReport.3.when' | translate }}</p>
     <ion-item class="no-border">
       <ion-label>{{ 'misc.date' | translate }}</ion-label>
       <ion-datetime [(ngModel)]="formsService.postOutreachForm.followUp.date" displayFormat="MMMM DD, YYYY"></ion-datetime>

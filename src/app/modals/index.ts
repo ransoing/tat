@@ -12,3 +12,5 @@ export { EmailReportComponent } from './email-report/email-report.component';
 export { PlacesComponent } from './places/places.component';
 export { VolunteerResourcesComponent } from './volunteer-resources/volunteer-resources.component';
 export { HoursLogComponent } from './hours-log/hours-log.component';
+export { HoursLogFormComponent } from './hours-log-form/hours-log-form.component';
+export { FeedbackComponent } from './feedback/feedback.component';

@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar></ion-toolbar>
+</ion-header>
+<ion-content fullscreen padding>
+  <h1>{{ 'volunteer.logHours.title' | translate }}</h1>
+  <ion-icon name="md-close" class="modal-close-btn" (click)="modal.dismiss()"></ion-icon>
+
+  <ion-item padding-top>
+    <ion-label position="stacked">{{ 'volunteer.logHours.description.label' | translate }}</ion-label>
+    <ion-textarea [(ngModel)]="formsService.hoursForm.description" placeholder="{{ 'volunteer.logHours.description.placeholder' | translate }}"></ion-textarea>
+  </ion-item>
+
+  <p class="like-ion-label" padding-top>{{ 'volunteer.logHours.dateLabel' | translate }}</p>
+  <ion-item>
+    <ion-label>{{ 'misc.date' | translate }}</ion-label>
+    <ion-datetime [(ngModel)]="formsService.hoursForm.date" displayFormat="MMMM DD, YYYY"></ion-datetime>
+  </ion-item>
+
+  <ion-item padding-top>
+    <ion-label position="stacked">{{ 'volunteer.logHours.hoursLabel' | translate }}</ion-label>
+    <ion-input type="number" [(ngModel)]="formsService.hoursForm.hours" placeholder="{{ 'volunteer.hoursLog.hours' | translate }}"></ion-input>
+  </ion-item>
+
+  <p text-center padding-top>
+    <ion-button
+      class="large-btn"
+      fill="solid"
+      color="primary"
+      (click)="submitForm()"
+      [disabled]="formsService.hoursForm.hours === undefined || formsService.hoursForm.date === undefined">
+        {{ 'misc.submit' | translate }}
+    </ion-button>
+  </p>
+
+</ion-content>

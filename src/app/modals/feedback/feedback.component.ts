@@ -1,20 +1,22 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController, AlertController } from '@ionic/angular';
-import { FormsService, TrxService } from '../../../services';
+import { FormsService, TrxService } from '../../services';
+import { LoadingController, AlertController } from '@ionic/angular';
 
 @Component({
-  templateUrl: 'por-part-3.page.html'
+  templateUrl: './feedback.component.html'
 })
-export class PORPart3Page {
+export class FeedbackComponent {
+
+  public modal: HTMLIonModalElement;
+  
   constructor(
-    public navCtrl: NavController,
-    public formsService: FormsService,
-    public loadingController: LoadingController,
-    public alertController: AlertController,
-    public trx: TrxService
+    private formsService: FormsService,
+    private loadingController: LoadingController,
+    private alertController: AlertController,
+    private trx: TrxService
   ) {
-    if ( formsService.postOutreachForm === undefined ) {
-      formsService.resetPostOutreachForm();
+    if ( formsService.feedbackForm === undefined ) {
+      formsService.resetFeedbackForm();
     }
   }
 
@@ -34,14 +36,14 @@ export class PORPart3Page {
       if ( success ) {
         const alert = await this.alertController.create({
           header: await this.trx.t( 'misc.success' ),
-          message: await this.trx.t( 'postOutreachReport.submitSuccess' ),
+          message: await this.trx.t( 'volunteer.feedback.submitSuccess' ),
           buttons: [await this.trx.t( 'misc.close' )]
         });
         alert.present();
         alert.onDidDismiss().then( () => {
           // clear the form and navigate back to the volunteer homepage
-          this.navCtrl.navigateRoot( '/tabs/(volunteer:volunteer)' )
-          .then( () => this.formsService.resetPostOutreachForm() );
+          this.modal.dismiss()
+          .then( () => this.formsService.resetFeedbackForm() );
         });
       } else {
         // @@ on error
@@ -55,4 +57,5 @@ export class PORPart3Page {
     }, 3000 );
     
   }
+
 }

@@ -13,5 +13,5 @@
   <image-button image="volunteer.post-outreach-report.jpg" [required]="true" (click)="navCtrl.navigateRoot('/por-1')">{{ 'volunteer.btns.postOutreachReport' | translate }}</image-button>
   <image-button image="volunteer.hours-log.jpg" (click)="modalService.open(HoursLogComponent)" [required]="true">{{ 'volunteer.btns.hoursLog' | translate }}</image-button>
   <image-button image="volunteer.photos.jpg">{{ 'volunteer.btns.photos' | translate }}</image-button>
-  <image-button image="volunteer.testimonial.jpg">{{ 'volunteer.btns.testimonial' | translate }}</image-button>
+  <image-button image="volunteer.testimonial.jpg" (click)="modalService.open(FeedbackComponent)">{{ 'volunteer.btns.testimonial' | translate }}</image-button>
 </ion-content>

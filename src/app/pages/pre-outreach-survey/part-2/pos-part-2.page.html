@@ -21,7 +21,7 @@
 
   <ion-item padding-top *ngIf="formsService.preOutreachForm.feelEquipped === 'no'">
     <ion-label position="stacked">{{ 'preOutreachSurvey.2.unequipped' | translate }}</ion-label>
-    <ion-textarea [(ngModel)]="formsService.preOutreachForm.feelEquippedQuestions" placeholder="{{ 'preOutreachSurvey.2.unequippedPlaceholder' | translate }}"></ion-textarea>
+    <ion-textarea class="tall" [(ngModel)]="formsService.preOutreachForm.feelEquippedQuestions" placeholder="{{ 'preOutreachSurvey.2.unequippedPlaceholder' | translate }}"></ion-textarea>
   </ion-item>
 
   <p text-center padding-top>

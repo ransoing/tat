@@ -21,7 +21,7 @@
 
   <ion-item padding-top *ngIf="formsService.preOutreachForm.contactedManager === 'yes'">
     <ion-label position="stacked">{{ 'preOutreachSurvey.3.strategy' | translate }}</ion-label>
-    <ion-textarea [(ngModel)]="formsService.preOutreachForm.strategy" placeholder="{{ 'preOutreachSurvey.3.strategyPlaceholder' | translate }}"></ion-textarea>
+    <ion-textarea class="tall" [(ngModel)]="formsService.preOutreachForm.strategy" placeholder="{{ 'preOutreachSurvey.3.strategyPlaceholder' | translate }}"></ion-textarea>
   </ion-item>
 
   <p text-center padding-top>

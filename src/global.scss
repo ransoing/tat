@@ -142,7 +142,10 @@ ion-item {
     --height: 3.5em;
 }
 
-ion-textarea { height: 5em }
+ion-textarea {
+    height: 5em;
+    &.tall { height: 10em }
+}
 
 ion-label.sc-ion-label-md-h {
     white-space: normal;

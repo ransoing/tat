@@ -3,6 +3,9 @@ import { NavController } from '@ionic/angular';
 import { VolunteerResourcesComponent, HoursLogComponent, FeedbackComponent, PhotosComponent } from '../../modals';
 import { ModalService } from '../../services';
 
+//import * as jsforce from 'jsforce';
+import { Rest } from 'ts-force';
+
 @Component({
   selector: 'app-volunteer',
   templateUrl: './volunteer.page.html',
@@ -18,7 +21,10 @@ export class VolunteerPage implements OnInit {
   constructor(
     public navCtrl: NavController,
     public modalService: ModalService
-  ) { }
+  ) {
+    //console.log( window['jsforce'] );
+    console.log( Rest );
+  }
 
   ngOnInit() {
   }

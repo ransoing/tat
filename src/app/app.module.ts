@@ -31,7 +31,7 @@ import { ModalGuard } from './modal-guard.service';
 import {
   PlacesComponent, EmailReportComponent, WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
   AboutTatComponent, HumanTraffickingLawsComponent, VolunteerResourcesComponent, HoursLogComponent,
-  HoursLogFormComponent, FeedbackComponent, PhotosComponent,
+  HoursLogFormComponent, FeedbackComponent, PhotosComponent, PostOutreachSelectionComponent,
   CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent
 } from './modals';
 import {
@@ -44,7 +44,7 @@ import {
     AppComponent,
     PlacesComponent, EmailReportComponent, WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
     AboutTatComponent, HumanTraffickingLawsComponent, VolunteerResourcesComponent, HoursLogComponent,
-    HoursLogFormComponent, FeedbackComponent, PhotosComponent,
+    HoursLogFormComponent, FeedbackComponent, PhotosComponent, PostOutreachSelectionComponent,
     CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent,
     POSPart1Page, POSPart2Page, POSPart3Page, POSPart4Page,
     PORPart1Page, PORPart2Page, PORPart3Page
@@ -52,7 +52,7 @@ import {
   entryComponents: [
     PlacesComponent, EmailReportComponent, WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
     AboutTatComponent, HumanTraffickingLawsComponent, VolunteerResourcesComponent, HoursLogComponent,
-    HoursLogFormComponent, FeedbackComponent, PhotosComponent,
+    HoursLogFormComponent, FeedbackComponent, PhotosComponent, PostOutreachSelectionComponent,
     CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent,
     POSPart1Page, POSPart2Page, POSPart3Page, POSPart4Page,
     PORPart1Page, PORPart2Page, PORPart3Page

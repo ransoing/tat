@@ -58,4 +58,10 @@ $primary-color: #2e90d0;
     &.not-completed {
         .alert-dot { display: block }
     }
+
+    &.disabled {
+        opacity: 0.3;
+        background-blend-mode: unset;
+        cursor: default;
+    }
 }

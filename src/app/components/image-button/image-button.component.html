@@ -4,7 +4,9 @@ margin-bottom
 [class.has-hint]="hint"
 [class.tall]="tall"
 [class.required]="required"
-[class.not-completed]="!completed">
+[class.not-completed]="!completed"
+[class.disabled]="disabled"
+(click)="onButtonClick($event)">
   <ng-content></ng-content>
   <div class="hint">{{hint}}</div>
   <div class="alert-dot"></div>

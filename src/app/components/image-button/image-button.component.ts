@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'image-button',
@@ -14,6 +14,8 @@ export class ImageButtonComponent implements OnInit {
   @Input() tall: boolean = false;
   @Input() required: boolean = false;
   @Input() completed: boolean = true;
+  @Input() disabled: boolean = false;
+  @Output() click: EventEmitter<MouseEvent> = new EventEmitter();
   
   bgCss: string;
 
@@ -21,6 +23,13 @@ export class ImageButtonComponent implements OnInit {
 
   ngOnInit() {
     this.bgCss = 'url(../../../assets/image-buttons/' + (this.image || 'default.jpg') + ')';
+  }
+
+  // intercept the click event; don't allow (click) handlers on host if the button is disabled
+  onButtonClick( event: MouseEvent ) {
+    if ( this.disabled ) {
+      event.stopPropagation();
+    }
   }
 
 }

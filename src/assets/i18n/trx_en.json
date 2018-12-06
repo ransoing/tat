@@ -118,6 +118,7 @@
       "strategyPlaceholder": "Please write a brief description",
       "when": "When do you plan to do the follow-up?"
     },
+    "select": "Which event or location did you volunteer at?",
     "submitSuccess": "Thank you for completing this report.",
     "title": "@:volunteer.btns.postOutreachReport"
   },
@@ -324,7 +325,7 @@
         "label": "What volunteer task did you spend time on?",
         "placeholder": "Please write a brief task description"
       },
-      "hoursLabel": "How many hours did you spend on it?",
+      "hoursLabel": "How many hours did you volunteer? Include driving time and training time.",
       "submitSuccess": "Your answers were successfully submitted. Thank you for your time!",
       "title": "Add new log entry"
     },

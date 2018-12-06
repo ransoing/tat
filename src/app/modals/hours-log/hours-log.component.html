@@ -17,22 +17,13 @@
     </ion-button>
   </p>
 
-  <article>
+  <article *ngFor="let logEntry of userDataService.data.hoursLogs">
     <hr>
     <header>
-      April 4, 2018<br>
-      <small>6 {{ 'volunteer.hoursLog.hours' | translate }}</small>
+      {{logEntry.date.toDateString()}}<br>
+      <small>{{logEntry.numHours}} {{ 'volunteer.hoursLog.hours' | translate }}</small>
     </header>
-    <p>Bla bla bla.</p>
-  </article>
-
-  <article>
-    <hr>
-    <header>
-      April 4, 2018<br>
-      <small>6 {{ 'volunteer.hoursLog.hours' | translate }}</small>
-    </header>
-    <p>Bla bla bla.</p>
+    <p>{{logEntry.taskDescription}}</p>
   </article>
 
 </ion-content>

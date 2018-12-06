@@ -231,7 +231,6 @@
       "trainingVideo": "Video de capacitación"
     },
     "feedback": {
-      "fieldLabels": {},
       "title": "@:volunteer.btns.testimonial"
     },
     "hoursLog": {
@@ -241,9 +240,6 @@
       "title": "@:volunteer.btns.hoursLog"
     },
     "intro": "¡Gracias por participar como voluntario con TAT! Su tiempo en preparación, voluntariado y seguimiento no solamente nos ayuda a avanzar con nuestra misión, sino que demuestra la dedicación de esta industria para combatir este atroz delito. A continuación, le proporcionamos lo que necesitara en el proceso de voluntario. Estamos encantados de que forme parte de nuestro equipo.",
-    "logHours": {
-      "description": {}
-    },
     "photos": {
       "title": "@:volunteer.btns.photos"
     },

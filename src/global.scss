@@ -133,6 +133,10 @@ ion-item.item-datetime {
     }
 }
 
+ion-item.has-border {
+    border-bottom: var( --input-border-width ) solid var( --input-border-color );
+}
+
 ion-item {
     --padding-start: 0;
 }

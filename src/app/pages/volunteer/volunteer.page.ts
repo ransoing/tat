@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { VolunteerResourcesComponent, HoursLogComponent, FeedbackComponent, PhotosComponent } from '../../modals';
-import { ModalService } from '../../services';
-
-//import * as jsforce from 'jsforce';
-import { Rest } from 'ts-force';
+import { VolunteerResourcesComponent, HoursLogComponent, FeedbackComponent, PhotosComponent, PostOutreachSelectionComponent } from '../../modals';
+import { ModalService, UserDataService } from '../../services';
 
 @Component({
   selector: 'app-volunteer',
@@ -17,14 +14,13 @@ export class VolunteerPage implements OnInit {
   private HoursLogComponent = HoursLogComponent;
   private FeedbackComponent = FeedbackComponent;
   private PhotosComponent = PhotosComponent;
+  private PostOutreachSelectionComponent = PostOutreachSelectionComponent;
 
   constructor(
     public navCtrl: NavController,
-    public modalService: ModalService
-  ) {
-    //console.log( window['jsforce'] );
-    console.log( Rest );
-  }
+    public modalService: ModalService,
+    public userDataService: UserDataService
+  ) {}
 
   ngOnInit() {
   }

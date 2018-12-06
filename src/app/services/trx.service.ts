@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
-/** This is a shorthand way to translate in javascript using the ngx-translate TranslateService */
+/** This is a shorthand way to translate in typescript using the ngx-translate TranslateService */
 @Injectable({
   providedIn: 'root',
 })

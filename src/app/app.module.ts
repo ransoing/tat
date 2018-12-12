@@ -30,7 +30,7 @@ import { AppComponent } from './app.component';
 import { ModalGuard } from './modal-guard.service';
 import {
   PlacesComponent, EmailReportComponent, WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
-  AboutTatComponent, HumanTraffickingLawsComponent, VolunteerResourcesComponent, HoursLogComponent,
+  AboutTatComponent, HumanTraffickingLawsComponent, VolunteerSettingsComponent, VolunteerResourcesComponent, HoursLogComponent,
   HoursLogFormComponent, FeedbackComponent, PhotosComponent, PostOutreachSelectionComponent,
   CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent
 } from './modals';
@@ -43,7 +43,7 @@ import {
   declarations: [
     AppComponent,
     PlacesComponent, EmailReportComponent, WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
-    AboutTatComponent, HumanTraffickingLawsComponent, VolunteerResourcesComponent, HoursLogComponent,
+    AboutTatComponent, HumanTraffickingLawsComponent, VolunteerSettingsComponent, VolunteerResourcesComponent, HoursLogComponent,
     HoursLogFormComponent, FeedbackComponent, PhotosComponent, PostOutreachSelectionComponent,
     CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent,
     POSPart1Page, POSPart2Page, POSPart3Page, POSPart4Page,
@@ -51,7 +51,7 @@ import {
   ],
   entryComponents: [
     PlacesComponent, EmailReportComponent, WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
-    AboutTatComponent, HumanTraffickingLawsComponent, VolunteerResourcesComponent, HoursLogComponent,
+    AboutTatComponent, HumanTraffickingLawsComponent, VolunteerSettingsComponent, VolunteerResourcesComponent, HoursLogComponent,
     HoursLogFormComponent, FeedbackComponent, PhotosComponent, PostOutreachSelectionComponent,
     CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent,
     POSPart1Page, POSPart2Page, POSPart3Page, POSPart4Page,

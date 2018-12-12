@@ -78,6 +78,7 @@
     "no": "No",
     "ok": "OK",
     "pleaseWait": "Please wait...",
+    "setLanguage": "Set language",
     "submit": "Submit",
     "submitError": "Please make sure you have an internet connection and try again.",
     "success": "Success",
@@ -342,6 +343,17 @@
       "statsLink1": "Human Trafficking Hotline Statistics",
       "statsLink2": "by state",
       "title": "@:volunteer.btns.resources"
+    },
+    "settings": {
+      "logout": "Logout",
+      "notifications": {
+        "event": "Event notifications",
+        "report": "Report notifications",
+        "survey": "Survey notifications",
+        "title": "Notifications",
+        "upcoming": "Upcoming events"
+      },
+      "title": "Settings"
     },
     "title": "@:nav.volunteer"
   },

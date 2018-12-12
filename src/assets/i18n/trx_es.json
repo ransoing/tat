@@ -252,6 +252,9 @@
       "statsLink2": "por la línea de ayuda",
       "title": "@:volunteer.btns.resources"
     },
+    "settings": {
+      "notifications": {}
+    },
     "title": "@:nav.volunteer"
   },
   "whatToReport": {

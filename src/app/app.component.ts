@@ -4,6 +4,7 @@ import { Platform, IonRouterOutlet } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { TranslateService } from '@ngx-translate/core';
+import { SettingsService } from './services';
 
 @Component({
   selector: 'app-root',
@@ -17,22 +18,16 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private settings: SettingsService
   ) {
     this.initializeApp();
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
-      this.translate.setDefaultLang( 'en' ); // @@ get the device's default language. Use spanish if that's what it is, otherwise use english.
-      this.translate.use( 'en' );
-      window.addEventListener( 'keypress', (e) => {
-        // @@
-        if ( e.key === 'q' ) {
-          this.translate.use( this.translate.currentLang === 'en' ? 'es' : 'en' );
-        }
-      });
-
+      this.translate.setDefaultLang( this.settings.language );
+      this.translate.use( this.settings.language );
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });

@@ -10,9 +10,12 @@
   <image-button image="home.resources.jpg" (click)="navCtrl.navigateRoot('/tabs/(resources:resources)')">{{ 'home.resources' | translate }}</image-button>
   <image-button                            (click)="navCtrl.navigateRoot('/tabs/(volunteer:volunteer)')">{{ 'home.volunteer' | translate }}</image-button>
 
-  <p>
-    <ion-button fill="clear" color="light" (click)="showLanguages()">
-      <ion-icon name="globe"></ion-icon> &nbsp; {{ 'misc.setLanguage' | translate }}
-    </ion-button>
-  </p>
+  <ion-item class="language-select">
+    <ion-label><ion-icon name="globe" style="vertical-align:top; margin-top:1px"></ion-icon> {{ 'misc.setLanguage' | translate }}</ion-label>
+    <ion-select interface="alert" placeholder="Select One" [(ngModel)]="settings.language" (ionChange)="onSetLanguage()">
+      <ion-select-option value="en">English</ion-select-option>
+      <ion-select-option value="es">Español</ion-select-option>
+    </ion-select>
+  </ion-item>
+  
 </ion-content>

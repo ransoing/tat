@@ -9,15 +9,14 @@ import { SettingsService } from '../../services';
   styleUrls: ['home.page.scss']
 })
 export class HomePage {
+
   constructor(
     public navCtrl: NavController,
     private translate: TranslateService,
     private settings: SettingsService
   ) { }
 
-  showLanguages() {
-    // @@TODO: show a choice between the two languages rather than toggling
-    this.settings.language = this.settings.language === 'en' ? 'es' : 'en';
+  onSetLanguage() {
     this.translate.use( this.settings.language );
   }
 }

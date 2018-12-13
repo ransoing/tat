@@ -4,3 +4,12 @@ img.logo {
     width: 50%;
     max-width: 300px;
 }
+
+.language-select {
+    width: 18em;
+    margin: 2em auto 0;
+    ion-icon {
+        vertical-align: top;
+        margin-top: 1px;
+    }
+}

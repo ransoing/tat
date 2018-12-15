@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar></ion-toolbar>
+</ion-header>
+<ion-content fullscreen padding>
+  <h1>&nbsp;<!-- empty h1 to give the 'close' icon some space --></h1>
+  <ion-icon name="md-close" class="modal-close-btn" (click)="modal.dismiss()"></ion-icon>
+    
+  <div *ngIf="!error" style="padding:56.25% 0 0 0;position:relative;">
+    <iframe
+      id="video-iframe"
+      [src]="videoUrl"
+      (load)="onVideoFrameLoaded()"
+      style="position:absolute;top:0;left:0;width:100%;height:100%;"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      webkitallowfullscreen mozallowfullscreen allowfullscreen>
+    </iframe>
+  </div>
+
+  <p *ngIf="error">
+    {{ 'vonunteer.trainingVideoError' | translate }}
+  </p>
+
+</ion-content>

@@ -6,7 +6,7 @@ import { ModalController } from '@ionic/angular';
 })
 export class ModalService {
 
-constructor( public modalController: ModalController ) { }
+  constructor( public modalController: ModalController ) { }
 
   // keep a stack of active modals
   public stack: HTMLIonModalElement[] = [];

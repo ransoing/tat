@@ -12,6 +12,7 @@
 
   <image-button
     image="volunteer.training-video.jpg"
+    (click)="modalService.open(TrainingVideoComponent)"
     [required]="true"
     [completed]="userDataService.data.hasWatchedTrainingVideo">
       {{ 'volunteer.btns.trainingVideo' | translate }}

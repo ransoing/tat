@@ -71,6 +71,7 @@
     "volunteer": "@:nav.volunteer"
   },
   "misc": {
+    "cancel": "Cancel",
     "close": "Close",
     "date": "Date",
     "error": "Error",
@@ -355,7 +356,8 @@
       },
       "title": "Settings"
     },
-    "title": "@:nav.volunteer"
+    "title": "@:nav.volunteer",
+    "trainingVideoError": "There was an error loading the video. Please try again later."
   },
   "whatToReport": {
     "cars": "Cars",

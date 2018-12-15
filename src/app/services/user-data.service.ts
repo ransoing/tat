@@ -46,12 +46,13 @@ export interface IUserData {
 
 
 // ******************* the service ******************* //
-
+// @@TODO: change this away from Mock, and set it up to communicate with the salesforce proxy service
 @Injectable({
   providedIn: 'root',
 })
 export class MockUserDataService {
 
+  isLoggedIn: boolean;
   data: IUserData;
 
   constructor() { }
@@ -74,6 +75,7 @@ export class MockUserDataService {
 })
 export class UserDataService {
 
+  isLoggedIn: boolean = false;
   data: IUserData = {
     volunteerType: VolunteerType.truckStopVolunteer,
     hasWatchedTrainingVideo: true,

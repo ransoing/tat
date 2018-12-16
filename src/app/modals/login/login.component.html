@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar></ion-toolbar>
+</ion-header>
+<ion-content fullscreen padding>
+  <h1>{{ 'volunteer.loginTitle' | translate }}</h1>
+  <ion-icon name="md-close" class="modal-close-btn" (click)="modal.dismiss()"></ion-icon>
+
+  <p text-center padding-top>
+    <ion-button
+      class="large-btn"
+      fill="solid"
+      color="primary"
+      (click)="onLoginClick()">
+        {{ 'misc.login' | translate }}
+    </ion-button>
+  </p>
+</ion-content>

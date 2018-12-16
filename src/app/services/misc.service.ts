@@ -5,6 +5,9 @@ import { Injectable } from '@angular/core';
 })
 export class MiscService {
 
+  isLoggedIn: boolean = false;
+  loginRedirectUrl: string;
+
   constructor() { }
 
   public openExternalLink( url ) {

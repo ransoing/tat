@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
-import { SettingsService } from '../../services';
+import { SettingsService, MiscService } from '../../services';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +13,8 @@ export class HomePage {
   constructor(
     public navCtrl: NavController,
     private translate: TranslateService,
-    private settings: SettingsService
+    private settings: SettingsService,
+    private miscService: MiscService
   ) { }
 
   onSetLanguage() {

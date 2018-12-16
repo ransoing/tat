@@ -1,6 +1,6 @@
-import { Injectable }     from '@angular/core';
+import { Injectable } from '@angular/core';
 import { CanDeactivate, Router, NavigationStart, RouterEvent, ActivatedRouteSnapshot }    from '@angular/router';
-import { ModalService } from './services';
+import { ModalService } from '../services';
 import { Location } from '@angular/common';
 
 @Injectable()
@@ -37,3 +37,4 @@ export class ModalGuard implements CanDeactivate<any> {
     }
   }
 }
+

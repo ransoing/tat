@@ -67,8 +67,7 @@
   "home": {
     "redFlags": "Señales de advertencia",
     "reportActivity": "Reporte la Actividad",
-    "resources": "@:nav.resources",
-    "volunteer": "@:nav.volunteer"
+    "resources": "@:nav.resources"
   },
   "misc": {
     "date": "Fecha",
@@ -182,8 +181,7 @@
       "aboutTAT": "Acerca de TAT",
       "humanTraffickingLaws": "Leyes Sobre la Trata de Personas ",
       "recommendedBooks": "Libros Recomendados",
-      "videos": "Videos",
-      "volunteerLogin": "Login (acceso) de Voluntarios"
+      "videos": "Videos"
     },
     "intro": "Use los siguientes recursos para conocer más acerca de la trata de personas y cómo usted puede ayudar a combatirla.",
     "laws": {
@@ -240,6 +238,7 @@
       "title": "@:volunteer.btns.hoursLog"
     },
     "intro": "¡Gracias por participar como voluntario con TAT! Su tiempo en preparación, voluntariado y seguimiento no solamente nos ayuda a avanzar con nuestra misión, sino que demuestra la dedicación de esta industria para combatir este atroz delito. A continuación, le proporcionamos lo que necesitara en el proceso de voluntario. Estamos encantados de que forme parte de nuestro equipo.",
+    "loginTitle": "Login (acceso) de Voluntarios",
     "photos": {
       "title": "@:volunteer.btns.photos"
     },

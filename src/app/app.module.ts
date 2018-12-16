@@ -27,11 +27,11 @@ import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 // app
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ModalGuard } from './modal-guard.service';
+import { ModalGuard, AuthGuard } from './guards';
 import {
   PlacesComponent, EmailReportComponent, WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
   AboutTatComponent, HumanTraffickingLawsComponent, VolunteerSettingsComponent, VolunteerResourcesComponent, HoursLogComponent,
-  HoursLogFormComponent, FeedbackComponent, PhotosComponent, PostOutreachSelectionComponent, TrainingVideoComponent,
+  HoursLogFormComponent, FeedbackComponent, PhotosComponent, PostOutreachSelectionComponent, TrainingVideoComponent, LoginComponent,
   CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent
 } from './modals';
 import {
@@ -44,7 +44,7 @@ import {
     AppComponent,
     PlacesComponent, EmailReportComponent, WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
     AboutTatComponent, HumanTraffickingLawsComponent, VolunteerSettingsComponent, VolunteerResourcesComponent, HoursLogComponent,
-    HoursLogFormComponent, FeedbackComponent, PhotosComponent, PostOutreachSelectionComponent, TrainingVideoComponent,
+    HoursLogFormComponent, FeedbackComponent, PhotosComponent, PostOutreachSelectionComponent, TrainingVideoComponent, LoginComponent,
     CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent,
     POSPart1Page, POSPart2Page, POSPart3Page, POSPart4Page,
     PORPart1Page, PORPart2Page, PORPart3Page
@@ -52,7 +52,7 @@ import {
   entryComponents: [
     PlacesComponent, EmailReportComponent, WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
     AboutTatComponent, HumanTraffickingLawsComponent, VolunteerSettingsComponent, VolunteerResourcesComponent, HoursLogComponent,
-    HoursLogFormComponent, FeedbackComponent, PhotosComponent, PostOutreachSelectionComponent, TrainingVideoComponent,
+    HoursLogFormComponent, FeedbackComponent, PhotosComponent, PostOutreachSelectionComponent, TrainingVideoComponent, LoginComponent,
     CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent,
     POSPart1Page, POSPart2Page, POSPart3Page, POSPart4Page,
     PORPart1Page, PORPart2Page, PORPart3Page
@@ -77,7 +77,7 @@ import {
   ],
   providers: [
     StatusBar, SplashScreen, Dialogs, Network, AndroidPermissions,
-    ModalGuard,
+    ModalGuard, AuthGuard,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

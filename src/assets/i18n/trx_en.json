@@ -67,14 +67,14 @@
   "home": {
     "redFlags": "@:nav.redFlags",
     "reportActivity": "Report Activity",
-    "resources": "@:nav.resources",
-    "volunteer": "@:nav.volunteer"
+    "resources": "@:nav.resources"
   },
   "misc": {
     "cancel": "Cancel",
     "close": "Close",
     "date": "Date",
     "error": "Error",
+    "login": "Log in",
     "next": "Next",
     "no": "No",
     "ok": "OK",
@@ -254,8 +254,7 @@
       "aboutTAT": "About TAT",
       "humanTraffickingLaws": "Human Trafficking Laws",
       "recommendedBooks": "Recommended Books",
-      "videos": "Videos",
-      "volunteerLogin": "Volunteer Login"
+      "videos": "Videos"
     },
     "intro": "Use the resources below to learn more about trafficking and how you can get involved.",
     "laws": {
@@ -331,6 +330,7 @@
       "submitSuccess": "Your answers were successfully submitted. Thank you for your time!",
       "title": "Add new log entry"
     },
+    "loginTitle": "Volunteer Login",
     "photos": {
       "intro": "Share the work we're doing together with your friends and family!",
       "title": "@:volunteer.btns.photos"

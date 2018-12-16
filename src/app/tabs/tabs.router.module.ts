@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ModalGuard } from '../modal-guard.service';
+import { ModalGuard, AuthGuard } from '../guards';
 
 import { TabsPage } from './tabs.page';
 import { HomePage, RedFlagsPage, ReportPage, ResourcesPage, VolunteerPage } from '../pages';
@@ -40,7 +40,8 @@ const routes: Routes = [
         path: 'volunteer',
         outlet: 'volunteer',
         component: VolunteerPage,
-        canDeactivate: [ModalGuard]
+        canDeactivate: [ModalGuard],
+        canActivate: [AuthGuard]
       }
     ]
   }, {

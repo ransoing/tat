@@ -52,7 +52,6 @@ export interface IUserData {
 })
 export class MockUserDataService {
 
-  isLoggedIn: boolean;
   data: IUserData;
 
   constructor() { }
@@ -75,7 +74,6 @@ export class MockUserDataService {
 })
 export class UserDataService {
 
-  isLoggedIn: boolean = false;
   data: IUserData = {
     volunteerType: VolunteerType.truckStopVolunteer,
     hasWatchedTrainingVideo: true,

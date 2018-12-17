@@ -163,6 +163,12 @@ ion-label.sc-ion-label-md-h {
 ion-toggle {
     --background: #333;
     --handle-background: #444;
+    --ion-background-color-step-50: black;
+}
+
+ion-alert,
+ion-loading {
+    --ion-text-color: black;
 }
 
 @media only screen and (min-height: 768px) and (min-width: 768px) {

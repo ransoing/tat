@@ -248,6 +248,7 @@
       "by": "by",
       "documentaries": "Documentary Recommendations",
       "or": "or",
+      "subtitle": " ",
       "title": "@:resources.btns.recommendedBooks"
     },
     "btns": {

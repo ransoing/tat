@@ -7,8 +7,10 @@
   
   <div [innerHTML]="'report.intro' | translate"></div>
 
-  <image-button image="report.hotline.jpg" [tall]="true">{{ 'report.callHotline' | translate }} <span class="short-text">({{ 'report.USA' | translate }})</span></image-button>
-  <image-button image="report.text.jpg">{{ 'report.textBtn' | translate }}</image-button>
+  <image-button image="report.hotline.jpg" [tall]="true" (click)="miscService.openExternalLink('tel:+18883737888')">
+    {{ 'report.callHotline' | translate }} <span class="short-text">({{ 'report.USA' | translate }})</span>
+  </image-button>
+  <image-button image="report.text.jpg" (click)="miscService.openExternalLink('sms:233733')">{{ 'report.textBtn' | translate }}</image-button>
   <image-button
   image="report.email.jpg"
   hint="{{ 'report.emailBtnHint' | translate }}"
@@ -17,8 +19,8 @@
   </image-button>
 
   <div class="alt-hotlines">
-    <a>{{ 'report.callCanadaHotline' | translate }}</a>
-    <a text-end>{{ 'report.callMexicoHotline' | translate }}</a>
+    <ion-button fill="clear" color="light" (click)="miscService.openExternalLink('tel:+18002228477')">{{ 'report.callCanadaHotline' | translate }}</ion-button>
+    <ion-button fill="clear" color="light" (click)="miscService.openExternalLink('tel:+018005533000')">{{ 'report.callMexicoHotline' | translate }}</ion-button>
   </div>
   <hr>
 

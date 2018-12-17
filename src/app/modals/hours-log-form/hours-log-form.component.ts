@@ -30,7 +30,7 @@ export class HoursLogFormComponent {
     setTimeout( async () => {
       loading.dismiss();
 
-      const success = true;
+      const success = false;
 
       // @@ on success
       if ( success ) {

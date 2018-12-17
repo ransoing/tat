@@ -1,20 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { WhatToReportComponent, EmailReportComponent } from '../../modals';
-import { ModalService } from '../../services';
+import { ModalService, MiscService } from '../../services';
 
 @Component({
   selector: 'app-report',
   templateUrl: './report.page.html',
   styleUrls: ['./report.page.scss'],
 })
-export class ReportPage implements OnInit {
+export class ReportPage {
 
   WhatToReportComponent = WhatToReportComponent;
   EmailReportComponent = EmailReportComponent;
 
-  constructor( public modalService: ModalService ) {}
-
-  ngOnInit() {
-  }
-
+  constructor( private modalService: ModalService, private miscService: MiscService ) {}
 }

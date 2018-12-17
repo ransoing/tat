@@ -164,3 +164,24 @@ ion-toggle {
     --background: #333;
     --handle-background: #444;
 }
+
+@media only screen and (min-height: 768px) and (min-width: 768px) {
+    .modal-large .modal-wrapper {
+        width: 75%;
+        min-width: 600px;
+        max-width: 1000px;
+        height: 75%;
+        min-height: 600px;
+        max-height: 1000px;
+    }
+}
+
+@media only screen and (min-height: 600px) and (min-width: 768px) {
+    .modal-large .modal-wrapper {
+        width: 75%;
+        min-width: 600px;
+        max-width: 1000px;
+        height: 75%;
+        min-height: 475px;
+    }
+}

@@ -3,12 +3,17 @@
 }
 
 .alt-hotlines {
-    display: flex;
-    padding: calc( var(--ion-padding)/2 ) 0 var( --ion-padding ) 0;
+    
+    &:after {
+        display: block;
+        clear: both;
+        content: '';
+    }
 
-    > a {
-        flex: 1 1 50%;
-        color: white;
-        cursor: pointer;
+    > ion-button {
+        text-transform: none;
+
+        &:nth-child(1) { float: left;  margin-left: -16px }
+        &:nth-child(2) { float: right; margin-right: -16px }
     }
 }

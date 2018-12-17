@@ -19,7 +19,8 @@ export class ModalService {
   async open( component: any, props: any = {} ) {
     const modal = await this.modalController.create({
       component: component,
-      componentProps: props
+      componentProps: props,
+      cssClass: 'modal-large'
     });
 
     // add to the modal stack

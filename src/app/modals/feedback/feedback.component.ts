@@ -10,10 +10,10 @@ export class FeedbackComponent {
   public modal: HTMLIonModalElement;
   
   constructor(
-    private formsService: FormsService,
-    private loadingController: LoadingController,
-    private alertController: AlertController,
-    private trx: TrxService
+    public formsService: FormsService,
+    public loadingController: LoadingController,
+    public alertController: AlertController,
+    public trx: TrxService
   ) {
     if ( formsService.feedbackForm === undefined ) {
       formsService.resetFeedbackForm();

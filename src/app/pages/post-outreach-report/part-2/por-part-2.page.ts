@@ -7,8 +7,8 @@ import { FormsService, OutreachLocationType } from '../../../services';
 })
 export class PORPart2Page {
 
-  private OutreachLocationType = OutreachLocationType;
-  private locationType = OutreachLocationType.TruckStop;
+  public OutreachLocationType = OutreachLocationType;
+  public locationType = OutreachLocationType.TruckStop;
 
   constructor(
     public navCtrl: NavController,

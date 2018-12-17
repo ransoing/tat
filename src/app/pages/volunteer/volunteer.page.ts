@@ -10,13 +10,13 @@ import { ModalService, UserDataService } from '../../services';
 })
 export class VolunteerPage {
 
-  private VolunteerResourcesComponent = VolunteerResourcesComponent;
-  private HoursLogComponent = HoursLogComponent;
-  private FeedbackComponent = FeedbackComponent;
-  private PhotosComponent = PhotosComponent;
-  private PostOutreachSelectionComponent = PostOutreachSelectionComponent;
-  private VolunteerSettingsComponent = VolunteerSettingsComponent;
-  private TrainingVideoComponent = TrainingVideoComponent;
+  public VolunteerResourcesComponent = VolunteerResourcesComponent;
+  public HoursLogComponent = HoursLogComponent;
+  public FeedbackComponent = FeedbackComponent;
+  public PhotosComponent = PhotosComponent;
+  public PostOutreachSelectionComponent = PostOutreachSelectionComponent;
+  public VolunteerSettingsComponent = VolunteerSettingsComponent;
+  public TrainingVideoComponent = TrainingVideoComponent;
 
   constructor(
     public navCtrl: NavController,

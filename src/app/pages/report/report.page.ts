@@ -12,5 +12,5 @@ export class ReportPage {
   WhatToReportComponent = WhatToReportComponent;
   EmailReportComponent = EmailReportComponent;
 
-  constructor( private modalService: ModalService, private miscService: MiscService ) {}
+  constructor( public modalService: ModalService, public miscService: MiscService ) {}
 }

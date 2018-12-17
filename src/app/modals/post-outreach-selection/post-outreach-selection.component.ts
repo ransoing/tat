@@ -8,11 +8,11 @@ import { NavController } from '@ionic/angular';
 })
 export class PostOutreachSelectionComponent {
 
-  private modal: HTMLIonModalElement;
+  public modal: HTMLIonModalElement;
   
   constructor(
-    private userDataService: UserDataService,
-    private navCtrl: NavController
+    public userDataService: UserDataService,
+    public navCtrl: NavController
   ) {}
 
   onReportClick( report: IIncompletePostReport ) {

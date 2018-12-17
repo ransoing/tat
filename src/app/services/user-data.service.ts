@@ -76,7 +76,7 @@ export class UserDataService {
 
   data: IUserData = {
     volunteerType: VolunteerType.truckStopVolunteer,
-    hasWatchedTrainingVideo: true,
+    hasWatchedTrainingVideo: false,
     hoursLogs: [
       {
         taskDescription: 'Handed out TAT flyers to every truck stop in Nebraska',

@@ -10,9 +10,9 @@ export class VolunteerSettingsComponent {
   public modal: HTMLIonModalElement;
   
   constructor(
-    private miscService: MiscService,
-    private settings: SettingsService,
-    private navCtrl: NavController
+    public miscService: MiscService,
+    public settings: SettingsService,
+    public navCtrl: NavController
   ) { }
 
   onLogout() {

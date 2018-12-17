@@ -9,6 +9,6 @@ export class PhotosComponent {
 
   public modal: HTMLIonModalElement;
   
-  constructor( private miscService: MiscService ) { }
+  constructor( public miscService: MiscService ) { }
 
 }

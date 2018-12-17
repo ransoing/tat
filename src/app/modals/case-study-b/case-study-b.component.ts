@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MiscService } from '../../services';
 
 @Component({
@@ -6,13 +6,11 @@ import { MiscService } from '../../services';
   templateUrl: './case-study-b.component.html',
   styleUrls: ['./case-study-b.component.scss']
 })
-export class CaseStudyBComponent implements OnInit {
+export class CaseStudyBComponent {
 
+  public showVideo: boolean = false;
+  public showFullStory: boolean = false;
   public modal: HTMLIonModalElement;
   
   constructor( public miscService: MiscService ) { }
-
-  ngOnInit() {
-  }
-
 }

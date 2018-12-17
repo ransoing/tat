@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MiscService, ModalService, UserDataService } from '../../services';
 import { HoursLogFormComponent } from '../hours-log-form/hours-log-form.component';
 
@@ -6,18 +6,15 @@ import { HoursLogFormComponent } from '../hours-log-form/hours-log-form.componen
   templateUrl: './hours-log.component.html',
   styleUrls: ['./hours-log.component.scss']
 })
-export class HoursLogComponent implements OnInit {
+export class HoursLogComponent {
 
-  private modal: HTMLIonModalElement;
-  private HoursLogFormComponent = HoursLogFormComponent;
+  public modal: HTMLIonModalElement;
+  public HoursLogFormComponent = HoursLogFormComponent;
   
   constructor(
-    private miscService: MiscService,
-    private modalService: ModalService,
-    private userDataService: UserDataService
+    public miscService: MiscService,
+    public modalService: ModalService,
+    public userDataService: UserDataService
   ) {}
-
-  ngOnInit() {
-  }
 
 }

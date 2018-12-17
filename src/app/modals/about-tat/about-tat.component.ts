@@ -1,16 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MiscService } from '../../services';
 
 @Component({
   templateUrl: './about-tat.component.html'
 })
-export class AboutTatComponent implements OnInit {
+export class AboutTatComponent {
 
   public modal: HTMLIonModalElement;
   
-  constructor( private miscService: MiscService ) { }
-
-  ngOnInit() {
-  }
+  constructor( public miscService: MiscService ) { }
 
 }

@@ -12,9 +12,9 @@ export class HomePage {
 
   constructor(
     public navCtrl: NavController,
-    private translate: TranslateService,
-    private settings: SettingsService,
-    private miscService: MiscService
+    public translate: TranslateService,
+    public settings: SettingsService,
+    public miscService: MiscService
   ) { }
 
   onSetLanguage() {

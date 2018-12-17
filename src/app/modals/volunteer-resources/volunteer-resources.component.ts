@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MiscService } from '../../services';
 
 @Component({
@@ -6,13 +6,10 @@ import { MiscService } from '../../services';
   templateUrl: './volunteer-resources.component.html',
   styleUrls: ['./volunteer-resources.component.scss']
 })
-export class VolunteerResourcesComponent implements OnInit {
+export class VolunteerResourcesComponent {
 
   public modal: HTMLIonModalElement;
   
-  constructor( private miscService: MiscService ) { }
-
-  ngOnInit() {
-  }
+  constructor( public miscService: MiscService ) { }
 
 }

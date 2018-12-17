@@ -10,15 +10,15 @@ export class TrainingVideoComponent implements OnInit {
 
   public modal: HTMLIonModalElement;
   
-  private videos;
-  private video;
-  private error: boolean = false;
-  private videoUrl;
+  public videos;
+  public video;
+  public error: boolean = false;
+  public videoUrl;
 
   constructor(
-    private domSanitizer: DomSanitizer,
-    private userDataService: UserDataService,
-    private scriptService: ScriptService
+    public domSanitizer: DomSanitizer,
+    public userDataService: UserDataService,
+    public scriptService: ScriptService
   ) {
     
     this.videos = {};

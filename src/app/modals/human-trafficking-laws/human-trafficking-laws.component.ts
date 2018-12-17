@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MiscService } from '../../services';
 
 @Component({
@@ -6,13 +6,10 @@ import { MiscService } from '../../services';
   templateUrl: './human-trafficking-laws.component.html',
   styleUrls: ['./human-trafficking-laws.component.scss']
 })
-export class HumanTraffickingLawsComponent implements OnInit {
+export class HumanTraffickingLawsComponent {
 
   public modal: HTMLIonModalElement;
   
-  constructor( private miscService: MiscService ) { }
-
-  ngOnInit() {
-  }
+  constructor( public miscService: MiscService ) { }
 
 }

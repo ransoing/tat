@@ -10,7 +10,7 @@ export class VideosComponent implements OnInit {
 
   public modal: HTMLIonModalElement;
   
-  private videos = [
+  public videos = [
     {
       title: 'resources.videos.video1.title',
       desc: 'resources.videos.video1.description',
@@ -34,7 +34,7 @@ export class VideosComponent implements OnInit {
     }
   ];
 
-  constructor( private domSanitizer: DomSanitizer ) { }
+  constructor( public domSanitizer: DomSanitizer ) { }
 
   ngOnInit() {
   }

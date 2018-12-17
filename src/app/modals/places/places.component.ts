@@ -11,15 +11,15 @@ export class PlacesComponent implements OnInit {
 
   public modal: HTMLIonModalElement;
 
-  private places: any[] = [];
+  public places: any[] = [];
 
   // vars used by google maps API
-  private Map;
-  private service;
+  public Map;
+  public service;
 
   constructor(
-    private androidPermissions: AndroidPermissions,
-    private dialogs: Dialogs
+    public androidPermissions: AndroidPermissions,
+    public dialogs: Dialogs
   ) {}
 
   async ngOnInit() {
@@ -63,7 +63,7 @@ export class PlacesComponent implements OnInit {
   }
 
   /** Injects a google maps script into the document and runs this.findNearestLocations() when the script is loaded */
-  private loadGoogleScript() {
+  public loadGoogleScript() {
     // inject the google places script
     let script = document.createElement( 'script' );
     script.onload = this.findNearestLocations;
@@ -74,7 +74,7 @@ export class PlacesComponent implements OnInit {
   }
   
   /** Constructs a google Map object if needed, and makes a call to find nearby locations. Runs this.foundPlacesCallback() to handle the google API response */
-  private findNearestLocations() {
+  public findNearestLocations() {
     // @TODO: wait until every part of the script is loaded??
     let geoOptions = { enableHighAccuracy: true };
     console.log('@@a')
@@ -110,7 +110,7 @@ console.log('@@1')
   }
 
   /** Takes a response from google maps API and populates a list on the page with the results */
-  private foundPlacesCallback( results, status ) {
+  public foundPlacesCallback( results, status ) {
     console.log('@@2')
     if ( status === window['google'].maps.places.PlacesServiceStatus.OK ) {
       // remove places where the place name is the same as the vicinity (i.e. "Denver") since this is too generic
@@ -126,7 +126,7 @@ console.log('@@1')
     }
   }
 
-  private onPlaceClick( place ) {
+  public onPlaceClick( place ) {
     // get details of the clicked place (such as address)
     this.service.getDetails( {placeId: place.place_id}, (place2, status) => {
       if ( status == window['google'].maps.places.PlacesServiceStatus.OK ) {
@@ -139,7 +139,7 @@ console.log('@@1')
   }
 
   /** Close the modal and display an error dialog. */
-  private closeModalError( message: string ) {
+  public closeModalError( message: string ) {
     this.modal.dismiss();
     this.dialogs.alert( message, 'Error' );
   }

@@ -1,0 +1,268 @@
+{
+  "emailReport": {
+    "additional": {
+      "label": "Información adicional acerca de la situación sospechosa",
+      "placeholder": "Anote información adicional"
+    },
+    "cars": {
+      "label": "Descripción de los carros",
+      "placeholder": "Anote la marca, modelo, color, número de placas, etc. de todos los vehículos involucrados"
+    },
+    "checkboxes": {
+      "cars": "¿Hay vehículos involucrados en la actividad sospechosa?",
+      "otherPeople": "¿Ve usted a otras personas (como compradores o tratantes, etc) tomando parte en la actividad sospechosa?",
+      "seenVictim": "¿Ha visto a una persona que usted sospecha es víctima?"
+    },
+    "emailButton": "Envíe su reporte por correo electrónico",
+    "intro": "Para que las autoridades policíacas puedan abrir una investigación con base en la información que usted les dé, necesitarán información clave. Anote lo que sepa sobre el incidente.",
+    "notes": "<p>Si tomó fotos, muéstreselas a las autoridades policíacas.</p><p>El siguiente botón abrirá su programa de correo electrónico.</p>",
+    "otherPeople": {
+      "label": "Descripción de las otras personas",
+      "placeholder": "Describa qué los hace sospechosos y anote su estatura, peso, raza, color de pelo, edad, etc."
+    },
+    "phone": {
+      "label": "Su número de teléfono, para seguimiento por parte de la línea de ayuda",
+      "placeholder": "Número de teléfono"
+    },
+    "resetButton": "Reinicie su reporte",
+    "title": "Envíe un reporte por correo electrónico",
+    "victim": {
+      "appearance": {
+        "label": "Apariencia",
+        "placeholder": "Describa la estatura, peso, raza, color de pelo, color de ojos, edad, etc."
+      },
+      "flags": {
+        "doesNotKnow": "La víctima no conoce a la persona que le va a recoger",
+        "hasBranding": "La víctima tiene señales de “marca” o tatuaje del nombre del traficante (normalmente en el cuello)",
+        "hasLackOfKnowledge": "La víctima no conoce la comunidad o el lugar donde se encuentra",
+        "hasNoId": "La víctima no tiene control de sus documentos propios de identidad (Identificación o pasaporte)",
+        "hasPimp": "La víctima reconoce de alguna manera que tiene un padrote o tiene que cumplir con una cuota",
+        "hasRestrictedCommunication": "La comunicación de la víctima ha sido restringida o controlada — no se le permite hablar por sí misma",
+        "isDisheveled": "La víctima tiene apariencia descuidada o desaliñada, está sola, con miedo o llorando",
+        "isMinor": "La víctima es una persona menor de edad que viaja sin supervisión de un adulto",
+        "label": "Marque  las señales de advertencia que correspondan",
+        "offersSex": "La víctima ofrece sexo a cambio de un aventón, de comida, etc."
+      },
+      "gender": {
+        "female": "Mujer",
+        "label": "Sexo de la víctima",
+        "male": "Hombre",
+        "other": "Otro",
+        "selectOne": "Seleccione uno",
+        "unknown": "Desconocido"
+      },
+      "otherNotes": {
+        "label": "Otras notas",
+        "placeholder": "Escriba aqui notas adicionales"
+      }
+    },
+    "when": {
+      "label": "¿Cuándo ocurrió la actividad sospechosa?"
+    },
+    "where": {
+      "label": "¿Dónde se llevó a cabo la actividad sospechosa?",
+      "placeholder": "Anote la ubicación suya"
+    }
+  },
+  "home": {
+    "redFlags": "Señales de advertencia",
+    "reportActivity": "Reporte la Actividad",
+    "resources": "@:nav.resources"
+  },
+  "misc": {
+    "date": "Fecha",
+    "no": "No",
+    "time": "Hora",
+    "yes": "Sí"
+  },
+  "nav": {
+    "home": "Inicio",
+    "redFlags": "Señales",
+    "report": "Reporte",
+    "resources": "Recursos",
+    "volunteer": "Voluntarios"
+  },
+  "postOutreachReport": {
+    "title": "@:volunteer.btns.postOutreachReport"
+  },
+  "preOutreachSurvey": {
+    "title": "@:volunteer.btns.preOutreachSurvey"
+  },
+  "redFlags": {
+    "caseStudy": {
+      "a": "<p>El 9 de enero del 2018, el chofer profesional Arian Taylor entró al estacionamiento de un negocio en Compton para hacer una entrega cerca de las 3:30 a.m.  Poco tiempo después, alguien tocó a la puerta de su taxi, se trataba de una joven de 19 años que estaba parada afuera del camión. Al hablar con ella se enteró que el novio de su amiga, quien era un hombre mayor, trató de forzarla a prostituirse. Al negarse ella a acceder a sus deseos y discutir con él, fue abandonada en el estacionamiento por el sujeto, quien se fue a toda velocidad.</p><p>Ella tenía frio, estaba agotada, no tenía dinero ni identificación, todo lo que tenía era lo que traía en sus manos y estaba desesperada por regresar a su casa en Las Vegas. En ese momento, Arian le dijo: “Encontraré una forma de regresarte a casa.” Después de conseguir quitarle el frío y darle agua para que bebiera, Arian vio una de las dos calcomanías de TAT que tenía pegadas de forma visible en su ventana (la cual la chica había visto cuando tocó en su puerta} y él llamó a la Línea de ayuda en casos de trata de personas.</p><p>La línea de ayuda colaboró con él para conseguirle un refugio a la joven para pasar la noche, un taxi pre-pagado para que la llevará al refugio y un viaje en tren con un acompañante para regresar a Las Vegas al día siguiente, donde se reunió con un miembro de su familia. Arian estuvo al cuidado de la joven hasta que ella abordó el taxi y hasta le dio su número de teléfono personal por si acaso ella necesitaba cualquier otra cosa.</p>",
+      "b": "Laura Sorensen y Aldair Hodza fueron noticia nacional al ser arrestados en su casa rodante el 6 de enero del 2015 en una parada de camiones en el estado de Virginia. Según el reporte del incidente, la policía recibió una llamada a las 3:20 p.m.  y los ocupantes de la casa rodante les permitieron pasar a los oficiales al interior, los ocupantes dijeron que estaban vacacionando en el área y visitando a la hija de Sorensen. Los oficiales, sin embargo, observaron que la supuesta víctima parecía estar aterrada y mostraba signos de desnutrición. Un policía estatal condujo a la joven afuera de la casa rodante, y ahí ella empezó a sollozar y le suplicó al oficial que no permitiera que ella regresara a la casa rodante. Le dijo al oficial que la tenían retenida contra su voluntad y que los sospechosos la habían abusado sexual y físicamente. Dijo que tenía infecciones en todo el cuerpo y que no podía recordar cuando era la última vez que había comido o bebido algo, y agregó que ya habían pasado varios días.",
+      "bFull": "<p>Kevin Kimmel había terminado sus entregas y encontró una parada de camiones para tomar su descanso. Estaba llenando su papeleo cuando notó que un hombre entraba y salía de una casa rodante a una tienda de conveniencia. También observó a varios hombres que tocaban en la puerta de la casa rodante, pero fue cuando vio a una joven tratar de sacar la cabeza por la ventana sólo para que violentamente la hicieran meter adentro la cabeza y cerraran una cortina negra y luego se iniciara una conmoción, que Kevin hizo una llamada que resultó en que acudiera al lugar la policía estatal.</p><p>Según el parte policial, los oficiales fueron llamados al lugar a las 3:20 p.m. y se les permitió la entrada a la casa rodante por parte de los ocupantes Laura Sorensen y Aldair Hodza, quienes dijeron estar en el área vacacionando y visitando a la hija de Sorensen. Los oficiales, sin embargo, observaron que la supuesta víctima parecía estar aterrada y mostraba señales de desnutrición. Un policía estatal condujo a la joven afuera de la casa rodante, y ahí ella empezó a sollozar y le suplicó al oficial que no permitiera que ella regresara a la casa rodante. Le dijo al oficial que la tenían retenida contra su voluntad y que los sospechosos la habían abusado sexual y físicamente. Dijo que tenía infecciones en todo el cuerpo y que no podía recordar cuando era la última vez que había comido o bebido algo, y agregó que ya habían pasado varios días.</p><p>Después de que la subieron a una ambulancia, ella le dijo a otro investigador que los sospechosos la habían “marcado” en la espalda y le habían infligido quemaduras en otras partes del cuerpo y también le laceraron los pies. También dijo que nadie en su hogar en Iowa la consideraba desaparecida porque los sospechosos la habían obligado a comunicarse con miembros de su familia y a decir que nada fuera de lo común estaba sucediendo. Según el reporte, ella después le dijo a un investigador estatal que había sido forzada a hacerle sexo oral a Hodza, a quien ella llamaba “John,” y a otro sujeto desconocido el mismo día dentro de la casa rodante en el estacionamiento de los camiones.</p><p>Hoy, gracias a la llamada de Kevin, la joven está en casa con su familia en Clive, Iowa y Laura Sorensen y Aldair Hodza fueron condenados a 40 y 41 años de prisión, respectivamente.</p>",
+      "c": "<p>William se había estacionado en una parada de camiones para pasar la noche cuando una menor de edad tocó a la puerta de su camión y le ofreció sexo. Después de que William le dijo a la joven que no estaba interesado, él observó que ella tocaba en las puertas de otros camiones hasta que se subió a uno de ellos. Durante este tiempo, William también vio a un hombre adulto que caminaba alrededor del estacionamiento y se dio cuenta que parecía estar vigilando de cerca a la joven.</p><p>Gracias a que William había recibido capacitación de Truckers Against Trafficking, él reconoció las señales de una posible situación de trata de personas y sabía que tenía que llamar al 911 antes de hacer la llamada a la línea nacional de ayuda para casos de Trata de Personas y reportó la situación. El operador de la línea de ayuda también hizo un reporte a las autoridades policíacas del área, quienes pudieron coordinarse con la policía local en su investigación.</p>",
+      "d": "El poner marcas se usa para indicar que le pertenece a un tratante. Estos son algunos ejemplos de cómo es el marcaje y en qué parte del cuerpo puede estar.",
+      "readFullStory": "Enlace a la historia completa",
+      "title": "Caso práctico",
+      "watchVideo": "Enlace a video"
+    },
+    "example": "Ejemplo",
+    "flags": {
+      "1": "Falta de conocimiento de su paradero; no está en control de su identificación o pasaporte",
+      "2": "Comunicación restringida o controlada-no se le permite hablar por sí misma",
+      "3": "En la radio de banda civil hay charla sobre “compañía comercial” o se emiten luces intermitentes para indicar la ubicación de un “comprador”",
+      "4": "Admite que tiene un padrote o cumple con una cuota",
+      "5": "Señas de marcaje o tatuaje con el nombre del tratante (con frecuencia en el cuello)",
+      "6": "Una camioneta o casa rodante que está fuera de lugar junto a los camiones; un vehículo de donde baja una persona junto un camión y es recogida dentro de 15 a 20 minutos más tarde",
+      "subtitle": "Señales de advertencia que indican trata de personas:"
+    },
+    "intro": {
+      "p1": "La trata de personas es la esclavitud de la era moderna. Los tratantes utilizan la fuerza, el fraude y la coerción para controlar a sus víctimas. Toda persona menor de edad que participe en el sexo comercial es víctima de la trata de personas. Aunque la compra inicial de víctimas puede ocurrir en línea, la venta en tiempo real de víctimas puede suceder en muchos lugares, incluyendo las paradas de camiones, los restaurantes, las áreas de descanso, los hoteles/moteles, clubs de strip tease, domicilios particulares, etc.",
+      "p2": "Los choferes de camiones son los ojos y los oídos de las carreteras del país. Si usted ve a una persona menor de edad trabajando en cualquiera de esas áreas o sospecha que la persona que está vendiendo sexo está bajo el control de alguien más para cumplir con una cuota, llame a la línea de ayuda nacional para reportar su información.",
+      "p3": "Permita a las autoridades encargarse de los tratantes y recuperar a las víctimas. El acercarse a los tratantes no solamente es peligroso para usted y las víctimas, sino que podría acarrear dificultades para procesar penalmente a los tratantes.",
+      "warning": "Advertencia: Por favor no se acerque a los tratantes."
+    },
+    "post1": "Si no ha visto el DVD de capacitación de TAT puede visitar nuestro",
+    "post1Link": "portal de educación para realizar su capacitación de TAT",
+    "post2": "Si ya vio el DVD de capacitación de TAT  y revisó su contenido, por favor regístrese para indicar que ha recibido la capacitación de TAT",
+    "post2Link": "aquí",
+    "questions": {
+      "1": "¿Te quedas con el dinero? Si no es así, ¿quién se lo queda?",
+      "2": "¿Tus padres, hermanos o parientes saben dónde estás? Si no, ¿por qué no lo saben?",
+      "3": "¿Cuándo fue la última vez que viste a tu familia?",
+      "4": "¿Has sido física o sexualmente abusada?",
+      "5": "¿Te han amenazado a ti o a tu familia?",
+      "6": "¿De qué naturaleza son esas amenazas?",
+      "subtitle": "Si usted sospecha que alguien es víctima de trata de personas, éstas son algunas preguntas que usted le puede hacer.",
+      "title": "Preguntas"
+    },
+    "title": "@:home.redFlags"
+  },
+  "report": {
+    "USA": "EE.UU.",
+    "callCanadaHotline": "Llame a la línea de ayuda de Canadá",
+    "callHotline": "Llame a la línea de ayuda",
+    "callMexicoHotline": "Llame a la línea de ayuda de México",
+    "emailBtn": "Reporte por correo electrónico",
+    "emailBtnHint": "Es mucho más recomendable que usted haga una llamada",
+    "intro": "<p><b>Inmediatamente:</b> Si usted ve que se está cometiendo un delito, llame al 911 y luego llame a la línea de ayuda. Si usted está en una parada de camiones o lugar de descanso para viajeros o en cualquier otro lugar de negocios, por favor avísele al gerente en turno sobre la actividad sospechosa, esa persona debe enterarse de lo que está sucediendo en la propiedad y ayudar a ponerle fin.</p><p>Los operadores de la línea de ayuda contra la trata de personas están disponibles las 24 horas del día, los 7 días de la semana, para tomar reportes de posibles casos de trata de personas. Todos los reportes son confidenciales y usted puede permanecer anónimo. Se cuenta con intérpretes de idiomas. La información que usted proporcione será revisada por la línea de ayuda nacional y se enviará a autorizadas policíacas especializadas y/o a proveedores de servicios cuando sea adecuado.</p>",
+    "textBtn": "Envíe un texto que diga INFO o HELP (Información o ayuda)",
+    "title": "@:home.reportActivity",
+    "whatToReportBtn": "Qué reportar"
+  },
+  "resources": {
+    "about": {
+      "annualReportLink": {
+        "1": "Conozca el impacto que TAT y nuestros colaboradores tuvieron en el 2017 por medio de nuestro",
+        "2": "Reporte Anual"
+      },
+      "credits": "Esta aplicación fue creada por Ransom Christofferson y Alexander Ramsey Creative LLC.",
+      "freedomDriversLink": {
+        "1": "Siga nuestras exhibiciones informativas en camiones, Freedom Drivers Project, por medio del",
+        "2": "calendario de eventos"
+      },
+      "goals": {
+        "1": "Saturar a la industria camionera y conexas con materiales de TAT",
+        "2": "Colaborar con las autoridades y las agencias gubernamentales para facilitar la investigación de la trata de personas",
+        "3": "Movilizar los recursos de nuestros colaboradores para combatir este delito",
+        "header": "Nuestras tres metas son:"
+      },
+      "intro": "Existimos para educar, equipar, empoderar y movilizar a los miembros de la industria camionera y de autobuses para combatir la explotación sexual a nivel nacional como parte ordinaria de sus trabajos.",
+      "supportLink": {
+        "1": "Para apoyo comuníquese:"
+      },
+      "tatLink": {
+        "1": "Conozca más sobre TAT y nuestros programas en nuestra",
+        "2": "página de Internet"
+      },
+      "title": "Acerca de TAT"
+    },
+    "books": {
+      "by": "de",
+      "documentaries": "Documentales recomendados",
+      "or": "o",
+      "subtitle": "con sus títulos en inglés",
+      "title": "@:resources.btns.recommendedBooks"
+    },
+    "btns": {
+      "aboutTAT": "Acerca de TAT",
+      "humanTraffickingLaws": "Leyes Sobre la Trata de Personas ",
+      "recommendedBooks": "Libros Recomendados",
+      "videos": "Videos"
+    },
+    "intro": "Use los siguientes recursos para conocer más acerca de la trata de personas y cómo usted puede ayudar a combatirla.",
+    "laws": {
+      "bullets": {
+        "1": "Los 50 estados de EEUU y el Distrito de Columbia tienen una nueva ley que penaliza la trata de personas para explotación sexual",
+        "2": "31 estados tienen una ley contra la trata que se impone a los compradores, la cual prohíbe la defensa con base en error en la edad en los juicios por comprar un acto sexual de una persona menor de 18 años de edad",
+        "3": "Algunos estados castigan a los compradores de sexo de la misma forma que a los tratantes, generalmente con delitos de carácter grave",
+        "4": "Washington identifica a cualquier persona que compre un acto sexual explícito como tratante de personas culpable de un delito grave tipo A",
+        "5": "Hay una prohibición de por vida para obtener licencia de conducir comercia para la persona que use su vehículo comercial en la comisión de un delito grave que conlleve una forma grave de trata de personas"
+      },
+      "intro": "¿Sabía usted que…?",
+      "intro2": "La trata de personas es el reclutamiento, transporte, transferencia, alojamiento u obtención de personas por medio de la fuerza, el fraude y la coerción con fines de explotación.",
+      "linkText": "¿Desea saber más acerca de las leyes contra la trata de personas en los Estados Unidos?",
+      "title": "@:resources.btns.humanTraffickingLaws"
+    },
+    "title": "@:nav.resources",
+    "videos": {
+      "title": "@:resources.btns.videos",
+      "video1": {
+        "description": "<p>Escuche lo que dicen los choferes de camiones que han presenciado la trata de personas en sus rutas, escuche al FBI, a una víctima que fue rescatada gracias a la llamada de un chofer, y reciba información acerca de formas concretas en las cuales los miembros de la industria camionera y de las áreas de descanso pueden combatir este delito en el transcurso de su trabajo diario.</p>",
+        "title": "Video de capacitación de TAT"
+      },
+      "video2": {
+        "description": "<p>Escuche la historia de Kevin Kimmel quien ganó el premio Harriet Tubman del 2015 y quien fue un agente del cambio en las carreteras.</p>",
+        "title": "¡Sea un agente de cambio!"
+      },
+      "video3": {
+        "description": "<p>Truckers Against Trafficking presenta esta capacitación sobre trata de personas e información sobre como las autoridades pueden investigar y procesar judicialmente este delito.</p><p>Gracias a nuestros patrocinadores Help Inc. y Vigilant Solutions y a nuestros colaboradores de iEmpathize por ayudar a hacer posible este video.</p>",
+        "title": "Capacitación de TAT con la participación de las autoridades policíacas"
+      },
+      "video4": {
+        "description": "Una breve capacitación sobre los elementos que integran la tarjeta de cartera de TAT.",
+        "title": "Webinar de la Tarjeta de Cartera TAT"
+      }
+    },
+    "videosTitle": "@:resources.btns.videos"
+  },
+  "volunteer": {
+    "btns": {
+      "hoursLog": "Registro de horas",
+      "photos": "Fotos",
+      "postOutreachReport": "Encuesta para contestar después de hacer la visita al gerente general o encargado de seguridad",
+      "preOutreachSurvey": "Encuesta para contestar antes de hacer la visita al gerente general o encargado de seguridad",
+      "resources": "Recursos",
+      "trainingVideo": "Video de capacitación"
+    },
+    "feedback": {
+      "title": "@:volunteer.btns.testimonial"
+    },
+    "hoursLog": {
+      "hour": "hora",
+      "hours": "horas",
+      "intro": "El llevar un registro de sus horas no solamente le permite apreciar el impacto que está teniendo, sino que nos permite compartir ese trabajo con nuestros colaboradores y patrocinadores. ¡Gracias!",
+      "title": "@:volunteer.btns.hoursLog"
+    },
+    "intro": "¡Gracias por participar como voluntario con TAT! Su tiempo en preparación, voluntariado y seguimiento no solamente nos ayuda a avanzar con nuestra misión, sino que demuestra la dedicación de esta industria para combatir este atroz delito. A continuación, le proporcionamos lo que necesitara en el proceso de voluntario. Estamos encantados de que forme parte de nuestro equipo.",
+    "loginTitle": "Login (acceso) de Voluntarios",
+    "photos": {
+      "title": "@:volunteer.btns.photos"
+    },
+    "resources": {
+      "infographicTitle": "TAT en cifras",
+      "intro": "Estos recursos están aquí para ayudarle a hablar acerca del alcance de la trata de personas, así como el impacto que la industria camionera puede tener si cuenta con la capacitación y está equipada para responder.",
+      "moreLink1": "Encuentre más en la página de recursos del",
+      "moreLink2": "sitio web de TAT",
+      "statsLink1": "Estadísticas de la trata de personas por estado proporcionadas",
+      "statsLink2": "por la línea de ayuda",
+      "title": "@:volunteer.btns.resources"
+    },
+    "title": "@:nav.volunteer"
+  },
+  "whatToReport": {
+    "cars": "Vehículos",
+    "carsText": "¿Hay vehículos involucrados en la actividad de los sospechosos? Anote la marca, el modelo, el color, el número de placas, etc.",
+    "dateTime": "Fecha y hora",
+    "dateTimeText": "¿Cuándo sucedió la actividad sospechosa? ¿Qué día y a qué hora?",
+    "intro": "Para que las autoridades policiacas abran una investigación en relación con su reporte, necesitan información con base en la cual puedan actuar. Esta información incluiría:",
+    "location": "Ubicación",
+    "locationText": "¿Dónde se llevó a cabo la actividad sospechosa? ¿Tiene usted una dirección? Sea tan especifico como pueda.",
+    "people": "Personas",
+    "peopleText": "¿Quién está involucrado en la actividad? Tome nota de la estatura, peso, color de cabello, color de ojos, edad, etc. Tome una foto si puede para mostrarle a las autoridades cuando llegue al lugar de los hechos.",
+    "title": "@:report.whatToReportBtn"
+  }
+}

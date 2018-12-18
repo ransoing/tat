@@ -14,37 +14,37 @@
     font-family: 'Barlow Condensed';
     font-style: normal;
     font-weight: 400;
-    src: url('./assets/fonts/BarlowCondensed-Light.ttf');
+    src: url('assets/fonts/BarlowCondensed-Light.ttf');
 }
 
 @font-face {
     font-family: 'Gotham';
-    src: url('./assets/fonts/GothamBook-Italic.woff2') format('woff2'),
-        url('./assets/fonts/GothamBook-Italic.woff') format('woff');
+    src: url('assets/fonts/GothamBook-Italic.woff2') format('woff2'),
+        url('assets/fonts/GothamBook-Italic.woff') format('woff');
     font-weight: normal;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'Gotham';
-    src: url('./assets/fonts/Gotham-Book.woff2') format('woff2'),
-        url('./assets/fonts/Gotham-Book.woff') format('woff');
+    src: url('assets/fonts/Gotham-Book.woff2') format('woff2'),
+        url('assets/fonts/Gotham-Book.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Gotham';
-    src: url('./assets/fonts/Gotham-BlackItalic.woff2') format('woff2'),
-        url('./assets/fonts/Gotham-BlackItalic.woff') format('woff');
+    src: url('assets/fonts/Gotham-BlackItalic.woff2') format('woff2'),
+        url('assets/fonts/Gotham-BlackItalic.woff') format('woff');
     font-weight: bold;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'Gotham';
-    src: url('./assets/fonts/Gotham-Black.woff2') format('woff2'),
-        url('./assets/fonts/Gotham-Black.woff') format('woff');
+    src: url('assets/fonts/Gotham-Black.woff2') format('woff2'),
+        url('assets/fonts/Gotham-Black.woff') format('woff');
     font-weight: bold;
     font-style: normal;
 }

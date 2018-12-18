@@ -8,7 +8,7 @@
 
   <div class="book-list" padding-bottom>
     <div *ngFor="let book of books">
-      <img src="../../../assets/images/books/{{book.image}}" (click)="miscService.openExternalLink(book.link)">
+      <img src="assets/images/books/{{book.image}}" (click)="miscService.openExternalLink(book.link)">
       <div class="book-title">{{book.title}}</div>
       <div class="book-byline">{{ 'resources.books.by' | translate }} {{book.byline}}</div>
     </div>
@@ -20,7 +20,7 @@
 
   <div class="book-list">
     <div *ngFor="let film of films">
-      <img src="../../../assets/images/documentaries/{{film.image}}" (click)="miscService.openExternalLink(film.link)">
+      <img src="assets/images/documentaries/{{film.image}}" (click)="miscService.openExternalLink(film.link)">
       <div class="book-title">{{film.title}}</div>
       <div class="book-byline">{{film.byline}}<span *ngIf="film.bylineAlt"> {{ 'resources.books.or' | translate }} {{film.bylineAlt}}</span></div>
     </div>

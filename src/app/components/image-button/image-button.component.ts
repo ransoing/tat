@@ -22,7 +22,14 @@ export class ImageButtonComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.bgCss = 'url(assets/image-buttons/' + (this.image || 'default.jpg') + ')';
+    let imagePath = 'assets/image-buttons/' + (this.image || 'default.jpg');
+    // Turn the button black while the image is loading
+    let img = new Image();
+    img.addEventListener( 'load', () => {
+      console.log( 'image loaded' );
+    });
+    img.src = imagePath;
+    this.bgCss = 'url(' + imagePath + ')';
   }
 
   // intercept the click event; don't allow (click) handlers on host if the button is disabled

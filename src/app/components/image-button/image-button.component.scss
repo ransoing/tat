@@ -7,7 +7,7 @@ $primary-color: #2e90d0;
     position: relative;
 
     background: url('assets/image-buttons/default.jpg') center center;
-    background-color: #3e7c96;
+    background-color: #333;
     background-size: cover;
     box-shadow: 0px 3px 4px black;
 
@@ -36,6 +36,7 @@ $primary-color: #2e90d0;
     }
 
     &:hover, &:active {
+        background-color: #3e7c96;
         background-blend-mode: overlay; /* safari may not support luminosity, so declare overlay */
         background-blend-mode: luminosity;
     }

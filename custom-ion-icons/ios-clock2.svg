@@ -1,1 +1,6 @@
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" width="512" height="512"><defs><path d="M512 256C512 397.29 397.29 512 256 512C114.71 512 0 397.29 0 256C0 114.71 114.71 0 256 0C397.29 0 512 114.71 512 256Z" id="a7yEnnmbU"></path><clipPath id="clipbfpSt2jwE"><use xlink:href="#a7yEnnmbU"></use></clipPath><path d="M296 256C296 278.08 278.08 296 256 296C233.92 296 216 278.08 216 256C216 233.93 233.92 216 256 216C278.08 216 296 233.93 296 256Z" id="c3Gf2fBi3R"></path><path d="M233.5 72.37L278.5 72.37L278.5 252.49L233.5 252.49L233.5 72.37Z" id="b2ZIKuCcYt"></path><path d="M431.28 331.22L408.78 370.19L247.79 277.25L270.29 238.28L431.28 331.22Z" id="g13WmWXZj"></path></defs><g><g><g><g clip-path="url(#clipbfpSt2jwE)"><use xlink:href="#a7yEnnmbU" stroke-width="90" fill="transparent"></use></g></g><g><use xlink:href="#c3Gf2fBi3R"></use></g><g><use xlink:href="#b2ZIKuCcYt"></use></g><g><use xlink:href="#g13WmWXZj"></use></g></g></g></svg>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+<circle stroke-width="45" fill="transparent" cx="256" cy="256" r="233.5"></circle>
+<path d="M296 256C296 278.08 278.08 296 256 296C233.92 296 216 278.08 216 256C216 233.93 233.92 216 256 216C278.08 216 296 233.93 296 256Z"></path>
+<path d="M233.5 72.37L278.5 72.37L278.5 252.49L233.5 252.49L233.5 72.37Z"></path>
+<path d="M431.28 331.22L408.78 370.19L247.79 277.25L270.29 238.28L431.28 331.22Z"></path>
+</svg>

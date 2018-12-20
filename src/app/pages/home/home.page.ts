@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { SettingsService, MiscService } from '../../services';
@@ -9,7 +9,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss']
 })
-export class HomePage implements OnInit {
+export class HomePage implements AfterViewInit {
 
   constructor(
     public navCtrl: NavController,
@@ -23,7 +23,7 @@ export class HomePage implements OnInit {
     this.translate.use( this.settings.language );
   }
 
-  ngOnInit() {
-    this.splashScreen.hide();
+  ngAfterViewInit() {
+    setTimeout( () => this.splashScreen.hide(), 300 );
   }
 }

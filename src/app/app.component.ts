@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Platform, IonRouterOutlet } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
@@ -9,7 +9,7 @@ import { SettingsService } from './services';
   selector: 'app-root',
   templateUrl: 'app.component.html'
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   // get a reference to the IonRouterOutlet element
   @ViewChild( IonRouterOutlet ) routerOutlet: IonRouterOutlet;
 
@@ -20,6 +20,8 @@ export class AppComponent implements OnInit {
     private translate: TranslateService,
     private settings: SettingsService
   ) {
+    this.statusBar.styleBlackOpaque();
+    this.statusBar.show();
     this.initializeApp();
   }
 
@@ -27,12 +29,7 @@ export class AppComponent implements OnInit {
     this.platform.ready().then(() => {
       this.translate.setDefaultLang( this.settings.language );
       this.translate.use( this.settings.language );
+      this.splashScreen.hide();
     });
-  }
-
-  ngOnInit() {
-    this.splashScreen.hide();
-    this.statusBar.styleDefault();
-    this.statusBar.show();
   }
 }

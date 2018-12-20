@@ -344,6 +344,10 @@ Apache License
 MIT
 MIT
 
+@ionic-native/splash-screen@5.0.0-beta.15
+MIT
+MIT
+
 @ionic-native/dialogs@5.0.0-beta.21
 MIT
 MIT

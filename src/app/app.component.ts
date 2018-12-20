@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { Platform, IonRouterOutlet } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { TranslateService } from '@ngx-translate/core';
 import { SettingsService } from './services';
@@ -15,7 +14,6 @@ export class AppComponent {
 
   constructor(
     private platform: Platform,
-    private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private translate: TranslateService,
     private settings: SettingsService
@@ -23,15 +21,12 @@ export class AppComponent {
     this.statusBar.styleBlackOpaque();
     this.statusBar.show();
     this.initializeApp();
-    console.log( 'abcdefg: constructor' );
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
       this.translate.setDefaultLang( this.settings.language );
       this.translate.use( this.settings.language );
-      console.log( 'abcdefg: platform.ready' );
-      //this.splashScreen.hide();
     });
   }
 }

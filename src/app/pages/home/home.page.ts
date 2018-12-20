@@ -23,14 +23,7 @@ export class HomePage implements OnInit {
     this.translate.use( this.settings.language );
   }
 
-  showSplash() {
-    this.splashScreen.show();
-    setTimeout( () => {
-      this.splashScreen.hide();
-    }, 10000 );
-  }
-
   ngOnInit() {
-    console.log('abcdefg: homepage onInit' );
+    this.splashScreen.hide();
   }
 }

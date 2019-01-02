@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { FirebaseUIModule } from 'firebaseui-angular';
 import { CommonComponentsModule } from '../../components/common-components.module';
 import { HomePage } from './home.page';
 
@@ -19,6 +20,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     RouterModule.forChild(routes),
+    FirebaseUIModule,
     CommonComponentsModule
   ],
   declarations: [HomePage]

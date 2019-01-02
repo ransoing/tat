@@ -1,0 +1,14 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "35UM99U6LW.org.truckersagainsttrafficking.walletcard",
+        "paths": [
+          "*",
+          "/"
+        ]
+      }
+    ]
+  }
+}

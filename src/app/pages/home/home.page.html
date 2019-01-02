@@ -25,5 +25,12 @@
       <ion-select-option value="es">Español</ion-select-option>
     </ion-select>
   </ion-item>
+
+  <firebase-ui
+    (signInSuccessWithAuthResult)="authSuccessCallback($event)"
+    (signInFailure)="authErrorCallback($event)">
+  </firebase-ui>
+
+  <p><a (click)="logout()">Log out</a></p>
   
 </ion-content>

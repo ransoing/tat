@@ -1,6 +1,6 @@
 <!doctype html>
-<!-- <html lang="en"> -->
-<html lang="en" mode="ios" class="ios">
+<html lang="en">
+<!-- <html lang="en" mode="ios" class="ios"> -->
 <head>
   <meta charset="utf-8">
   <title>Truckers Against Trafficking</title>
@@ -10,7 +10,19 @@
   <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="format-detection" content="telephone=no">
   <meta name="msapplication-tap-highlight" content="no">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self' ws://* https://*.googleapis.com https://*.gstatic.com http://truckersagainsttrafficking.org https://player.vimeo.com https://vimeo.com mailto:* tel:* data: gap: 'unsafe-inline' 'unsafe-eval' https://ssl.gstatic.com ws://localhost:*; frame-src 'self' https://player.vimeo.com https://www.youtube.com; style-src 'self' 'unsafe-inline'; media-src *">
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src
+    'self' 'unsafe-inline' 'unsafe-eval'
+    mailto:* tel:* data: gap: ws://*
+    *.google.com *.googleapis.com *.gstatic.com *.vimeo.com http://truckersagainsttrafficking.org
+    truckers-against-trafficking.firebaseapp.com truckers-against-trafficking.firebaseio.com truckers-against-trafficking.appspot.com;
+    
+    frame-src
+    'self'
+    https://player.vimeo.com https://www.youtube.com truckers-against-trafficking.firebaseapp.com;
+    
+    media-src *"
+  >
 
   <link rel="icon" type="image/png" href="assets/icon/favicon.png">
 
@@ -21,8 +33,8 @@
   <script type="text/javascript" src="cordova.js"></script>
   <style>html, body { background: #1a1a1a }</style>
 
-<link rel="stylesheet" href="styles.0373ebc152089294c883.css"></head>
+</head>
 <body>
   <app-root></app-root>
-<script type="text/javascript" src="runtime.3262acb651ba3f547ab6.js"></script><script type="text/javascript" src="polyfills.30186cee2cfdfcc86d70.js"></script><script type="text/javascript" src="main.2494305587890bbc1630.js"></script></body>
+<script type="text/javascript" src="runtime.js"></script><script type="text/javascript" src="polyfills.js"></script><script type="text/javascript" src="styles.js"></script><script type="text/javascript" src="cordova.js"></script><script type="text/javascript" src="vendor.js"></script><script type="text/javascript" src="main.js"></script></body>
 </html>

@@ -3,6 +3,7 @@ import { Platform, IonRouterOutlet } from '@ionic/angular';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { TranslateService } from '@ngx-translate/core';
 import { SettingsService } from './services';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,8 @@ export class AppComponent {
     private platform: Platform,
     private statusBar: StatusBar,
     private translate: TranslateService,
-    private settings: SettingsService
+    private settings: SettingsService,
+    private angularFireAuth: AngularFireAuth
   ) {
     this.statusBar.styleBlackOpaque();
     this.statusBar.show();
@@ -27,6 +29,18 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.translate.setDefaultLang( this.settings.language );
       this.translate.use( this.settings.language );
+
+      // @@set language of firebase login
+      this.angularFireAuth.authState.subscribe( this.firebaseAuthChangeListener );
     });
+  }
+
+  private firebaseAuthChangeListener( response ) {
+    // if needed, do a redirect in here
+    if ( response ) {
+      console.log('Logged in :)');
+    } else {
+      console.log('Logged out :(');
+    }
   }
 }

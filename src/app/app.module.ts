@@ -24,7 +24,40 @@ import { Dialogs } from '@ionic-native/dialogs/ngx';
 import { Network } from '@ionic-native/network/ngx';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 
+// firebase and firebase auth
+import { FirebaseUIModule, firebase, firebaseui } from 'firebaseui-angular';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+/*
+@@
+AngularFireDatabaseModule
+AngularFireFunctionsModule
+AngularFirestoreModule
+AngularFireStorageModule
+AngularFireMessagingModule
+*/
+const firebaseUiAuthConfig: firebaseui.auth.Config = {
+  signInFlow: 'redirect',
+  signInOptions: [
+    {
+      provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
+      requireDisplayName: false
+    },
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+    {
+      provider: firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+      scopes: [ 'email' ],
+      customParameters: { 'auth_type': 'reauthenticate' }
+    },
+    firebase.auth.TwitterAuthProvider.PROVIDER_ID
+  ],
+  tosUrl: '<@@your-tos-link>',
+  privacyPolicyUrl: '<@@your-privacyPolicyUrl-link>',
+  credentialHelper: firebaseui.auth.CredentialHelper.NONE
+};
+
 // app
+import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ModalGuard, AuthGuard } from './guards';
@@ -74,6 +107,9 @@ import {
         useClass: SelfReferentialCompiler
       }
     }),
+    AngularFireModule.initializeApp( environment.firebaseConfig ),
+    AngularFireAuthModule,
+    FirebaseUIModule.forRoot( firebaseUiAuthConfig )
   ],
   providers: [
     StatusBar, SplashScreen, Dialogs, Network, AndroidPermissions,

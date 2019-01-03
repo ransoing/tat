@@ -17,6 +17,15 @@ export class LoginComponent {
     private trx: TrxService
   ) { }
 
+  authSuccessCallback( evt ) {
+    console.log( 'login auth success', evt );
+    alert( 'login auth success' );
+  }
+
+  authErrorCallback( evt ) {
+    console.log( 'login auth error', evt );
+  }
+
   async onLoginClick() {
     this.miscService.isLoggedIn = true;
     // @@ go to the URL which the user attempted to go to

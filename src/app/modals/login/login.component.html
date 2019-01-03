@@ -5,6 +5,11 @@
   <h1>{{ 'volunteer.loginTitle' | translate }}</h1>
   <ion-icon name="md-close" class="modal-close-btn" (click)="modal.dismiss()"></ion-icon>
 
+  <firebase-ui
+    (signInSuccessWithAuthResult)="authSuccessCallback($event)"
+    (signInFailure)="authErrorCallback($event)">
+  </firebase-ui>
+
   <p text-center padding-top>
     <ion-button
       class="large-btn"

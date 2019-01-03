@@ -14,7 +14,7 @@
     default-src
     'self' 'unsafe-inline' 'unsafe-eval'
     mailto:* tel:* data: gap: ws://*
-    *.google.com *.googleapis.com *.gstatic.com *.vimeo.com http://truckersagainsttrafficking.org
+    http://*.google.com https://*.google.com *.googleapis.com *.gstatic.com *.vimeo.com http://truckersagainsttrafficking.org
     truckers-against-trafficking.firebaseapp.com truckers-against-trafficking.firebaseio.com truckers-against-trafficking.appspot.com;
     
     frame-src
@@ -31,10 +31,56 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
   <script type="text/javascript" src="cordova.js"></script>
-  <style>html, body { background: #1a1a1a }</style>
+  <style>
+  html, body { background: #1a1a1a }
+  .lds-ring {
+    margin: 0 auto;
+    display: block;
+    margin-top: calc( 50vh - 32px );
+    position: relative;
+    width: 64px;
+    height: 64px;
+  }
+  .lds-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 51px;
+    height: 51px;
+    margin: 6px;
+    border: 6px solid #fff;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #fff transparent transparent transparent;
+  }
+  .lds-ring div:nth-child(1) {
+    animation-delay: -0.45s;
+  }
+  .lds-ring div:nth-child(2) {
+    animation-delay: -0.3s;
+  }
+  .lds-ring div:nth-child(3) {
+    animation-delay: -0.15s;
+  }
+  @keyframes lds-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  </style>
 
 </head>
 <body>
-  <app-root></app-root>
+  <app-root>
+    <!--
+      This loading spinner may appear when auth has redirected back to the app and the app is initializing.
+      When the app is first launched, the splashscreen shows instead.
+    -->
+    <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+  </app-root>
 <script type="text/javascript" src="runtime.js"></script><script type="text/javascript" src="polyfills.js"></script><script type="text/javascript" src="styles.js"></script><script type="text/javascript" src="cordova.js"></script><script type="text/javascript" src="vendor.js"></script><script type="text/javascript" src="main.js"></script></body>
 </html>

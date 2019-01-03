@@ -1153,6 +1153,14 @@ function HttpLoaderFactory(http) {
 
 
 
+/*
+@@
+AngularFireDatabaseModule
+AngularFireFunctionsModule
+AngularFirestoreModule
+AngularFireStorageModule
+AngularFireMessagingModule
+*/
 var firebaseUiAuthConfig = {
     signInFlow: 'redirect',
     signInOptions: [
@@ -1796,7 +1804,7 @@ var CaseStudyCComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n  <ion-toolbar></ion-toolbar>\r\n</ion-header>\r\n<ion-content fullscreen padding>\r\n  <h1>{{ 'redFlags.caseStudy.title' | translate }}</h1>\r\n  <ion-icon name=\"md-close\" class=\"modal-close-btn\" (click)=\"modal.dismiss()\"></ion-icon>\r\n\r\n  <p>{{ 'redFlags.caseStudy.d' | translate }}</p>\r\n\r\n  <p><img src=\"assets/images/branding/1.jpg\"></p>\r\n  <p><img src=\"assets/images/branding/2.jpg\"></p>\r\n  <p><img src=\"assets/images/branding/3.jpg\"></p>\r\n  <p><img src=\"assets/images/branding/4.jpg\"></p>\r\n\r\n</ion-content>\r\n"
+module.exports = "<ion-header>\n  <ion-toolbar></ion-toolbar>\n</ion-header>\n<ion-content fullscreen padding>\n  <h1>{{ 'redFlags.caseStudy.title' | translate }}</h1>\n  <ion-icon name=\"md-close\" class=\"modal-close-btn\" (click)=\"modal.dismiss()\"></ion-icon>\n\n  <p>{{ 'redFlags.caseStudy.d' | translate }}</p>\n\n  <p><img src=\"assets/images/branding/1.jpg\"></p>\n  <p><img src=\"assets/images/branding/2.jpg\"></p>\n  <p><img src=\"assets/images/branding/3.jpg\"></p>\n  <p><img src=\"assets/images/branding/4.jpg\"></p>\n\n</ion-content>\n"
 
 /***/ }),
 
@@ -1859,7 +1867,7 @@ var CaseStudyDComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n  <ion-toolbar></ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content fullscreen padding>\r\n  <h1>{{ 'emailReport.title' | translate }}</h1>\r\n  <ion-icon name=\"md-close\" class=\"modal-close-btn\" (click)=\"modal.dismiss()\"></ion-icon>\r\n\r\n  <p>{{ 'emailReport.intro' | translate }}</p>\r\n\r\n  <!-- victim -->\r\n  <ion-item [class.no-border]=\"form.contactedVictim\">\r\n    <ion-checkbox [(ngModel)]=\"form.contactedVictim\" color=\"primary\"></ion-checkbox>\r\n    <ion-label text-wrap>{{ 'emailReport.checkboxes.seenVictim' | translate }}</ion-label>\r\n  </ion-item>\r\n  \r\n  <fieldset *ngIf=\"form.contactedVictim\">\r\n    <ion-item>\r\n      <ion-label>{{ 'emailReport.victim.gender.label' | translate }}</ion-label>\r\n      <ion-select [(ngModel)]=\"form.victimDetails.gender\" placeholder=\"{{ 'emailReport.victim.gender.selectOne' | translate }}\">\r\n        <ion-select-option value=\"Unknown\">{{ 'emailReport.victim.gender.unknown' | translate }}</ion-select-option>\r\n        <ion-select-option value=\"Female\">{{ 'emailReport.victim.gender.female' | translate }}</ion-select-option>\r\n        <ion-select-option value=\"Male\">{{ 'emailReport.victim.gender.male' | translate }}</ion-select-option>\r\n        <ion-select-option value=\"Other\">{{ 'emailReport.victim.gender.other' | translate }}</ion-select-option>\r\n      </ion-select>\r\n    </ion-item>\r\n\r\n    <ion-item>\r\n      <ion-label position=\"stacked\">{{ 'emailReport.victim.appearance.label' | translate }}</ion-label>\r\n      <ion-textarea [(ngModel)]=\"form.victimDetails.appearance\" placeholder=\"{{ 'emailReport.victim.appearance.placeholder' | translate }}\"></ion-textarea>\r\n    </ion-item>\r\n\r\n    <p class=\"like-ion-item\">{{ 'emailReport.victim.flags.label' | translate }}:</p>\r\n\r\n    <ion-item>\r\n      <ion-checkbox [(ngModel)]=\"form.victimDetails.hasRestrictedCommunication\" color=\"primary\"></ion-checkbox>\r\n      <ion-label text-wrap>{{ 'emailReport.victim.flags.hasRestrictedCommunication' | translate }}</ion-label>\r\n    </ion-item>\r\n    <ion-item>\r\n      <ion-checkbox [(ngModel)]=\"form.victimDetails.isDisheveled\" color=\"primary\"></ion-checkbox>\r\n      <ion-label text-wrap>{{ 'emailReport.victim.flags.isDisheveled' | translate }}</ion-label>\r\n    </ion-item>\r\n    <ion-item>\r\n      <ion-checkbox [(ngModel)]=\"form.victimDetails.isMinor\" color=\"primary\"></ion-checkbox>\r\n      <ion-label text-wrap>{{ 'emailReport.victim.flags.isMinor' | translate }}</ion-label>\r\n    </ion-item>\r\n    <ion-item>\r\n      <ion-checkbox [(ngModel)]=\"form.victimDetails.offersSex\" color=\"primary\"></ion-checkbox>\r\n      <ion-label text-wrap>{{ 'emailReport.victim.flags.offersSex' | translate }}</ion-label>\r\n    </ion-item>\r\n    <ion-item>\r\n      <ion-checkbox [(ngModel)]=\"form.victimDetails.doesNotKnow\" color=\"primary\"></ion-checkbox>\r\n      <ion-label text-wrap>{{ 'emailReport.victim.flags.doesNotKnow' | translate }}</ion-label>\r\n    </ion-item>\r\n    <ion-item>\r\n      <ion-checkbox [(ngModel)]=\"form.victimDetails.hasPimp\" color=\"primary\"></ion-checkbox>\r\n      <ion-label text-wrap>{{ 'emailReport.victim.flags.hasPimp' | translate }}</ion-label>\r\n    </ion-item>\r\n    <ion-item>\r\n      <ion-checkbox [(ngModel)]=\"form.victimDetails.hasBranding\" color=\"primary\"></ion-checkbox>\r\n      <ion-label text-wrap>{{ 'emailReport.victim.flags.hasBranding' | translate }}</ion-label>\r\n    </ion-item>\r\n    <ion-item>\r\n      <ion-checkbox [(ngModel)]=\"form.victimDetails.hasLackOfKnowledge\" color=\"primary\"></ion-checkbox>\r\n      <ion-label text-wrap>{{ 'emailReport.victim.flags.hasLackOfKnowledge' | translate }}</ion-label>\r\n    </ion-item>\r\n    <ion-item>\r\n      <ion-checkbox [(ngModel)]=\"form.victimDetails.hasNoId\" color=\"primary\"></ion-checkbox>\r\n      <ion-label text-wrap>{{ 'emailReport.victim.flags.hasNoId' | translate }}</ion-label>\r\n    </ion-item>\r\n    \r\n    <ion-item>\r\n      <ion-label position=\"stacked\">{{ 'emailReport.victim.otherNotes.label' | translate }}</ion-label>\r\n      <ion-textarea [(ngModel)]=\"form.victimDetails.other\" placeholder=\"{{ 'emailReport.victim.otherNotes.placeholder' | translate }}\"></ion-textarea>\r\n    </ion-item>\r\n  </fieldset>\r\n\r\n  <!-- people -->\r\n  <ion-item [class.no-border]=\"form.people\">\r\n    <ion-checkbox [(ngModel)]=\"form.people\" color=\"primary\"></ion-checkbox>\r\n    <ion-label text-wrap>{{ 'emailReport.checkboxes.otherPeople' | translate }}</ion-label>\r\n  </ion-item>\r\n\r\n  <fieldset *ngIf=\"form.people\">\r\n    <ion-item>\r\n      <ion-label position=\"stacked\">{{ 'emailReport.otherPeople.label' | translate }}</ion-label>\r\n      <ion-textarea [(ngModel)]=\"form.peopleDetails\" placeholder=\"{{ 'emailReport.otherPeople.placeholder' | translate }}\"></ion-textarea>\r\n    </ion-item>\r\n  </fieldset>\r\n\r\n  <!-- cars -->\r\n  <ion-item [class.no-border]=\"form.cars\">\r\n    <ion-checkbox [(ngModel)]=\"form.cars\" color=\"primary\"></ion-checkbox>\r\n    <ion-label text-wrap>{{ 'emailReport.checkboxes.cars' | translate }}</ion-label>\r\n  </ion-item>\r\n\r\n  <fieldset *ngIf=\"form.cars\">\r\n    <ion-item>\r\n      <ion-label position=\"stacked\">{{ 'emailReport.cars.label' | translate }}</ion-label>\r\n      <ion-textarea [(ngModel)]=\"form.carsDetails\" placeholder=\"{{ 'emailReport.cars.placeholder' | translate }}\"></ion-textarea>\r\n    </ion-item>\r\n  </fieldset>\r\n\r\n  <!-- time -->\r\n  <p class=\"like-ion-item\">{{ 'emailReport.when.label' | translate }}</p>\r\n  <ion-item class=\"no-border\">\r\n    <ion-label>{{ 'misc.date' | translate }}</ion-label>\r\n    <ion-datetime [(ngModel)]=\"form.date\" displayFormat=\"MMMM DD, YYYY\"></ion-datetime>\r\n  </ion-item>\r\n  <ion-item>\r\n    <ion-label>{{ 'misc.time' | translate }}</ion-label>\r\n    <ion-datetime [(ngModel)]=\"form.time\" displayFormat=\"h:mm a\"></ion-datetime>\r\n  </ion-item>\r\n\r\n  <!-- place -->\r\n  <ion-item>\r\n    <ion-label position=\"stacked\">{{ 'emailReport.where.label' | translate }}</ion-label>\r\n    <ion-textarea [(ngModel)]=\"form.location\" placeholder=\"{{ 'emailReport.where.placeholder' | translate }}\"></ion-textarea>\r\n    <!--\r\n    <ion-button fill=\"clear\" color=\"primary\" size=\"default\" (click)=\"automaticallyGetLocation()\">\r\n      Get my location for me\r\n    </ion-button>\r\n    -->\r\n  </ion-item>\r\n\r\n  <!-- additional info -->\r\n  <ion-item>\r\n    <ion-label position=\"stacked\">{{ 'emailReport.additional.label' | translate }}</ion-label>\r\n    <ion-textarea [(ngModel)]=\"form.additional\" placeholder=\"{{ 'emailReport.additional.placeholder' | translate }}\"></ion-textarea>\r\n  </ion-item>\r\n\r\n  <!-- phone -->\r\n  <ion-item>\r\n    <ion-label position=\"stacked\">{{ 'emailReport.phone.label' | translate }}</ion-label>\r\n    <ion-input [(ngModel)]=\"form.phone\" type=\"tel\" placeholder=\"{{ 'emailReport.phone.placeholder' | translate }}\"></ion-input>\r\n  </ion-item>\r\n\r\n  <div [innerHTML]=\"'emailReport.notes' | translate\"></div>\r\n\r\n  <ion-button fill=\"solid\" color=\"primary\" size=\"default\" (click)=\"buildReportEmail()\">\r\n    <ion-icon name=\"mail\"></ion-icon>\r\n    &nbsp;{{ 'emailReport.emailButton' | translate }}\r\n  </ion-button>\r\n\r\n  <ion-button fill=\"clear\" color=\"danger\" size=\"default\" (click)=\"resetReportForm()\">\r\n    {{ 'emailReport.resetButton' | translate }}\r\n  </ion-button>\r\n  \r\n</ion-content>"
+module.exports = "<ion-header>\n  <ion-toolbar></ion-toolbar>\n</ion-header>\n\n<ion-content fullscreen padding>\n  <h1>{{ 'emailReport.title' | translate }}</h1>\n  <ion-icon name=\"md-close\" class=\"modal-close-btn\" (click)=\"modal.dismiss()\"></ion-icon>\n\n  <p>{{ 'emailReport.intro' | translate }}</p>\n\n  <!-- victim -->\n  <ion-item [class.no-border]=\"form.contactedVictim\">\n    <ion-checkbox [(ngModel)]=\"form.contactedVictim\" color=\"primary\"></ion-checkbox>\n    <ion-label text-wrap>{{ 'emailReport.checkboxes.seenVictim' | translate }}</ion-label>\n  </ion-item>\n  \n  <fieldset *ngIf=\"form.contactedVictim\">\n    <ion-item>\n      <ion-label>{{ 'emailReport.victim.gender.label' | translate }}</ion-label>\n      <ion-select [(ngModel)]=\"form.victimDetails.gender\" placeholder=\"{{ 'emailReport.victim.gender.selectOne' | translate }}\">\n        <ion-select-option value=\"Unknown\">{{ 'emailReport.victim.gender.unknown' | translate }}</ion-select-option>\n        <ion-select-option value=\"Female\">{{ 'emailReport.victim.gender.female' | translate }}</ion-select-option>\n        <ion-select-option value=\"Male\">{{ 'emailReport.victim.gender.male' | translate }}</ion-select-option>\n        <ion-select-option value=\"Other\">{{ 'emailReport.victim.gender.other' | translate }}</ion-select-option>\n      </ion-select>\n    </ion-item>\n\n    <ion-item>\n      <ion-label position=\"stacked\">{{ 'emailReport.victim.appearance.label' | translate }}</ion-label>\n      <ion-textarea [(ngModel)]=\"form.victimDetails.appearance\" placeholder=\"{{ 'emailReport.victim.appearance.placeholder' | translate }}\"></ion-textarea>\n    </ion-item>\n\n    <p class=\"like-ion-item\">{{ 'emailReport.victim.flags.label' | translate }}:</p>\n\n    <ion-item>\n      <ion-checkbox [(ngModel)]=\"form.victimDetails.hasRestrictedCommunication\" color=\"primary\"></ion-checkbox>\n      <ion-label text-wrap>{{ 'emailReport.victim.flags.hasRestrictedCommunication' | translate }}</ion-label>\n    </ion-item>\n    <ion-item>\n      <ion-checkbox [(ngModel)]=\"form.victimDetails.isDisheveled\" color=\"primary\"></ion-checkbox>\n      <ion-label text-wrap>{{ 'emailReport.victim.flags.isDisheveled' | translate }}</ion-label>\n    </ion-item>\n    <ion-item>\n      <ion-checkbox [(ngModel)]=\"form.victimDetails.isMinor\" color=\"primary\"></ion-checkbox>\n      <ion-label text-wrap>{{ 'emailReport.victim.flags.isMinor' | translate }}</ion-label>\n    </ion-item>\n    <ion-item>\n      <ion-checkbox [(ngModel)]=\"form.victimDetails.offersSex\" color=\"primary\"></ion-checkbox>\n      <ion-label text-wrap>{{ 'emailReport.victim.flags.offersSex' | translate }}</ion-label>\n    </ion-item>\n    <ion-item>\n      <ion-checkbox [(ngModel)]=\"form.victimDetails.doesNotKnow\" color=\"primary\"></ion-checkbox>\n      <ion-label text-wrap>{{ 'emailReport.victim.flags.doesNotKnow' | translate }}</ion-label>\n    </ion-item>\n    <ion-item>\n      <ion-checkbox [(ngModel)]=\"form.victimDetails.hasPimp\" color=\"primary\"></ion-checkbox>\n      <ion-label text-wrap>{{ 'emailReport.victim.flags.hasPimp' | translate }}</ion-label>\n    </ion-item>\n    <ion-item>\n      <ion-checkbox [(ngModel)]=\"form.victimDetails.hasBranding\" color=\"primary\"></ion-checkbox>\n      <ion-label text-wrap>{{ 'emailReport.victim.flags.hasBranding' | translate }}</ion-label>\n    </ion-item>\n    <ion-item>\n      <ion-checkbox [(ngModel)]=\"form.victimDetails.hasLackOfKnowledge\" color=\"primary\"></ion-checkbox>\n      <ion-label text-wrap>{{ 'emailReport.victim.flags.hasLackOfKnowledge' | translate }}</ion-label>\n    </ion-item>\n    <ion-item>\n      <ion-checkbox [(ngModel)]=\"form.victimDetails.hasNoId\" color=\"primary\"></ion-checkbox>\n      <ion-label text-wrap>{{ 'emailReport.victim.flags.hasNoId' | translate }}</ion-label>\n    </ion-item>\n    \n    <ion-item>\n      <ion-label position=\"stacked\">{{ 'emailReport.victim.otherNotes.label' | translate }}</ion-label>\n      <ion-textarea [(ngModel)]=\"form.victimDetails.other\" placeholder=\"{{ 'emailReport.victim.otherNotes.placeholder' | translate }}\"></ion-textarea>\n    </ion-item>\n  </fieldset>\n\n  <!-- people -->\n  <ion-item [class.no-border]=\"form.people\">\n    <ion-checkbox [(ngModel)]=\"form.people\" color=\"primary\"></ion-checkbox>\n    <ion-label text-wrap>{{ 'emailReport.checkboxes.otherPeople' | translate }}</ion-label>\n  </ion-item>\n\n  <fieldset *ngIf=\"form.people\">\n    <ion-item>\n      <ion-label position=\"stacked\">{{ 'emailReport.otherPeople.label' | translate }}</ion-label>\n      <ion-textarea [(ngModel)]=\"form.peopleDetails\" placeholder=\"{{ 'emailReport.otherPeople.placeholder' | translate }}\"></ion-textarea>\n    </ion-item>\n  </fieldset>\n\n  <!-- cars -->\n  <ion-item [class.no-border]=\"form.cars\">\n    <ion-checkbox [(ngModel)]=\"form.cars\" color=\"primary\"></ion-checkbox>\n    <ion-label text-wrap>{{ 'emailReport.checkboxes.cars' | translate }}</ion-label>\n  </ion-item>\n\n  <fieldset *ngIf=\"form.cars\">\n    <ion-item>\n      <ion-label position=\"stacked\">{{ 'emailReport.cars.label' | translate }}</ion-label>\n      <ion-textarea [(ngModel)]=\"form.carsDetails\" placeholder=\"{{ 'emailReport.cars.placeholder' | translate }}\"></ion-textarea>\n    </ion-item>\n  </fieldset>\n\n  <!-- time -->\n  <p class=\"like-ion-item\">{{ 'emailReport.when.label' | translate }}</p>\n  <ion-item class=\"no-border\">\n    <ion-label>{{ 'misc.date' | translate }}</ion-label>\n    <ion-datetime [(ngModel)]=\"form.date\" displayFormat=\"MMMM DD, YYYY\"></ion-datetime>\n  </ion-item>\n  <ion-item>\n    <ion-label>{{ 'misc.time' | translate }}</ion-label>\n    <ion-datetime [(ngModel)]=\"form.time\" displayFormat=\"h:mm a\"></ion-datetime>\n  </ion-item>\n\n  <!-- place -->\n  <ion-item>\n    <ion-label position=\"stacked\">{{ 'emailReport.where.label' | translate }}</ion-label>\n    <ion-textarea [(ngModel)]=\"form.location\" placeholder=\"{{ 'emailReport.where.placeholder' | translate }}\"></ion-textarea>\n    <!--\n    <ion-button fill=\"clear\" color=\"primary\" size=\"default\" (click)=\"automaticallyGetLocation()\">\n      Get my location for me\n    </ion-button>\n    -->\n  </ion-item>\n\n  <!-- additional info -->\n  <ion-item>\n    <ion-label position=\"stacked\">{{ 'emailReport.additional.label' | translate }}</ion-label>\n    <ion-textarea [(ngModel)]=\"form.additional\" placeholder=\"{{ 'emailReport.additional.placeholder' | translate }}\"></ion-textarea>\n  </ion-item>\n\n  <!-- phone -->\n  <ion-item>\n    <ion-label position=\"stacked\">{{ 'emailReport.phone.label' | translate }}</ion-label>\n    <ion-input [(ngModel)]=\"form.phone\" type=\"tel\" placeholder=\"{{ 'emailReport.phone.placeholder' | translate }}\"></ion-input>\n  </ion-item>\n\n  <div [innerHTML]=\"'emailReport.notes' | translate\"></div>\n\n  <ion-button fill=\"solid\" color=\"primary\" size=\"default\" (click)=\"buildReportEmail()\">\n    <ion-icon name=\"mail\"></ion-icon>\n    &nbsp;{{ 'emailReport.emailButton' | translate }}\n  </ion-button>\n\n  <ion-button fill=\"clear\" color=\"danger\" size=\"default\" (click)=\"resetReportForm()\">\n    {{ 'emailReport.resetButton' | translate }}\n  </ion-button>\n  \n</ion-content>"
 
 /***/ }),
 
@@ -1870,7 +1878,7 @@ module.exports = "<ion-header>\r\n  <ion-toolbar></ion-toolbar>\r\n</ion-header>
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "fieldset {\n  width: 100%; }\n\nion-item {\n  margin-bottom: 1em;\n  /*    padding-bottom: 0.75em;\r\n    border-bottom: 1px solid rgba( 255, 255, 255, 0.25 );\r\n*/ }\n\nion-item.no-border, fieldset ion-item:last-child {\n    border-bottom-color: transparent; }\n\nion-item.no-padding, fieldset ion-item:last-child {\n    margin-bottom: 0;\n    padding-bottom: 0; }\n\np.like-ion-item {\n  padding-left: 1em; }\n"
+module.exports = "fieldset {\n  width: 100%; }\n\nion-item {\n  margin-bottom: 1em;\n  /*    padding-bottom: 0.75em;\n    border-bottom: 1px solid rgba( 255, 255, 255, 0.25 );\n*/ }\n\nion-item.no-border, fieldset ion-item:last-child {\n    border-bottom-color: transparent; }\n\nion-item.no-padding, fieldset ion-item:last-child {\n    margin-bottom: 0;\n    padding-bottom: 0; }\n\np.like-ion-item {\n  padding-left: 1em; }\n"
 
 /***/ }),
 
@@ -2654,7 +2662,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar></ion-toolbar>\n</ion-header>\n<ion-content fullscreen padding>\n  <h1>{{ 'volunteer.loginTitle' | translate }}</h1>\n  <ion-icon name=\"md-close\" class=\"modal-close-btn\" (click)=\"modal.dismiss()\"></ion-icon>\n\n  <p text-center padding-top>\n    <ion-button\n      class=\"large-btn\"\n      fill=\"solid\"\n      color=\"primary\"\n      (click)=\"onLoginClick()\">\n        {{ 'misc.login' | translate }}\n    </ion-button>\n  </p>\n</ion-content>"
+module.exports = "<ion-header>\n  <ion-toolbar></ion-toolbar>\n</ion-header>\n<ion-content fullscreen padding>\n  <h1>{{ 'volunteer.loginTitle' | translate }}</h1>\n  <ion-icon name=\"md-close\" class=\"modal-close-btn\" (click)=\"modal.dismiss()\"></ion-icon>\n\n  <firebase-ui\n    (signInSuccessWithAuthResult)=\"authSuccessCallback($event)\"\n    (signInFailure)=\"authErrorCallback($event)\">\n  </firebase-ui>\n\n  <p text-center padding-top>\n    <ion-button\n      class=\"large-btn\"\n      fill=\"solid\"\n      color=\"primary\"\n      (click)=\"onLoginClick()\">\n        {{ 'misc.login' | translate }}\n    </ion-button>\n  </p>\n</ion-content>"
 
 /***/ }),
 
@@ -2726,6 +2734,13 @@ var LoginComponent = /** @class */ (function () {
         this.miscService = miscService;
         this.trx = trx;
     }
+    LoginComponent.prototype.authSuccessCallback = function (evt) {
+        console.log('login auth success', evt);
+        alert('login auth success');
+    };
+    LoginComponent.prototype.authErrorCallback = function (evt) {
+        console.log('login auth error', evt);
+    };
     LoginComponent.prototype.onLoginClick = function () {
         return __awaiter(this, void 0, void 0, function () {
             var loading, _a, _b, _c;
@@ -2804,7 +2819,7 @@ var LoginComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n  <ion-toolbar></ion-toolbar>\r\n</ion-header>\r\n<ion-content fullscreen padding>\r\n  <h1>{{ 'volunteer.photos.title' | translate }}</h1>\r\n  <ion-icon name=\"md-close\" class=\"modal-close-btn\" (click)=\"modal.dismiss()\"></ion-icon>\r\n\r\n  <p>{{ 'volunteer.photos.intro' | translate }}</p>\r\n\r\n  <p class=\"icons\">\r\n    <img src=\"assets/images/social/facebook.png\"  (click)=\"miscService.openExternalLink('https://www.facebook.com/truckersagainstrafficking')\">\r\n    <img src=\"assets/images/social/instagram.png\" (click)=\"miscService.openExternalLink('https://www.instagram.com/truckersagainsttrafficking/')\">\r\n    <img src=\"assets/images/social/twitter.png\"   (click)=\"miscService.openExternalLink('https://twitter.com/TATKylla')\">\r\n  </p>\r\n  \r\n</ion-content>"
+module.exports = "<ion-header>\n  <ion-toolbar></ion-toolbar>\n</ion-header>\n<ion-content fullscreen padding>\n  <h1>{{ 'volunteer.photos.title' | translate }}</h1>\n  <ion-icon name=\"md-close\" class=\"modal-close-btn\" (click)=\"modal.dismiss()\"></ion-icon>\n\n  <p>{{ 'volunteer.photos.intro' | translate }}</p>\n\n  <p class=\"icons\">\n    <img src=\"assets/images/social/facebook.png\"  (click)=\"miscService.openExternalLink('https://www.facebook.com/truckersagainstrafficking')\">\n    <img src=\"assets/images/social/instagram.png\" (click)=\"miscService.openExternalLink('https://www.instagram.com/truckersagainsttrafficking/')\">\n    <img src=\"assets/images/social/twitter.png\"   (click)=\"miscService.openExternalLink('https://twitter.com/TATKylla')\">\n  </p>\n  \n</ion-content>"
 
 /***/ }),
 
@@ -2867,7 +2882,7 @@ var PhotosComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n  <ion-toolbar></ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content fullscreen padding>\r\n  <h1>Choose your location</h1>\r\n  <ion-icon name=\"md-close\" class=\"modal-close-btn\" (click)=\"modal.dismiss()\"></ion-icon>\r\n\r\n  <div *ngIf=\"places.length === 0\">Loading...</div>\r\n  <ion-list *ngIf=\"places.length > 0\">\r\n    <ion-item *ngFor=\"let place of places\">\r\n      <ion-label>{{place.name}}</ion-label>\r\n      <ion-radio (click)=\"onPlaceClick(place)\"></ion-radio>\r\n    </ion-item>\r\n  </ion-list>\r\n  \r\n</ion-content>"
+module.exports = "<ion-header>\n  <ion-toolbar></ion-toolbar>\n</ion-header>\n\n<ion-content fullscreen padding>\n  <h1>Choose your location</h1>\n  <ion-icon name=\"md-close\" class=\"modal-close-btn\" (click)=\"modal.dismiss()\"></ion-icon>\n\n  <div *ngIf=\"places.length === 0\">Loading...</div>\n  <ion-list *ngIf=\"places.length > 0\">\n    <ion-item *ngFor=\"let place of places\">\n      <ion-label>{{place.name}}</ion-label>\n      <ion-radio (click)=\"onPlaceClick(place)\"></ion-radio>\n    </ion-item>\n  </ion-list>\n  \n</ion-content>"
 
 /***/ }),
 
@@ -3185,7 +3200,7 @@ var PostOutreachSelectionComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n  <ion-toolbar></ion-toolbar>\r\n</ion-header>\r\n<ion-content fullscreen padding>\r\n  <h1>{{ 'resources.books.title' | translate }}</h1>\r\n  <h5 class=\"subtitle\">{{ 'resources.books.subtitle' | translate }}</h5>\r\n  <ion-icon name=\"md-close\" class=\"modal-close-btn\" (click)=\"modal.dismiss()\"></ion-icon>\r\n\r\n  <div class=\"book-list\" padding-bottom>\r\n    <div *ngFor=\"let book of books\">\r\n      <img src=\"assets/images/books/{{book.image}}\" (click)=\"miscService.openExternalLink(book.link)\">\r\n      <div class=\"book-title\">{{book.title}}</div>\r\n      <div class=\"book-byline\">{{ 'resources.books.by' | translate }} {{book.byline}}</div>\r\n    </div>\r\n  </div>\r\n\r\n  <hr margin-top>\r\n\r\n  <h2>{{ 'resources.books.documentaries' | translate }}</h2>\r\n\r\n  <div class=\"book-list\">\r\n    <div *ngFor=\"let film of films\">\r\n      <img src=\"assets/images/documentaries/{{film.image}}\" (click)=\"miscService.openExternalLink(film.link)\">\r\n      <div class=\"book-title\">{{film.title}}</div>\r\n      <div class=\"book-byline\">{{film.byline}}<span *ngIf=\"film.bylineAlt\"> {{ 'resources.books.or' | translate }} {{film.bylineAlt}}</span></div>\r\n    </div>\r\n  </div>\r\n\r\n</ion-content>"
+module.exports = "<ion-header>\n  <ion-toolbar></ion-toolbar>\n</ion-header>\n<ion-content fullscreen padding>\n  <h1>{{ 'resources.books.title' | translate }}</h1>\n  <h5 class=\"subtitle\">{{ 'resources.books.subtitle' | translate }}</h5>\n  <ion-icon name=\"md-close\" class=\"modal-close-btn\" (click)=\"modal.dismiss()\"></ion-icon>\n\n  <div class=\"book-list\" padding-bottom>\n    <div *ngFor=\"let book of books\">\n      <img src=\"assets/images/books/{{book.image}}\" (click)=\"miscService.openExternalLink(book.link)\">\n      <div class=\"book-title\">{{book.title}}</div>\n      <div class=\"book-byline\">{{ 'resources.books.by' | translate }} {{book.byline}}</div>\n    </div>\n  </div>\n\n  <hr margin-top>\n\n  <h2>{{ 'resources.books.documentaries' | translate }}</h2>\n\n  <div class=\"book-list\">\n    <div *ngFor=\"let film of films\">\n      <img src=\"assets/images/documentaries/{{film.image}}\" (click)=\"miscService.openExternalLink(film.link)\">\n      <div class=\"book-title\">{{film.title}}</div>\n      <div class=\"book-byline\">{{film.byline}}<span *ngIf=\"film.bylineAlt\"> {{ 'resources.books.or' | translate }} {{film.bylineAlt}}</span></div>\n    </div>\n  </div>\n\n</ion-content>"
 
 /***/ }),
 
@@ -3574,7 +3589,7 @@ var VolunteerResourcesComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n  <ion-toolbar></ion-toolbar>\r\n</ion-header>\r\n<ion-content fullscreen padding>\r\n  <h1>{{ 'volunteer.settings.title' | translate }}</h1>\r\n  <ion-icon name=\"md-close\" class=\"modal-close-btn\" (click)=\"modal.dismiss()\"></ion-icon>\r\n\r\n  <p><strong>{{ 'volunteer.settings.notifications.title' | translate }}</strong></p>\r\n\r\n  <ion-list>\r\n    <ion-item>\r\n      <ion-label>{{ 'volunteer.settings.notifications.survey' | translate }}</ion-label>\r\n      <ion-toggle [(ngModel)]=\"settings.notifications.survey\"></ion-toggle>\r\n    </ion-item>\r\n  \r\n    <ion-item>\r\n      <ion-label>{{ 'volunteer.settings.notifications.report' | translate }}</ion-label>\r\n      <ion-toggle [(ngModel)]=\"settings.notifications.report\"></ion-toggle>\r\n    </ion-item>\r\n  \r\n    <ion-item>\r\n      <ion-label>{{ 'volunteer.settings.notifications.event' | translate }}</ion-label>\r\n      <ion-toggle [(ngModel)]=\"settings.notifications.event\"></ion-toggle>\r\n    </ion-item>\r\n\r\n    <ion-item>\r\n      <ion-label>{{ 'volunteer.settings.notifications.upcoming' | translate }}</ion-label>\r\n      <ion-toggle [(ngModel)]=\"settings.notifications.upcoming\"></ion-toggle>\r\n    </ion-item>\r\n  </ion-list>\r\n\r\n\r\n  <p>\r\n    <ion-button fill=\"clear\" color=\"light\" (click)=\"onLogout()\">{{ 'volunteer.settings.logout' | translate }}</ion-button>\r\n  </p>\r\n\r\n</ion-content>"
+module.exports = "<ion-header>\n  <ion-toolbar></ion-toolbar>\n</ion-header>\n<ion-content fullscreen padding>\n  <h1>{{ 'volunteer.settings.title' | translate }}</h1>\n  <ion-icon name=\"md-close\" class=\"modal-close-btn\" (click)=\"modal.dismiss()\"></ion-icon>\n\n  <p><strong>{{ 'volunteer.settings.notifications.title' | translate }}</strong></p>\n\n  <ion-list>\n    <ion-item>\n      <ion-label>{{ 'volunteer.settings.notifications.survey' | translate }}</ion-label>\n      <ion-toggle [(ngModel)]=\"settings.notifications.survey\"></ion-toggle>\n    </ion-item>\n  \n    <ion-item>\n      <ion-label>{{ 'volunteer.settings.notifications.report' | translate }}</ion-label>\n      <ion-toggle [(ngModel)]=\"settings.notifications.report\"></ion-toggle>\n    </ion-item>\n  \n    <ion-item>\n      <ion-label>{{ 'volunteer.settings.notifications.event' | translate }}</ion-label>\n      <ion-toggle [(ngModel)]=\"settings.notifications.event\"></ion-toggle>\n    </ion-item>\n\n    <ion-item>\n      <ion-label>{{ 'volunteer.settings.notifications.upcoming' | translate }}</ion-label>\n      <ion-toggle [(ngModel)]=\"settings.notifications.upcoming\"></ion-toggle>\n    </ion-item>\n  </ion-list>\n\n\n  <p>\n    <ion-button fill=\"clear\" color=\"light\" (click)=\"onLogout()\">{{ 'volunteer.settings.logout' | translate }}</ion-button>\n  </p>\n\n</ion-content>"
 
 /***/ }),
 
@@ -3591,6 +3606,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../services */ "./src/app/services/index.ts");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/index.js");
+/* harmony import */ var _angular_fire_auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/fire/auth */ "./node_modules/@angular/fire/auth/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3603,13 +3619,17 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var VolunteerSettingsComponent = /** @class */ (function () {
-    function VolunteerSettingsComponent(miscService, settings, navCtrl) {
+    function VolunteerSettingsComponent(miscService, settings, navCtrl, angularFireAuth) {
         this.miscService = miscService;
         this.settings = settings;
         this.navCtrl = navCtrl;
+        this.angularFireAuth = angularFireAuth;
     }
     VolunteerSettingsComponent.prototype.onLogout = function () {
+        this.angularFireAuth.auth.signOut();
+        // @@ should I continue to use miscService to determine login status?
         this.miscService.isLoggedIn = false;
         this.navCtrl.navigateRoot('/tabs/(home:home)');
         this.modal.dismiss();
@@ -3620,7 +3640,8 @@ var VolunteerSettingsComponent = /** @class */ (function () {
         }),
         __metadata("design:paramtypes", [_services__WEBPACK_IMPORTED_MODULE_1__["MiscService"],
             _services__WEBPACK_IMPORTED_MODULE_1__["SettingsService"],
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavController"]])
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavController"],
+            _angular_fire_auth__WEBPACK_IMPORTED_MODULE_3__["AngularFireAuth"]])
     ], VolunteerSettingsComponent);
     return VolunteerSettingsComponent;
 }());
@@ -3636,7 +3657,7 @@ var VolunteerSettingsComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n  <ion-toolbar></ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content fullscreen padding>\r\n  <h1>{{ 'whatToReport.title' | translate }}</h1>\r\n  <ion-icon name=\"md-close\" class=\"modal-close-btn\" (click)=\"modal.dismiss()\"></ion-icon>\r\n\r\n  <p>{{ 'whatToReport.intro' | translate }}</p>\r\n  \r\n  <h1><ion-icon name=\"boxycar\"></ion-icon> {{ 'whatToReport.cars' | translate }}</h1>\r\n  <p>{{ 'whatToReport.carsText' | translate }}</p>\r\n\r\n  <h1><ion-icon name=\"volunteer\"></ion-icon> {{ 'whatToReport.people' | translate }}</h1>\r\n  <p>{{ 'whatToReport.peopleText' | translate }}</p>\r\n\r\n  <h1><ion-icon name=\"clock2\"></ion-icon> {{ 'whatToReport.dateTime' | translate }}</h1>\r\n  <p>{{ 'whatToReport.dateTimeText' | translate }}</p>\r\n\r\n  <h1><ion-icon name=\"location\"></ion-icon> {{ 'whatToReport.location' | translate }}</h1>\r\n  <p>{{ 'whatToReport.locationText' | translate }}</p>\r\n  \r\n</ion-content>"
+module.exports = "<ion-header>\n  <ion-toolbar></ion-toolbar>\n</ion-header>\n\n<ion-content fullscreen padding>\n  <h1>{{ 'whatToReport.title' | translate }}</h1>\n  <ion-icon name=\"md-close\" class=\"modal-close-btn\" (click)=\"modal.dismiss()\"></ion-icon>\n\n  <p>{{ 'whatToReport.intro' | translate }}</p>\n  \n  <h1><ion-icon name=\"boxycar\"></ion-icon> {{ 'whatToReport.cars' | translate }}</h1>\n  <p>{{ 'whatToReport.carsText' | translate }}</p>\n\n  <h1><ion-icon name=\"volunteer\"></ion-icon> {{ 'whatToReport.people' | translate }}</h1>\n  <p>{{ 'whatToReport.peopleText' | translate }}</p>\n\n  <h1><ion-icon name=\"clock2\"></ion-icon> {{ 'whatToReport.dateTime' | translate }}</h1>\n  <p>{{ 'whatToReport.dateTimeText' | translate }}</p>\n\n  <h1><ion-icon name=\"location\"></ion-icon> {{ 'whatToReport.location' | translate }}</h1>\n  <p>{{ 'whatToReport.locationText' | translate }}</p>\n  \n</ion-content>"
 
 /***/ }),
 
@@ -3760,7 +3781,7 @@ var HomePageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n  <ion-toolbar></ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content padding>\r\n  <img src=\"assets/images/tat-logo.png\" class=\"logo\">\r\n\r\n  <image-button image=\"home.report-activity.jpg\" (click)=\"navCtrl.navigateRoot('/tabs/(report:report)')\">{{ 'home.reportActivity' | translate }}</image-button>\r\n  <image-button image=\"home.red-flags.jpg\" (click)=\"navCtrl.navigateRoot('/tabs/(red-flags:red-flags)')\">{{ 'home.redFlags' | translate }}</image-button>\r\n  <image-button image=\"home.resources.jpg\" (click)=\"navCtrl.navigateRoot('/tabs/(resources:resources)')\">{{ 'home.resources' | translate }}</image-button>\r\n  <image-button image=\"home.volunteer-login.jpg\" (click)=\"navCtrl.navigateRoot('/tabs/(volunteer:volunteer)')\">\r\n    {{ (miscService.isLoggedIn ? 'volunteer.title' : 'volunteer.loginTitle') | translate }}\r\n  </image-button>\r\n\r\n  <ion-item class=\"language-select\">\r\n    <ion-label><ion-icon name=\"globe\"></ion-icon> {{ 'misc.setLanguage' | translate }}</ion-label>\r\n    <ion-select\r\n      interface=\"alert\"\r\n      placeholder=\"Select One\"\r\n      [(ngModel)]=\"settings.language\"\r\n      (ionChange)=\"onSetLanguage()\"\r\n      cancelText=\"{{ 'misc.cancel' | translate }}\"\r\n      okText=\"{{ 'misc.ok' | translate }}\">\r\n      <ion-select-option value=\"en\">English</ion-select-option>\r\n      <ion-select-option value=\"es\">Español</ion-select-option>\r\n    </ion-select>\r\n  </ion-item>\r\n\r\n  <firebase-ui\r\n    (signInSuccessWithAuthResult)=\"authSuccessCallback($event)\"\r\n    (signInFailure)=\"authErrorCallback($event)\">\r\n  </firebase-ui>\r\n\r\n  <p><a (click)=\"logout()\">Log out</a></p>\r\n  \r\n</ion-content>\r\n"
+module.exports = "<ion-header>\n  <ion-toolbar></ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n  <img src=\"assets/images/tat-logo.png\" class=\"logo\">\n\n  <image-button image=\"home.report-activity.jpg\" (click)=\"navCtrl.navigateRoot('/tabs/(report:report)')\">{{ 'home.reportActivity' | translate }}</image-button>\n  <image-button image=\"home.red-flags.jpg\" (click)=\"navCtrl.navigateRoot('/tabs/(red-flags:red-flags)')\">{{ 'home.redFlags' | translate }}</image-button>\n  <image-button image=\"home.resources.jpg\" (click)=\"navCtrl.navigateRoot('/tabs/(resources:resources)')\">{{ 'home.resources' | translate }}</image-button>\n  <image-button image=\"home.volunteer-login.jpg\" (click)=\"navCtrl.navigateRoot('/tabs/(volunteer:volunteer)')\">\n    {{ (miscService.isLoggedIn ? 'volunteer.title' : 'volunteer.loginTitle') | translate }}\n  </image-button>\n\n  <ion-item class=\"language-select\">\n    <ion-label><ion-icon name=\"globe\"></ion-icon> {{ 'misc.setLanguage' | translate }}</ion-label>\n    <ion-select\n      interface=\"alert\"\n      placeholder=\"Select One\"\n      [(ngModel)]=\"settings.language\"\n      (ionChange)=\"onSetLanguage()\"\n      cancelText=\"{{ 'misc.cancel' | translate }}\"\n      okText=\"{{ 'misc.ok' | translate }}\">\n      <ion-select-option value=\"en\">English</ion-select-option>\n      <ion-select-option value=\"es\">Español</ion-select-option>\n    </ion-select>\n  </ion-item>\n\n  <firebase-ui\n    (signInSuccessWithAuthResult)=\"authSuccessCallback($event)\"\n    (signInFailure)=\"authErrorCallback($event)\">\n  </firebase-ui>\n  \n</ion-content>\n"
 
 /***/ }),
 
@@ -3790,7 +3811,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ngx-translate/core */ "./node_modules/@ngx-translate/core/fesm5/ngx-translate-core.js");
 /* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services */ "./src/app/services/index.ts");
 /* harmony import */ var _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/splash-screen/ngx */ "./node_modules/@ionic-native/splash-screen/ngx/index.js");
-/* harmony import */ var _angular_fire_auth__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/fire/auth */ "./node_modules/@angular/fire/auth/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3805,29 +3825,13 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-
-var firebase = __webpack_require__(/*! firebase */ "./node_modules/firebase/dist/index.cjs.js");
-__webpack_require__(/*! firebase/auth */ "./node_modules/firebase/auth/dist/index.esm.js");
-__webpack_require__(/*! firebase/database */ "./node_modules/firebase/database/dist/index.esm.js");
-__webpack_require__(/*! firebase/firestore */ "./node_modules/firebase/firestore/dist/index.esm.js");
-__webpack_require__(/*! firebase/messaging */ "./node_modules/firebase/messaging/dist/index.esm.js");
-__webpack_require__(/*! firebase/functions */ "./node_modules/firebase/functions/dist/index.esm.js");
-firebase.initializeApp({
-    apiKey: "AIzaSyDtBAXnyEvQgbdRHS4fyDvkxtyKQvV4c1c",
-    authDomain: "truckers-against-trafficking.firebaseapp.com",
-    databaseURL: "https://truckers-against-trafficking.firebaseio.com",
-    projectId: "truckers-against-trafficking",
-    storageBucket: "truckers-against-trafficking.appspot.com",
-    messagingSenderId: "1062876332765"
-});
 var HomePage = /** @class */ (function () {
-    function HomePage(navCtrl, translate, settings, miscService, splashScreen, angularFireAuth) {
+    function HomePage(navCtrl, translate, settings, miscService, splashScreen) {
         this.navCtrl = navCtrl;
         this.translate = translate;
         this.settings = settings;
         this.miscService = miscService;
         this.splashScreen = splashScreen;
-        this.angularFireAuth = angularFireAuth;
     }
     HomePage.prototype.onSetLanguage = function () {
         this.translate.use(this.settings.language);
@@ -3838,17 +3842,10 @@ var HomePage = /** @class */ (function () {
     };
     HomePage.prototype.authSuccessCallback = function (evt) {
         console.log('homepage auth success', evt);
+        alert('homepage auth success');
     };
     HomePage.prototype.authErrorCallback = function (evt) {
         console.log('homepage auth error', evt);
-    };
-    HomePage.prototype.logout = function () {
-        console.log('@handleOpenURL', window['handleOpenURL']);
-        this.angularFireAuth.auth.signOut();
-        console.log('@ohai4');
-        firebase.auth().signInWithRedirect(new firebase.auth.GoogleAuthProvider())
-            .then(function () { return firebase.auth().getRedirectResult(); })
-            .then(function (res) { return console.log('happy', res); });
     };
     HomePage = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -3860,8 +3857,7 @@ var HomePage = /** @class */ (function () {
             _ngx_translate_core__WEBPACK_IMPORTED_MODULE_2__["TranslateService"],
             _services__WEBPACK_IMPORTED_MODULE_3__["SettingsService"],
             _services__WEBPACK_IMPORTED_MODULE_3__["MiscService"],
-            _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_4__["SplashScreen"],
-            _angular_fire_auth__WEBPACK_IMPORTED_MODULE_5__["AngularFireAuth"]])
+            _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_4__["SplashScreen"]])
     ], HomePage);
     return HomePage;
 }());
@@ -4306,7 +4302,7 @@ var POSPart1Page = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n  <ion-toolbar></ion-toolbar>\r\n</ion-header>\r\n<ion-content class=\"like-modal\" fullscreen padding>\r\n  <h1>{{ 'preOutreachSurvey.title' | translate }}</h1>\r\n  <ion-icon name=\"md-chevronleft\" class=\"modal-close-btn\" (click)=\"navCtrl.goBack()\"></ion-icon>\r\n\r\n  <p>{{ 'preOutreachSurvey.2.intro' | translate }}</p>\r\n\r\n  <ion-radio-group padding-top padding-bottom [(ngModel)]=\"formsService.preOutreachForm.feelEquipped\">\r\n    <ion-item>\r\n      <ion-label>{{ 'misc.yes' | translate }}</ion-label>\r\n      <ion-radio slot=\"start\" value=\"yes\"></ion-radio>\r\n    </ion-item>\r\n\r\n    <ion-item>\r\n      <ion-label>{{ 'misc.no' | translate }}</ion-label>\r\n      <ion-radio slot=\"start\" value=\"no\"></ion-radio>\r\n    </ion-item>\r\n  </ion-radio-group>\r\n\r\n  <ion-item padding-top *ngIf=\"formsService.preOutreachForm.feelEquipped === 'no'\">\r\n    <ion-label position=\"stacked\">{{ 'preOutreachSurvey.2.unequipped' | translate }}</ion-label>\r\n    <ion-textarea class=\"tall\" [(ngModel)]=\"formsService.preOutreachForm.feelEquippedQuestions\" placeholder=\"{{ 'preOutreachSurvey.2.unequippedPlaceholder' | translate }}\"></ion-textarea>\r\n  </ion-item>\r\n\r\n  <p text-center padding-top>\r\n    <ion-button\r\n    class=\"large-btn\"\r\n    fill=\"solid\"\r\n    color=\"primary\"\r\n    (click)=\"navCtrl.navigateRoot('/pos-3')\"\r\n    [disabled]=\"formsService.preOutreachForm.feelEquipped === undefined\">\r\n      {{ 'misc.next' | translate }}\r\n    </ion-button>\r\n  </p>\r\n\r\n</ion-content>"
+module.exports = "<ion-header>\n  <ion-toolbar></ion-toolbar>\n</ion-header>\n<ion-content class=\"like-modal\" fullscreen padding>\n  <h1>{{ 'preOutreachSurvey.title' | translate }}</h1>\n  <ion-icon name=\"md-chevronleft\" class=\"modal-close-btn\" (click)=\"navCtrl.goBack()\"></ion-icon>\n\n  <p>{{ 'preOutreachSurvey.2.intro' | translate }}</p>\n\n  <ion-radio-group padding-top padding-bottom [(ngModel)]=\"formsService.preOutreachForm.feelEquipped\">\n    <ion-item>\n      <ion-label>{{ 'misc.yes' | translate }}</ion-label>\n      <ion-radio slot=\"start\" value=\"yes\"></ion-radio>\n    </ion-item>\n\n    <ion-item>\n      <ion-label>{{ 'misc.no' | translate }}</ion-label>\n      <ion-radio slot=\"start\" value=\"no\"></ion-radio>\n    </ion-item>\n  </ion-radio-group>\n\n  <ion-item padding-top *ngIf=\"formsService.preOutreachForm.feelEquipped === 'no'\">\n    <ion-label position=\"stacked\">{{ 'preOutreachSurvey.2.unequipped' | translate }}</ion-label>\n    <ion-textarea class=\"tall\" [(ngModel)]=\"formsService.preOutreachForm.feelEquippedQuestions\" placeholder=\"{{ 'preOutreachSurvey.2.unequippedPlaceholder' | translate }}\"></ion-textarea>\n  </ion-item>\n\n  <p text-center padding-top>\n    <ion-button\n    class=\"large-btn\"\n    fill=\"solid\"\n    color=\"primary\"\n    (click)=\"navCtrl.navigateRoot('/pos-3')\"\n    [disabled]=\"formsService.preOutreachForm.feelEquipped === undefined\">\n      {{ 'misc.next' | translate }}\n    </ion-button>\n  </p>\n\n</ion-content>"
 
 /***/ }),
 
@@ -5045,7 +5041,7 @@ var VolunteerPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n  <ion-toolbar></ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content padding>\r\n  <h1>{{ 'volunteer.title' | translate }}</h1>\r\n  <ion-icon name=\"md-menu\" class=\"modal-close-btn\" (click)=\"modalService.open(VolunteerSettingsComponent)\"></ion-icon>\r\n\r\n  <p>\r\n    {{ 'volunteer.intro' | translate }}\r\n  </p>\r\n\r\n  <image-button\r\n    image=\"volunteer.training-video.jpg\"\r\n    (click)=\"modalService.open(TrainingVideoComponent)\"\r\n    [required]=\"true\"\r\n    [completed]=\"userDataService.data.hasWatchedTrainingVideo\">\r\n      {{ 'volunteer.btns.trainingVideo' | translate }}\r\n  </image-button>\r\n\r\n  <image-button\r\n    image=\"volunteer.pre-outreach-survey.jpg\"\r\n    (click)=\"navCtrl.navigateRoot('/pos-1')\"\r\n    [required]=\"true\"\r\n    [disabled]=\"!userDataService.data.hasWatchedTrainingVideo\">\r\n      {{ 'volunteer.btns.preOutreachSurvey' | translate }}\r\n  </image-button>\r\n  \r\n  <image-button\r\n    image=\"volunteer.resources.jpg\"\r\n    (click)=\"modalService.open(VolunteerResourcesComponent)\"\r\n    [disabled]=\"!userDataService.data.hasWatchedTrainingVideo\">\r\n      {{ 'volunteer.btns.resources' | translate }}\r\n  </image-button>\r\n  \r\n  <image-button\r\n    image=\"volunteer.post-outreach-report.jpg\"\r\n    (click)=\"modalService.open(PostOutreachSelectionComponent)\"\r\n    [required]=\"true\"\r\n    [disabled]=\"!userDataService.data.hasWatchedTrainingVideo || userDataService.data.incompletePostReports.length === 0\">\r\n      {{ 'volunteer.btns.postOutreachReport' | translate }}\r\n  </image-button>\r\n  \r\n  <image-button\r\n    image=\"volunteer.hours-log.jpg\"\r\n    (click)=\"modalService.open(HoursLogComponent)\"\r\n    [required]=\"true\"\r\n    [disabled]=\"!userDataService.data.hasWatchedTrainingVideo\">\r\n      {{ 'volunteer.btns.hoursLog' | translate }}\r\n  </image-button>\r\n  \r\n  <image-button\r\n    image=\"volunteer.photos.jpg\"\r\n    (click)=\"modalService.open(PhotosComponent)\"\r\n    [disabled]=\"!userDataService.data.hasWatchedTrainingVideo\">\r\n      {{ 'volunteer.btns.photos' | translate }}\r\n  </image-button>\r\n  \r\n  <image-button\r\n    image=\"volunteer.testimonial.jpg\"\r\n    (click)=\"modalService.open(FeedbackComponent)\"\r\n    [disabled]=\"!userDataService.data.hasWatchedTrainingVideo\">\r\n      {{ 'volunteer.btns.testimonial' | translate }}\r\n  </image-button>\r\n</ion-content>\r\n"
+module.exports = "<ion-header>\n  <ion-toolbar></ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n  <h1>{{ 'volunteer.title' | translate }}</h1>\n  <ion-icon name=\"md-menu\" class=\"modal-close-btn\" (click)=\"modalService.open(VolunteerSettingsComponent)\"></ion-icon>\n\n  <p>\n    {{ 'volunteer.intro' | translate }}\n  </p>\n\n  <image-button\n    image=\"volunteer.training-video.jpg\"\n    (click)=\"modalService.open(TrainingVideoComponent)\"\n    [required]=\"true\"\n    [completed]=\"userDataService.data.hasWatchedTrainingVideo\">\n      {{ 'volunteer.btns.trainingVideo' | translate }}\n  </image-button>\n\n  <image-button\n    image=\"volunteer.pre-outreach-survey.jpg\"\n    (click)=\"navCtrl.navigateRoot('/pos-1')\"\n    [required]=\"true\"\n    [disabled]=\"!userDataService.data.hasWatchedTrainingVideo\">\n      {{ 'volunteer.btns.preOutreachSurvey' | translate }}\n  </image-button>\n  \n  <image-button\n    image=\"volunteer.resources.jpg\"\n    (click)=\"modalService.open(VolunteerResourcesComponent)\"\n    [disabled]=\"!userDataService.data.hasWatchedTrainingVideo\">\n      {{ 'volunteer.btns.resources' | translate }}\n  </image-button>\n  \n  <image-button\n    image=\"volunteer.post-outreach-report.jpg\"\n    (click)=\"modalService.open(PostOutreachSelectionComponent)\"\n    [required]=\"true\"\n    [disabled]=\"!userDataService.data.hasWatchedTrainingVideo || userDataService.data.incompletePostReports.length === 0\">\n      {{ 'volunteer.btns.postOutreachReport' | translate }}\n  </image-button>\n  \n  <image-button\n    image=\"volunteer.hours-log.jpg\"\n    (click)=\"modalService.open(HoursLogComponent)\"\n    [required]=\"true\"\n    [disabled]=\"!userDataService.data.hasWatchedTrainingVideo\">\n      {{ 'volunteer.btns.hoursLog' | translate }}\n  </image-button>\n  \n  <image-button\n    image=\"volunteer.photos.jpg\"\n    (click)=\"modalService.open(PhotosComponent)\"\n    [disabled]=\"!userDataService.data.hasWatchedTrainingVideo\">\n      {{ 'volunteer.btns.photos' | translate }}\n  </image-button>\n  \n  <image-button\n    image=\"volunteer.testimonial.jpg\"\n    (click)=\"modalService.open(FeedbackComponent)\"\n    [disabled]=\"!userDataService.data.hasWatchedTrainingVideo\">\n      {{ 'volunteer.btns.testimonial' | translate }}\n  </image-button>\n</ion-content>\n"
 
 /***/ }),
 
@@ -5963,7 +5959,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Ransoing\Projects\apps\tat\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /Users/christof/Desktop/svn/tatnew/src/main.ts */"./src/main.ts");
 
 
 /***/ })

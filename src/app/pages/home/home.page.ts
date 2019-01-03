@@ -3,7 +3,6 @@ import { NavController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { SettingsService, MiscService } from '../../services';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-home',
@@ -17,8 +16,7 @@ export class HomePage implements AfterViewInit {
     public translate: TranslateService,
     public settings: SettingsService,
     public miscService: MiscService,
-    public splashScreen: SplashScreen,
-    public angularFireAuth: AngularFireAuth
+    public splashScreen: SplashScreen
   ) {}
 
   onSetLanguage() {
@@ -31,15 +29,10 @@ export class HomePage implements AfterViewInit {
 
   authSuccessCallback( evt ) {
     console.log( 'homepage auth success', evt );
+    alert( 'homepage auth success' );
   }
 
   authErrorCallback( evt ) {
     console.log( 'homepage auth error', evt );
-  }
-
-  logout() {
-    console.log( '@handleOpenURL', window['handleOpenURL'] );
-    
-    this.angularFireAuth.auth.signOut();
   }
 }

@@ -14,6 +14,9 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <allow-navigation href="https://*" />
+    <allow-navigation href="http://*" />
+    <preference name="OverrideUserAgent" value="Mozilla/5.0 (Linux; Android 8.0.0; moto g(6)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.99 Mobile Safari/537.36" />
     <preference name="ScrollEnabled" value="false" />
     <preference name="android-minSdkVersion" value="16" />
     <preference name="BackupWebStorage" value="none" />
@@ -123,7 +126,7 @@
     <universal-links>
         <host name="truckersagainsttrafficking.page.link" scheme="https" />
         <host name="truckers-against-trafficking.firebaseapp.com" scheme="https">
-            <path url="/__/auth/handler" />
+            <path url="/__/auth/*" />
         </host>
     </universal-links>
     <plugin name="cordova-universal-links-plugin" spec="git+https://github.com/walteram/cordova-universal-links-plugin.git" />

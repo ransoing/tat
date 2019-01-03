@@ -580,8 +580,8 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Ransoing\Projects\apps\tat\src\theme\variables.scss */"./src/theme/variables.scss");
-module.exports = __webpack_require__(/*! C:\Users\Ransoing\Projects\apps\tat\src\global.scss */"./src/global.scss");
+__webpack_require__(/*! /Users/christof/Desktop/svn/tatnew/src/theme/variables.scss */"./src/theme/variables.scss");
+module.exports = __webpack_require__(/*! /Users/christof/Desktop/svn/tatnew/src/global.scss */"./src/global.scss");
 
 
 /***/ })

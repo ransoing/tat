@@ -1,5 +1,9 @@
 @import '~firebaseui/dist/firebaseui.css';
 
+#firebaseui-auth-container .firebaseui-idp-button {
+    padding: 16px;
+}
+
 // http://ionicframework.com/docs/theming/
 @import "~@ionic/angular/css/core.css";
 @import "~@ionic/angular/css/normalize.css";

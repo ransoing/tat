@@ -26,13 +26,4 @@ export class HomePage implements AfterViewInit {
   ngAfterViewInit() {
     setTimeout( () => this.splashScreen.hide(), 300 );
   }
-
-  authSuccessCallback( evt ) {
-    console.log( 'homepage auth success', evt );
-    alert( 'homepage auth success' );
-  }
-
-  authErrorCallback( evt ) {
-    console.log( 'homepage auth error', evt );
-  }
 }

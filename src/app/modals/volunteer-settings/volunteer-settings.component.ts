@@ -19,8 +19,6 @@ export class VolunteerSettingsComponent {
 
   onLogout() {
     this.angularFireAuth.auth.signOut();
-    // @@ should I continue to use miscService to determine login status?
-    this.miscService.isLoggedIn = false;
     this.navCtrl.navigateRoot( '/tabs/(home:home)' );
     this.modal.dismiss();
   }

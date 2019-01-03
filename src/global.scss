@@ -1,7 +1,13 @@
 @import '~firebaseui/dist/firebaseui.css';
-
-#firebaseui-auth-container .firebaseui-idp-button {
-    padding: 16px;
+#firebaseui-auth-container {
+    .firebaseui-idp-button {
+        padding: 16px;
+    }
+    /* the element below shows when it's deciding whether the login was successful */
+    > .mdl-card.firebaseui-id-page-callback {
+        background: transparent;
+        color: white;
+    }
 }
 
 // http://ionicframework.com/docs/theming/

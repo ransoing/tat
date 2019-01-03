@@ -46,8 +46,7 @@ const firebaseUiAuthConfig: any = {
     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
     {
       provider: firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-      scopes: [ 'email' ],
-      customParameters: { 'auth_type': 'reauthenticate' }
+      scopes: [ 'email' ]
     },
     firebase.auth.TwitterAuthProvider.PROVIDER_ID
   ],

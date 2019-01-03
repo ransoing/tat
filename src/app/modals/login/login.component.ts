@@ -1,6 +1,8 @@
 import { Component, AfterViewInit, OnDestroy } from '@angular/core';
 import { LoadingController, AlertController, NavController } from '@ionic/angular';
 import { MiscService, TrxService } from '../../services';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Subscription } from 'rxjs';
 
 @Component({
   templateUrl: './login.component.html'
@@ -10,14 +12,16 @@ export class LoginComponent implements AfterViewInit, OnDestroy {
   public static LOGIN_REDIRECT_URL_KEY: 'loginRedirectUrl';
 
   public modal: HTMLIonModalElement;
+  private authSubscriber: Subscription;
   
   constructor(
     private loadingController: LoadingController,
     private alertController: AlertController,
     private navCtrl: NavController,
     private miscService: MiscService,
-    private trx: TrxService
-  ) { }
+    private trx: TrxService,
+    private angularFireAuth: AngularFireAuth
+  ) {}
 
   /*
    * The firebase login widget doesn't work quite right, because ionic serves the app from `http:` instead of from
@@ -38,17 +42,24 @@ export class LoginComponent implements AfterViewInit, OnDestroy {
     if ( !localStorage.getItem(LoginComponent.LOGIN_REDIRECT_URL_KEY) ) {
       localStorage.setItem( LoginComponent.LOGIN_REDIRECT_URL_KEY, this.miscService.loginRedirectUrl );
     }
+    this.authSubscriber = this.angularFireAuth.authState.subscribe( response => {
+      if ( !!response ) {
+        this.miscService.isLoggedIn = true;
+        // go to the restricted page which the user initially tried to go to before logging in
+        this.navCtrl.navigateRoot( localStorage.getItem(LoginComponent.LOGIN_REDIRECT_URL_KEY) )
+        .then( () => this.modal.dismiss() );
+      }
+    });
   }
 
   ngOnDestroy() {
     localStorage.removeItem( LoginComponent.LOGIN_REDIRECT_URL_KEY );
+    this.authSubscriber.unsubscribe();
   }
 
 
   authSuccessCallback( evt ) {
-    // go to the restricted page which the user initially tried to go to before logging in
-    this.navCtrl.navigateRoot( localStorage.getItem(LoginComponent.LOGIN_REDIRECT_URL_KEY) )
-    .then( () => this.modal.dismiss() );
+    // do nothing. This is handled in the observable subscription
   }
 
   authErrorCallback( evt ) {

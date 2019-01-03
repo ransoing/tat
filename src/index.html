@@ -34,12 +34,14 @@
   <style>
   html, body { background: #1a1a1a }
   .lds-ring {
-    margin: 0 auto;
+    margin: 12px auto 0;
     display: block;
-    margin-top: calc( 50vh - 32px );
     position: relative;
     width: 64px;
     height: 64px;
+  }
+  .lds-ring-index {
+    margin-top: calc( 50vh - 32px );
   }
   .lds-ring div {
     box-sizing: border-box;
@@ -80,7 +82,7 @@
       This loading spinner may appear when auth has redirected back to the app and the app is initializing.
       When the app is first launched, the splashscreen shows instead.
     -->
-    <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+    <div class="lds-ring lds-ring-index"><div></div><div></div><div></div><div></div></div>
   </app-root>
 </body>
 </html>

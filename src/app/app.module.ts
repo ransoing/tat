@@ -36,7 +36,7 @@ AngularFirestoreModule
 AngularFireStorageModule
 AngularFireMessagingModule
 */
-const firebaseUiAuthConfig: any = {
+const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'redirect',
   signInOptions: [
     {

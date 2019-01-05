@@ -70,8 +70,10 @@
     "resources": "@:nav.resources"
   },
   "misc": {
+    "cancel": "Cancelar",
     "date": "Fecha",
     "no": "No",
+    "ok": "Aceptar",
     "time": "Hora",
     "yes": "Sí"
   },

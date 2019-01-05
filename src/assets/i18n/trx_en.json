@@ -74,7 +74,6 @@
     "close": "Close",
     "date": "Date",
     "error": "Error",
-    "login": "Log in",
     "next": "Next",
     "no": "No",
     "ok": "OK",
@@ -337,7 +336,7 @@
       "title": "@:volunteer.btns.photos"
     },
     "resources": {
-      "imgAlt": "You must be connected to the internet to load this infographic.",
+      "imgAlt": "You must be connected to the internet to load this image.",
       "infographicTitle": "TAT by the Numbers",
       "intro": "These resources are to help you share the scope of human trafficking as well as the impact the trucking industry can have when trained and equipped to respond.",
       "moreLink1": "Find more on the resources page of the",

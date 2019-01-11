@@ -11,7 +11,8 @@ export const environment = {
     projectId: "truckers-against-trafficking",
     storageBucket: "truckers-against-trafficking.appspot.com",
     messagingSenderId: "1062876332765"
-  }
+  },
+  proxyServerURL: 'https://macd3070.lasp.colorado.edu/~christof/tatproxy/api/'
 };
 
 /*

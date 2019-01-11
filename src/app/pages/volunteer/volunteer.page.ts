@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { VolunteerResourcesComponent, HoursLogComponent, FeedbackComponent, PhotosComponent, PostOutreachSelectionComponent, VolunteerSettingsComponent, TrainingVideoComponent } from '../../modals';
-import { ModalService, UserDataService } from '../../services';
+import { ModalService, UserDataService, MiscService } from '../../services';
 
 @Component({
   selector: 'app-volunteer',
@@ -21,7 +21,12 @@ export class VolunteerPage {
   constructor(
     public navCtrl: NavController,
     public modalService: ModalService,
-    public userDataService: UserDataService
-  ) {}
+    public userDataService: UserDataService,
+    private miscService: MiscService
+  ) {
+    this.miscService.onRouteHere(() => {
+      this.userDataService.fetchUserData();
+    });
+  }
 
 }

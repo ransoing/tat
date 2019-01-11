@@ -1,6 +1,6 @@
 import { Component, AfterViewInit, OnDestroy } from '@angular/core';
-import { LoadingController, AlertController, NavController } from '@ionic/angular';
-import { MiscService, TrxService } from '../../services';
+import { NavController } from '@ionic/angular';
+import { MiscService } from '../../services';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Subscription } from 'rxjs';
 
@@ -15,12 +15,9 @@ export class LoginComponent implements AfterViewInit, OnDestroy {
   private authSubscriber: Subscription;
   
   constructor(
-    private loadingController: LoadingController,
-    private alertController: AlertController,
     private navCtrl: NavController,
     private miscService: MiscService,
-    private trx: TrxService,
-    private angularFireAuth: AngularFireAuth
+    private angularFireAuth: AngularFireAuth,
   ) {}
 
   /*
@@ -44,6 +41,7 @@ export class LoginComponent implements AfterViewInit, OnDestroy {
     }
     this.authSubscriber = this.angularFireAuth.authState.subscribe( response => {
       if ( !!response ) {
+        // even though this flag is set elsewhere, make sure this flag is set to true before we try to navigate
         this.miscService.isLoggedIn = true;
         // go to the restricted page which the user initially tried to go to before logging in
         this.navCtrl.navigateRoot( localStorage.getItem(LoginComponent.LOGIN_REDIRECT_URL_KEY) )

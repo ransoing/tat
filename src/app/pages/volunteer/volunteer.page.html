@@ -6,60 +6,62 @@
   <h1>{{ 'volunteer.title' | translate }}</h1>
   <ion-icon name="md-menu" class="modal-close-btn" (click)="modalService.open(VolunteerSettingsComponent)"></ion-icon>
 
-  <p>
-    {{ 'volunteer.intro' | translate }}
-  </p>
+  <div *ngIf="userDataService.data">
+    <p>
+      {{ 'volunteer.intro' | translate }}
+    </p>
 
-  <image-button
-    image="volunteer.training-video.jpg"
-    (click)="modalService.open(TrainingVideoComponent)"
-    [required]="true"
-    [completed]="userDataService.data.hasWatchedTrainingVideo">
-      {{ 'volunteer.btns.trainingVideo' | translate }}
-  </image-button>
+    <image-button
+      image="volunteer.training-video.jpg"
+      (click)="modalService.open(TrainingVideoComponent)"
+      [required]="true"
+      [completed]="userDataService.data.hasWatchedTrainingVideo">
+        {{ 'volunteer.btns.trainingVideo' | translate }}
+    </image-button>
 
-  <image-button
-    image="volunteer.pre-outreach-survey.jpg"
-    (click)="navCtrl.navigateRoot('/pos-1')"
-    [required]="true"
-    [disabled]="!userDataService.data.hasWatchedTrainingVideo">
-      {{ 'volunteer.btns.preOutreachSurvey' | translate }}
-  </image-button>
-  
-  <image-button
-    image="volunteer.resources.jpg"
-    (click)="modalService.open(VolunteerResourcesComponent)"
-    [disabled]="!userDataService.data.hasWatchedTrainingVideo">
-      {{ 'volunteer.btns.resources' | translate }}
-  </image-button>
-  
-  <image-button
-    image="volunteer.post-outreach-report.jpg"
-    (click)="modalService.open(PostOutreachSelectionComponent)"
-    [required]="true"
-    [disabled]="!userDataService.data.hasWatchedTrainingVideo || userDataService.data.incompletePostReports.length === 0">
-      {{ 'volunteer.btns.postOutreachReport' | translate }}
-  </image-button>
-  
-  <image-button
-    image="volunteer.hours-log.jpg"
-    (click)="modalService.open(HoursLogComponent)"
-    [required]="true"
-    [disabled]="!userDataService.data.hasWatchedTrainingVideo">
-      {{ 'volunteer.btns.hoursLog' | translate }}
-  </image-button>
-  
-  <image-button
-    image="volunteer.photos.jpg"
-    (click)="modalService.open(PhotosComponent)"
-    [disabled]="!userDataService.data.hasWatchedTrainingVideo">
-      {{ 'volunteer.btns.photos' | translate }}
-  </image-button>
-  
-  <image-button
-    image="volunteer.testimonial.jpg"
-    (click)="modalService.open(FeedbackComponent)"
-    [disabled]="!userDataService.data.hasWatchedTrainingVideo">
-      {{ 'volunteer.btns.testimonial' | translate }}
-  </image-button>
+    <image-button
+      image="volunteer.pre-outreach-survey.jpg"
+      (click)="navCtrl.navigateRoot('/pos-1')"
+      [required]="true"
+      [disabled]="!userDataService.data.hasWatchedTrainingVideo">
+        {{ 'volunteer.btns.preOutreachSurvey' | translate }}
+    </image-button>
+    
+    <image-button
+      image="volunteer.resources.jpg"
+      (click)="modalService.open(VolunteerResourcesComponent)"
+      [disabled]="!userDataService.data.hasWatchedTrainingVideo">
+        {{ 'volunteer.btns.resources' | translate }}
+    </image-button>
+    
+    <image-button
+      image="volunteer.post-outreach-report.jpg"
+      (click)="modalService.open(PostOutreachSelectionComponent)"
+      [required]="true"
+      [disabled]="!userDataService.data.hasWatchedTrainingVideo || userDataService.data.incompletePostReports.length === 0">
+        {{ 'volunteer.btns.postOutreachReport' | translate }}
+    </image-button>
+    
+    <image-button
+      image="volunteer.hours-log.jpg"
+      (click)="modalService.open(HoursLogComponent)"
+      [required]="true"
+      [disabled]="!userDataService.data.hasWatchedTrainingVideo">
+        {{ 'volunteer.btns.hoursLog' | translate }}
+    </image-button>
+    
+    <image-button
+      image="volunteer.photos.jpg"
+      (click)="modalService.open(PhotosComponent)"
+      [disabled]="!userDataService.data.hasWatchedTrainingVideo">
+        {{ 'volunteer.btns.photos' | translate }}
+    </image-button>
+    
+    <image-button
+      image="volunteer.testimonial.jpg"
+      (click)="modalService.open(FeedbackComponent)"
+      [disabled]="!userDataService.data.hasWatchedTrainingVideo">
+        {{ 'volunteer.btns.testimonial' | translate }}
+    </image-button>
+  </div>
 </ion-content>

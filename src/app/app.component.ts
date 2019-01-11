@@ -1,8 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
-import { Platform, IonRouterOutlet } from '@ionic/angular';
+import { Platform, IonRouterOutlet, NavController, AlertController } from '@ionic/angular';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { TranslateService } from '@ngx-translate/core';
-import { SettingsService, ModalService, MiscService } from './services';
+import { SettingsService, ModalService, MiscService, UserDataService, TrxService } from './services';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { LoginComponent } from './modals';
 
@@ -21,7 +21,11 @@ export class AppComponent {
     private settings: SettingsService,
     private angularFireAuth: AngularFireAuth,
     private modalService: ModalService,
-    private miscService: MiscService
+    private miscService: MiscService,
+    private userDataService: UserDataService,
+    private navCtrl: NavController,
+    private alertCtrl: AlertController,
+    private trx: TrxService
   ) {
     this.statusBar.styleBlackOpaque();
     this.statusBar.show();
@@ -34,16 +38,33 @@ export class AppComponent {
       this.translate.use( this.settings.language );
 
       // @@set language of firebase login
+      // this observable will fire when the app starts up, so it's not just when the user has actively logged in or out
+      var firstAuthCallback = true;
       this.angularFireAuth.authState.subscribe( response => {
         this.miscService.isLoggedIn = !!response;
         if ( response ) {
-          console.log( "login data: ", response );
-          // @@ get the idToken before every request to the proxy?
-          response.getIdToken().then( token => console.log("Auth token:", token) );
-          // @@ do something when logged in
+          // logged in.
+          // save the firebase user object and fetch the user's data from the proxy
+          this.userDataService.firebaseUser = response;
+          this.userDataService.fetchUserData();
         } else {
-          // @@ do something when logged out
+          // logged out.
+          this.userDataService.firebaseUser = null;
+          this.userDataService.data = null;
+          // only redirect the user and notify that he has logged out if this isn't executed on application launch
+          if ( !firstAuthCallback ) {
+            // kick the user to the homepage and close the current modal
+            // (it would be better to first check if the user is on a restricted page)
+            this.navCtrl.navigateRoot( '/tabs/(home:home)' );
+            let activeModal = this.modalService.getActiveModal();
+            if ( activeModal ) {
+              activeModal.dismiss();
+            }
+            // tell the user that he has logged out
+            this.showLogoutNotice();
+          }
         }
+        firstAuthCallback = false;
       });
 
       // if the app was on the login modal when it was last closed, open that modal now
@@ -51,6 +72,14 @@ export class AppComponent {
         this.modalService.open( LoginComponent );
       }
     });
+  }
+
+  async showLogoutNotice() {
+    let alert = await this.alertCtrl.create({
+      message: await this.trx.t( 'misc.logoutMessage' ),
+      buttons: [await this.trx.t( 'misc.close' )]
+    });
+    alert.present();
   }
 
 }

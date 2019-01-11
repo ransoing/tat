@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { MiscService, SettingsService } from '../../services';
-import { NavController } from '@ionic/angular';
+import { SettingsService } from '../../services';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
@@ -11,16 +10,13 @@ export class VolunteerSettingsComponent {
   public modal: HTMLIonModalElement;
   
   constructor(
-    public miscService: MiscService,
     public settings: SettingsService,
-    public navCtrl: NavController,
     private angularFireAuth: AngularFireAuth
   ) { }
 
   onLogout() {
+    // redirection and modal-closing are handled in the auth subscriber in `app.component.ts`
     this.angularFireAuth.auth.signOut();
-    this.navCtrl.navigateRoot( '/tabs/(home:home)' );
-    this.modal.dismiss();
   }
 
 }

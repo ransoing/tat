@@ -72,8 +72,10 @@
   "misc": {
     "cancel": "Cancel",
     "close": "Close",
+    "dataLoadError": "There was a problem while attempting to load your volunteer account data. Make sure you have an internet connection and try again.",
     "date": "Date",
     "error": "Error",
+    "logoutMessage": "You have been logged out.",
     "next": "Next",
     "no": "No",
     "ok": "OK",

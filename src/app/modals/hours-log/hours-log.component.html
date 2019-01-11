@@ -5,25 +5,27 @@
   <h1>{{ 'volunteer.hoursLog.title' | translate }}</h1>
   <ion-icon name="md-close" class="modal-close-btn" (click)="modal.dismiss()"></ion-icon>
 
-  <p>{{ 'volunteer.hoursLog.intro' | translate }}</p>
+  <div *ngIf="userDataService.data">
+    <p>{{ 'volunteer.hoursLog.intro' | translate }}</p>
 
-  <p text-center padding-top>
-    <ion-button
-    class="large-btn"
-    fill="solid"
-    color="primary"
-    (click)="modalService.open(HoursLogFormComponent)">
-      {{ 'volunteer.hoursLog.addEntry' | translate }}
-    </ion-button>
-  </p>
+    <p text-center padding-top>
+      <ion-button
+      class="large-btn"
+      fill="solid"
+      color="primary"
+      (click)="modalService.open(HoursLogFormComponent)">
+        {{ 'volunteer.hoursLog.addEntry' | translate }}
+      </ion-button>
+    </p>
 
-  <article *ngFor="let logEntry of userDataService.data.hoursLogs">
-    <hr>
-    <header>
-      {{logEntry.date.toDateString()}}<br>
-      <small>{{logEntry.numHours}} {{ 'volunteer.hoursLog.hours' | translate }}</small>
-    </header>
-    <p>{{logEntry.taskDescription}}</p>
-  </article>
+    <article *ngFor="let logEntry of userDataService.data.hoursLogs">
+      <hr>
+      <header>
+        {{logEntry.date.toDateString()}}<br>
+        <small>{{logEntry.numHours}} {{ 'volunteer.hoursLog.hours' | translate }}</small>
+      </header>
+      <p>{{logEntry.taskDescription}}</p>
+    </article>
+  </div>
 
 </ion-content>

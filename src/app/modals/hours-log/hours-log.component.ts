@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { MiscService, ModalService, UserDataService } from '../../services';
 import { HoursLogFormComponent } from '../hours-log-form/hours-log-form.component';
 
@@ -6,7 +6,7 @@ import { HoursLogFormComponent } from '../hours-log-form/hours-log-form.componen
   templateUrl: './hours-log.component.html',
   styleUrls: ['./hours-log.component.scss']
 })
-export class HoursLogComponent {
+export class HoursLogComponent implements AfterViewInit {
 
   public modal: HTMLIonModalElement;
   public HoursLogFormComponent = HoursLogFormComponent;
@@ -16,5 +16,9 @@ export class HoursLogComponent {
     public modalService: ModalService,
     public userDataService: UserDataService
   ) {}
+
+  ngAfterViewInit() {
+    this.userDataService.fetchUserData();
+  }
 
 }

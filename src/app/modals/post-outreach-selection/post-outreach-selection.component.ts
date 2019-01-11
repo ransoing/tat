@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { UserDataService, IIncompletePostReport } from '../../services';
 import { NavController } from '@ionic/angular';
 
@@ -6,7 +6,7 @@ import { NavController } from '@ionic/angular';
   templateUrl: './post-outreach-selection.component.html',
   styleUrls: ['./post-outreach-selection.component.scss']
 })
-export class PostOutreachSelectionComponent {
+export class PostOutreachSelectionComponent implements AfterViewInit {
 
   public modal: HTMLIonModalElement;
   
@@ -19,6 +19,10 @@ export class PostOutreachSelectionComponent {
     // @@ pass some kind of data to the report form about which report this is
     this.modal.dismiss();
     this.navCtrl.navigateRoot( '/por-1' );
+  }
+
+  ngAfterViewInit() {
+    this.userDataService.fetchUserData();
   }
 
 }

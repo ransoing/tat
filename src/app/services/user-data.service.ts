@@ -4,7 +4,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from 'firebase';
 import { LoadingController, AlertController } from '@ionic/angular';
 import { TrxService } from './trx.service';
-import { AngularFireAuth } from '@angular/fire/auth';
 
 /**
  * This service doesn't communicate directly with Salesforce (SF), but communicates with a
@@ -12,10 +11,10 @@ import { AngularFireAuth } from '@angular/fire/auth';
  * data requires a Salesforce username/password combo, and we don't want to make a SF user
  * account for every TAT volunteer, nor do we want every volunteer to use a shared account,
  * because then the client HTTP requests could be analyzed and modified to scrape data on all
- * TAT volunteers from the SF database.
+ * TAT volunteers and contacts from the SF database.
  * 
  * Instead, only the proxy has the SF username/password, and has access to all SF data.
- * The user authenticates with Google/Apple inside the app, and the user's email and auth token
+ * The user authenticates with Firebase inside the app, and the user's email and auth token
  * are sent to the proxy. If the credentials are correct, then the proxy filters the data from
  * SF so that user can retrieve only the data about himself.
  * 
@@ -52,25 +51,6 @@ export interface IUserData {
 
 
 // ******************* the service ******************* //
-// @@TODO: change this away from Mock, and set it up to communicate with the salesforce proxy service
-@Injectable({
-  providedIn: 'root',
-})
-export class MockUserDataService {
-
-  data: IUserData;
-
-  constructor() { }
-
-  // get latest user data from the server.
-  async fetchUserData() {
-    
-  }
-}
-
-
-// ******************* mock service ******************* //
-
 @Injectable({
   providedIn: 'root',
 })
@@ -118,31 +98,100 @@ export class UserDataService {
     });
     this.loadingPopup.present();
     
+    let token;
     try {
       // get the idToken before a request to the proxy
-      let token = await this.firebaseUser.getIdToken();
+      token = await this.firebaseUser.getIdToken();
     } catch ( e ) {
       this.onFetchError( e );
     }
 
     // make the request to the proxy
-    this.http.post(
+    let subscriber = this.http.post(
       environment.proxyServerURL + '/getUserData',
-      { firebaseIdToken: 'abcd1234' },
+      { firebaseIdToken: token },
       { headers: new HttpHeaders({'Content-Type': 'application/json'}) }
     ).subscribe( response => {
-      // @@ will this happen multiple times if I fetch multiple times?
       this.onFetchSuccess( response );
+      subscriber.unsubscribe();
     }, e => {
       this.onFetchError( e );
+      subscriber.unsubscribe();
     });
 
   }
 
-  onFetchSuccess( response ) {
-    console.log( '@@@@@', response );
-
+  private onFetchSuccess( response ) {
+    // convert ISO time strings to Date objects
+    this.convertJSONDates( response );
     // save the data.
+    this.data = response;
+    // done loading the data.
+    this.onFetchFinally();
+  }
+
+  private async onFetchError( e ) {
+    console.error( e );
+    const alert = await this.alertController.create({
+      header: await this.trx.t( 'misc.error' ),
+      message: await this.trx.t( 'misc.dataLoadError' ),
+      buttons: [await this.trx.t( 'misc.close' )]
+    });
+    alert.present();
+    this.onFetchFinally();
+  }
+
+  private onFetchFinally() {
+    this.loadingPopup.dismiss();
+    this.fetchingUserData = false;
+  }
+
+  private convertJSONDates( object ) {
+    Object.keys( object )
+    .filter( key => {
+      return object.hasOwnProperty( key );
+    })
+    .forEach( key => {
+      let val = object[key];
+      if ( typeof val === 'object' && val !== null ) {
+        this.convertJSONDates( val );
+      // if the string looks like ISO-8601 date, convert it to a Date object
+      } else if ( typeof val === 'string' && val.match(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/) ) {
+        object[key] = new Date( val );
+      }
+    })
+  }
+
+}
+
+
+// ******************* mock service ******************* //
+
+@Injectable({
+  providedIn: 'root',
+})
+export class MockUserDataService {
+
+  data: IUserData;
+  fetchingUserData: Boolean;
+
+  constructor() {}
+
+  async fetchUserData( force?: boolean ) {
+    // quit now if we've already gotten the data and the caller of this function isn't forcing a refresh,
+    // and we're not currently fetching the data already
+    if ( (this.data && !force) || this.fetchingUserData ) {
+      return;
+    }
+
+    this.fetchingUserData = true;
+    // invalidate the current data until we get new data
+    this.data = null;
+    this.onFetchSuccess();
+  }
+
+  onFetchSuccess() {
+    // return some fake data.
     this.data = {
       volunteerType: VolunteerType.truckStopVolunteer,
       hasWatchedTrainingVideo: false,
@@ -159,25 +208,10 @@ export class UserDataService {
       ],
       incompletePostReports: [
         { title: 'Some truck stop' },
-        { title: 'Some other truck stop', }
+        { title: 'Some other truck stop' }
       ]
     };
 
-    // done loading the data.
-    this.loadingPopup.dismiss();
-    this.fetchingUserData = false;
-  }
-
-  async onFetchError( e ) {
-    console.error( e );
-    const alert = await this.alertController.create({
-      header: await this.trx.t( 'misc.error' ),
-      message: await this.trx.t( 'misc.dataLoadError' ),
-      buttons: [await this.trx.t( 'misc.close' )]
-    });
-    alert.present();
-
-    this.loadingPopup.dismiss();
     this.fetchingUserData = false;
   }
 

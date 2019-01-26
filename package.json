@@ -52,8 +52,8 @@
     "cordova-universal-links-plugin-fix": "^1.2.1",
     "core-js": "2.5.3",
     "firebase": "^5.7.2",
-    "firebaseui": "^3.5.1",
-    "firebaseui-angular": "^3.3.3",
+    "firebaseui-angular-en-es": "git+https://github.com/appdev-tat/FirebaseUI-Angular-en-es-library.git",
+    "firebaseui-en-es": "git+https://github.com/appdev-tat/firebaseui-web-en-es.git",
     "rxjs": "6.2.2",
     "zone.js": "0.8.26"
   },

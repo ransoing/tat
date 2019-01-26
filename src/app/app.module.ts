@@ -25,7 +25,9 @@ import { Network } from '@ionic-native/network/ngx';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 
 // firebase and firebase auth
-import { FirebaseUIModule, firebase, firebaseui } from 'firebaseui-angular';
+import * as firebaseuiNamespace from 'firebaseui-en-es/dist'; // just for the namespace
+import { FirebaseUIModule, firebaseui, firebase } from 'firebaseui-angular-en-es';
+//import { FirebaseUIModule as FirebaseUIModuleEs, firebaseui as firebaseuiEs } from 'firebaseui-angular-es';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 /*
@@ -36,7 +38,7 @@ AngularFirestoreModule
 AngularFireStorageModule
 AngularFireMessagingModule
 */
-const firebaseUiAuthConfig: firebaseui.auth.Config = {
+const firebaseuiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'redirect',
   signInOptions: [
     {
@@ -108,7 +110,7 @@ import {
     }),
     AngularFireModule.initializeApp( environment.firebaseConfig ),
     AngularFireAuthModule,
-    FirebaseUIModule.forRoot( firebaseUiAuthConfig )
+    FirebaseUIModule.forRoot( firebaseuiAuthConfig ),
   ],
   providers: [
     StatusBar, SplashScreen, Dialogs, Network, AndroidPermissions,

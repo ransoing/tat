@@ -12,8 +12,8 @@ export const environment = {
     storageBucket: "truckers-against-trafficking.appspot.com",
     messagingSenderId: "1062876332765"
   },
-  //proxyServerURL: 'http://macd3070.lasp.colorado.edu/~christof/tatproxy/api/'
-  proxyServerURL: 'http://localhost/tatproxy/api/'
+  proxyServerURL: 'https://macd3070.lasp.colorado.edu/~christof/tatproxy/api/'
+  //proxyServerURL: 'http://localhost/tatproxy/api/'
 };
 
 /*

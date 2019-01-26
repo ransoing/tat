@@ -10,7 +10,7 @@
   <firebase-ui
     (signInSuccessWithAuthResult)="authSuccessCallback($event)"
     (signInFailure)="authErrorCallback($event)"
-    language="en">
+    [language]="settings.language">
   </firebase-ui>
 
 </ion-content>

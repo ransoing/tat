@@ -1,6 +1,6 @@
 import { Component, AfterViewInit, OnDestroy } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { MiscService } from '../../services';
+import { MiscService, SettingsService } from '../../services';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Subscription } from 'rxjs';
 
@@ -18,6 +18,7 @@ export class LoginComponent implements AfterViewInit, OnDestroy {
     private navCtrl: NavController,
     private miscService: MiscService,
     private angularFireAuth: AngularFireAuth,
+    public settings: SettingsService
   ) {}
 
   /*

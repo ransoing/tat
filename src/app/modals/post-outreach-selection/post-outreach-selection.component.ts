@@ -1,5 +1,5 @@
 import { Component, AfterViewInit } from '@angular/core';
-import { UserDataService, IIncompletePostReport } from '../../services';
+import { UserDataService, IUnfinishedOutreachTarget } from '../../services';
 import { NavController } from '@ionic/angular';
 
 @Component({
@@ -15,8 +15,8 @@ export class PostOutreachSelectionComponent implements AfterViewInit {
     public navCtrl: NavController
   ) {}
 
-  onReportClick( report: IIncompletePostReport ) {
-    // @@ pass some kind of data to the report form about which report this is
+  onTargetClick( outreachTarget: IUnfinishedOutreachTarget ) {
+    // @@ pass some kind of data to the target about which report this is
     this.modal.dismiss();
     this.navCtrl.navigateRoot( '/por-1' );
   }

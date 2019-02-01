@@ -29,24 +29,47 @@ export enum VolunteerType {
   ambassadorVolunteer = 'ambassadorVolunteer'
 }
 
+export enum OutreachLocationType {
+  CDLSchool = 'cdlSchool',
+  TruckingCompany = 'truckingCompany',
+  TruckStop = 'truckStop'
+}
+
+// bitmask flags for passing into fetchUserData()
+export enum UserDataRequestFlags {
+  basicUserData = 1,
+  hoursLogs = 2,
+  unfinishedOutreachTargets = 4
+}
+
 export interface IHoursLog {
   taskDescription: string,
   date: Date,
   numHours: number
 }
 
+export interface IPostOutreachReport {
+  followUpDate: Date | null
+}
+
 // If the user filled out a pre-outreach or pre-event survey, there will be an "incomplete post-report"
 // until they submit the post-report
-export interface IIncompletePostReport {
-  title: string, // name of the event or location
-  date?: Date // if it's an event, this is the date of the event. This is used to show a reminder notification to fill out the post-report.
+export interface IUnfinishedOutreachTarget {
+  id: string, // ID of the object in salesforce
+  name: string, // name of the location
+  type: OutreachLocationType,
+  address: string, // street address
+  city: string,
+  state: string,
+  zip: string,
+  postReports: IPostOutreachReport[]
 }
 
 export interface IUserData {
-  volunteerType: VolunteerType,
-  hasWatchedTrainingVideo: boolean,
-  hoursLogs: IHoursLog[],
-  incompletePostReports: IIncompletePostReport[]
+  volunteerType?: VolunteerType,
+  hasWatchedTrainingVideo?: boolean,
+  hoursLogs?: IHoursLog[],
+  unfinishedOutreachTargets?: IUnfinishedOutreachTarget[]
 }
 
 
@@ -79,9 +102,14 @@ export class UserDataService {
 
   /**
    * Fetches the volunteer user data, only if it hasn't yet been fetched, or if `force` is set to `true`.
-   * @param [force] 
+   * @param [force]
+   * @param [dataRequestFlags] Values of UserDataRequestFlags that are OR'd together. 
    */
-  async fetchUserData( force?: boolean ) {
+  async fetchUserData(
+      force?: boolean,
+      dataRequestFlags: number = UserDataRequestFlags.basicUserData | UserDataRequestFlags.hoursLogs | UserDataRequestFlags.unfinishedOutreachTargets
+    ) {
+    // @@TODO: keep a cache of this, stored in permanent local storage. This method will check if the cache is expired
     // quit now if we've already gotten the data and the caller of this function isn't forcing a refresh,
     // and we're not currently fetching the data already
     if ( (this.data && !force) || this.fetchingUserData ) {
@@ -104,30 +132,32 @@ export class UserDataService {
       token = await this.firebaseUser.getIdToken();
     } catch ( e ) {
       this.onFetchError( e );
+      this.onFetchFinally();
     }
 
-    // make the request to the proxy
-    let subscriber = this.http.post(
-      environment.proxyServerURL + '/getUserData',
-      { firebaseIdToken: token },
-      { headers: new HttpHeaders({'Content-Type': 'application/json'}) }
-    ).subscribe( response => {
-      this.onFetchSuccess( response );
-      subscriber.unsubscribe();
-    }, e => {
-      this.onFetchError( e );
-      subscriber.unsubscribe();
-    });
-
+    let promises = [];
+    // parse bitmask flags to determine which URLs to hit
+    if ( dataRequestFlags & UserDataRequestFlags.basicUserData )              promises.push( this.apiRequest( '/getBasicUserData', token ) );
+    if ( dataRequestFlags & UserDataRequestFlags.hoursLogs )                  promises.push( this.apiRequest( '/getHoursLogs', token ) );
+    if ( dataRequestFlags & UserDataRequestFlags.unfinishedOutreachTargets )  promises.push( this.apiRequest( '/getUnfinishedOutreachTargets', token ) );
+    Promise.all( promises )
+    .then( responses => this.onFetchSuccess(responses) )
+    .catch( e => this.onFetchError(e) )
+    .finally( () => this.onFetchFinally() );
   }
 
-  private onFetchSuccess( response ) {
+  private onFetchSuccess( responses ) {
     // convert ISO time strings to Date objects
-    this.convertJSONDates( response );
-    // save the data.
-    this.data = response;
-    // done loading the data.
-    this.onFetchFinally();
+    this.convertJSONDates( responses );
+    // save the data. For each key in each response, overwrite the existing key in the saved data.
+    if ( this.data === null ) {
+      this.data = {};
+    }
+    responses.forEach( response => {
+      Object.keys( response ).filter( key => response.hasOwnProperty(key) ).forEach( key => {
+        this.data[key] = response[key];
+      });
+    });
   }
 
   private async onFetchError( e ) {
@@ -138,12 +168,21 @@ export class UserDataService {
       buttons: [await this.trx.t( 'misc.close' )]
     });
     alert.present();
-    this.onFetchFinally();
   }
 
   private onFetchFinally() {
     this.loadingPopup.dismiss();
     this.fetchingUserData = false;
+  }
+
+  // takes a part of the API url, like '/getBasicUserData`.
+  // makes a POST request to the API and returns a promise.
+  private apiRequest( urlSegment: string, firebaseToken: string ) {
+    return this.http.post(
+      environment.proxyServerURL + urlSegment,
+      { firebaseIdToken: firebaseToken },
+      { headers: new HttpHeaders({'Content-Type': 'application/json'}) }
+    ).toPromise();
   }
 
   private convertJSONDates( object ) {
@@ -155,9 +194,14 @@ export class UserDataService {
       let val = object[key];
       if ( typeof val === 'object' && val !== null ) {
         this.convertJSONDates( val );
-      // if the string looks like ISO-8601 date, convert it to a Date object
-      } else if ( typeof val === 'string' && val.match(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/) ) {
-        object[key] = new Date( val );
+      // if the string looks like ISO-8601 date or a YYYY-MM-DD date, convert it to a Date object
+      } else if ( typeof val === 'string' ) {
+        if ( val.match(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/) ) {
+          object[key] = new Date( val );
+        } else if ( val.match(/\d{4}-\d{2}-\d{2}/) ) {
+          // adding a time prevents timezone-based parsing errors
+          object[key] = new Date( val + 'T00:00:00' );
+        }
       }
     })
   }
@@ -167,52 +211,52 @@ export class UserDataService {
 
 // ******************* mock service ******************* //
 
-@Injectable({
-  providedIn: 'root',
-})
-export class MockUserDataService {
+// @Injectable({
+//   providedIn: 'root',
+// })
+// export class MockUserDataService {
 
-  data: IUserData;
-  fetchingUserData: Boolean;
+//   data: IUserData;
+//   fetchingUserData: Boolean;
 
-  constructor() {}
+//   constructor() {}
 
-  async fetchUserData( force?: boolean ) {
-    // quit now if we've already gotten the data and the caller of this function isn't forcing a refresh,
-    // and we're not currently fetching the data already
-    if ( (this.data && !force) || this.fetchingUserData ) {
-      return;
-    }
+//   async fetchUserData( force?: boolean ) {
+//     // quit now if we've already gotten the data and the caller of this function isn't forcing a refresh,
+//     // and we're not currently fetching the data already
+//     if ( (this.data && !force) || this.fetchingUserData ) {
+//       return;
+//     }
 
-    this.fetchingUserData = true;
-    // invalidate the current data until we get new data
-    this.data = null;
-    this.onFetchSuccess();
-  }
+//     this.fetchingUserData = true;
+//     // invalidate the current data until we get new data
+//     this.data = null;
+//     this.onFetchSuccess();
+//   }
 
-  onFetchSuccess() {
-    // return some fake data.
-    this.data = {
-      volunteerType: VolunteerType.truckStopVolunteer,
-      hasWatchedTrainingVideo: false,
-      hoursLogs: [
-        {
-          taskDescription: 'Handed out TAT flyers to every truck stop in Nebraska',
-          date: new Date('11/29/2018'),
-          numHours: 14
-        }, {
-          taskDescription: 'Convinced the manager at Love\'s to train 1000 employees.',
-          date: new Date('11/15/2018'),
-          numHours: 3
-        }
-      ],
-      incompletePostReports: [
-        { title: 'Some truck stop' },
-        { title: 'Some other truck stop' }
-      ]
-    };
+//   onFetchSuccess() {
+//     // return some fake data.
+//     this.data = {
+//       volunteerType: VolunteerType.truckStopVolunteer,
+//       hasWatchedTrainingVideo: false,
+//       hoursLogs: [
+//         {
+//           taskDescription: 'Handed out TAT flyers to every truck stop in Nebraska',
+//           date: new Date('11/29/2018'),
+//           numHours: 14
+//         }, {
+//           taskDescription: 'Convinced the manager at Love\'s to train 1000 employees.',
+//           date: new Date('11/15/2018'),
+//           numHours: 3
+//         }
+//       ],
+//       incompletePostReports: [
+//         { title: 'Some truck stop' },
+//         { title: 'Some other truck stop' }
+//       ]
+//     };
 
-    this.fetchingUserData = false;
-  }
+//     this.fetchingUserData = false;
+//   }
 
-}
+// }

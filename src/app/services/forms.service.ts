@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 
-export enum OutreachLocationType {
+// @@TODO: I should be able to delete this entire file, because all the forms are implemented via GetFeedback.
+
+export enum OldOutreachLocationType {
   CDLSchool = 'cdlSchool',
   TruckingCompany = 'truckingCompany',
   TruckStop = 'truckStop'
@@ -8,7 +10,7 @@ export enum OutreachLocationType {
 
 export interface IPreOutreachForm {
   locations: {
-    locationType: OutreachLocationType,
+    locationType: OldOutreachLocationType,
     locationName: string,
     address1: string,
     address2: string,

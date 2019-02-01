@@ -38,7 +38,7 @@
       image="volunteer.post-outreach-report.jpg"
       (click)="modalService.open(PostOutreachSelectionComponent)"
       [required]="true"
-      [disabled]="!userDataService.data.hasWatchedTrainingVideo || userDataService.data.incompletePostReports.length === 0">
+      [disabled]="!userDataService.data.hasWatchedTrainingVideo || userDataService.data.unfinishedOutreachTargets.length === 0">
         {{ 'volunteer.btns.postOutreachReport' | translate }}
     </image-button>
     

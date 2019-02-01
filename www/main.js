@@ -3964,7 +3964,7 @@ var PORPart1Page = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar></ion-toolbar>\n</ion-header>\n<ion-content class=\"like-modal\" fullscreen padding>\n  <h1>{{ 'postOutreachReport.title' | translate }}</h1>\n  <ion-icon name=\"md-chevronleft\" class=\"modal-close-btn\" (click)=\"navCtrl.goBack()\"></ion-icon>\n\n  <p>{{ 'postOutreachReport.2.intro' | translate }}</p>\n\n  <div *ngIf=\"locationType === OutreachLocationType.TruckStop\">\n    <ion-item>\n      <ion-checkbox [(ngModel)]=\"formsService.postOutreachForm.accomplishments.truckStop.willDistribute\" color=\"primary\"></ion-checkbox>\n      <ion-label text-wrap>{{ 'postOutreachReport.2.truckStop.willDistribute' | translate }}</ion-label>\n    </ion-item>\n    <ion-item>\n      <ion-checkbox [(ngModel)]=\"formsService.postOutreachForm.accomplishments.truckStop.willTrainWithMaterials\" color=\"primary\"></ion-checkbox>\n      <ion-label text-wrap>{{ 'postOutreachReport.2.truckStop.willTrainWithMaterials' | translate }}</ion-label>\n    </ion-item>\n    <ion-item>\n      <ion-checkbox [(ngModel)]=\"formsService.postOutreachForm.accomplishments.truckStop.wantsInPersonTraining\" color=\"primary\"></ion-checkbox>\n      <ion-label text-wrap>{{ 'postOutreachReport.2.truckStop.wantsInPersonTraining' | translate }}</ion-label>\n    </ion-item>\n    <ion-item>\n      <ion-checkbox [(ngModel)]=\"formsService.postOutreachForm.accomplishments.truckStop.wantsOutreach\" color=\"primary\"></ion-checkbox>\n      <ion-label text-wrap>{{ 'postOutreachReport.2.truckStop.wantsOutreach' | translate }}</ion-label>\n    </ion-item>\n  </div>\n\n  <div *ngIf=\"locationType === OutreachLocationType.CDLSchool\">\n    <ion-item>\n      <ion-checkbox [(ngModel)]=\"formsService.postOutreachForm.accomplishments.cdl.willTrain\" color=\"primary\"></ion-checkbox>\n      <ion-label text-wrap>{{ 'postOutreachReport.2.cdl.willTrain' | translate }}</ion-label>\n    </ion-item>\n    <ion-item>\n      <ion-checkbox [(ngModel)]=\"formsService.postOutreachForm.accomplishments.cdl.willPassOnInfo\" color=\"primary\"></ion-checkbox>\n      <ion-label text-wrap>{{ 'postOutreachReport.2.cdl.willPassOnInfo' | translate }}</ion-label>\n    </ion-item>\n  </div>\n\n  <div *ngIf=\"locationType === OutreachLocationType.TruckingCompany\">\n    <ion-item>\n      <ion-checkbox [(ngModel)]=\"formsService.postOutreachForm.accomplishments.truckingCompany.willTrain\" color=\"primary\"></ion-checkbox>\n      <ion-label text-wrap>{{ 'postOutreachReport.2.truckingCompany.willTrain' | translate }}</ion-label>\n    </ion-item>\n  </div>\n\n  <p text-center padding-top>\n    <ion-button\n      class=\"large-btn\"\n      fill=\"solid\"\n      color=\"primary\"\n      (click)=\"navCtrl.navigateRoot('/por-3')\">\n        {{ 'misc.next' | translate }}\n    </ion-button>\n  </p>\n</ion-content>"
+module.exports = "<ion-header>\n  <ion-toolbar></ion-toolbar>\n</ion-header>\n<ion-content class=\"like-modal\" fullscreen padding>\n  <h1>{{ 'postOutreachReport.title' | translate }}</h1>\n  <ion-icon name=\"md-chevronleft\" class=\"modal-close-btn\" (click)=\"navCtrl.goBack()\"></ion-icon>\n\n  <p>{{ 'postOutreachReport.2.intro' | translate }}</p>\n\n  <div *ngIf=\"locationType === OldOutreachLocationType.TruckStop\">\n    <ion-item>\n      <ion-checkbox [(ngModel)]=\"formsService.postOutreachForm.accomplishments.truckStop.willDistribute\" color=\"primary\"></ion-checkbox>\n      <ion-label text-wrap>{{ 'postOutreachReport.2.truckStop.willDistribute' | translate }}</ion-label>\n    </ion-item>\n    <ion-item>\n      <ion-checkbox [(ngModel)]=\"formsService.postOutreachForm.accomplishments.truckStop.willTrainWithMaterials\" color=\"primary\"></ion-checkbox>\n      <ion-label text-wrap>{{ 'postOutreachReport.2.truckStop.willTrainWithMaterials' | translate }}</ion-label>\n    </ion-item>\n    <ion-item>\n      <ion-checkbox [(ngModel)]=\"formsService.postOutreachForm.accomplishments.truckStop.wantsInPersonTraining\" color=\"primary\"></ion-checkbox>\n      <ion-label text-wrap>{{ 'postOutreachReport.2.truckStop.wantsInPersonTraining' | translate }}</ion-label>\n    </ion-item>\n    <ion-item>\n      <ion-checkbox [(ngModel)]=\"formsService.postOutreachForm.accomplishments.truckStop.wantsOutreach\" color=\"primary\"></ion-checkbox>\n      <ion-label text-wrap>{{ 'postOutreachReport.2.truckStop.wantsOutreach' | translate }}</ion-label>\n    </ion-item>\n  </div>\n\n  <div *ngIf=\"locationType === OldOutreachLocationType.CDLSchool\">\n    <ion-item>\n      <ion-checkbox [(ngModel)]=\"formsService.postOutreachForm.accomplishments.cdl.willTrain\" color=\"primary\"></ion-checkbox>\n      <ion-label text-wrap>{{ 'postOutreachReport.2.cdl.willTrain' | translate }}</ion-label>\n    </ion-item>\n    <ion-item>\n      <ion-checkbox [(ngModel)]=\"formsService.postOutreachForm.accomplishments.cdl.willPassOnInfo\" color=\"primary\"></ion-checkbox>\n      <ion-label text-wrap>{{ 'postOutreachReport.2.cdl.willPassOnInfo' | translate }}</ion-label>\n    </ion-item>\n  </div>\n\n  <div *ngIf=\"locationType === OldOutreachLocationType.TruckingCompany\">\n    <ion-item>\n      <ion-checkbox [(ngModel)]=\"formsService.postOutreachForm.accomplishments.truckingCompany.willTrain\" color=\"primary\"></ion-checkbox>\n      <ion-label text-wrap>{{ 'postOutreachReport.2.truckingCompany.willTrain' | translate }}</ion-label>\n    </ion-item>\n  </div>\n\n  <p text-center padding-top>\n    <ion-button\n      class=\"large-btn\"\n      fill=\"solid\"\n      color=\"primary\"\n      (click)=\"navCtrl.navigateRoot('/por-3')\">\n        {{ 'misc.next' | translate }}\n    </ion-button>\n  </p>\n</ion-content>"
 
 /***/ }),
 
@@ -3997,8 +3997,8 @@ var PORPart2Page = /** @class */ (function () {
     function PORPart2Page(navCtrl, formsService) {
         this.navCtrl = navCtrl;
         this.formsService = formsService;
-        this.OutreachLocationType = _services__WEBPACK_IMPORTED_MODULE_2__["OutreachLocationType"];
-        this.locationType = _services__WEBPACK_IMPORTED_MODULE_2__["OutreachLocationType"].TruckStop;
+        this.OldOutreachLocationType = _services__WEBPACK_IMPORTED_MODULE_2__["OldOutreachLocationType"];
+        this.locationType = _services__WEBPACK_IMPORTED_MODULE_2__["OldOutreachLocationType"].TruckStop;
         if (formsService.postOutreachForm === undefined) {
             formsService.resetPostOutreachForm();
         }
@@ -4193,7 +4193,7 @@ var PORPart3Page = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar></ion-toolbar>\n</ion-header>\n<ion-content class=\"like-modal\" fullscreen padding>\n  <h1>{{ 'preOutreachSurvey.title' | translate }}</h1>\n  <ion-icon name=\"md-close\" class=\"modal-close-btn\" (click)=\"navCtrl.navigateRoot('/tabs/(volunteer:volunteer)')\"></ion-icon>\n\n  <p>{{ 'preOutreachSurvey.1.intro' | translate }}</p>\n\n  <div padding-top padding-bottom margin-bottom *ngFor=\"let location of formsService.preOutreachForm.locations; let i = index\">\n    <h5>{{ 'preOutreachSurvey.1.location' | translate }} {{i+1}}</h5>\n    <ion-radio-group [(ngModel)]=\"location.locationType\">\n      <ion-item>\n        <ion-label>{{ 'preOutreachSurvey.1.locationTypes.school' | translate }}</ion-label>\n        <ion-radio slot=\"start\" [value]=\"OutreachLocationType.CDLSchool\"></ion-radio>\n      </ion-item>\n\n      <ion-item>\n        <ion-label>{{ 'preOutreachSurvey.1.locationTypes.company' | translate }}</ion-label>\n        <ion-radio slot=\"start\" [value]=\"OutreachLocationType.TruckingCompany\"></ion-radio>\n      </ion-item>\n\n      <ion-item>\n        <ion-label>{{ 'preOutreachSurvey.1.locationTypes.truckStop' | translate }}</ion-label>\n        <ion-radio slot=\"start\" [value]=\"OutreachLocationType.TruckStop\"></ion-radio>\n      </ion-item>\n    </ion-radio-group>\n\n    <ion-item>\n      <ion-label position=\"floating\">{{ 'preOutreachSurvey.1.fields.name' | translate }}</ion-label>\n      <ion-input [(ngModel)]=\"location.locationName\"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label position=\"floating\">{{ 'preOutreachSurvey.1.fields.address1' | translate }}</ion-label>\n      <ion-input [(ngModel)]=\"location.address1\"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label position=\"floating\">{{ 'preOutreachSurvey.1.fields.address2' | translate }}</ion-label>\n      <ion-input [(ngModel)]=\"location.address2\"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label position=\"floating\">{{ 'preOutreachSurvey.1.fields.city' | translate }}</ion-label>\n      <ion-input [(ngModel)]=\"location.city\"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label position=\"floating\">{{ 'preOutreachSurvey.1.fields.state' | translate }}</ion-label>\n      <ion-input [(ngModel)]=\"location.state\"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label position=\"floating\">{{ 'preOutreachSurvey.1.fields.zip' | translate }}</ion-label>\n      <ion-input [(ngModel)]=\"location.zip\"></ion-input>\n    </ion-item>\n  </div>\n\n  <p text-center padding-bottom *ngIf=\"formsService.preOutreachForm.locations.length > 1\">\n    <a (click)=\"formsService.preOutreachForm.locations.pop()\">{{ 'preOutreachSurvey.1.removeLocation' | translate }}</a>\n  </p>\n  \n  <p text-center padding-bottom>\n    <a (click)=\"formsService.addPreOutreachFormLocation()\">{{ 'preOutreachSurvey.1.addLocation' | translate }}</a>\n  </p>\n\n  <p text-center>\n    <ion-button class=\"large-btn\" fill=\"solid\" color=\"primary\" (click)=\"navCtrl.navigateRoot('/pos-2')\">\n      {{ 'misc.next' | translate }}\n    </ion-button>\n  </p>\n\n</ion-content>"
+module.exports = "<ion-header>\n  <ion-toolbar></ion-toolbar>\n</ion-header>\n<ion-content class=\"like-modal\" fullscreen padding>\n  <h1>{{ 'preOutreachSurvey.title' | translate }}</h1>\n  <ion-icon name=\"md-close\" class=\"modal-close-btn\" (click)=\"navCtrl.navigateRoot('/tabs/(volunteer:volunteer)')\"></ion-icon>\n\n  <p>{{ 'preOutreachSurvey.1.intro' | translate }}</p>\n\n  <div padding-top padding-bottom margin-bottom *ngFor=\"let location of formsService.preOutreachForm.locations; let i = index\">\n    <h5>{{ 'preOutreachSurvey.1.location' | translate }} {{i+1}}</h5>\n    <ion-radio-group [(ngModel)]=\"location.locationType\">\n      <ion-item>\n        <ion-label>{{ 'preOutreachSurvey.1.locationTypes.school' | translate }}</ion-label>\n        <ion-radio slot=\"start\" [value]=\"OldOutreachLocationType.CDLSchool\"></ion-radio>\n      </ion-item>\n\n      <ion-item>\n        <ion-label>{{ 'preOutreachSurvey.1.locationTypes.company' | translate }}</ion-label>\n        <ion-radio slot=\"start\" [value]=\"OldOutreachLocationType.TruckingCompany\"></ion-radio>\n      </ion-item>\n\n      <ion-item>\n        <ion-label>{{ 'preOutreachSurvey.1.locationTypes.truckStop' | translate }}</ion-label>\n        <ion-radio slot=\"start\" [value]=\"OldOutreachLocationType.TruckStop\"></ion-radio>\n      </ion-item>\n    </ion-radio-group>\n\n    <ion-item>\n      <ion-label position=\"floating\">{{ 'preOutreachSurvey.1.fields.name' | translate }}</ion-label>\n      <ion-input [(ngModel)]=\"location.locationName\"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label position=\"floating\">{{ 'preOutreachSurvey.1.fields.address1' | translate }}</ion-label>\n      <ion-input [(ngModel)]=\"location.address1\"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label position=\"floating\">{{ 'preOutreachSurvey.1.fields.address2' | translate }}</ion-label>\n      <ion-input [(ngModel)]=\"location.address2\"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label position=\"floating\">{{ 'preOutreachSurvey.1.fields.city' | translate }}</ion-label>\n      <ion-input [(ngModel)]=\"location.city\"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label position=\"floating\">{{ 'preOutreachSurvey.1.fields.state' | translate }}</ion-label>\n      <ion-input [(ngModel)]=\"location.state\"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label position=\"floating\">{{ 'preOutreachSurvey.1.fields.zip' | translate }}</ion-label>\n      <ion-input [(ngModel)]=\"location.zip\"></ion-input>\n    </ion-item>\n  </div>\n\n  <p text-center padding-bottom *ngIf=\"formsService.preOutreachForm.locations.length > 1\">\n    <a (click)=\"formsService.preOutreachForm.locations.pop()\">{{ 'preOutreachSurvey.1.removeLocation' | translate }}</a>\n  </p>\n  \n  <p text-center padding-bottom>\n    <a (click)=\"formsService.addPreOutreachFormLocation()\">{{ 'preOutreachSurvey.1.addLocation' | translate }}</a>\n  </p>\n\n  <p text-center>\n    <ion-button class=\"large-btn\" fill=\"solid\" color=\"primary\" (click)=\"navCtrl.navigateRoot('/pos-2')\">\n      {{ 'misc.next' | translate }}\n    </ion-button>\n  </p>\n\n</ion-content>"
 
 /***/ }),
 
@@ -4226,7 +4226,7 @@ var POSPart1Page = /** @class */ (function () {
     function POSPart1Page(navCtrl, formsService) {
         this.navCtrl = navCtrl;
         this.formsService = formsService;
-        this.OutreachLocationType = _services__WEBPACK_IMPORTED_MODULE_2__["OutreachLocationType"];
+        this.OldOutreachLocationType = _services__WEBPACK_IMPORTED_MODULE_2__["OldOutreachLocationType"];
         if (formsService.preOutreachForm === undefined) {
             formsService.resetPreOutreachForm();
         }
@@ -5067,12 +5067,12 @@ var VolunteerPage = /** @class */ (function () {
 /*!*******************************************!*\
   !*** ./src/app/services/forms.service.ts ***!
   \*******************************************/
-/*! exports provided: OutreachLocationType, FormsService */
+/*! exports provided: OldOutreachLocationType, FormsService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OutreachLocationType", function() { return OutreachLocationType; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OldOutreachLocationType", function() { return OldOutreachLocationType; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FormsService", function() { return FormsService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
@@ -5085,12 +5085,12 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var OutreachLocationType;
-(function (OutreachLocationType) {
-    OutreachLocationType["CDLSchool"] = "cdlSchool";
-    OutreachLocationType["TruckingCompany"] = "truckingCompany";
-    OutreachLocationType["TruckStop"] = "truckStop";
-})(OutreachLocationType || (OutreachLocationType = {}));
+var OldOutreachLocationType;
+(function (OldOutreachLocationType) {
+    OldOutreachLocationType["CDLSchool"] = "cdlSchool";
+    OldOutreachLocationType["TruckingCompany"] = "truckingCompany";
+    OldOutreachLocationType["TruckStop"] = "truckStop";
+})(OldOutreachLocationType || (OldOutreachLocationType = {}));
 //***************************************************************/
 var FormsService = /** @class */ (function () {
     function FormsService() {
@@ -5181,7 +5181,7 @@ var FormsService = /** @class */ (function () {
 /*!***********************************!*\
   !*** ./src/app/services/index.ts ***!
   \***********************************/
-/*! exports provided: ModalService, MiscService, OutreachLocationType, FormsService, TrxService, VolunteerType, MockUserDataService, UserDataService, SettingsService, ScriptService */
+/*! exports provided: ModalService, MiscService, OldOutreachLocationType, FormsService, TrxService, VolunteerType, MockUserDataService, UserDataService, SettingsService, ScriptService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5193,7 +5193,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MiscService", function() { return _misc_service__WEBPACK_IMPORTED_MODULE_1__["MiscService"]; });
 
 /* harmony import */ var _forms_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./forms.service */ "./src/app/services/forms.service.ts");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "OutreachLocationType", function() { return _forms_service__WEBPACK_IMPORTED_MODULE_2__["OutreachLocationType"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "OldOutreachLocationType", function() { return _forms_service__WEBPACK_IMPORTED_MODULE_2__["OldOutreachLocationType"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "FormsService", function() { return _forms_service__WEBPACK_IMPORTED_MODULE_2__["FormsService"]; });
 

@@ -8,9 +8,15 @@
   <div *ngIf="userDataService.data">
     <p>{{ 'postOutreachReport.select' | translate }}</p>
 
-    <ion-list *ngIf="userDataService.data.incompletePostReports.length > 0">
-      <ion-item *ngFor="let report of userDataService.data.incompletePostReports" (click)="onReportClick(report)" class="has-border">
-        <ion-label>{{report.title}}</ion-label>
+    <ion-list *ngIf="userDataService.data.unfinishedOutreachTargets.length > 0">
+      <ion-item *ngFor="let target of userDataService.data.unfinishedOutreachTargets" (click)="onTargetClick(target)" class="has-border">
+        <ion-label>
+          <b>{{target.name}}</b><br>
+          <small>
+            {{target.address}}<br>
+            {{target.city}}, {{target.state}}
+          </small>
+        </ion-label>
       </ion-item>
     </ion-list>
   </div>

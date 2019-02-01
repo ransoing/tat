@@ -7,7 +7,7 @@
 
   <p>{{ 'postOutreachReport.2.intro' | translate }}</p>
 
-  <div *ngIf="locationType === OutreachLocationType.TruckStop">
+  <div *ngIf="locationType === OldOutreachLocationType.TruckStop">
     <ion-item>
       <ion-checkbox [(ngModel)]="formsService.postOutreachForm.accomplishments.truckStop.willDistribute" color="primary"></ion-checkbox>
       <ion-label text-wrap>{{ 'postOutreachReport.2.truckStop.willDistribute' | translate }}</ion-label>
@@ -26,7 +26,7 @@
     </ion-item>
   </div>
 
-  <div *ngIf="locationType === OutreachLocationType.CDLSchool">
+  <div *ngIf="locationType === OldOutreachLocationType.CDLSchool">
     <ion-item>
       <ion-checkbox [(ngModel)]="formsService.postOutreachForm.accomplishments.cdl.willTrain" color="primary"></ion-checkbox>
       <ion-label text-wrap>{{ 'postOutreachReport.2.cdl.willTrain' | translate }}</ion-label>
@@ -37,7 +37,7 @@
     </ion-item>
   </div>
 
-  <div *ngIf="locationType === OutreachLocationType.TruckingCompany">
+  <div *ngIf="locationType === OldOutreachLocationType.TruckingCompany">
     <ion-item>
       <ion-checkbox [(ngModel)]="formsService.postOutreachForm.accomplishments.truckingCompany.willTrain" color="primary"></ion-checkbox>
       <ion-label text-wrap>{{ 'postOutreachReport.2.truckingCompany.willTrain' | translate }}</ion-label>

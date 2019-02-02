@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { Subscriber, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
+import { AlertController } from '@ionic/angular';
+import { TrxService } from './trx.service';
 
 @Injectable({
   providedIn: 'root',
@@ -11,20 +13,12 @@ export class MiscService {
   loginRedirectUrl: string;
   routeHereCallbacks = [];
   callbackToSave: Boolean | Function = false;
-  getFeedbackSubmitted: Observable<MessageEvent>;
 
   constructor(
-    private router: Router
+    private router: Router,
+    private alertController: AlertController,
+    private trx: TrxService
   ) {
-    this.getFeedbackSubmitted = new Observable( observer => {
-      // An iframe that contains a getfeedback survey will send a message with a specific signature when done
-      window.addEventListener( 'message', async message => {
-        if ( message.data === 'submittedResponse' && message.origin === 'https://www.getfeedback.com' ) {
-          observer.next( message );
-        }
-      });
-    });
-
     // listen for route changes. This subscriber is used for onRouteHere
     this.router.events.subscribe( event => {
       if ( event instanceof NavigationEnd ) {
@@ -57,5 +51,24 @@ export class MiscService {
    */
   public onRouteHere( callback: Function ) {
     this.callbackToSave = callback;
+  }
+
+  /**
+   * Shows a small alert on the screen, with a close button.
+   * @param message The text to show in the body of the alert
+   * @returns A Promise which resolves when the alert has been dismissed.
+   */
+  public showSimpleAlert( title: string, message: string ): Promise<null> {
+    return new Promise( async (resolve, reject) => {
+      const alert = await this.alertController.create({
+        header: title,
+        message: message,
+        buttons: [await this.trx.t( 'misc.close' )]
+      });
+      alert.present();
+      alert.onDidDismiss().then( () => {
+        resolve();
+      });
+    });
   }
 }

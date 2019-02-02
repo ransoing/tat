@@ -24,22 +24,22 @@ import { TrxService } from './trx.service';
 
 // ******************* enums and interfaces used by the service ******************* //
 export enum VolunteerType {
-  truckStopVolunteer = 'truckStopVolunteer',
-  eventVolunteer = 'freedomDriversVolunteer',
-  ambassadorVolunteer = 'ambassadorVolunteer'
+  TRUCK_STOP_VOLUNTEER = 'truckStopVolunteer',
+  EVENT_VOLUNTEER = 'freedomDriversVolunteer',
+  AMBASSADOR_VOLUNTEER = 'ambassadorVolunteer'
 }
 
 export enum OutreachLocationType {
-  CDLSchool = 'cdlSchool',
-  TruckingCompany = 'truckingCompany',
-  TruckStop = 'truckStop'
+  CDL_SCHOOL = 'cdlSchool',
+  TRUCKING_COMPANY = 'truckingCompany',
+  TRUCK_STOP = 'truckStop'
 }
 
 // bitmask flags for passing into fetchUserData()
 export enum UserDataRequestFlags {
-  basicUserData = 1,
-  hoursLogs = 2,
-  unfinishedOutreachTargets = 4
+  BASIC_USER_DATA = 1,
+  HOURS_LOGS = 2,
+  UNFINISHED_OUTREACH_TARGETS = 4
 }
 
 export interface IHoursLog {
@@ -66,6 +66,7 @@ export interface IUnfinishedOutreachTarget {
 }
 
 export interface IUserData {
+  salesforceId?: string, // ID of the Contact object in salesforce which represents this user
   volunteerType?: VolunteerType,
   hasWatchedTrainingVideo?: boolean,
   hoursLogs?: IHoursLog[],
@@ -89,7 +90,7 @@ export class UserDataService {
   firebaseUser.uid
   */
 
-  data: IUserData;
+  data: IUserData = null;
   loadingPopup;
   fetchingUserData: boolean = false;
 
@@ -107,7 +108,7 @@ export class UserDataService {
    */
   async fetchUserData(
       force?: boolean,
-      dataRequestFlags: number = UserDataRequestFlags.basicUserData | UserDataRequestFlags.hoursLogs | UserDataRequestFlags.unfinishedOutreachTargets
+      dataRequestFlags: number = UserDataRequestFlags.BASIC_USER_DATA | UserDataRequestFlags.HOURS_LOGS | UserDataRequestFlags.UNFINISHED_OUTREACH_TARGETS
     ) {
     // @@TODO: keep a cache of this, stored in permanent local storage. This method will check if the cache is expired
     // quit now if we've already gotten the data and the caller of this function isn't forcing a refresh,
@@ -117,8 +118,6 @@ export class UserDataService {
     }
 
     this.fetchingUserData = true;
-    // invalidate the current data until we get new data
-    this.data = null;
     
     // show a loading thing while we're loading data
     this.loadingPopup = await this.loadingController.create({
@@ -137,9 +136,9 @@ export class UserDataService {
 
     let promises = [];
     // parse bitmask flags to determine which URLs to hit
-    if ( dataRequestFlags & UserDataRequestFlags.basicUserData )              promises.push( this.apiRequest( '/getBasicUserData', token ) );
-    if ( dataRequestFlags & UserDataRequestFlags.hoursLogs )                  promises.push( this.apiRequest( '/getHoursLogs', token ) );
-    if ( dataRequestFlags & UserDataRequestFlags.unfinishedOutreachTargets )  promises.push( this.apiRequest( '/getUnfinishedOutreachTargets', token ) );
+    if ( dataRequestFlags & UserDataRequestFlags.BASIC_USER_DATA )              promises.push( this.apiRequest( '/getBasicUserData', token ) );
+    if ( dataRequestFlags & UserDataRequestFlags.HOURS_LOGS )                   promises.push( this.apiRequest( '/getHoursLogs', token ) );
+    if ( dataRequestFlags & UserDataRequestFlags.UNFINISHED_OUTREACH_TARGETS )  promises.push( this.apiRequest( '/getUnfinishedOutreachTargets', token ) );
     Promise.all( promises )
     .then( responses => this.onFetchSuccess(responses) )
     .catch( e => this.onFetchError(e) )
@@ -150,7 +149,7 @@ export class UserDataService {
     // convert ISO time strings to Date objects
     this.convertJSONDates( responses );
     // save the data. For each key in each response, overwrite the existing key in the saved data.
-    if ( this.data === null ) {
+    if ( !this.data ) {
       this.data = {};
     }
     responses.forEach( response => {
@@ -158,6 +157,8 @@ export class UserDataService {
         this.data[key] = response[key];
       });
     });
+    // @@TODO: don't use a hardcoded salesforce user ID
+    this.data.salesforceId = '0031N00001tVsAmQAK';
   }
 
   private async onFetchError( e ) {

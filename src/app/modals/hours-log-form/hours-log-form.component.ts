@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { TrxService, MiscService } from '../../services';
-import { AlertController } from '@ionic/angular';
-import { Subscriber } from 'rxjs';
+import { TrxService, MiscService, UserDataService, UserDataRequestFlags, GetFeedbackService } from '../../services';
+import { Subscription } from 'rxjs';
 
 @Component({
   templateUrl: './hours-log-form.component.html'
@@ -9,35 +8,34 @@ import { Subscriber } from 'rxjs';
 export class HoursLogFormComponent implements OnInit, OnDestroy {
 
   public modal: HTMLIonModalElement;
-  private gfSubscriber: any;//Subscriber<MessageEvent>;
+  public gfSurveyUrl;
+  private gfSubscription: Subscription;
   
   constructor(
-    public alertController: AlertController,
     public miscService: MiscService,
+    public userDataService: UserDataService,
+    public getFeedbackService: GetFeedbackService,
     public trx: TrxService
-  ) {}
+  ) {
+    this.gfSurveyUrl = this.getFeedbackService.getHoursLogSurveyUrl();
+  }
 
   ngOnInit() {
-    console.log( '@@@ oninit' );
-    this.gfSubscriber = this.miscService.getFeedbackSubmitted.subscribe( async message => {
-      console.log( '@@submitted' );
+    // wait for the survey to be submitted
+    this.gfSubscription = this.getFeedbackService.getFeedbackSubmitted.subscribe( async message => {
       // close the modal and show a success message
       this.modal.dismiss();
-      const alert = await this.alertController.create({
-        header: await this.trx.t( 'misc.success' ),
-        message: await this.trx.t( 'volunteer.logHours.submitSuccess' ),
-        buttons: [await this.trx.t( 'misc.close' )]
+      this.miscService.showSimpleAlert( await this.trx.t( 'misc.success' ), await this.trx.t( 'volunteer.logHours.submitSuccess' ) )
+      .then( () => { return this.getFeedbackService.waitForSalesforceUpdate() } )
+      .then( () => {
+        // update the hours logs in the user data
+        this.userDataService.fetchUserData( true, UserDataRequestFlags.HOURS_LOGS );
       });
-      alert.present();
-      // alert.onDidDismiss().then( () => {
-        
-      // });
     });
   }
 
   ngOnDestroy() {
-    console.log( '@@@ ondestroy' );
-    this.gfSubscriber.unsubscribe();
+    this.gfSubscription.unsubscribe();
   }
 
 }

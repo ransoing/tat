@@ -23,15 +23,15 @@ export class TrainingVideoComponent implements OnInit {
     
     this.videos = {};
     // @@TODO: need different videos for different volunteer types
-    this.videos[ VolunteerType.truckStopVolunteer ] = {
+    this.videos[ VolunteerType.TRUCK_STOP_VOLUNTEER ] = {
       type: 'vimeo',
       id: '21392891'
     };
-    this.videos[ VolunteerType.eventVolunteer ] = {
+    this.videos[ VolunteerType.EVENT_VOLUNTEER ] = {
       type: 'vimeo',
       id: '21392891'
     };
-    this.videos[ VolunteerType.ambassadorVolunteer ] = {
+    this.videos[ VolunteerType.AMBASSADOR_VOLUNTEER ] = {
       type: 'vimeo',
       id: '21392891'
     };

@@ -183,6 +183,24 @@ ion-loading {
     --ion-text-color: black;
 }
 
+// GetFeedback survey modal
+.gf-survey-modal {
+    > div {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+
+        > h1 {
+            flex: 0 0 auto;
+        }
+        > iframe {
+            flex: 1 0 auto;
+            border: 0;
+        }
+    }
+    .SurveyNavBar-logo-container.gf-logo { display: none }
+}
+
 @media only screen and (min-height: 768px) and (min-width: 768px) {
     .modal-large .modal-wrapper {
         width: 75%;

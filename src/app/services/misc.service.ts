@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { Subscriber } from 'rxjs';
+import { Subscriber, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -11,10 +11,19 @@ export class MiscService {
   loginRedirectUrl: string;
   routeHereCallbacks = [];
   callbackToSave: Boolean | Function = false;
+  getFeedbackSubmitted: Observable<MessageEvent>;
 
   constructor(
     private router: Router
   ) {
+    this.getFeedbackSubmitted = new Observable( observer => {
+      // An iframe that contains a getfeedback survey will send a message with a specific signature when done
+      window.addEventListener( 'message', async message => {
+        if ( message.data === 'submittedResponse' && message.origin === 'https://www.getfeedback.com' ) {
+          observer.next( message );
+        }
+      });
+    });
 
     // listen for route changes. This subscriber is used for onRouteHere
     this.router.events.subscribe( event => {

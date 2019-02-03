@@ -84,12 +84,6 @@
     "resources": "Recursos",
     "volunteer": "Voluntarios"
   },
-  "postOutreachReport": {
-    "title": "@:volunteer.btns.postOutreachReport"
-  },
-  "preOutreachSurvey": {
-    "title": "@:volunteer.btns.preOutreachSurvey"
-  },
   "redFlags": {
     "caseStudy": {
       "a": "<p>El 9 de enero del 2018, el chofer profesional Arian Taylor entró al estacionamiento de un negocio en Compton para hacer una entrega cerca de las 3:30 a.m.  Poco tiempo después, alguien tocó a la puerta de su taxi, se trataba de una joven de 19 años que estaba parada afuera del camión. Al hablar con ella se enteró que el novio de su amiga, quien era un hombre mayor, trató de forzarla a prostituirse. Al negarse ella a acceder a sus deseos y discutir con él, fue abandonada en el estacionamiento por el sujeto, quien se fue a toda velocidad.</p><p>Ella tenía frio, estaba agotada, no tenía dinero ni identificación, todo lo que tenía era lo que traía en sus manos y estaba desesperada por regresar a su casa en Las Vegas. En ese momento, Arian le dijo: “Encontraré una forma de regresarte a casa.” Después de conseguir quitarle el frío y darle agua para que bebiera, Arian vio una de las dos calcomanías de TAT que tenía pegadas de forma visible en su ventana (la cual la chica había visto cuando tocó en su puerta} y él llamó a la Línea de ayuda en casos de trata de personas.</p><p>La línea de ayuda colaboró con él para conseguirle un refugio a la joven para pasar la noche, un taxi pre-pagado para que la llevará al refugio y un viaje en tren con un acompañante para regresar a Las Vegas al día siguiente, donde se reunió con un miembro de su familia. Arian estuvo al cuidado de la joven hasta que ella abordó el taxi y hasta le dio su número de teléfono personal por si acaso ella necesitaba cualquier otra cosa.</p>",
@@ -232,6 +226,17 @@
     },
     "feedback": {
       "title": "@:volunteer.btns.testimonial"
+    },
+    "forms": {
+      "hoursLog": {
+        "title": "@:volunteer.hoursLog.addEntry"
+      },
+      "postOutreach": {
+        "title": "@:volunteer.btns.postOutreachReport"
+      },
+      "preOutreach": {
+        "title": "@:volunteer.btns.preOutreachSurvey"
+      }
     },
     "hoursLog": {
       "hour": "hora",

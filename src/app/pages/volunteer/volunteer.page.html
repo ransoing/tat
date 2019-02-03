@@ -21,7 +21,7 @@
 
     <image-button
       image="volunteer.pre-outreach-survey.jpg"
-      (click)="navCtrl.navigateRoot('/pos-1')"
+      (click)="modalService.open(PreOutreachFormComponent)"
       [required]="true"
       [disabled]="!userDataService.data.hasWatchedTrainingVideo">
         {{ 'volunteer.btns.preOutreachSurvey' | translate }}

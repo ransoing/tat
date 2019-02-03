@@ -64,8 +64,9 @@ import { AppComponent } from './app.component';
 import { ModalGuard, AuthGuard } from './guards';
 import {
   PlacesComponent, EmailReportComponent, WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
-  AboutTatComponent, HumanTraffickingLawsComponent, VolunteerSettingsComponent, VolunteerResourcesComponent, HoursLogComponent,
-  HoursLogFormComponent, FeedbackComponent, PhotosComponent, PostOutreachSelectionComponent, TrainingVideoComponent, LoginComponent,
+  AboutTatComponent, HumanTraffickingLawsComponent, VolunteerSettingsComponent, VolunteerResourcesComponent,
+  HoursLogComponent, FeedbackComponent, PhotosComponent, TrainingVideoComponent, LoginComponent,
+  HoursLogFormComponent, PreOutreachFormComponent, PostOutreachFormComponent, PostOutreachSelectionComponent,
   CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent
 } from './modals';
 import {
@@ -77,16 +78,18 @@ import {
   declarations: [
     AppComponent,
     PlacesComponent, EmailReportComponent, WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
-    AboutTatComponent, HumanTraffickingLawsComponent, VolunteerSettingsComponent, VolunteerResourcesComponent, HoursLogComponent,
-    HoursLogFormComponent, FeedbackComponent, PhotosComponent, PostOutreachSelectionComponent, TrainingVideoComponent, LoginComponent,
+    AboutTatComponent, HumanTraffickingLawsComponent, VolunteerSettingsComponent, VolunteerResourcesComponent,
+    HoursLogComponent, FeedbackComponent, PhotosComponent, TrainingVideoComponent, LoginComponent,
+    HoursLogFormComponent, PreOutreachFormComponent, PostOutreachFormComponent, PostOutreachSelectionComponent,
     CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent,
     POSPart1Page, POSPart2Page, POSPart3Page, POSPart4Page,
     PORPart1Page, PORPart2Page, PORPart3Page
   ],
   entryComponents: [
     PlacesComponent, EmailReportComponent, WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
-    AboutTatComponent, HumanTraffickingLawsComponent, VolunteerSettingsComponent, VolunteerResourcesComponent, HoursLogComponent,
-    HoursLogFormComponent, FeedbackComponent, PhotosComponent, PostOutreachSelectionComponent, TrainingVideoComponent, LoginComponent,
+    AboutTatComponent, HumanTraffickingLawsComponent, VolunteerSettingsComponent, VolunteerResourcesComponent,
+    HoursLogComponent, FeedbackComponent, PhotosComponent, TrainingVideoComponent, LoginComponent,
+    HoursLogFormComponent, PreOutreachFormComponent, PostOutreachFormComponent, PostOutreachSelectionComponent,
     CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent,
     POSPart1Page, POSPart2Page, POSPart3Page, POSPart4Page,
     PORPart1Page, PORPart2Page, PORPart3Page

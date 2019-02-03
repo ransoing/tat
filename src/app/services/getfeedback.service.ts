@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LoadingController } from '@ionic/angular';
 import { TrxService } from './trx.service';
-import { UserDataService } from './user-data.service';
+import { UserDataService, IUnfinishedOutreachTarget, OutreachLocationType } from './user-data.service';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Injectable({
@@ -12,9 +12,20 @@ export class GetFeedbackService {
 
   getFeedbackSubmitted: Observable<MessageEvent>;
 
-  readonly hoursLogSurveyUrlBase: string = 'https://www.getfeedback.com/r/NxbLIZ2z';
+  readonly surveyUrlBases = {
+    hoursLog: 'https://www.getfeedback.com/r/NxbLIZ2z',
+    preOutreach: 'https://www.getfeedback.com/r/Xquaazy4',
+    postOutreach: 'https://www.getfeedback.com/r/dmzvPYwc'
+  };
   // it takes several seconds after we submit data until that data is available to get from salesforce via the API
   readonly refreshDataDelay: number = 8000;
+
+  // the nice labels for the different outreach targets. This is required to pre-fill some getfeedback survey fields.
+  readonly outreachTargetBackwardsMapping = {
+    [OutreachLocationType.CDL_SCHOOL]: 'CDL School',
+    [OutreachLocationType.TRUCK_STOP]: 'Truck Stop',
+    [OutreachLocationType.TRUCKING_COMPANY]: 'Trucking Company'
+  };
 
   private lastSubmission: number; // timestamp
 
@@ -61,7 +72,27 @@ export class GetFeedbackService {
   }
 
   getHoursLogSurveyUrl() {
-    return this.sanitizer.bypassSecurityTrustResourceUrl( this.hoursLogSurveyUrlBase + '?ContactID=' + this.userDataService.data.salesforceId );
+    return this.sanitizer.bypassSecurityTrustResourceUrl( this.surveyUrlBases.hoursLog + '?ContactID=' + this.userDataService.data.salesforceId );
+  }
+
+  getPreOutreachSurveyUrl() {
+    return this.sanitizer.bypassSecurityTrustResourceUrl( this.surveyUrlBases.preOutreach + '?ContactID=' + this.userDataService.data.salesforceId );
+  }
+
+  getPostOutreachSurveyUrl( outreachTarget: IUnfinishedOutreachTarget ) {
+    let params = {
+      'AppOutreachTarget__cID': outreachTarget.id,
+      'gf_q[7238014][14643871]': outreachTarget.name,
+      'gf_q[7238014][14643872]': this.outreachTargetBackwardsMapping[outreachTarget.type],
+      'gf_q[7238014][14643873]': outreachTarget.address,
+      'gf_q[7238014][14643874]': outreachTarget.city,
+      'gf_q[7238014][14643875]': outreachTarget.state,
+      'gf_q[7238014][14643876]': outreachTarget.zip
+    };
+    let queryString = Object.keys( params ).reduce( (query, key) => {
+      return query + '&' + key + '=' + encodeURIComponent( params[key] );
+    }, '' );
+    return this.sanitizer.bypassSecurityTrustResourceUrl( this.surveyUrlBases.postOutreach + '?' + queryString );
   }
 
 }

@@ -2,11 +2,11 @@
   <ion-toolbar></ion-toolbar>
 </ion-header>
 <ion-content fullscreen padding>
-  <h1>{{ 'postOutreachReport.title' | translate }}</h1>
+  <h1>{{ 'volunteer.forms.postOutreach.title' | translate }}</h1>
   <ion-icon name="md-close" class="modal-close-btn" (click)="modal.dismiss()"></ion-icon>
 
   <div *ngIf="userDataService.data">
-    <p>{{ 'postOutreachReport.select' | translate }}</p>
+    <p>{{ 'volunteer.forms.postOutreach.select' | translate }}</p>
 
     <ion-list *ngIf="userDataService.data.unfinishedOutreachTargets.length > 0">
       <ion-item *ngFor="let target of userDataService.data.unfinishedOutreachTargets" (click)="onTargetClick(target)" class="has-border">

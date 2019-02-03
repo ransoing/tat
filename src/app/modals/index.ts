@@ -19,3 +19,5 @@ export { PostOutreachSelectionComponent } from './post-outreach-selection/post-o
 export { VolunteerSettingsComponent } from './volunteer-settings/volunteer-settings.component';
 export { TrainingVideoComponent } from './training-video/training-video.component';
 export { LoginComponent } from './login/login.component';
+export { PreOutreachFormComponent } from './pre-outreach-form/pre-outreach-form.component';
+export { PostOutreachFormComponent } from './post-outreach-form/post-outreach-form.component';

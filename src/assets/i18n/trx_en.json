@@ -94,75 +94,6 @@
     "resources": "Resources",
     "volunteer": "Volunteer"
   },
-  "postOutreachReport": {
-    "1": {
-      "intro": "How did the meeting go?",
-      "placeholder": "Please write a brief description"
-    },
-    "2": {
-      "cdl": {
-        "willPassOnInfo": "CDL instructor plans to pass on TAT information to other faculty",
-        "willTrain": "CDL instructor will begin using TAT training with students"
-      },
-      "intro": "Which of the following were you able to accomplish? Please check all that apply:",
-      "truckStop": {
-        "wantsInPersonTraining": "Truck stop has asked for an in-person training for all employees",
-        "wantsOutreach": "Truck stop is open to having an outreach at their location to speak with drivers in an appropriate format",
-        "willDistribute": "Truck stop is now distributing TAT materials at their location",
-        "willTrainWithMaterials": "Truck stop will now train employees with TAT materials"
-      },
-      "truckingCompany": {
-        "willTrain": "Trucking company plans to show their drivers the TAT training video and hand out wallet cards"
-      }
-    },
-    "3": {
-      "intro": "Do you plan to follow up with your contact?",
-      "strategy": "What is your strategy for the next visit?",
-      "strategyPlaceholder": "Please write a brief description",
-      "when": "When do you plan to do the follow-up?"
-    },
-    "select": "Which event or location did you volunteer at?",
-    "submitSuccess": "Thank you for completing this report.",
-    "title": "@:volunteer.btns.postOutreachReport"
-  },
-  "preOutreachSurvey": {
-    "1": {
-      "addLocation": "Add another location",
-      "fields": {
-        "address1": "Address line 1",
-        "address2": "Address line 2",
-        "city": "City",
-        "name": "Location name",
-        "state": "State",
-        "zip": "Zip"
-      },
-      "intro": "What locations do you plan on visiting? List the name and address for each location:",
-      "location": "Location",
-      "locationTypes": {
-        "company": "Trucking Company",
-        "school": "CDL School",
-        "truckStop": "Truck Stop"
-      },
-      "removeLocation": "Remove last location"
-    },
-    "2": {
-      "intro": "After watching the training video, do you feel equipped for your outreach?",
-      "unequipped": "Why do you feel unequipped, and what questions do you have for TAT staff?",
-      "unequippedPlaceholder": "Please write an explanation"
-    },
-    "3": {
-      "intro": "Have you contacted the general manager (or other contact) to make an appointment?",
-      "strategy": "What is your strategy for approaching the general manager?",
-      "strategyPlaceholder": "Please write a brief description"
-    },
-    "4": {
-      "addressQuestion": "What is a good mailing address to send them to?",
-      "intro": "Are you ready to receive TAT materials?",
-      "name": "Name"
-    },
-    "submitSuccess": "Thank you for completing this survey.",
-    "title": "@:volunteer.btns.preOutreachSurvey"
-  },
   "redFlags": {
     "caseStudy": {
       "a": "<p>On Jan. 9, 2018, professional driver Arian Taylor pulled into a Compton, California business to make a delivery at 3:30 a.m. Shortly thereafter, he received a knock on his cab door, only to find a 19-year-old young woman standing outside his truck. As he spoke with her, he learned that her friend’s older boyfriend was trying to force her into prostitution. After she had refused and argued with him, he dumped her in the parking lot and sped off.</p><p>She was cold, exhausted, had no money, no identification, was carrying everything she owned in her arms and was desperate to get back home to Las Vegas. At that point, Arian told her, “I will find a way to get you home.” After getting her warm and giving her water to drink, Arian looked at one of the two TAT stickers prominently displayed on his window (which the victim had been eye-level with when she knocked on his door) and called the National Human Trafficking Hotline.</p><p>They worked with him to secure the woman shelter for the night, a pre-paid cab ride to get her to that shelter and a chaperoned train ride back to Las Vegas the next day, where she was reunited with a family member. Arian took care of the young women until she was placed in the cab, and even gave her his personal cell phone number in case she needed anything else.</p>",
@@ -314,24 +245,29 @@
       "submitSuccess": "Your feedback has been successfully submitted. Thank you!",
       "title": "@:volunteer.btns.testimonial"
     },
+    "forms": {
+      "hoursLog": {
+        "submitSuccess": "Your answers were successfully submitted. Thank you for your time!",
+        "title": "@:volunteer.hoursLog.addEntry"
+      },
+      "postOutreach": {
+        "select": "Which event or location did you volunteer at?",
+        "submitSuccess": "Thank you for completing this report.",
+        "title": "@:volunteer.btns.postOutreachReport"
+      },
+      "preOutreach": {
+        "submitSuccess": "Thank you for completing this survey.",
+        "title": "@:volunteer.btns.preOutreachSurvey"
+      }
+    },
     "hoursLog": {
-      "addEntry": "Add new entry",
+      "addEntry": "Add new log entry",
       "hour": "hour",
       "hours": "hours",
       "intro": "Logging your hours here not only allows you to see the impact you’re making, but allows us to share that work with our partners and sponsors. Thank you!",
       "title": "@:volunteer.btns.hoursLog"
     },
     "intro": "Thank you for volunteering with TAT! Your time in preparation, volunteering and follow up not only helps further our mission, but further exemplifies how passionate this industry is about fighting this heinous crime. Below are the items you will need throughout the volunteer process. We are thrilled to have you as part of the team.",
-    "logHours": {
-      "dateLabel": "When did you do this task?",
-      "description": {
-        "label": "What volunteer task did you spend time on?",
-        "placeholder": "Please write a brief task description"
-      },
-      "hoursLabel": "How many hours did you volunteer? Include driving time and training time.",
-      "submitSuccess": "Your answers were successfully submitted. Thank you for your time!",
-      "title": "Add new log entry"
-    },
     "loginTitle": "Volunteer Login",
     "photos": {
       "intro": "Share the work we're doing together with your friends and family!",

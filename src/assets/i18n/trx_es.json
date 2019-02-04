@@ -258,7 +258,9 @@
       "statsLink2": "por la línea de ayuda",
       "title": "@:volunteer.btns.resources"
     },
-    "title": "@:nav.volunteer"
+    "settings": {},
+    "title": "@:nav.volunteer",
+    "welcome": "Bienvenido"
   },
   "whatToReport": {
     "cars": "Vehículos",

@@ -67,6 +67,8 @@ export interface IUnfinishedOutreachTarget {
 
 export interface IUserData {
   salesforceId?: string, // ID of the Contact object in salesforce which represents this user
+  firstName?: string,
+  lastName?: string,
   volunteerType?: VolunteerType,
   hasWatchedTrainingVideo?: boolean,
   hoursLogs?: IHoursLog[],
@@ -156,6 +158,13 @@ export class UserDataService {
       Object.keys( response ).filter( key => response.hasOwnProperty(key) ).forEach( key => {
         this.data[key] = response[key];
       });
+    });
+    // sort the hours log entries by descending date
+    this.data.hoursLogs = this.data.hoursLogs.sort( (a, b) => {
+      if ( a.date.getTime() == b.date.getTime() ) {
+        return 0;
+      }
+      return a.date < b.date ? 1 : -1;
     });
     // @@TODO: don't use a hardcoded salesforce user ID
     this.data.salesforceId = '0031N00001tVsAmQAK';

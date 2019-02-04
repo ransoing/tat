@@ -29,6 +29,10 @@
     </ion-item>
   </ion-list>
 
+  <hr>
+  <p *ngIf="userDataService.data.firstName" style="opacity: 0.5">
+    {{ 'volunteer.settings.loggedInAs' | translate }} <b>{{userDataService.data.firstName}} {{userDataService.data.lastName}}</b>
+  </p>
 
   <p>
     <ion-button fill="clear" color="light" (click)="onLogout()">{{ 'volunteer.settings.logout' | translate }}</ion-button>

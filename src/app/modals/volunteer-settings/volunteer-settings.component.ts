@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SettingsService } from '../../services';
+import { SettingsService, UserDataService } from '../../services';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
@@ -11,6 +11,7 @@ export class VolunteerSettingsComponent {
   
   constructor(
     public settings: SettingsService,
+    public userDataService: UserDataService,
     private angularFireAuth: AngularFireAuth
   ) { }
 

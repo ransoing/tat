@@ -7,9 +7,8 @@
   <ion-icon name="md-menu" class="modal-close-btn" (click)="modalService.open(VolunteerSettingsComponent)"></ion-icon>
 
   <div *ngIf="userDataService.data">
-    <p>
-      {{ 'volunteer.intro' | translate }}
-    </p>
+    <p *ngIf="userDataService.data.firstName" class="first-name">{{ 'volunteer.welcome' | translate }}, {{userDataService.data.firstName}}</p>
+    <p>{{ 'volunteer.intro' | translate }}</p>
 
     <image-button
       image="volunteer.training-video.jpg"

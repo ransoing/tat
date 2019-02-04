@@ -18,7 +18,11 @@
       </ion-button>
     </p>
 
-    <!-- @@ filter sort by date -->
+    <article *ngIf="userDataService.data.hoursLogs.length === 0">
+      <hr>
+      {{ 'volunteer.hoursLog.noEntries' | translate }}
+    </article>
+
     <article *ngFor="let logEntry of userDataService.data.hoursLogs">
       <hr>
       <header>

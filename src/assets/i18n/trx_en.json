@@ -265,6 +265,7 @@
       "hour": "hour",
       "hours": "hours",
       "intro": "Logging your hours here not only allows you to see the impact you’re making, but allows us to share that work with our partners and sponsors. Thank you!",
+      "noEntries": "No log entries yet!",
       "title": "@:volunteer.btns.hoursLog"
     },
     "intro": "Thank you for volunteering with TAT! Your time in preparation, volunteering and follow up not only helps further our mission, but further exemplifies how passionate this industry is about fighting this heinous crime. Below are the items you will need throughout the volunteer process. We are thrilled to have you as part of the team.",
@@ -284,6 +285,7 @@
       "title": "@:volunteer.btns.resources"
     },
     "settings": {
+      "loggedInAs": "Logged in as",
       "logout": "Logout",
       "notifications": {
         "event": "Event notifications",
@@ -295,7 +297,8 @@
       "title": "Settings"
     },
     "title": "@:nav.volunteer",
-    "trainingVideoError": "There was an error loading the video. Please try again later."
+    "trainingVideoError": "There was an error loading the video. Please try again later.",
+    "welcome": "Welcome"
   },
   "whatToReport": {
     "cars": "Cars",

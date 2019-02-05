@@ -38,6 +38,7 @@ export class TrainingVideoComponent implements OnInit {
 
     // which video to show?
     this.video = this.videos[ userDataService.data.volunteerType ];
+    this.video = this.videos[ VolunteerType.TRUCK_STOP_VOLUNTEER ];
   }
 
   ngOnInit() {

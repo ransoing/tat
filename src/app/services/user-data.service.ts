@@ -167,7 +167,8 @@ export class UserDataService {
       return a.date < b.date ? 1 : -1;
     });
     // @@TODO: don't use a hardcoded salesforce user ID
-    this.data.salesforceId = '0031N00001tVsAmQAK';
+    // this.data.salesforceId = '0031N00001tVsAmQAK';
+    this.data.salesforceId = '003o000000LD6rLAAT';
   }
 
   private async onFetchError( e ) {

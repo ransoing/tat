@@ -15,7 +15,8 @@ export class GetFeedbackService {
   readonly surveyUrlBases = {
     hoursLog: 'https://www.getfeedback.com/r/NxbLIZ2z',
     preOutreach: 'https://www.getfeedback.com/r/Xquaazy4',
-    postOutreach: 'https://www.getfeedback.com/r/dmzvPYwc'
+    postOutreach: 'https://www.getfeedback.com/r/dmzvPYwc',
+    feedback: 'https://www.getfeedback.com/r/bXD3uX7w'
   };
   // it takes several seconds after we submit data until that data is available to get from salesforce via the API
   readonly refreshDataDelay: number = 8000;
@@ -93,6 +94,10 @@ export class GetFeedbackService {
       return query + '&' + key + '=' + encodeURIComponent( params[key] );
     }, '' );
     return this.sanitizer.bypassSecurityTrustResourceUrl( this.surveyUrlBases.postOutreach + '?' + queryString );
+  }
+
+  getFeedbackSurveyUrl() {
+    return this.sanitizer.bypassSecurityTrustResourceUrl( this.surveyUrlBases.feedback + '?ContactID=' + this.userDataService.data.salesforceId );
   }
 
 }

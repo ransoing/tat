@@ -17,8 +17,7 @@ export class FeedbackComponent {
     public getFeedbackService: GetFeedbackService,
     public trx: TrxService
   ) {
-    // @@TODO: change this to feedback survey url
-    this.gfSurveyUrl = this.getFeedbackService.getHoursLogSurveyUrl();
+    this.gfSurveyUrl = this.getFeedbackService.getFeedbackSurveyUrl();
   }
 
   ngOnInit() {

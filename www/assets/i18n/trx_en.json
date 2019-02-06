@@ -72,9 +72,10 @@
   "misc": {
     "cancel": "Cancel",
     "close": "Close",
+    "dataLoadError": "There was a problem while attempting to load your volunteer account data. Make sure you have an internet connection and try again.",
     "date": "Date",
     "error": "Error",
-    "login": "Log in",
+    "logoutMessage": "You have been logged out.",
     "next": "Next",
     "no": "No",
     "ok": "OK",
@@ -92,75 +93,6 @@
     "report": "Report",
     "resources": "Resources",
     "volunteer": "Volunteer"
-  },
-  "postOutreachReport": {
-    "1": {
-      "intro": "How did the meeting go?",
-      "placeholder": "Please write a brief description"
-    },
-    "2": {
-      "cdl": {
-        "willPassOnInfo": "CDL instructor plans to pass on TAT information to other faculty",
-        "willTrain": "CDL instructor will begin using TAT training with students"
-      },
-      "intro": "Which of the following were you able to accomplish? Please check all that apply:",
-      "truckStop": {
-        "wantsInPersonTraining": "Truck stop has asked for an in-person training for all employees",
-        "wantsOutreach": "Truck stop is open to having an outreach at their location to speak with drivers in an appropriate format",
-        "willDistribute": "Truck stop is now distributing TAT materials at their location",
-        "willTrainWithMaterials": "Truck stop will now train employees with TAT materials"
-      },
-      "truckingCompany": {
-        "willTrain": "Trucking company plans to show their drivers the TAT training video and hand out wallet cards"
-      }
-    },
-    "3": {
-      "intro": "Do you plan to follow up with your contact?",
-      "strategy": "What is your strategy for the next visit?",
-      "strategyPlaceholder": "Please write a brief description",
-      "when": "When do you plan to do the follow-up?"
-    },
-    "select": "Which event or location did you volunteer at?",
-    "submitSuccess": "Thank you for completing this report.",
-    "title": "@:volunteer.btns.postOutreachReport"
-  },
-  "preOutreachSurvey": {
-    "1": {
-      "addLocation": "Add another location",
-      "fields": {
-        "address1": "Address line 1",
-        "address2": "Address line 2",
-        "city": "City",
-        "name": "Location name",
-        "state": "State",
-        "zip": "Zip"
-      },
-      "intro": "What locations do you plan on visiting? List the name and address for each location:",
-      "location": "Location",
-      "locationTypes": {
-        "company": "Trucking Company",
-        "school": "CDL School",
-        "truckStop": "Truck Stop"
-      },
-      "removeLocation": "Remove last location"
-    },
-    "2": {
-      "intro": "After watching the training video, do you feel equipped for your outreach?",
-      "unequipped": "Why do you feel unequipped, and what questions do you have for TAT staff?",
-      "unequippedPlaceholder": "Please write an explanation"
-    },
-    "3": {
-      "intro": "Have you contacted the general manager (or other contact) to make an appointment?",
-      "strategy": "What is your strategy for approaching the general manager?",
-      "strategyPlaceholder": "Please write a brief description"
-    },
-    "4": {
-      "addressQuestion": "What is a good mailing address to send them to?",
-      "intro": "Are you ready to receive TAT materials?",
-      "name": "Name"
-    },
-    "submitSuccess": "Thank you for completing this survey.",
-    "title": "@:volunteer.btns.preOutreachSurvey"
   },
   "redFlags": {
     "caseStudy": {
@@ -313,31 +245,37 @@
       "submitSuccess": "Your feedback has been successfully submitted. Thank you!",
       "title": "@:volunteer.btns.testimonial"
     },
+    "forms": {
+      "hoursLog": {
+        "submitSuccess": "Your answers were successfully submitted. Thank you for your time!",
+        "title": "@:volunteer.hoursLog.addEntry"
+      },
+      "postOutreach": {
+        "select": "Which event or location did you volunteer at?",
+        "submitSuccess": "Thank you for completing this report.",
+        "title": "@:volunteer.btns.postOutreachReport"
+      },
+      "preOutreach": {
+        "submitSuccess": "Thank you for completing this survey.",
+        "title": "@:volunteer.btns.preOutreachSurvey"
+      }
+    },
     "hoursLog": {
-      "addEntry": "Add new entry",
+      "addEntry": "Add new log entry",
       "hour": "hour",
       "hours": "hours",
       "intro": "Logging your hours here not only allows you to see the impact you’re making, but allows us to share that work with our partners and sponsors. Thank you!",
+      "noEntries": "No log entries yet!",
       "title": "@:volunteer.btns.hoursLog"
     },
     "intro": "Thank you for volunteering with TAT! Your time in preparation, volunteering and follow up not only helps further our mission, but further exemplifies how passionate this industry is about fighting this heinous crime. Below are the items you will need throughout the volunteer process. We are thrilled to have you as part of the team.",
-    "logHours": {
-      "dateLabel": "When did you do this task?",
-      "description": {
-        "label": "What volunteer task did you spend time on?",
-        "placeholder": "Please write a brief task description"
-      },
-      "hoursLabel": "How many hours did you volunteer? Include driving time and training time.",
-      "submitSuccess": "Your answers were successfully submitted. Thank you for your time!",
-      "title": "Add new log entry"
-    },
     "loginTitle": "Volunteer Login",
     "photos": {
       "intro": "Share the work we're doing together with your friends and family!",
       "title": "@:volunteer.btns.photos"
     },
     "resources": {
-      "imgAlt": "You must be connected to the internet to load this infographic.",
+      "imgAlt": "You must be connected to the internet to load this image.",
       "infographicTitle": "TAT by the Numbers",
       "intro": "These resources are to help you share the scope of human trafficking as well as the impact the trucking industry can have when trained and equipped to respond.",
       "moreLink1": "Find more on the resources page of the",
@@ -347,6 +285,7 @@
       "title": "@:volunteer.btns.resources"
     },
     "settings": {
+      "loggedInAs": "Logged in as",
       "logout": "Logout",
       "notifications": {
         "event": "Event notifications",
@@ -358,7 +297,8 @@
       "title": "Settings"
     },
     "title": "@:nav.volunteer",
-    "trainingVideoError": "There was an error loading the video. Please try again later."
+    "trainingVideoError": "There was an error loading the video. Please try again later.",
+    "welcome": "Welcome"
   },
   "whatToReport": {
     "cars": "Cars",

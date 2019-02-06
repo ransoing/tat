@@ -70,8 +70,10 @@
     "resources": "@:nav.resources"
   },
   "misc": {
+    "cancel": "Cancelar",
     "date": "Fecha",
     "no": "No",
+    "ok": "Aceptar",
     "time": "Hora",
     "yes": "Sí"
   },
@@ -81,12 +83,6 @@
     "report": "Reporte",
     "resources": "Recursos",
     "volunteer": "Voluntarios"
-  },
-  "postOutreachReport": {
-    "title": "@:volunteer.btns.postOutreachReport"
-  },
-  "preOutreachSurvey": {
-    "title": "@:volunteer.btns.preOutreachSurvey"
   },
   "redFlags": {
     "caseStudy": {
@@ -231,6 +227,17 @@
     "feedback": {
       "title": "@:volunteer.btns.testimonial"
     },
+    "forms": {
+      "hoursLog": {
+        "title": "@:volunteer.hoursLog.addEntry"
+      },
+      "postOutreach": {
+        "title": "@:volunteer.btns.postOutreachReport"
+      },
+      "preOutreach": {
+        "title": "@:volunteer.btns.preOutreachSurvey"
+      }
+    },
     "hoursLog": {
       "hour": "hora",
       "hours": "horas",
@@ -251,7 +258,9 @@
       "statsLink2": "por la línea de ayuda",
       "title": "@:volunteer.btns.resources"
     },
-    "title": "@:nav.volunteer"
+    "settings": {},
+    "title": "@:nav.volunteer",
+    "welcome": "Bienvenido"
   },
   "whatToReport": {
     "cars": "Vehículos",

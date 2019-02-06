@@ -1,34 +1,10 @@
 <ion-header>
   <ion-toolbar></ion-toolbar>
 </ion-header>
-<ion-content fullscreen padding>
-  <h1>{{ 'volunteer.feedback.title' | translate }}</h1>
-  <ion-icon name="md-close" class="modal-close-btn" (click)="modal.dismiss()"></ion-icon>
-
-  <ion-item padding-top>
-    <ion-label position="stacked">{{ 'volunteer.feedback.fieldLabels.advice' | translate }}</ion-label>
-    <ion-textarea class="tall" [(ngModel)]="formsService.feedbackForm.advice" placeholder="{{ 'volunteer.feedback.placeholder' | translate }}"></ion-textarea>
-  </ion-item>
-
-  <ion-item padding-top>
-    <ion-label position="stacked">{{ 'volunteer.feedback.fieldLabels.bestPart' | translate }}</ion-label>
-    <ion-textarea class="tall" [(ngModel)]="formsService.feedbackForm.bestPart" placeholder="{{ 'volunteer.feedback.placeholder' | translate }}"></ion-textarea>
-  </ion-item>
-
-  <ion-item padding-top>
-    <ion-label position="stacked">{{ 'volunteer.feedback.fieldLabels.improvements' | translate }}</ion-label>
-    <ion-textarea class="tall" [(ngModel)]="formsService.feedbackForm.improvements" placeholder="{{ 'volunteer.feedback.placeholder' | translate }}"></ion-textarea>
-  </ion-item>
-
-  <p text-center padding-top>
-    <ion-button
-      class="large-btn"
-      fill="solid"
-      color="primary"
-      (click)="submitForm()"
-      [disabled]="!formsService.feedbackForm.advice && !formsService.feedbackForm.bestPart && !formsService.feedbackForm.improvements">
-        {{ 'misc.submit' | translate }}
-    </ion-button>
-  </p>
-
+<ion-content class="gf-survey-modal" fullscreen padding>
+  <div>
+    <h1 style="flex: 0 0 auto">{{ 'volunteer.forms.feedback.title' | translate }}</h1>
+    <ion-icon name="md-close" class="modal-close-btn" (click)="modal.dismiss()"></ion-icon>
+    <iframe [src]="gfSurveyUrl"></iframe>
+  </div>
 </ion-content>

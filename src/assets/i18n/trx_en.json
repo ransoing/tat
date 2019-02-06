@@ -228,24 +228,17 @@
   "volunteer": {
     "btns": {
       "hoursLog": "Hours Log",
-      "photos": "Photos",
       "postOutreachReport": "Post-Outreach Report",
       "preOutreachSurvey": "Pre-Outreach Survey",
       "resources": "Resources",
       "testimonial": "Testimonial/Feedback",
       "trainingVideo": "Training Video"
     },
-    "feedback": {
-      "fieldLabels": {
-        "advice": "What advice would you give another volunteer?",
-        "bestPart": "What was the best part of your experience?",
-        "improvements": "What could have been improved about your experience?"
-      },
-      "placeholder": "Please write a brief description",
-      "submitSuccess": "Your feedback has been successfully submitted. Thank you!",
-      "title": "@:volunteer.btns.testimonial"
-    },
     "forms": {
+      "feedback": {
+        "submitSuccess": "Your feedback has been successfully submitted. Thank you!",
+        "title": "@:volunteer.btns.testimonial"
+      },
       "hoursLog": {
         "submitSuccess": "Your answers were successfully submitted. Thank you for your time!",
         "title": "@:volunteer.hoursLog.addEntry"
@@ -270,10 +263,6 @@
     },
     "intro": "Thank you for volunteering with TAT! Your time in preparation, volunteering and follow up not only helps further our mission, but further exemplifies how passionate this industry is about fighting this heinous crime. Below are the items you will need throughout the volunteer process. We are thrilled to have you as part of the team.",
     "loginTitle": "Volunteer Login",
-    "photos": {
-      "intro": "Share the work we're doing together with your friends and family!",
-      "title": "@:volunteer.btns.photos"
-    },
     "resources": {
       "imgAlt": "You must be connected to the internet to load this image.",
       "infographicTitle": "TAT by the Numbers",

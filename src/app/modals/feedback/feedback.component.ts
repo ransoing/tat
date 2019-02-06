@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { FormsService, TrxService } from '../../services';
-import { LoadingController, AlertController } from '@ionic/angular';
+import { TrxService, MiscService, GetFeedbackService, UserDataService } from '../../services';
+import { Subscription } from 'rxjs';
 
 @Component({
   templateUrl: './feedback.component.html'
@@ -8,54 +8,30 @@ import { LoadingController, AlertController } from '@ionic/angular';
 export class FeedbackComponent {
 
   public modal: HTMLIonModalElement;
+  public gfSurveyUrl;
+  private gfSubscription: Subscription;
   
   constructor(
-    public formsService: FormsService,
-    public loadingController: LoadingController,
-    public alertController: AlertController,
+    public miscService: MiscService,
+    public userDataService: UserDataService,
+    public getFeedbackService: GetFeedbackService,
     public trx: TrxService
   ) {
-    if ( formsService.feedbackForm === undefined ) {
-      formsService.resetFeedbackForm();
-    }
+    // @@TODO: change this to feedback survey url
+    this.gfSurveyUrl = this.getFeedbackService.getHoursLogSurveyUrl();
   }
 
-  async submitForm() {
-    console.log( '@@ Check internet connection. Connect to salesforce.' );
-
-    let loading = await this.loadingController.create({
-      message: await this.trx.t( 'misc.pleaseWait' )
+  ngOnInit() {
+    // wait for the survey to be submitted
+    this.gfSubscription = this.getFeedbackService.getFeedbackSubmitted.subscribe( async message => {
+      // close the modal and show a success message
+      this.modal.dismiss();
+      this.miscService.showSimpleAlert( await this.trx.t( 'misc.success' ), await this.trx.t( 'volunteer.forms.feedback.submitSuccess' ) );
     });
-    loading.present();
-    setTimeout( async () => {
-      loading.dismiss();
+  }
 
-      const success = false;
-
-      // @@ on success
-      if ( success ) {
-        const alert = await this.alertController.create({
-          header: await this.trx.t( 'misc.success' ),
-          message: await this.trx.t( 'volunteer.feedback.submitSuccess' ),
-          buttons: [await this.trx.t( 'misc.close' )]
-        });
-        alert.present();
-        alert.onDidDismiss().then( () => {
-          // clear the form and navigate back to the volunteer homepage
-          this.modal.dismiss()
-          .then( () => this.formsService.resetFeedbackForm() );
-        });
-      } else {
-        // @@ on error
-        const alert = await this.alertController.create({
-          header: await this.trx.t( 'misc.error' ),
-          message: await this.trx.t( 'misc.submitError' ),
-          buttons: [await this.trx.t( 'misc.close' )]
-        });
-        alert.present();
-      }
-    }, 3000 );
-    
+  ngOnDestroy() {
+    this.gfSubscription.unsubscribe();
   }
 
 }

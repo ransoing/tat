@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import {
   PreOutreachFormComponent, PostOutreachSelectionComponent, HoursLogComponent, 
-  VolunteerResourcesComponent, FeedbackComponent, PhotosComponent, 
+  VolunteerResourcesComponent, FeedbackComponent, 
   VolunteerSettingsComponent, TrainingVideoComponent
 } from '../../modals';
 import { ModalService, UserDataService, MiscService } from '../../services';
@@ -17,7 +17,6 @@ export class VolunteerPage {
   public VolunteerResourcesComponent = VolunteerResourcesComponent;
   public HoursLogComponent = HoursLogComponent;
   public FeedbackComponent = FeedbackComponent;
-  public PhotosComponent = PhotosComponent;
   public PostOutreachSelectionComponent = PostOutreachSelectionComponent;
   public VolunteerSettingsComponent = VolunteerSettingsComponent;
   public TrainingVideoComponent = TrainingVideoComponent;

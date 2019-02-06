@@ -50,13 +50,6 @@
     </image-button>
     
     <image-button
-      image="volunteer.photos.jpg"
-      (click)="modalService.open(PhotosComponent)"
-      [disabled]="!userDataService.data.hasWatchedTrainingVideo">
-        {{ 'volunteer.btns.photos' | translate }}
-    </image-button>
-    
-    <image-button
       image="volunteer.testimonial.jpg"
       (click)="modalService.open(FeedbackComponent)"
       [disabled]="!userDataService.data.hasWatchedTrainingVideo">

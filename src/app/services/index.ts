@@ -2,7 +2,6 @@
 // https://basarat.gitbooks.io/typescript/docs/tips/barrel.html
 export * from './modal.service';
 export * from './misc.service';
-export * from './forms.service';
 export * from './trx.service';
 export * from './user-data.service';
 export * from './settings.service';

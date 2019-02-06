@@ -2,9 +2,10 @@ import { Component, ViewChild } from '@angular/core';
 import { Platform, IonRouterOutlet, NavController, AlertController } from '@ionic/angular';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { TranslateService } from '@ngx-translate/core';
-import { SettingsService, ModalService, MiscService, UserDataService, TrxService } from './services';
+import { SettingsService, ModalService, MiscService, UserDataService, TrxService, StorageKeys } from './services';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { LoginComponent } from './modals';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-root',
@@ -25,6 +26,7 @@ export class AppComponent {
     private userDataService: UserDataService,
     private navCtrl: NavController,
     private alertCtrl: AlertController,
+    private storage: Storage,
     private trx: TrxService
   ) {
     this.statusBar.styleBlackOpaque();
@@ -37,7 +39,6 @@ export class AppComponent {
       this.translate.setDefaultLang( this.settings.language );
       this.translate.use( this.settings.language );
 
-      // @@set language of firebase login
       // this observable will fire when the app starts up, so it's not just when the user has actively logged in or out
       var firstAuthCallback = true;
       this.angularFireAuth.authState.subscribe( response => {
@@ -51,6 +52,7 @@ export class AppComponent {
           // logged out.
           this.userDataService.firebaseUser = null;
           this.userDataService.data = null;
+          this.storage.remove( StorageKeys.USER_DATA ); // clear the cache; a new user's data might be fetched
           // only redirect the user and notify that he has logged out if this isn't executed on application launch
           if ( !firstAuthCallback ) {
             // kick the user to the homepage and close the current modal

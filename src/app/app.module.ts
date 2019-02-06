@@ -23,6 +23,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Dialogs } from '@ionic-native/dialogs/ngx';
 import { Network } from '@ionic-native/network/ngx';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
+import { IonicStorageModule } from '@ionic/storage';
 
 // firebase and firebase auth
 import * as firebaseuiNamespace from 'firebaseui-en-es/dist'; // just for the namespace
@@ -89,6 +90,7 @@ import {
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
+    IonicStorageModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
     FormsModule,

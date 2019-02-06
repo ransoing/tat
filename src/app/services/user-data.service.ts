@@ -4,6 +4,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from 'firebase';
 import { LoadingController, AlertController } from '@ionic/angular';
 import { TrxService } from './trx.service';
+import { Storage } from '@ionic/storage';
+import { StorageKeys } from './misc.service';
 
 /**
  * This service doesn't communicate directly with Salesforce (SF), but communicates with a
@@ -39,7 +41,8 @@ export enum OutreachLocationType {
 export enum UserDataRequestFlags {
   BASIC_USER_DATA = 1,
   HOURS_LOGS = 2,
-  UNFINISHED_OUTREACH_TARGETS = 4
+  UNFINISHED_OUTREACH_TARGETS = 4,
+  ALL = 7
 }
 
 export interface IHoursLog {
@@ -100,27 +103,38 @@ export class UserDataService {
     private http: HttpClient,
     private loadingController: LoadingController,
     private alertController: AlertController,
-    private trx: TrxService
+    private trx: TrxService,
+    private storage: Storage
   ) { }
 
   /**
-   * Fetches the volunteer user data, only if it hasn't yet been fetched, or if `force` is set to `true`.
-   * @param [force]
+   * Fetches the volunteer user data from the proxy, only if it hasn't yet been fetched, or if `force` is set to `true`.
+   * Shows a 'loading' popup while data is loading.
+   * @param [force] Forces a refresh of the data from the proxy. Otherwise, the app will use the data cache from local storage.
    * @param [dataRequestFlags] Values of UserDataRequestFlags that are OR'd together. 
    */
   async fetchUserData(
       force?: boolean,
-      dataRequestFlags: number = UserDataRequestFlags.BASIC_USER_DATA | UserDataRequestFlags.HOURS_LOGS | UserDataRequestFlags.UNFINISHED_OUTREACH_TARGETS
-    ) {
-    // @@TODO: keep a cache of this, stored in permanent local storage. This method will check if the cache is expired
-    // quit now if we've already gotten the data and the caller of this function isn't forcing a refresh,
-    // and we're not currently fetching the data already
-    if ( (this.data && !force) || this.fetchingUserData ) {
+      dataRequestFlags: number = UserDataRequestFlags.ALL
+  ) {
+    
+    if ( this.fetchingUserData ) {
       return;
     }
-
     this.fetchingUserData = true;
-    
+
+    if ( !force ) {
+      // try to get cached user data from local storage
+      if ( !this.data ) {
+        this.data = await this.storage.get( StorageKeys.USER_DATA );
+      }
+      // if we have data locally, just use that
+      if ( this.data ) {
+        this.fetchingUserData = false;
+        return;
+      }
+    }
+
     // show a loading thing while we're loading data
     this.loadingPopup = await this.loadingController.create({
       message: await this.trx.t( 'misc.pleaseWait' )
@@ -168,6 +182,8 @@ export class UserDataService {
     });
     // @@TODO: don't use a hardcoded salesforce user ID
     this.data.salesforceId = '0031N00001tVsAmQAK';
+    // save the data in local cache
+    this.storage.set( StorageKeys.USER_DATA, this.data );
   }
 
   private async onFetchError( e ) {

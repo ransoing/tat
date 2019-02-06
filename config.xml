@@ -131,6 +131,7 @@
     <plugin name="cordova-plugin-buildinfo" spec="^2.0.2" />
     <plugin name="cordova-plugin-browsertab" spec="^0.2.0" />
     <plugin name="cordova-plugin-inappbrowser" spec="^3.0.0" />
+    <plugin name="cordova-sqlite-storage" spec="^3.0.0" />
     <plugin name="cordova-universal-links-plugin" spec="git+https://github.com/walteram/cordova-universal-links-plugin.git" />
     <plugin name="cordova-plugin-customurlscheme" spec="^4.3.0">
         <variable name="URL_SCHEME" value="org.truckersagainsttrafficking.walletcard" />

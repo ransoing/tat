@@ -4,6 +4,10 @@ import { Observable } from 'rxjs';
 import { AlertController } from '@ionic/angular';
 import { TrxService } from './trx.service';
 
+export enum StorageKeys {
+  USER_DATA = 'user_data'
+}
+
 @Injectable({
   providedIn: 'root',
 })

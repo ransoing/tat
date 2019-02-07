@@ -73,11 +73,11 @@ export class GetFeedbackService {
   }
 
   getHoursLogSurveyUrl() {
-    return this.sanitizer.bypassSecurityTrustResourceUrl( this.surveyUrlBases.hoursLog + '?ContactID=' + this.userDataService.data.salesforceId );
+    return this.sanitizer.bypassSecurityTrustResourceUrl( this.surveyUrlBases.hoursLog + '?ContactID=' + this.userDataService.salesforceId );
   }
 
   getPreOutreachSurveyUrl() {
-    return this.sanitizer.bypassSecurityTrustResourceUrl( this.surveyUrlBases.preOutreach + '?ContactID=' + this.userDataService.data.salesforceId );
+    return this.sanitizer.bypassSecurityTrustResourceUrl( this.surveyUrlBases.preOutreach + '?ContactID=' + this.userDataService.salesforceId );
   }
 
   getPostOutreachSurveyUrl( outreachTarget: IUnfinishedOutreachTarget ) {
@@ -97,7 +97,7 @@ export class GetFeedbackService {
   }
 
   getFeedbackSurveyUrl() {
-    return this.sanitizer.bypassSecurityTrustResourceUrl( this.surveyUrlBases.feedback + '?ContactID=' + this.userDataService.data.salesforceId );
+    return this.sanitizer.bypassSecurityTrustResourceUrl( this.surveyUrlBases.feedback + '?ContactID=' + this.userDataService.salesforceId );
   }
 
 }

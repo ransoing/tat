@@ -15,7 +15,7 @@
   </ul>
 
   <p>
-    {{ 'resources.about.annualReportLink.1' | translate }}
+    {{ 'resources.about.annualReportLink.1' | translate:{year: lastYear} }}
     <a (click)="miscService.openExternalLink('https://truckersagainsttrafficking.org/get-our-materials/#annual-reports')">{{ 'resources.about.annualReportLink.2' | translate }}</a>.
   </p>
 

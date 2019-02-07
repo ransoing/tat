@@ -142,7 +142,7 @@
   "resources": {
     "about": {
       "annualReportLink": {
-        "1": "Conozca el impacto que TAT y nuestros colaboradores tuvieron en el 2017 por medio de nuestro",
+        "1": "Conozca el impacto que TAT y nuestros colaboradores tuvieron en el {{year}} por medio de nuestro",
         "2": "Reporte Anual"
       },
       "credits": "Esta aplicación fue creada por Ransom Christofferson y Alexander Ramsey Creative LLC.",
@@ -182,11 +182,11 @@
     "intro": "Use los siguientes recursos para conocer más acerca de la trata de personas y cómo usted puede ayudar a combatirla.",
     "laws": {
       "bullets": {
-        "1": "Los 50 estados de EEUU y el Distrito de Columbia tienen una nueva ley que penaliza la trata de personas para explotación sexual",
-        "2": "31 estados tienen una ley contra la trata que se impone a los compradores, la cual prohíbe la defensa con base en error en la edad en los juicios por comprar un acto sexual de una persona menor de 18 años de edad",
-        "3": "Algunos estados castigan a los compradores de sexo de la misma forma que a los tratantes, generalmente con delitos de carácter grave",
-        "4": "Washington identifica a cualquier persona que compre un acto sexual explícito como tratante de personas culpable de un delito grave tipo A",
-        "5": "Hay una prohibición de por vida para obtener licencia de conducir comercia para la persona que use su vehículo comercial en la comisión de un delito grave que conlleve una forma grave de trata de personas"
+        "1": "Los 50 estados de EEUU y el Distrito de Columbia tienen una nueva ley que penaliza la trata de personas para explotación sexual.",
+        "2": "31 estados tienen una ley contra la trata que se impone a los compradores, la cual prohíbe la defensa con base en error en la edad en los juicios por comprar un acto sexual de una persona menor de 18 años de edad.",
+        "3": "Algunos estados castigan a los compradores de sexo de la misma forma que a los tratantes, generalmente con delitos de carácter grave.",
+        "4": "Washington identifica a cualquier persona que compre un acto sexual explícito como tratante de personas culpable de un delito grave tipo A.",
+        "5": "Hay una prohibición de por vida para obtener licencia de conducir comercia para la persona que use su vehículo comercial en la comisión de un delito grave que conlleve una forma grave de trata de personas."
       },
       "intro": "¿Sabía usted que…?",
       "intro2": "La trata de personas es el reclutamiento, transporte, transferencia, alojamiento u obtención de personas por medio de la fuerza, el fraude y la coerción con fines de explotación.",

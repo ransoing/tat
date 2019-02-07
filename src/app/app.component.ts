@@ -5,7 +5,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { SettingsService, ModalService, MiscService, UserDataService, TrxService, StorageKeys } from './services';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { LoginComponent } from './modals';
-import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-root',
@@ -26,7 +25,6 @@ export class AppComponent {
     private userDataService: UserDataService,
     private navCtrl: NavController,
     private alertCtrl: AlertController,
-    private storage: Storage,
     private trx: TrxService
   ) {
     this.statusBar.styleBlackOpaque();
@@ -50,9 +48,7 @@ export class AppComponent {
           this.userDataService.fetchUserData();
         } else {
           // logged out.
-          this.userDataService.firebaseUser = null;
-          this.userDataService.data = null;
-          this.storage.remove( StorageKeys.USER_DATA ); // clear the cache; a new user's data might be fetched
+          this.userDataService.clearData();
           // only redirect the user and notify that he has logged out if this isn't executed on application launch
           if ( !firstAuthCallback ) {
             // kick the user to the homepage and close the current modal

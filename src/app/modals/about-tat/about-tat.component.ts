@@ -7,6 +7,7 @@ import { MiscService } from '../../services';
 export class AboutTatComponent {
 
   public modal: HTMLIonModalElement;
+  public lastYear = ( new Date().getFullYear() ) - 1;
   
   constructor( public miscService: MiscService ) { }
 

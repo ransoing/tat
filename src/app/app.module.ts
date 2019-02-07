@@ -31,9 +31,9 @@ import { FirebaseUIModule, firebaseui, firebase } from 'firebaseui-angular-en-es
 //import { FirebaseUIModule as FirebaseUIModuleEs, firebaseui as firebaseuiEs } from 'firebaseui-angular-es';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 /*
 @@
-AngularFireDatabaseModule
 AngularFireFunctionsModule
 AngularFirestoreModule
 AngularFireStorageModule
@@ -106,7 +106,7 @@ import {
       }
     }),
     AngularFireModule.initializeApp( environment.firebaseConfig ),
-    AngularFireAuthModule,
+    AngularFireAuthModule, AngularFireDatabaseModule,
     FirebaseUIModule.forRoot( firebaseuiAuthConfig ),
   ],
   providers: [

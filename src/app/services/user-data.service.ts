@@ -6,6 +6,7 @@ import { LoadingController, AlertController } from '@ionic/angular';
 import { TrxService } from './trx.service';
 import { Storage } from '@ionic/storage';
 import { StorageKeys } from './misc.service';
+import { AngularFireDatabase } from '@angular/fire/database';
 
 /**
  * This service doesn't communicate directly with Salesforce (SF), but communicates with a
@@ -69,7 +70,6 @@ export interface IUnfinishedOutreachTarget {
 }
 
 export interface IUserData {
-  salesforceId?: string, // ID of the Contact object in salesforce which represents this user
   firstName?: string,
   lastName?: string,
   volunteerType?: VolunteerType,
@@ -85,7 +85,9 @@ export interface IUserData {
 })
 export class UserDataService {
 
+  public data: IUserData = null; // the data that comes from salesforce
   public firebaseUser: User;
+  public salesforceId: any;  // ID of the Contact object in salesforce which represents this user
   /*
   Possibly useful properties:
   firebaseUser.displayName
@@ -95,16 +97,16 @@ export class UserDataService {
   firebaseUser.uid
   */
 
-  data: IUserData = null;
-  loadingPopup;
-  fetchingUserData: boolean = false;
+  private loadingPopup;
+  private fetchingUserData: boolean = false;
 
   constructor(
     private http: HttpClient,
     private loadingController: LoadingController,
     private alertController: AlertController,
     private trx: TrxService,
-    private storage: Storage
+    private storage: Storage,
+    private fireDatabase: AngularFireDatabase
   ) { }
 
   /**
@@ -123,28 +125,30 @@ export class UserDataService {
     }
     this.fetchingUserData = true;
 
-    if ( !force ) {
-      // try to get cached user data from local storage
-      if ( !this.data ) {
-        this.data = await this.storage.get( StorageKeys.USER_DATA );
-      }
-      // if we have data locally, just use that
-      if ( this.data ) {
-        this.fetchingUserData = false;
-        return;
-      }
-    }
-
-    // show a loading thing while we're loading data
-    this.loadingPopup = await this.loadingController.create({
-      message: await this.trx.t( 'misc.pleaseWait' )
-    });
-    this.loadingPopup.present();
-    
-    let token;
     try {
+      // get the salesforce ID from fireDatabase
+      if ( !this.salesforceId ) {
+        await this.showLoadingPopup();
+        this.salesforceId = ( await this.fireDatabase.database.ref( 'users/' + this.firebaseUser.uid ).once( 'value' ) ).val().salesforceId;
+      }
+
+      if ( !force ) {
+        // try to get cached user data from local storage
+        if ( !this.data || Object.keys(this.data).length == 0 ) {
+          this.data = await this.storage.get( StorageKeys.USER_DATA );
+        }
+        // if we have data locally, just use that
+        if ( this.data ) {
+          this.onFetchFinally();
+          return;
+        }
+      }
+
+      // the loading popup might not have been triggered. We need it now.
+      await this.showLoadingPopup();
       // get the idToken before a request to the proxy
-      token = await this.firebaseUser.getIdToken();
+      var token = await this.firebaseUser.getIdToken();
+      
     } catch ( e ) {
       this.onFetchError( e );
       this.onFetchFinally();
@@ -180,8 +184,6 @@ export class UserDataService {
       }
       return a.date < b.date ? 1 : -1;
     });
-    // @@TODO: don't use a hardcoded salesforce user ID
-    this.data.salesforceId = '0031N00001tVsAmQAK';
     // save the data in local cache
     this.storage.set( StorageKeys.USER_DATA, this.data );
   }
@@ -197,7 +199,7 @@ export class UserDataService {
   }
 
   private onFetchFinally() {
-    this.loadingPopup.dismiss();
+    this.hideLoadingPopup();
     this.fetchingUserData = false;
   }
 
@@ -230,6 +232,38 @@ export class UserDataService {
         }
       }
     })
+  }
+
+  /**
+   * Shows the loading popup, but only if it isn't yet shown.
+   */
+  private async showLoadingPopup() {
+    if ( this.loadingPopup ) {
+      // quit now; it's already been presented.
+      return;
+    }
+    // create and preset the loading popup
+    this.loadingPopup = await this.loadingController.create({
+      message: await this.trx.t( 'misc.pleaseWait' )
+    });
+    this.loadingPopup.present();
+  }
+
+  /**
+   * Only tries to hide the loading popup if the thing exists
+   */
+  private async hideLoadingPopup() {
+    if ( this.loadingPopup ) {
+      this.loadingPopup.dismiss();
+      this.loadingPopup = null;
+    }
+  }
+
+  public clearData() {
+    this.firebaseUser = null;
+    this.salesforceId = null;
+    this.data = null;
+    this.storage.remove( StorageKeys.USER_DATA ); // clear the cache; a new user's data might be fetched
   }
 
 }

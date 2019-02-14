@@ -70,6 +70,7 @@ export interface IUnfinishedOutreachTarget {
 }
 
 export interface IUserData {
+  salesforceId?: string, // ID of the AppUser object in salesforce which represents this user
   firstName?: string,
   lastName?: string,
   volunteerType?: VolunteerType,
@@ -87,7 +88,6 @@ export class UserDataService {
 
   public data: IUserData = null; // the data that comes from salesforce
   public firebaseUser: User;
-  public salesforceId: any;  // ID of the Contact object in salesforce which represents this user
   /*
   Possibly useful properties:
   firebaseUser.displayName
@@ -126,12 +126,6 @@ export class UserDataService {
     this.fetchingUserData = true;
 
     try {
-      // get the salesforce ID from fireDatabase
-      if ( !this.salesforceId ) {
-        await this.showLoadingPopup();
-        this.salesforceId = ( await this.fireDatabase.database.ref( 'users/' + this.firebaseUser.uid ).once( 'value' ) ).val().salesforceId;
-      }
-
       if ( !force ) {
         // try to get cached user data from local storage
         if ( !this.data || Object.keys(this.data).length == 0 ) {
@@ -154,28 +148,27 @@ export class UserDataService {
       this.onFetchFinally();
     }
 
-    let promises = [];
-    // parse bitmask flags to determine which URLs to hit
-    if ( dataRequestFlags & UserDataRequestFlags.BASIC_USER_DATA )              promises.push( this.apiRequest( '/getBasicUserData', token ) );
-    if ( dataRequestFlags & UserDataRequestFlags.HOURS_LOGS )                   promises.push( this.apiRequest( '/getHoursLogs', token ) );
-    if ( dataRequestFlags & UserDataRequestFlags.UNFINISHED_OUTREACH_TARGETS )  promises.push( this.apiRequest( '/getUnfinishedOutreachTargets', token ) );
-    Promise.all( promises )
+    // parse bitmask flags to determine what to append to the URL
+    let parts = [];
+    if ( dataRequestFlags & UserDataRequestFlags.BASIC_USER_DATA )              parts.push( 'basic' );
+    if ( dataRequestFlags & UserDataRequestFlags.HOURS_LOGS )                   parts.push( 'hoursLogs' );
+    if ( dataRequestFlags & UserDataRequestFlags.UNFINISHED_OUTREACH_TARGETS )  parts.push( 'unfinishedOutreachTargets' );
+    let url = '/getUserData?parts=' + parts.join( ',' );
+    this.apiRequest( url, token )
     .then( responses => this.onFetchSuccess(responses) )
     .catch( e => this.onFetchError(e) )
     .finally( () => this.onFetchFinally() );
   }
 
-  private onFetchSuccess( responses ) {
+  private onFetchSuccess( response ) {
     // convert ISO time strings to Date objects
-    this.convertJSONDates( responses );
+    this.convertJSONDates( response );
     // save the data. For each key in each response, overwrite the existing key in the saved data.
     if ( !this.data ) {
       this.data = {};
     }
-    responses.forEach( response => {
-      Object.keys( response ).filter( key => response.hasOwnProperty(key) ).forEach( key => {
-        this.data[key] = response[key];
-      });
+    Object.keys( response ).filter( key => response.hasOwnProperty(key) ).forEach( key => {
+      this.data[key] = response[key];
     });
     // sort the hours log entries by descending date
     this.data.hoursLogs = this.data.hoursLogs.sort( (a, b) => {
@@ -261,7 +254,6 @@ export class UserDataService {
 
   public clearData() {
     this.firebaseUser = null;
-    this.salesforceId = null;
     this.data = null;
     this.storage.remove( StorageKeys.USER_DATA ); // clear the cache; a new user's data might be fetched
   }

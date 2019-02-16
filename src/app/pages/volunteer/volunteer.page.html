@@ -29,17 +29,26 @@
     </image-button>
 
     <image-button
+      image="volunteer.training-video.jpg"
+      (click)="showTrainingVideoFeedbackForm()"
+      [required]="true"
+      [completed]="userDataService.data.hasCompletedTrainingFeedback"
+      [disabled]="!(userDataService.data.hasWatchedTrainingVideo && !userDataService.data.hasCompletedTrainingFeedback)">
+        {{ 'volunteer.btns.trainingFeedback' | translate }}
+    </image-button>
+
+    <image-button
       image="volunteer.pre-outreach-survey.jpg"
       (click)="showPreOutreachForm()"
       [required]="true"
-      [disabled]="!userDataService.data.hasWatchedTrainingVideo">
+      [disabled]="!userDataService.data.hasCompletedTrainingFeedback">
         {{ 'volunteer.btns.preOutreachSurvey' | translate }}
     </image-button>
     
     <image-button
       image="volunteer.resources.jpg"
       (click)="modalService.open(VolunteerResourcesComponent)"
-      [disabled]="!userDataService.data.hasWatchedTrainingVideo">
+      [disabled]="!userDataService.data.hasCompletedTrainingFeedback">
         {{ 'volunteer.btns.resources' | translate }}
     </image-button>
     
@@ -47,7 +56,7 @@
       image="volunteer.post-outreach-report.jpg"
       (click)="modalService.open(PostOutreachSelectionComponent)"
       [required]="true"
-      [disabled]="!userDataService.data.hasWatchedTrainingVideo || userDataService.data.unfinishedOutreachTargets.length === 0">
+      [disabled]="!userDataService.data.hasCompletedTrainingFeedback || userDataService.data.unfinishedOutreachTargets.length === 0">
         {{ 'volunteer.btns.postOutreachReport' | translate }}
     </image-button>
     
@@ -55,14 +64,14 @@
       image="volunteer.hours-log.jpg"
       (click)="modalService.open(HoursLogComponent)"
       [required]="true"
-      [disabled]="!userDataService.data.hasWatchedTrainingVideo">
+      [disabled]="!userDataService.data.hasCompletedTrainingFeedback">
         {{ 'volunteer.btns.hoursLog' | translate }}
     </image-button>
     
     <image-button
       image="volunteer.testimonial.jpg"
       (click)="showFeedbackForm()"
-      [disabled]="!userDataService.data.hasWatchedTrainingVideo">
+      [disabled]="!userDataService.data.hasCompletedTrainingFeedback">
         {{ 'volunteer.btns.testimonial' | translate }}
     </image-button>
   </div>

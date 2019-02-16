@@ -224,6 +224,9 @@
       "trainingVideo": "Video de capacitación"
     },
     "forms": {
+      "editAccount": {
+        "title": "@:volunteer.settings.editAccount"
+      },
       "feedback": {
         "title": "@:volunteer.btns.testimonial"
       },
@@ -236,7 +239,10 @@
       "preOutreach": {
         "title": "@:volunteer.btns.preOutreachSurvey"
       },
-      "signup": {}
+      "trainingFeedback": {
+        "submitSuccess": "@:volunteer.forms.feedback.submitSuccess",
+        "title": "@:volunteer.btns.trainingFeedback"
+      }
     },
     "hoursLog": {
       "hour": "hora",
@@ -255,6 +261,7 @@
       "statsLink2": "por la línea de ayuda",
       "title": "@:volunteer.btns.resources"
     },
+    "settings": {},
     "title": "@:nav.volunteer",
     "welcome": "Bienvenido"
   },

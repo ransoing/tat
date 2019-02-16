@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LoadingController } from '@ionic/angular';
 import { TrxService } from './trx.service';
-import { UserDataService, IUnfinishedOutreachTarget, OutreachLocationType } from './user-data.service';
+import { UserDataService, IUnfinishedOutreachTarget, OutreachLocationType, VolunteerType } from './user-data.service';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Injectable({
@@ -23,11 +23,20 @@ export class GetFeedbackService {
   // it takes several seconds after we submit data until that data is available to get from salesforce via the API
   private readonly refreshDataDelay: number = 8000;
 
-  // the nice labels for the different outreach targets. This is required to pre-fill some getfeedback survey fields.
+  // The nice labels for the different outreach targets. This is required to pre-fill some getfeedback survey fields.
+  // The values must exactly match those in the survey.
   private readonly outreachTargetBackwardsMapping = {
     [OutreachLocationType.CDL_SCHOOL]: 'CDL School',
     [OutreachLocationType.TRUCK_STOP]: 'Truck Stop',
     [OutreachLocationType.TRUCKING_COMPANY]: 'Trucking Company'
+  };
+
+  // The nice labels for volunteer types. This is required to pre-fill some fields.
+  // The values must exactly match those in the survey.
+  private readonly volunteerTypeBackwardsMapping = {
+    [VolunteerType.TRUCK_STOP_VOLUNTEER]: 'Truck Stop Volunteer',
+    [VolunteerType.EVENT_VOLUNTEER]: 'Freedom Drivers Volunteer',
+    [VolunteerType.AMBASSADOR_VOLUNTEER]: 'TAT Ambassador'
   };
 
   private lastSubmission: number; // timestamp
@@ -116,7 +125,7 @@ export class GetFeedbackService {
     });
   }
 
-  getAccountSettingsSurveyUrl() {
+  getEditAccountSurveyUrl() {
     // uses the same survey as signup, but fills in a bunch of fields and provides a salesforce merge field.
     // The presence of the merge field causes GetFeedback to update a salesforce entry rather than make a new one.
     let udata = this.userDataService.data;
@@ -127,7 +136,7 @@ export class GetFeedbackService {
       'gf_q[7290681][14733008]': udata.lastName,
       'gf_q[7290681][14733013]': udata.phone,
       'gf_q[7290681][14733014]': udata.email,
-      'gf_q[7290681][14733028]': udata.volunteerType,
+      'gf_q[7290681][14733028]': this.volunteerTypeBackwardsMapping[udata.volunteerType],
       'gf_q[7290682][14733012]': udata.address,
       'gf_q[7290682][14733015]': udata.city,
       'gf_q[7290682][14733016]': udata.state,

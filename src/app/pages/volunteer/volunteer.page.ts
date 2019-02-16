@@ -58,4 +58,19 @@ export class VolunteerPage {
     });
   }
 
+  showTrainingVideoFeedbackForm() {
+    this.modalService.open( GetFeedbackSurveyComponent, {
+      titleTranslationKey: 'volunteer.forms.trainingFeedback.title',
+      successTranslationKey: 'volunteer.forms.trainingFeedback.submitSuccess',
+      surveyUrl: this.getFeedbackService.getTrainingVideoFeedbackSurveyUrl(),
+      onSurveyFinished: () => {
+        this.getFeedbackService.waitForSalesforceToUpdate()
+        .then( () => {
+          // update just the basic user data
+          this.userDataService.fetchUserData( true, UserDataRequestFlags.BASIC_USER_DATA );
+        });
+      }
+    });
+  }
+
 }

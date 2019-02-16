@@ -234,9 +234,14 @@
       "preOutreachSurvey": "Pre-Outreach Survey",
       "resources": "Resources",
       "testimonial": "Testimonial/Feedback",
+      "trainingFeedback": "Training Video Feedback",
       "trainingVideo": "Training Video"
     },
     "forms": {
+      "editAccount": {
+        "submitSuccess": "Your account has been updated.",
+        "title": "@:volunteer.settings.editAccount"
+      },
       "feedback": {
         "submitSuccess": "Your feedback has been successfully submitted. Thank you!",
         "title": "@:volunteer.btns.testimonial"
@@ -257,6 +262,10 @@
       "signup": {
         "submitSuccess": "Thank you for signing up!",
         "title": "Create new account"
+      },
+      "trainingFeedback": {
+        "submitSuccess": "@:volunteer.forms.feedback.submitSuccess",
+        "title": "@:volunteer.btns.trainingFeedback"
       }
     },
     "hoursLog": {
@@ -280,6 +289,7 @@
       "title": "@:volunteer.btns.resources"
     },
     "settings": {
+      "editAccount": "Edit Account",
       "loggedInAs": "Logged in as",
       "logout": "Logout",
       "notifications": {

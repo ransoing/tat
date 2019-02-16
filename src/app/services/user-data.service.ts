@@ -74,7 +74,8 @@ export interface IUserData {
   firstName?: string,
   lastName?: string,
   volunteerType?: VolunteerType,
-  hasWatchedTrainingVideo?: boolean,
+  hasWatchedTrainingVideo?: boolean, // this is the one property which isn't retrieved by salesforce. 
+  hasCompletedTrainingFeedback?: boolean,
   address?: string,
   city?: string,
   state?: string,
@@ -188,7 +189,10 @@ export class UserDataService {
       return a.date < b.date ? 1 : -1;
     });
     // save the data in local cache
-    this.storage.set( StorageKeys.USER_DATA, this.data );
+    if ( this.data.hasCompletedTrainingFeedback ) {
+      this.data.hasWatchedTrainingVideo = true;
+    }
+    this.updateCache();
   }
 
   private async onFetchError( e ) {
@@ -267,6 +271,13 @@ export class UserDataService {
       this.loadingPopup.dismiss();
       this.loadingPopup = null;
     }
+  }
+
+  /**
+   * Updates the cache, saving the current state of user data in local storage
+   */
+  public updateCache() {
+    this.storage.set( StorageKeys.USER_DATA, this.data );
   }
 
   public clearData() {

@@ -67,7 +67,7 @@ export class TrainingVideoComponent implements OnInit {
 
   onUserFinishedWatching() {
     this.userDataService.data.hasWatchedTrainingVideo = true;
-    // @@TODO save the data to the cache
+    this.userDataService.updateCache();
     this.modal.dismiss();
   }
 

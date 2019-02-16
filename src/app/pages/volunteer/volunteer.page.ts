@@ -4,7 +4,7 @@ import {
   PostOutreachSelectionComponent, HoursLogComponent, 
   VolunteerResourcesComponent, VolunteerSettingsComponent, TrainingVideoComponent,
   GetFeedbackSurveyComponent
-} from '../../modals';
+} from '../../modals-volunteer';
 import { ModalService, UserDataService, MiscService, GetFeedbackService, UserDataRequestFlags } from '../../services';
 import { AngularFireAuth } from '@angular/fire/auth';
 

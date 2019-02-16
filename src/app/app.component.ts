@@ -4,7 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { TranslateService } from '@ngx-translate/core';
 import { SettingsService, ModalService, MiscService, UserDataService, TrxService, GetFeedbackService } from './services';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { LoginComponent, GetFeedbackSurveyComponent } from './modals';
+import { LoginComponent, GetFeedbackSurveyComponent } from './modals-volunteer';
 
 @Component({
   selector: 'app-root',

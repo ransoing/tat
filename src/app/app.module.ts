@@ -65,27 +65,29 @@ import { AppComponent } from './app.component';
 import { ModalGuard, AuthGuard } from './guards';
 import {
   PlacesComponent, EmailReportComponent, WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
-  AboutTatComponent, HumanTraffickingLawsComponent, VolunteerSettingsComponent, VolunteerResourcesComponent,
-  HoursLogComponent, TrainingVideoComponent, LoginComponent, PostOutreachSelectionComponent,
+  AboutTatComponent, HumanTraffickingLawsComponent,
   CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent,
-  GetFeedbackSurveyComponent
 } from './modals';
+import {
+  VolunteerSettingsComponent, VolunteerResourcesComponent, GetFeedbackSurveyComponent,
+  HoursLogComponent, TrainingVideoComponent, LoginComponent, PostOutreachSelectionComponent,
+} from './modals-volunteer';
 
 @NgModule({
   declarations: [
     AppComponent,
     PlacesComponent, EmailReportComponent, WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
-    AboutTatComponent, HumanTraffickingLawsComponent, VolunteerSettingsComponent, VolunteerResourcesComponent,
-    HoursLogComponent, TrainingVideoComponent, LoginComponent, PostOutreachSelectionComponent,
+    AboutTatComponent, HumanTraffickingLawsComponent,
     CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent,
-    GetFeedbackSurveyComponent
+    VolunteerSettingsComponent, VolunteerResourcesComponent, GetFeedbackSurveyComponent,
+    HoursLogComponent, TrainingVideoComponent, LoginComponent, PostOutreachSelectionComponent
   ],
   entryComponents: [
     PlacesComponent, EmailReportComponent, WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
-    AboutTatComponent, HumanTraffickingLawsComponent, VolunteerSettingsComponent, VolunteerResourcesComponent,
-    HoursLogComponent, TrainingVideoComponent, LoginComponent, PostOutreachSelectionComponent,
+    AboutTatComponent, HumanTraffickingLawsComponent,
     CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent,
-    GetFeedbackSurveyComponent
+    VolunteerSettingsComponent, VolunteerResourcesComponent, GetFeedbackSurveyComponent,
+    HoursLogComponent, TrainingVideoComponent, LoginComponent, PostOutreachSelectionComponent
   ],
   imports: [
     BrowserModule,

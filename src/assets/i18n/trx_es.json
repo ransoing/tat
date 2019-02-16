@@ -235,7 +235,8 @@
       },
       "preOutreach": {
         "title": "@:volunteer.btns.preOutreachSurvey"
-      }
+      },
+      "signup": {}
     },
     "hoursLog": {
       "hour": "hora",

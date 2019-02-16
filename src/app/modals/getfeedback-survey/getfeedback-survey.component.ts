@@ -1,11 +1,20 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { TrxService, MiscService, UserDataService, UserDataRequestFlags, GetFeedbackService } from '../../services';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { TrxService, MiscService, GetFeedbackService } from '../../services';
 
 @Component({
   templateUrl: './getfeedback-survey.component.html'
 })
 export class GetFeedbackSurveyComponent implements OnInit, OnDestroy {
+
+  /**
+   * This component opens any GetFeedback survey inside a modal.
+   */
+
+  @Input('onSurveyFinished') onSurveyFinished: Function;
+  @Input('surveyUrl') surveyUrl: Function;
+  @Input('titleTranslationKey') titleTranslationKey: string;
+  @Input('successTranslationKey') successTranslationKey: string;
 
   public modal: HTMLIonModalElement;
   public gfSurveyUrl;
@@ -13,23 +22,18 @@ export class GetFeedbackSurveyComponent implements OnInit, OnDestroy {
   
   constructor(
     public miscService: MiscService,
-    public userDataService: UserDataService,
     public getFeedbackService: GetFeedbackService,
     public trx: TrxService
-  ) {
-    this.gfSurveyUrl = this.getFeedbackService.getHoursLogSurveyUrl();
-  }
+  ) {}
 
   ngOnInit() {
     // wait for the survey to be submitted
-    this.gfSubscription = this.getFeedbackService.getFeedbackSubmitted.subscribe( async message => {
+    this.gfSubscription = this.getFeedbackService.surveySubmitted.subscribe( async message => {
       // close the modal and show a success message
       this.modal.dismiss();
-      this.miscService.showSimpleAlert( await this.trx.t( 'misc.success' ), await this.trx.t( 'volunteer.forms.hoursLog.submitSuccess' ) )
-      .then( () => { return this.getFeedbackService.waitForSalesforceUpdate() } )
+      this.miscService.showSimpleAlert( await this.trx.t( 'misc.success' ), await this.trx.t( this.successTranslationKey ) )
       .then( () => {
-        // update the hours logs in the user data
-        this.userDataService.fetchUserData( true, UserDataRequestFlags.HOURS_LOGS );
+        this.onSurveyFinished();
       });
     });
   }

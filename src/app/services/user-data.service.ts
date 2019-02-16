@@ -3,8 +3,9 @@ import { environment } from '../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from 'firebase';
 import { LoadingController, AlertController } from '@ionic/angular';
-import { TrxService } from './trx.service';
+import { Subject } from 'rxjs';
 import { Storage } from '@ionic/storage';
+import { TrxService } from './trx.service';
 import { StorageKeys } from './misc.service';
 
 /**
@@ -94,6 +95,8 @@ export class UserDataService {
   public data: IUserData = null; // the data that comes from salesforce
   public firebaseUser: User;
   public loadError = false;
+  public newUserDetected: Subject<null> = new Subject();
+
   /*
   Possibly useful properties:
   firebaseUser.displayName
@@ -112,7 +115,7 @@ export class UserDataService {
     private alertController: AlertController,
     private trx: TrxService,
     private storage: Storage
-  ) { }
+  ) {}
 
   /**
    * Fetches the volunteer user data from the proxy, only if it hasn't yet been fetched, or if `force` is set to `true`.
@@ -120,10 +123,7 @@ export class UserDataService {
    * @param [force] Forces a refresh of the data from the proxy. Otherwise, the app will use the data cache from local storage.
    * @param [dataRequestFlags] Values of UserDataRequestFlags that are OR'd together. 
    */
-  async fetchUserData(
-      force?: boolean,
-      dataRequestFlags: number = UserDataRequestFlags.ALL
-  ) {
+  async fetchUserData( force?: boolean, dataRequestFlags: number = UserDataRequestFlags.ALL ) {
     this.loadError = false;
     
     if ( this.fetchingUserData ) {
@@ -167,6 +167,10 @@ export class UserDataService {
   }
 
   private onFetchSuccess( response ) {
+    // in some cases, the response can be 200 but completely blank (perhaps some uncaught error in the proxy?)
+    if ( typeof response !== 'object' || response === null ) {
+      throw new Error( 'Response is not an object: ' + JSON.stringify(response) );
+    }
     // convert ISO time strings to Date objects
     this.convertJSONDates( response );
     // save the data. For each key in each response, overwrite the existing key in the saved data.
@@ -189,8 +193,8 @@ export class UserDataService {
 
   private async onFetchError( e ) {
     if ( e.error && e.error.errorCode && e.error.errorCode === 'FIREBASE_USER_NOT_IN_SALESFORCE' ) {
-      console.log('new user');//@@
-      // this is a new user. Send him to the signup survey.
+      // this is a new user. Call next on the observable, which alerts other components.
+      this.newUserDetected.next();
     } else {
       console.error( e );
       // show an error message.

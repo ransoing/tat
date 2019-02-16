@@ -253,6 +253,10 @@
       "preOutreach": {
         "submitSuccess": "Thank you for completing this survey.",
         "title": "@:volunteer.btns.preOutreachSurvey"
+      },
+      "signup": {
+        "submitSuccess": "Thank you for signing up!",
+        "title": "Create new account"
       }
     },
     "hoursLog": {

@@ -30,7 +30,7 @@
 
     <image-button
       image="volunteer.pre-outreach-survey.jpg"
-      (click)="modalService.open(PreOutreachFormComponent)"
+      (click)="showPreOutreachForm()"
       [required]="true"
       [disabled]="!userDataService.data.hasWatchedTrainingVideo">
         {{ 'volunteer.btns.preOutreachSurvey' | translate }}
@@ -61,7 +61,7 @@
     
     <image-button
       image="volunteer.testimonial.jpg"
-      (click)="modalService.open(FeedbackFormComponent)"
+      (click)="showFeedbackForm()"
       [disabled]="!userDataService.data.hasWatchedTrainingVideo">
         {{ 'volunteer.btns.testimonial' | translate }}
     </image-button>

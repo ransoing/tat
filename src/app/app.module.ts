@@ -67,11 +67,9 @@ import {
   PlacesComponent, EmailReportComponent, WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
   AboutTatComponent, HumanTraffickingLawsComponent, VolunteerSettingsComponent, VolunteerResourcesComponent,
   HoursLogComponent, TrainingVideoComponent, LoginComponent, PostOutreachSelectionComponent,
-  CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent
+  CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent,
+  GetFeedbackSurveyComponent
 } from './modals';
-import {
-  FeedbackFormComponent, HoursLogFormComponent, PreOutreachFormComponent, PostOutreachFormComponent
-} from './modals-forms';
 
 @NgModule({
   declarations: [
@@ -80,14 +78,14 @@ import {
     AboutTatComponent, HumanTraffickingLawsComponent, VolunteerSettingsComponent, VolunteerResourcesComponent,
     HoursLogComponent, TrainingVideoComponent, LoginComponent, PostOutreachSelectionComponent,
     CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent,
-    FeedbackFormComponent, HoursLogFormComponent, PreOutreachFormComponent, PostOutreachFormComponent
+    GetFeedbackSurveyComponent
   ],
   entryComponents: [
     PlacesComponent, EmailReportComponent, WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
     AboutTatComponent, HumanTraffickingLawsComponent, VolunteerSettingsComponent, VolunteerResourcesComponent,
     HoursLogComponent, TrainingVideoComponent, LoginComponent, PostOutreachSelectionComponent,
     CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent,
-    FeedbackFormComponent, HoursLogFormComponent, PreOutreachFormComponent, PostOutreachFormComponent
+    GetFeedbackSurveyComponent
   ],
   imports: [
     BrowserModule,

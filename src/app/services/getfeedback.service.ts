@@ -10,21 +10,21 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class GetFeedbackService {
 
-  getFeedbackSubmitted: Observable<MessageEvent>;
+  surveySubmitted: Observable<MessageEvent>;
 
-  readonly surveyUrlBases = {
+  private readonly surveyUrlBases = {
     hoursLog: 'https://www.getfeedback.com/r/NxbLIZ2z',
     preOutreach: 'https://www.getfeedback.com/r/Xquaazy4',
     postOutreach: 'https://www.getfeedback.com/r/dmzvPYwc',
-    feedback: 'https://www.getfeedback.com/r/bXD3uX7w',
+    testimonialFeedback: 'https://www.getfeedback.com/r/bXD3uX7w',
     signup: 'https://www.getfeedback.com/r/64TbXkbx', // this survey is also used for changing account settings
     trainingVideoFeedback: 'https://www.getfeedback.com/r/KzuLkVb1'
   };
   // it takes several seconds after we submit data until that data is available to get from salesforce via the API
-  readonly refreshDataDelay: number = 8000;
+  private readonly refreshDataDelay: number = 8000;
 
   // the nice labels for the different outreach targets. This is required to pre-fill some getfeedback survey fields.
-  readonly outreachTargetBackwardsMapping = {
+  private readonly outreachTargetBackwardsMapping = {
     [OutreachLocationType.CDL_SCHOOL]: 'CDL School',
     [OutreachLocationType.TRUCK_STOP]: 'Truck Stop',
     [OutreachLocationType.TRUCKING_COMPANY]: 'Trucking Company'
@@ -40,7 +40,7 @@ export class GetFeedbackService {
   ) {
     // An iframe that contains a getfeedback survey will send a message with a specific signature when done.
     // create an observable for reacting to these events
-    this.getFeedbackSubmitted = new Observable( observer => {
+    this.surveySubmitted = new Observable( observer => {
       window.addEventListener( 'message', async message => {
         if ( message.data === 'submittedResponse' && message.origin === 'https://www.getfeedback.com' ) {
           this.lastSubmission = Date.now();
@@ -54,7 +54,7 @@ export class GetFeedbackService {
   // because it takes several seconds for the data in salesforce to update.
   // This method should only be called after a survey is submitted (and maybe after a success message)
   // and before the user data is fetched (to refresh the local data model)
-  waitForSalesforceUpdate(): Promise<null> {
+  waitForSalesforceToUpdate(): Promise<null> {
     return new Promise( async (resolve, reject) => {
       let msSinceLastSubmission = Date.now() - this.lastSubmission;
       if ( msSinceLastSubmission >= this.refreshDataDelay ) {
@@ -103,8 +103,8 @@ export class GetFeedbackService {
     });
   }
 
-  getFeedbackSurveyUrl() {
-    return this.makeTrustedUrl( this.surveyUrlBases.feedback, {
+  getTestimonialFeedbackSurveyUrl() {
+    return this.makeTrustedUrl( this.surveyUrlBases.testimonialFeedback, {
       'TAT_App_User__cID': this.userDataService.data.salesforceId
     });
   }
@@ -112,8 +112,7 @@ export class GetFeedbackService {
   getSignupSurveyUrl() {
     return this.makeTrustedUrl( this.surveyUrlBases.signup, {
       'gf_q[7290681][14733009]': this.userDataService.firebaseUser.uid,
-      'gf_q[7290681][14733014]': this.userDataService.firebaseUser.email,
-      'gf_q[7290681][14733013]': this.userDataService.firebaseUser.phoneNumber
+      'gf_q[7290681][14733014]': this.userDataService.firebaseUser.email
     });
   }
 
@@ -150,7 +149,10 @@ export class GetFeedbackService {
   private makeTrustedUrl( url: string, queryParams: Object ) {
     // convert keys and values in the queryParams object to &[key]=[value] URL syntax
     let queryString = Object.keys( queryParams ).reduce( (query, key) => {
-      return query + '&' + key + '=' + encodeURIComponent( queryParams[key] );
+      // For values that are null or undefined, set them to a blank string, otherwise we'll end up
+      // literally passing the string 'null' to the form
+      let value = ( queryParams[key] === null || undefined ) ? '' : queryParams[key];
+      return query + '&' + key + '=' + encodeURIComponent( value );
     }, '' );
     return this.sanitizer.bypassSecurityTrustResourceUrl( url + '?' + queryString );
   }

@@ -72,7 +72,8 @@
   "misc": {
     "cancel": "Cancel",
     "close": "Close",
-    "dataLoadError": "There was a problem while attempting to load your volunteer account data. Make sure you have an internet connection and try again.",
+    "dataLoadError": "There was a problem while loading your volunteer account data.",
+    "dataLoadErrorWithTip": "@:misc.dataLoadError Make sure you have an internet connection and try again.",
     "date": "Date",
     "error": "Error",
     "logoutMessage": "You have been logged out.",
@@ -80,6 +81,7 @@
     "no": "No",
     "ok": "OK",
     "pleaseWait": "Please wait...",
+    "retry": "Retry",
     "setLanguage": "Set language",
     "submit": "Submit",
     "submitError": "Please make sure you have an internet connection and try again.",

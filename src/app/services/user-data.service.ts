@@ -6,7 +6,6 @@ import { LoadingController, AlertController } from '@ionic/angular';
 import { TrxService } from './trx.service';
 import { Storage } from '@ionic/storage';
 import { StorageKeys } from './misc.service';
-import { AngularFireDatabase } from '@angular/fire/database';
 
 /**
  * This service doesn't communicate directly with Salesforce (SF), but communicates with a
@@ -75,6 +74,12 @@ export interface IUserData {
   lastName?: string,
   volunteerType?: VolunteerType,
   hasWatchedTrainingVideo?: boolean,
+  address?: string,
+  city?: string,
+  state?: string,
+  zip?: string,
+  phone?: string,
+  email?: string,
   hoursLogs?: IHoursLog[],
   unfinishedOutreachTargets?: IUnfinishedOutreachTarget[]
 }
@@ -88,6 +93,7 @@ export class UserDataService {
 
   public data: IUserData = null; // the data that comes from salesforce
   public firebaseUser: User;
+  public loadError = false;
   /*
   Possibly useful properties:
   firebaseUser.displayName
@@ -105,8 +111,7 @@ export class UserDataService {
     private loadingController: LoadingController,
     private alertController: AlertController,
     private trx: TrxService,
-    private storage: Storage,
-    private fireDatabase: AngularFireDatabase
+    private storage: Storage
   ) { }
 
   /**
@@ -119,6 +124,7 @@ export class UserDataService {
       force?: boolean,
       dataRequestFlags: number = UserDataRequestFlags.ALL
   ) {
+    this.loadError = false;
     
     if ( this.fetchingUserData ) {
       return;
@@ -182,13 +188,20 @@ export class UserDataService {
   }
 
   private async onFetchError( e ) {
-    console.error( e );
-    const alert = await this.alertController.create({
-      header: await this.trx.t( 'misc.error' ),
-      message: await this.trx.t( 'misc.dataLoadError' ),
-      buttons: [await this.trx.t( 'misc.close' )]
-    });
-    alert.present();
+    if ( e.error && e.error.errorCode && e.error.errorCode === 'FIREBASE_USER_NOT_IN_SALESFORCE' ) {
+      console.log('new user');//@@
+      // this is a new user. Send him to the signup survey.
+    } else {
+      console.error( e );
+      // show an error message.
+      this.loadError = true;
+      const alert = await this.alertController.create({
+        header: await this.trx.t( 'misc.error' ),
+        message: await this.trx.t( 'misc.dataLoadErrorWithTip' ),
+        buttons: [await this.trx.t( 'misc.close' )]
+      });
+      alert.present();
+    }
   }
 
   private onFetchFinally() {

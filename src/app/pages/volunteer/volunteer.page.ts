@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import {
-  PreOutreachFormComponent, PostOutreachSelectionComponent, HoursLogComponent, 
-  VolunteerResourcesComponent, FeedbackComponent, 
-  VolunteerSettingsComponent, TrainingVideoComponent
+  PostOutreachSelectionComponent, HoursLogComponent, 
+  VolunteerResourcesComponent, VolunteerSettingsComponent, TrainingVideoComponent
 } from '../../modals';
+import {
+  FeedbackFormComponent, PreOutreachFormComponent
+} from '../../modals-forms';
 import { ModalService, UserDataService, MiscService } from '../../services';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-volunteer',
@@ -16,7 +19,7 @@ export class VolunteerPage {
 
   public VolunteerResourcesComponent = VolunteerResourcesComponent;
   public HoursLogComponent = HoursLogComponent;
-  public FeedbackComponent = FeedbackComponent;
+  public FeedbackFormComponent = FeedbackFormComponent;
   public PostOutreachSelectionComponent = PostOutreachSelectionComponent;
   public VolunteerSettingsComponent = VolunteerSettingsComponent;
   public TrainingVideoComponent = TrainingVideoComponent;
@@ -26,6 +29,7 @@ export class VolunteerPage {
     public navCtrl: NavController,
     public modalService: ModalService,
     public userDataService: UserDataService,
+    public angularFireAuth: AngularFireAuth,
     private miscService: MiscService
   ) {
     this.miscService.onRouteHere(() => {

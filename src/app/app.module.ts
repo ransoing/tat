@@ -66,26 +66,28 @@ import { ModalGuard, AuthGuard } from './guards';
 import {
   PlacesComponent, EmailReportComponent, WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
   AboutTatComponent, HumanTraffickingLawsComponent, VolunteerSettingsComponent, VolunteerResourcesComponent,
-  HoursLogComponent, FeedbackComponent, TrainingVideoComponent, LoginComponent,
-  HoursLogFormComponent, PreOutreachFormComponent, PostOutreachFormComponent, PostOutreachSelectionComponent,
+  HoursLogComponent, TrainingVideoComponent, LoginComponent, PostOutreachSelectionComponent,
   CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent
 } from './modals';
+import {
+  FeedbackFormComponent, HoursLogFormComponent, PreOutreachFormComponent, PostOutreachFormComponent
+} from './modals-forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     PlacesComponent, EmailReportComponent, WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
     AboutTatComponent, HumanTraffickingLawsComponent, VolunteerSettingsComponent, VolunteerResourcesComponent,
-    HoursLogComponent, FeedbackComponent, TrainingVideoComponent, LoginComponent,
-    HoursLogFormComponent, PreOutreachFormComponent, PostOutreachFormComponent, PostOutreachSelectionComponent,
-    CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent
+    HoursLogComponent, TrainingVideoComponent, LoginComponent, PostOutreachSelectionComponent,
+    CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent,
+    FeedbackFormComponent, HoursLogFormComponent, PreOutreachFormComponent, PostOutreachFormComponent
   ],
   entryComponents: [
     PlacesComponent, EmailReportComponent, WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
     AboutTatComponent, HumanTraffickingLawsComponent, VolunteerSettingsComponent, VolunteerResourcesComponent,
-    HoursLogComponent, FeedbackComponent, TrainingVideoComponent, LoginComponent,
-    HoursLogFormComponent, PreOutreachFormComponent, PostOutreachFormComponent, PostOutreachSelectionComponent,
-    CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent
+    HoursLogComponent, TrainingVideoComponent, LoginComponent, PostOutreachSelectionComponent,
+    CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent,
+    FeedbackFormComponent, HoursLogFormComponent, PreOutreachFormComponent, PostOutreachFormComponent
   ],
   imports: [
     BrowserModule,

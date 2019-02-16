@@ -3,9 +3,9 @@ import { TrxService, MiscService, GetFeedbackService, UserDataService } from '..
 import { Subscription } from 'rxjs';
 
 @Component({
-  templateUrl: './feedback.component.html'
+  templateUrl: './feedback-form.component.html'
 })
-export class FeedbackComponent {
+export class FeedbackFormComponent {
 
   public modal: HTMLIonModalElement;
   public gfSurveyUrl;

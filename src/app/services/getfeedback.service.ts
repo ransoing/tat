@@ -16,7 +16,9 @@ export class GetFeedbackService {
     hoursLog: 'https://www.getfeedback.com/r/NxbLIZ2z',
     preOutreach: 'https://www.getfeedback.com/r/Xquaazy4',
     postOutreach: 'https://www.getfeedback.com/r/dmzvPYwc',
-    feedback: 'https://www.getfeedback.com/r/bXD3uX7w'
+    feedback: 'https://www.getfeedback.com/r/bXD3uX7w',
+    signup: 'https://www.getfeedback.com/r/64TbXkbx', // this survey is also used for changing account settings
+    trainingVideoFeedback: 'https://www.getfeedback.com/r/KzuLkVb1'
   };
   // it takes several seconds after we submit data until that data is available to get from salesforce via the API
   readonly refreshDataDelay: number = 8000;
@@ -73,31 +75,84 @@ export class GetFeedbackService {
   }
 
   getHoursLogSurveyUrl() {
-    return this.sanitizer.bypassSecurityTrustResourceUrl( this.surveyUrlBases.hoursLog + '?ContactID=' + this.userDataService.data.salesforceId );
+    return this.makeTrustedUrl( this.surveyUrlBases.hoursLog, {
+      'TAT_App_User__cID': this.userDataService.data.salesforceId
+    });
   }
 
   getPreOutreachSurveyUrl() {
-    return this.sanitizer.bypassSecurityTrustResourceUrl( this.surveyUrlBases.preOutreach + '?ContactID=' + this.userDataService.data.salesforceId );
+    let udata = this.userDataService.data;
+    return this.makeTrustedUrl( this.surveyUrlBases.preOutreach, {
+      'TAT_App_User__cID': udata.salesforceId,
+      'gf_q[7237631][14643527]': udata.address,
+      'gf_q[7237631][14643528]': udata.city,
+      'gf_q[7237631][14643529]': udata.state,
+      'gf_q[7237631][14643530]': udata.zip
+    });
   }
 
   getPostOutreachSurveyUrl( outreachTarget: IUnfinishedOutreachTarget ) {
-    let params = {
-      'AppOutreachTarget__cID': outreachTarget.id,
+    return this.makeTrustedUrl( this.surveyUrlBases.postOutreach, {
+      'TAT_App_Outreach_Target__cID': outreachTarget.id,
       'gf_q[7238014][14643871]': outreachTarget.name,
       'gf_q[7238014][14643872]': this.outreachTargetBackwardsMapping[outreachTarget.type],
       'gf_q[7238014][14643873]': outreachTarget.address,
       'gf_q[7238014][14643874]': outreachTarget.city,
       'gf_q[7238014][14643875]': outreachTarget.state,
       'gf_q[7238014][14643876]': outreachTarget.zip
-    };
-    let queryString = Object.keys( params ).reduce( (query, key) => {
-      return query + '&' + key + '=' + encodeURIComponent( params[key] );
-    }, '' );
-    return this.sanitizer.bypassSecurityTrustResourceUrl( this.surveyUrlBases.postOutreach + '?' + queryString );
+    });
   }
 
   getFeedbackSurveyUrl() {
-    return this.sanitizer.bypassSecurityTrustResourceUrl( this.surveyUrlBases.feedback + '?ContactID=' + this.userDataService.data.salesforceId );
+    return this.makeTrustedUrl( this.surveyUrlBases.feedback, {
+      'TAT_App_User__cID': this.userDataService.data.salesforceId
+    });
+  }
+
+  getSignupSurveyUrl() {
+    return this.makeTrustedUrl( this.surveyUrlBases.signup, {
+      'gf_q[7290681][14733009]': this.userDataService.firebaseUser.uid,
+      'gf_q[7290681][14733014]': this.userDataService.firebaseUser.email,
+      'gf_q[7290681][14733013]': this.userDataService.firebaseUser.phoneNumber
+    });
+  }
+
+  getAccountSettingsSurveyUrl() {
+    // uses the same survey as signup, but fills in a bunch of fields and provides a salesforce merge field.
+    // The presence of the merge field causes GetFeedback to update a salesforce entry rather than make a new one.
+    let udata = this.userDataService.data;
+    return this.makeTrustedUrl( this.surveyUrlBases.signup, {
+      'TAT_App_User__cID': udata.salesforceId,
+      'gf_q[7290681][14733009]': this.userDataService.firebaseUser.uid,
+      'gf_q[7290681][14733007]': udata.firstName,
+      'gf_q[7290681][14733008]': udata.lastName,
+      'gf_q[7290681][14733013]': udata.phone,
+      'gf_q[7290681][14733014]': udata.email,
+      'gf_q[7290681][14733028]': udata.volunteerType,
+      'gf_q[7290682][14733012]': udata.address,
+      'gf_q[7290682][14733015]': udata.city,
+      'gf_q[7290682][14733016]': udata.state,
+      'gf_q[7290682][14733017]': udata.zip
+    });
+  }
+
+  getTrainingVideoFeedbackSurveyUrl() {
+    return this.makeTrustedUrl( this.surveyUrlBases.trainingVideoFeedback, {
+      'TAT_App_User__cID': this.userDataService.data.salesforceId
+    });
+  }
+
+  /**
+   * 
+   * @param url 
+   * @param queryParams Key-value pairs which get converted to a GET query string
+   */
+  private makeTrustedUrl( url: string, queryParams: Object ) {
+    // convert keys and values in the queryParams object to &[key]=[value] URL syntax
+    let queryString = Object.keys( queryParams ).reduce( (query, key) => {
+      return query + '&' + key + '=' + encodeURIComponent( queryParams[key] );
+    }, '' );
+    return this.sanitizer.bypassSecurityTrustResourceUrl( url + '?' + queryString );
   }
 
 }

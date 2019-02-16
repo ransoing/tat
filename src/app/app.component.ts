@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Platform, IonRouterOutlet, NavController, AlertController } from '@ionic/angular';
+import { Platform, IonRouterOutlet, AlertController } from '@ionic/angular';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { TranslateService } from '@ngx-translate/core';
 import { SettingsService, ModalService, MiscService, UserDataService, TrxService, StorageKeys } from './services';
@@ -23,7 +23,6 @@ export class AppComponent {
     private modalService: ModalService,
     private miscService: MiscService,
     private userDataService: UserDataService,
-    private navCtrl: NavController,
     private alertCtrl: AlertController,
     private trx: TrxService
   ) {
@@ -53,11 +52,7 @@ export class AppComponent {
           if ( !firstAuthCallback ) {
             // kick the user to the homepage and close the current modal
             // (it would be better to first check if the user is on a restricted page)
-            this.navCtrl.navigateRoot( '/tabs/(home:home)' );
-            let activeModal = this.modalService.getActiveModal();
-            if ( activeModal ) {
-              activeModal.dismiss();
-            }
+            this.miscService.goBackHome();
             // tell the user that he has logged out
             this.showLogoutNotice();
           }

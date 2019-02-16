@@ -1,6 +1,6 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { MiscService, ModalService, UserDataService } from '../../services';
-import { HoursLogFormComponent } from '../hours-log-form/hours-log-form.component';
+import { HoursLogFormComponent } from '../../modals-forms/hours-log-form/hours-log-form.component';
 
 @Component({
   templateUrl: './hours-log.component.html',

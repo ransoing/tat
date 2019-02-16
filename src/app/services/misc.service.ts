@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 import { TrxService } from './trx.service';
+import { ModalService } from './modal.service';
 
 export enum StorageKeys {
   USER_DATA = 'user_data'
@@ -21,7 +22,9 @@ export class MiscService {
   constructor(
     private router: Router,
     private alertController: AlertController,
-    private trx: TrxService
+    private trx: TrxService,
+    private navCtrl: NavController,
+    private modalService: ModalService
   ) {
     // listen for route changes. This subscriber is used for onRouteHere
     this.router.events.subscribe( event => {
@@ -55,6 +58,17 @@ export class MiscService {
    */
   public onRouteHere( callback: Function ) {
     this.callbackToSave = callback;
+  }
+
+  /**
+   * Navigate to the home page and close the active modal.
+   */
+  public goBackHome() {
+    this.navCtrl.navigateRoot( '/tabs/(home:home)' );
+    let activeModal = this.modalService.getActiveModal();
+    if ( activeModal ) {
+      activeModal.dismiss();
+    }
   }
 
   /**

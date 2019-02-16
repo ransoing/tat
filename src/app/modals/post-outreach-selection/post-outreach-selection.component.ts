@@ -1,6 +1,6 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { UserDataService, IUnfinishedOutreachTarget, ModalService } from '../../services';
-import { PostOutreachFormComponent } from '../post-outreach-form/post-outreach-form.component';
+import { PostOutreachFormComponent } from '../../modals-forms/post-outreach-form/post-outreach-form.component';
 
 @Component({
   templateUrl: './post-outreach-selection.component.html',

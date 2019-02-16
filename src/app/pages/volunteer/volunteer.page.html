@@ -4,7 +4,17 @@
 
 <ion-content padding>
   <h1>{{ 'volunteer.title' | translate }}</h1>
-  <ion-icon name="md-menu" class="modal-close-btn" (click)="modalService.open(VolunteerSettingsComponent)"></ion-icon>
+  <ion-icon *ngIf="userDataService.data" name="md-menu" class="modal-close-btn" (click)="modalService.open(VolunteerSettingsComponent)"></ion-icon>
+
+  <div *ngIf="userDataService.loadError">
+    <p>{{ 'misc.dataLoadError' | translate }}</p>
+    <ion-button fill="solid" color="primary" size="default" (click)="userDataService.fetchUserData()">
+      {{ 'misc.retry' | translate }}
+    </ion-button>
+    <ion-button fill="solid" color="primary" size="default" (click)="angularFireAuth.auth.signOut()">
+      {{ 'volunteer.settings.logout' | translate }}
+    </ion-button>
+  </div>
 
   <div *ngIf="userDataService.data">
     <p *ngIf="userDataService.data.firstName" class="first-name">{{ 'volunteer.welcome' | translate }}, {{userDataService.data.firstName}}</p>
@@ -51,7 +61,7 @@
     
     <image-button
       image="volunteer.testimonial.jpg"
-      (click)="modalService.open(FeedbackComponent)"
+      (click)="modalService.open(FeedbackFormComponent)"
       [disabled]="!userDataService.data.hasWatchedTrainingVideo">
         {{ 'volunteer.btns.testimonial' | translate }}
     </image-button>

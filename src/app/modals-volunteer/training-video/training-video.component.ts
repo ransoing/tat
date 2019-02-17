@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { VolunteerType, UserDataService, ScriptService } from '../../services';
 
@@ -8,10 +8,32 @@ import { VolunteerType, UserDataService, ScriptService } from '../../services';
 })
 export class TrainingVideoComponent implements OnInit {
 
+  static readonly videos = {
+    [ VolunteerType.TRUCK_STOP_VOLUNTEER ]: [
+      {
+        type: 'vimeo',
+        id: '265816556'
+      }, {
+        type: 'vimeo',
+        id: '21392891'
+      }
+    ],
+    [ VolunteerType.EVENT_VOLUNTEER ]: {
+      type: 'vimeo',
+      id: '21392891'
+    },
+    [ VolunteerType.AMBASSADOR_VOLUNTEER ]: {
+      type: 'vimeo',
+      id: '221037855'
+    }
+  };
+
+  @Input ('video') video; // an object from the `videos` static property
+  @Input ('onFinishedWatching') onFinishedWatching: Function;
+
   public modal: HTMLIonModalElement;
   
   public videos;
-  public video;
   public error: boolean = false;
   public videoUrl;
 
@@ -19,26 +41,7 @@ export class TrainingVideoComponent implements OnInit {
     public domSanitizer: DomSanitizer,
     public userDataService: UserDataService,
     public scriptService: ScriptService
-  ) {
-    
-    this.videos = {};
-    // @@TODO: need different videos for different volunteer types
-    this.videos[ VolunteerType.TRUCK_STOP_VOLUNTEER ] = {
-      type: 'vimeo',
-      id: '21392891'
-    };
-    this.videos[ VolunteerType.EVENT_VOLUNTEER ] = {
-      type: 'vimeo',
-      id: '21392891'
-    };
-    this.videos[ VolunteerType.AMBASSADOR_VOLUNTEER ] = {
-      type: 'vimeo',
-      id: '21392891'
-    };
-
-    // which video to show?
-    this.video = this.videos[ userDataService.data.volunteerType ];
-  }
+  ) {}
 
   ngOnInit() {
     let url = this.video.type === 'vimeo' ? 
@@ -66,8 +69,7 @@ export class TrainingVideoComponent implements OnInit {
   }
 
   onUserFinishedWatching() {
-    this.userDataService.data.hasWatchedTrainingVideo = true;
-    this.userDataService.updateCache();
+    this.onFinishedWatching();
     this.modal.dismiss();
   }
 

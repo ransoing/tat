@@ -22,18 +22,31 @@
 
     <image-button
       image="volunteer.training-video.jpg"
-      (click)="modalService.open(TrainingVideoComponent)"
-      [required]="true"
-      [completed]="userDataService.data.hasWatchedTrainingVideo">
-        {{ 'volunteer.btns.trainingVideo' | translate }}
+      (click)="openTrainingVideo1()"
+      [required]="userDataService.data.volunteerType !== VolunteerType.AMBASSADOR_VOLUNTEER"
+      [completed]="userDataService.data.hasWatchedTrainingVideos || userDataService.data.hasWatchedTrainingVideo1">
+        {{ 'volunteer.btns.trainingVideo' | translate }} {{ userDataService.data.volunteerType === VolunteerType.TRUCK_STOP_VOLUNTEER ? '1' : '' }}
     </image-button>
 
+    <!-- @@TODO find a different image for this button -->
     <image-button
+      *ngIf="userDataService.data.volunteerType === VolunteerType.TRUCK_STOP_VOLUNTEER"
+      image="volunteer.training-video.jpg"
+      (click)="openTrainingVideo2()"
+      [required]="true"
+      [completed]="userDataService.data.hasWatchedTrainingVideos"
+      [disabled]="!userDataService.data.hasWatchedTrainingVideo1">
+        {{ 'volunteer.btns.trainingVideo' | translate }} 2
+    </image-button>
+
+    <!-- @@TODO find a different image for this button -->
+    <image-button
+      *ngIf="!userDataService.data.hasCompletedTrainingFeedback"
       image="volunteer.training-video.jpg"
       (click)="showTrainingVideoFeedbackForm()"
       [required]="true"
       [completed]="userDataService.data.hasCompletedTrainingFeedback"
-      [disabled]="!(userDataService.data.hasWatchedTrainingVideo && !userDataService.data.hasCompletedTrainingFeedback)">
+      [disabled]="!(userDataService.data.hasWatchedTrainingVideos && !userDataService.data.hasCompletedTrainingFeedback)">
         {{ 'volunteer.btns.trainingFeedback' | translate }}
     </image-button>
 

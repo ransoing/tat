@@ -5,7 +5,7 @@ import {
   VolunteerResourcesComponent, VolunteerSettingsComponent, TrainingVideoComponent,
   GetFeedbackSurveyComponent
 } from '../../modals-volunteer';
-import { ModalService, UserDataService, MiscService, GetFeedbackService, UserDataRequestFlags } from '../../services';
+import { ModalService, UserDataService, MiscService, GetFeedbackService, UserDataRequestFlags, VolunteerType } from '../../services';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
@@ -19,7 +19,7 @@ export class VolunteerPage {
   public HoursLogComponent = HoursLogComponent;
   public PostOutreachSelectionComponent = PostOutreachSelectionComponent;
   public VolunteerSettingsComponent = VolunteerSettingsComponent;
-  public TrainingVideoComponent = TrainingVideoComponent;
+  public VolunteerType = VolunteerType;
 
   constructor(
     public navCtrl: NavController,
@@ -69,6 +69,39 @@ export class VolunteerPage {
           // update just the basic user data
           this.userDataService.fetchUserData( true, UserDataRequestFlags.BASIC_USER_DATA );
         });
+      }
+    });
+  }
+
+  openTrainingVideo1() {
+    // training video 1 varies by volunteer type
+    const video = this.userDataService.data.volunteerType === VolunteerType.TRUCK_STOP_VOLUNTEER ?
+      TrainingVideoComponent.videos[VolunteerType.TRUCK_STOP_VOLUNTEER][0] :
+      TrainingVideoComponent.videos[this.userDataService.data.volunteerType];
+    this.modalService.open( TrainingVideoComponent, {
+      video: video,
+      onFinishedWatching: () => {
+        // for truck stop volunteers, mark the first video as finished. otherwise, mark all videos as finished
+        if ( this.userDataService.data.volunteerType === VolunteerType.TRUCK_STOP_VOLUNTEER ) {
+          this.userDataService.data.hasWatchedTrainingVideo1 = true;
+        } else {
+          this.userDataService.data.hasWatchedTrainingVideos = true;
+        }
+        // save the state to the cache
+        this.userDataService.updateCache();
+      }
+    });
+  }
+
+  openTrainingVideo2() {
+    // training video 2 is always a truck stop volunteer video, because truck stop volunteers are the only
+    // ones who watch two training videos
+    this.modalService.open( TrainingVideoComponent, {
+      video: TrainingVideoComponent.videos[VolunteerType.TRUCK_STOP_VOLUNTEER][1],
+      onFinishedWatching: () => {
+        this.userDataService.data.hasWatchedTrainingVideos = true;
+        // save the state to the cache
+        this.userDataService.updateCache();
       }
     });
   }

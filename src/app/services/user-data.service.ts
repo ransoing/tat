@@ -74,7 +74,8 @@ export interface IUserData {
   firstName?: string,
   lastName?: string,
   volunteerType?: VolunteerType,
-  hasWatchedTrainingVideo?: boolean, // this is the one property which isn't retrieved by salesforce. 
+  hasWatchedTrainingVideo1?: boolean,
+  hasWatchedTrainingVideos?: boolean, // this property and the one above are the only properties which aren't retrieved by salesforce. 
   hasCompletedTrainingFeedback?: boolean,
   address?: string,
   city?: string,
@@ -160,7 +161,7 @@ export class UserDataService {
     if ( dataRequestFlags & UserDataRequestFlags.BASIC_USER_DATA )              parts.push( 'basic' );
     if ( dataRequestFlags & UserDataRequestFlags.HOURS_LOGS )                   parts.push( 'hoursLogs' );
     if ( dataRequestFlags & UserDataRequestFlags.UNFINISHED_OUTREACH_TARGETS )  parts.push( 'unfinishedOutreachTargets' );
-    let url = '/getUserData?parts=' + parts.join( ',' );
+    let url = 'getUserData?parts=' + parts.join( ',' );
     this.apiRequest( url, token )
     .then( responses => this.onFetchSuccess(responses) )
     .catch( e => this.onFetchError(e) )
@@ -190,7 +191,7 @@ export class UserDataService {
     });
     // save the data in local cache
     if ( this.data.hasCompletedTrainingFeedback ) {
-      this.data.hasWatchedTrainingVideo = true;
+      this.data.hasWatchedTrainingVideos = true;
     }
     this.updateCache();
   }
@@ -318,7 +319,7 @@ export class UserDataService {
 //     // return some fake data.
 //     this.data = {
 //       volunteerType: VolunteerType.truckStopVolunteer,
-//       hasWatchedTrainingVideo: false,
+//       hasWatchedTrainingVideos: false,
 //       hoursLogs: [
 //         {
 //           taskDescription: 'Handed out TAT flyers to every truck stop in Nebraska',

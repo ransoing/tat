@@ -58,6 +58,11 @@ export class VolunteerPage {
     });
   }
 
+  showPreEventForm() {
+    // @@TODO
+    // @@Also create and import PostEventSelectionComponent or make the other SelectionComponent able to handle both events and outreach targets
+  }
+
   showTrainingVideoFeedbackForm() {
     this.modalService.open( GetFeedbackSurveyComponent, {
       titleTranslationKey: 'volunteer.forms.trainingFeedback.title',

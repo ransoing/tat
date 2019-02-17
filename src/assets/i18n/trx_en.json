@@ -230,7 +230,9 @@
   "volunteer": {
     "btns": {
       "hoursLog": "Hours Log",
+      "postEventReport": "Post-Event Report",
       "postOutreachReport": "Post-Outreach Report",
+      "preEventSurvey": "Pre-Event Survey",
       "preOutreachSurvey": "Pre-Outreach Survey",
       "resources": "Resources",
       "testimonial": "Testimonial/Feedback",
@@ -250,10 +252,19 @@
         "submitSuccess": "Your answers were successfully submitted. Thank you for your time!",
         "title": "@:volunteer.hoursLog.addEntry"
       },
+      "postEvent": {
+        "select": "Which event did you volunteer at?",
+        "submitSuccess": "Thank you for completing this report.",
+        "title": "@:volunteer.btns.postEventReport"
+      },
       "postOutreach": {
-        "select": "Which event or location did you volunteer at?",
+        "select": "Which location did you volunteer at?",
         "submitSuccess": "Thank you for completing this report.",
         "title": "@:volunteer.btns.postOutreachReport"
+      },
+      "preEvent": {
+        "submitSuccess": "Thank you for completing this survey.",
+        "title": "@:volunteer.btns.preEventSurvey"
       },
       "preOutreach": {
         "submitSuccess": "Thank you for completing this survey.",

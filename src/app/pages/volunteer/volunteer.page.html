@@ -51,11 +51,21 @@
     </image-button>
 
     <image-button
+      *ngIf="userDataService.data.volunteerType === VolunteerType.TRUCK_STOP_VOLUNTEER"
       image="volunteer.pre-outreach-survey.jpg"
       (click)="showPreOutreachForm()"
       [required]="true"
       [disabled]="!userDataService.data.hasCompletedTrainingFeedback">
         {{ 'volunteer.btns.preOutreachSurvey' | translate }}
+    </image-button>
+
+    <image-button
+      *ngIf="userDataService.data.volunteerType !== VolunteerType.TRUCK_STOP_VOLUNTEER"
+      image="volunteer.pre-outreach-survey.jpg"
+      (click)="showPreEventForm()"
+      [required]="true"
+      [disabled]="!userDataService.data.hasCompletedTrainingFeedback">
+        {{ 'volunteer.btns.preEventSurvey' | translate }}
     </image-button>
     
     <image-button
@@ -66,6 +76,7 @@
     </image-button>
     
     <image-button
+      *ngIf="userDataService.data.volunteerType === VolunteerType.TRUCK_STOP_VOLUNTEER"
       image="volunteer.post-outreach-report.jpg"
       (click)="modalService.open(PostOutreachSelectionComponent)"
       [required]="true"
@@ -73,6 +84,15 @@
         {{ 'volunteer.btns.postOutreachReport' | translate }}
     </image-button>
     
+    <image-button
+      *ngIf="userDataService.data.volunteerType !== VolunteerType.TRUCK_STOP_VOLUNTEER"
+      image="volunteer.post-outreach-report.jpg"
+      (click)="modalService.open(PostEventSelectionComponent)"
+      [required]="true"
+      [disabled]="!userDataService.data.hasCompletedTrainingFeedback || userDataService.data.unfinishedEvents.length === 0">
+        {{ 'volunteer.btns.postEventReport' | translate }}
+    </image-button>
+
     <image-button
       image="volunteer.hours-log.jpg"
       (click)="modalService.open(HoursLogComponent)"

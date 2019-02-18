@@ -146,7 +146,8 @@ export class GetFeedbackService {
 
   getTrainingVideoFeedbackSurveyUrl() {
     return this.makeTrustedUrl( this.surveyUrlBases.trainingVideoFeedback, {
-      'TAT_App_User__cID': this.userDataService.data.salesforceId
+      'TAT_App_User__cID': this.userDataService.data.salesforceId,
+      'gf_q[7304458][14765212]': this.volunteerTypeBackwardsMapping[this.userDataService.data.volunteerType]
     });
   }
 

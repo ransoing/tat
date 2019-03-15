@@ -71,9 +71,18 @@
   },
   "misc": {
     "cancel": "Cancelar",
+    "close": "Cerrar",
+    "dataLoadError": "Hubo un problema al cargar tu cuenta de voluntario.",
+    "dataLoadErrorWithTip": "@:misc.dataLoadError Asegúrate de tener conexión a Internet y trata de nuevo.",
     "date": "Fecha",
+    "error": "Error",
+    "logoutMessage": "Se cerró tu sesión.",
     "no": "No",
     "ok": "Aceptar",
+    "pleaseWait": "Espera por favor...",
+    "setLanguage": "Seleccionar idioma",
+    "submit": "Enviar",
+    "success": "Éxito",
     "time": "Hora",
     "yes": "Sí"
   },
@@ -218,9 +227,10 @@
   "volunteer": {
     "btns": {
       "hoursLog": "Registro de horas",
-      "postOutreachReport": "Encuesta para contestar después de hacer la visita al gerente general o encargado de seguridad",
-      "preOutreachSurvey": "Encuesta para contestar antes de hacer la visita al gerente general o encargado de seguridad",
+      "postOutreachReport": "Encuesta posterior a entrevista con encargado de seguridad",
+      "preOutreachSurvey": "Encuesta previa a entrevista con encargado de seguridad",
       "resources": "Recursos",
+      "testimonial": "Testimonio/Comentarios",
       "trainingVideo": "Video de capacitación"
     },
     "forms": {
@@ -228,29 +238,35 @@
         "title": "@:volunteer.settings.editAccount"
       },
       "feedback": {
+        "submitSuccess": "@:volunteer.forms.successFeedback",
         "title": "@:volunteer.btns.testimonial"
       },
       "hoursLog": {
         "title": "@:volunteer.hoursLog.addEntry"
       },
       "postEvent": {
+        "submitSuccess": "@:volunteer.forms.successReport",
         "title": "@:volunteer.btns.postEventReport"
       },
       "postOutreach": {
+        "submitSuccess": "@:volunteer.forms.successReport",
         "title": "@:volunteer.btns.postOutreachReport"
       },
       "preEvent": {
+        "submitSuccess": "@:volunteer.forms.successSurvey",
         "title": "@:volunteer.btns.preEventSurvey"
       },
       "preOutreach": {
+        "submitSuccess": "@:volunteer.forms.successSurvey",
         "title": "@:volunteer.btns.preOutreachSurvey"
       },
       "trainingFeedback": {
-        "submitSuccess": "@:volunteer.forms.feedback.submitSuccess",
+        "submitSuccess": "@:volunteer.forms.successFeedback",
         "title": "@:volunteer.btns.trainingFeedback"
       }
     },
     "hoursLog": {
+      "addEntry": "Agrega una nueva entrada",
       "hour": "hora",
       "hours": "horas",
       "intro": "El llevar un registro de sus horas no solamente le permite apreciar el impacto que está teniendo, sino que nos permite compartir ese trabajo con nuestros colaboradores y patrocinadores. ¡Gracias!",
@@ -259,6 +275,7 @@
     "intro": "¡Gracias por participar como voluntario con TAT! Su tiempo en preparación, voluntariado y seguimiento no solamente nos ayuda a avanzar con nuestra misión, sino que demuestra la dedicación de esta industria para combatir este atroz delito. A continuación, le proporcionamos lo que necesitara en el proceso de voluntario. Estamos encantados de que forme parte de nuestro equipo.",
     "loginTitle": "Login (acceso) de Voluntarios",
     "resources": {
+      "imgAlt": "Debes estar conectado a Internet para cargar esta imagen.",
       "infographicTitle": "TAT en cifras",
       "intro": "Estos recursos están aquí para ayudarle a hablar acerca del alcance de la trata de personas, así como el impacto que la industria camionera puede tener si cuenta con la capacitación y está equipada para responder.",
       "moreLink1": "Encuentre más en la página de recursos del",
@@ -267,8 +284,19 @@
       "statsLink2": "por la línea de ayuda",
       "title": "@:volunteer.btns.resources"
     },
-    "settings": {},
+    "settings": {
+      "logout": "Cerrar sesión",
+      "notifications": {
+        "event": "Aviso de eventos",
+        "report": "Aviso de Reporte",
+        "survey": "Aviso de Encuesta",
+        "title": "Avisos",
+        "upcoming": "Proximos Eventos"
+      },
+      "title": "Configuración"
+    },
     "title": "@:nav.volunteer",
+    "trainingVideoError": "Sucedió un error al cargar el video. Por favor, trata de nuevo.",
     "welcome": "Bienvenido"
   },
   "whatToReport": {

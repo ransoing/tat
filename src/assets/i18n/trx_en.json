@@ -245,37 +245,40 @@
         "title": "@:volunteer.settings.editAccount"
       },
       "feedback": {
-        "submitSuccess": "Your feedback has been successfully submitted. Thank you!",
+        "submitSuccess": "@:volunteer.forms.successFeedback",
         "title": "@:volunteer.btns.testimonial"
       },
       "hoursLog": {
-        "submitSuccess": "Your answers were successfully submitted. Thank you for your time!",
+        "submitSuccess": "Thank you for your time!",
         "title": "@:volunteer.hoursLog.addEntry"
       },
       "postEvent": {
         "select": "Which event did you volunteer at?",
-        "submitSuccess": "Thank you for completing this report.",
+        "submitSuccess": "@:volunteer.forms.successReport",
         "title": "@:volunteer.btns.postEventReport"
       },
       "postOutreach": {
         "select": "Which location did you volunteer at?",
-        "submitSuccess": "Thank you for completing this report.",
+        "submitSuccess": "@:volunteer.forms.successReport",
         "title": "@:volunteer.btns.postOutreachReport"
       },
       "preEvent": {
-        "submitSuccess": "Thank you for completing this survey.",
+        "submitSuccess": "@:volunteer.forms.successSurvey",
         "title": "@:volunteer.btns.preEventSurvey"
       },
       "preOutreach": {
-        "submitSuccess": "Thank you for completing this survey.",
+        "submitSuccess": "@:volunteer.forms.successSurvey",
         "title": "@:volunteer.btns.preOutreachSurvey"
       },
       "signup": {
         "submitSuccess": "Thank you for signing up!",
         "title": "Create new account"
       },
+      "successFeedback": "Thank you for your feedback.",
+      "successReport": "Thank you for completing this report.",
+      "successSurvey": "Thank you for completing this survey.",
       "trainingFeedback": {
-        "submitSuccess": "@:volunteer.forms.feedback.submitSuccess",
+        "submitSuccess": "@:volunteer.forms.successFeedback",
         "title": "@:volunteer.btns.trainingFeedback"
       }
     },

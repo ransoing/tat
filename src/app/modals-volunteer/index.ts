@@ -6,3 +6,4 @@ export { VolunteerSettingsComponent } from './volunteer-settings/volunteer-setti
 export { TrainingVideoComponent } from './training-video/training-video.component';
 export { LoginComponent } from './login/login.component';
 export { GetFeedbackSurveyComponent } from './getfeedback-survey/getfeedback-survey.component';
+export { NewUserComponent } from './new-user/new-user.component';

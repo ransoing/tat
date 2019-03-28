@@ -6,7 +6,7 @@
   <h1>{{ 'volunteer.title' | translate }}</h1>
   <ion-icon *ngIf="userDataService.data" name="md-menu" class="modal-close-btn" (click)="modalService.open(VolunteerSettingsComponent)"></ion-icon>
 
-  <div *ngIf="userDataService.loadError">
+  <div *ngIf="!userDataService.fetchingUserData && !alertIsVisible && !loadingIsVisible && (userDataService.loadError || !userDataService.data && !modalService.getActiveModal())">
     <p>{{ 'misc.dataLoadError' | translate }}</p>
     <ion-button fill="solid" color="primary" size="default" (click)="userDataService.fetchUserData()">
       {{ 'misc.retry' | translate }}

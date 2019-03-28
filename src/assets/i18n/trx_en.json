@@ -269,6 +269,12 @@
         "title": "@:volunteer.btns.preOutreachSurvey"
       },
       "signup": {
+        "accountAlreadyExists": "It seems you already have a volunteer user account. For assistance, contact tat.truckers@gmail.com.",
+        "email": "Email address",
+        "intro": "Thank you for volunteering! Before you begin, please tell us a bit about yourself.",
+        "invalidCode": "Invalid registration code.",
+        "phone": "Phone number",
+        "registrationCode": "Registration code",
         "submitSuccess": "Thank you for signing up!",
         "title": "Create new account"
       },

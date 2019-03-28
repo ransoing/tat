@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar></ion-toolbar>
+</ion-header>
+<ion-content class="gf-survey-modal" fullscreen padding>
+  <div>
+    <h1 style="flex: 0 0 auto">{{ 'volunteer.forms.signup.title' | translate }}</h1>
+    <ion-icon name="md-close" class="modal-close-btn" (click)="modal.dismiss()"></ion-icon>
+    
+    <div class="like-gf-survey-wrapper">
+      <div class="like-gf-survey part-1 page-{{activePart}}">
+        <div class="input-like-gf">
+          <ion-input placeholder="{{ 'volunteer.forms.signup.registrationCode' | translate }}" type="text" color="dark" [(ngModel)]="fields.regCode"></ion-input>
+        </div>
+      </div>
+
+      <div class="like-gf-survey part-2">
+        <p>{{ 'volunteer.forms.signup.intro' | translate }}</p>
+        <div class="input-like-gf">
+          <ion-input placeholder="{{ 'volunteer.forms.signup.email' | translate }}" type="text" color="dark" [(ngModel)]="fields.email"></ion-input>
+        </div>
+        <div class="input-like-gf">
+          <ion-input placeholder="{{ 'volunteer.forms.signup.phone' | translate }}" type="text" color="dark" [(ngModel)]="fields.phone"></ion-input>
+        </div>
+      </div>
+    </div>
+
+    <div class="gf-nav">
+      <div class="nav-button" [class.disabled]="nextIsDisabled()" (click)="advance()">
+        <svg version="1.1" id="chevron" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" class="chevron-icon right" viewBox="0 0 14 24" enable-background="new 0 0 14 24" xml:space="preserve">
+          <polygon class="chevron-polygon" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" points="2,0 0,2 10,12 0,22 2,24 14,12 "></polygon>
+        </svg>
+      </div>
+    </div>
+  </div>
+</ion-content>

@@ -19,8 +19,8 @@ export class TrainingVideoComponent implements OnInit {
       }
     ],
     [ VolunteerType.EVENT_VOLUNTEER ]: {
-      type: 'vimeo',
-      id: '21392891'
+      type: 'youtube',
+      id: 'SxmfgDT5f4c'
     },
     [ VolunteerType.AMBASSADOR_VOLUNTEER ]: {
       type: 'vimeo',
@@ -46,7 +46,7 @@ export class TrainingVideoComponent implements OnInit {
   ngOnInit() {
     let url = this.video.type === 'vimeo' ? 
       'https://player.vimeo.com/video/' + this.video.id + '?title=0&portrait=0' :
-      'https://www.youtube.com/embed/' + this.video.id + '?rel=0';
+      'https://www.youtube.com/embed/' + this.video.id + '?rel=0&enablejsapi=1';
     
     this.videoUrl = this.domSanitizer.bypassSecurityTrustResourceUrl( url );
   }
@@ -63,8 +63,22 @@ export class TrainingVideoComponent implements OnInit {
         this.error = true;
       });
 
+    } else if ( this.video.type === 'youtube' ) {
+      let frame = document.querySelector( '#video-iframe' );
+      window['onYouTubeIframeAPIReady'] = () => {
+        let player = new window['YT'].Player( 'video-iframe', {
+          events: {
+            onStateChange: ( evt ) => {
+              // watch for when the user finishes the video. data === 0 means 'ended'
+              if ( evt.data === 0 ) this.onUserFinishedWatching();
+            }
+          }
+        });
+      };
+      this.scriptService.load( 'youtube-api' ).then( data => {} );
+
     } else {
-      // @@TODO if there are training videos on youtube
+      console.error( 'Unknown video type: ' + this.video.type );
     }
   }
 

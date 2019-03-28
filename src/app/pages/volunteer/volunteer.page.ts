@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { NavController, AlertController, LoadingController } from '@ionic/angular';
 import {
   PostOutreachSelectionComponent, HoursLogComponent, 
   VolunteerResourcesComponent, VolunteerSettingsComponent, TrainingVideoComponent,
@@ -21,17 +21,27 @@ export class VolunteerPage {
   public VolunteerSettingsComponent = VolunteerSettingsComponent;
   public VolunteerType = VolunteerType;
 
+  public alertIsVisible = false;
+  public loadingIsVisible = false;
+
   constructor(
     public navCtrl: NavController,
     public modalService: ModalService,
     public userDataService: UserDataService,
     public angularFireAuth: AngularFireAuth,
+    public alertCtrl: AlertController,
+    public loadingCtrl: LoadingController,
     private miscService: MiscService,
     private getFeedbackService: GetFeedbackService
   ) {
     this.miscService.onRouteHere(() => {
       this.userDataService.fetchUserData();
     });
+
+    setInterval( () => {
+      this.alertCtrl.getTop().then( alert => this.alertIsVisible = !!alert );
+      this.loadingCtrl.getTop().then( loading => this.loadingIsVisible = !! loading );
+    }, 200 );
   }
 
   showFeedbackForm() {

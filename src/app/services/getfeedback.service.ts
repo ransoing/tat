@@ -85,14 +85,14 @@ export class GetFeedbackService {
 
   getHoursLogSurveyUrl() {
     return this.makeTrustedUrl( this.surveyUrlBases.hoursLog, {
-      'TAT_App_User__cID': this.userDataService.data.salesforceId
+      'ContactID': this.userDataService.data.salesforceId
     });
   }
 
   getPreOutreachSurveyUrl() {
     let udata = this.userDataService.data;
     return this.makeTrustedUrl( this.surveyUrlBases.preOutreach, {
-      'TAT_App_User__cID': udata.salesforceId,
+      'ContactID': udata.salesforceId,
       'gf_q[7237631][14643527]': udata.address,
       'gf_q[7237631][14643528]': udata.city,
       'gf_q[7237631][14643529]': udata.state,
@@ -114,14 +114,30 @@ export class GetFeedbackService {
 
   getTestimonialFeedbackSurveyUrl() {
     return this.makeTrustedUrl( this.surveyUrlBases.testimonialFeedback, {
-      'TAT_App_User__cID': this.userDataService.data.salesforceId
+      'ContactID': this.userDataService.data.salesforceId
     });
   }
 
-  getSignupSurveyUrl() {
+  /**
+   * Use this method when a new user is signing up, and does not have a Contact entry in salesforce.
+   */
+  getSignupSurveyUrlForNewContact( email: string, phone: string ) {
     return this.makeTrustedUrl( this.surveyUrlBases.signup, {
-      'gf_q[7290681][14733009]': this.userDataService.firebaseUser.uid,
-      'gf_q[7290681][14733014]': this.userDataService.firebaseUser.email
+      'gf_q[7447327][15018741]': this.userDataService.firebaseUser.uid,
+      'gf_q[7290681][14733013]': phone,
+      'gf_q[7290681][14733014]': email,
+      'gf_q[7447327][15019556]': 'true' // mark as new user
+    });
+  }
+
+  /**
+   * Use this method when a new user is signing up, and already has a Contact entry in salesforce.
+   */
+  getSignupSurveyUrlForExistingContact( salesforceId: string ) {
+    return this.makeTrustedUrl( this.surveyUrlBases.signup, {
+      'ContactID': salesforceId,
+      'gf_q[7447327][15018741]': this.userDataService.firebaseUser.uid,
+      'gf_q[7447327][15019556]': 'true' // mark as new user
     });
   }
 
@@ -130,23 +146,20 @@ export class GetFeedbackService {
     // The presence of the merge field causes GetFeedback to update a salesforce entry rather than make a new one.
     let udata = this.userDataService.data;
     return this.makeTrustedUrl( this.surveyUrlBases.signup, {
-      'TAT_App_User__cID': udata.salesforceId,
-      'gf_q[7290681][14733009]': this.userDataService.firebaseUser.uid,
-      'gf_q[7290681][14733007]': udata.firstName,
-      'gf_q[7290681][14733008]': udata.lastName,
-      'gf_q[7290681][14733013]': udata.phone,
-      'gf_q[7290681][14733014]': udata.email,
-      'gf_q[7290681][14733028]': this.volunteerTypeBackwardsMapping[udata.volunteerType],
+      'ContactID': udata.salesforceId,
+      'gf_q[7447327][15018741]': this.userDataService.firebaseUser.uid,
+      'gf_q[7447327][15018742]': this.volunteerTypeBackwardsMapping[udata.volunteerType],
       'gf_q[7290682][14733012]': udata.address,
       'gf_q[7290682][14733015]': udata.city,
       'gf_q[7290682][14733016]': udata.state,
-      'gf_q[7290682][14733017]': udata.zip
+      'gf_q[7290682][14733017]': udata.zip,
+      'gf_q[7447327][15019556]': 'false' // mark as not new user
     });
   }
 
   getTrainingVideoFeedbackSurveyUrl() {
     return this.makeTrustedUrl( this.surveyUrlBases.trainingVideoFeedback, {
-      'TAT_App_User__cID': this.userDataService.data.salesforceId,
+      'ContactID': this.userDataService.data.salesforceId,
       'gf_q[7304458][14765212]': this.volunteerTypeBackwardsMapping[this.userDataService.data.volunteerType]
     });
   }
@@ -164,7 +177,7 @@ export class GetFeedbackService {
       let value = ( queryParams[key] === null || undefined ) ? '' : queryParams[key];
       return query + '&' + key + '=' + encodeURIComponent( value );
     }, '' );
-    return this.sanitizer.bypassSecurityTrustResourceUrl( url + '?' + queryString );
+    return this.sanitizer.bypassSecurityTrustResourceUrl( url + '?' + queryString + '&gf_footer_background_off' );
   }
 
 }

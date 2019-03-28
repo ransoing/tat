@@ -1,10 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
-import { Platform, IonRouterOutlet, AlertController, NavController } from '@ionic/angular';
+import { Platform, IonRouterOutlet, AlertController } from '@ionic/angular';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { TranslateService } from '@ngx-translate/core';
-import { SettingsService, ModalService, MiscService, UserDataService, TrxService, GetFeedbackService } from './services';
+import { SettingsService, ModalService, MiscService, UserDataService, TrxService } from './services';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { LoginComponent, GetFeedbackSurveyComponent } from './modals-volunteer';
+import { LoginComponent, NewUserComponent } from './modals-volunteer';
 
 @Component({
   selector: 'app-root',
@@ -24,9 +24,7 @@ export class AppComponent {
     private miscService: MiscService,
     private userDataService: UserDataService,
     private alertCtrl: AlertController,
-    private trx: TrxService,
-    private getFeedbackService: GetFeedbackService,
-    private navCtrl: NavController
+    private trx: TrxService
   ) {
     this.statusBar.styleBlackOpaque();
     this.statusBar.show();
@@ -64,18 +62,7 @@ export class AppComponent {
 
       // when a user has logged into firebase but has no salesforce entry, pop up the new user signup form
       this.userDataService.newUserDetected.subscribe( () => {
-        this.modalService.open( GetFeedbackSurveyComponent, {
-          titleTranslationKey: 'volunteer.forms.signup.title',
-          successTranslationKey: 'volunteer.forms.signup.submitSuccess',
-          surveyUrl: this.getFeedbackService.getSignupSurveyUrl(),
-          onSurveyFinished: () => {
-            // wait for the salesforce db to update, then fetch that data and go to the volunteer page
-            this.getFeedbackService.waitForSalesforceToUpdate().then( () => {
-              this.userDataService.fetchUserData( true );
-              this.navCtrl.navigateRoot( '/tabs/(volunteer:volunteer)' );
-            });
-          }
-        });
+        this.modalService.open( NewUserComponent );
       });
 
       // if the app was on the login modal when it was last closed, open that modal now

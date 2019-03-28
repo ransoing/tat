@@ -1,0 +1,61 @@
+.like-gf-survey-wrapper {
+    height: 100%;
+    display: flex;
+}
+
+.like-gf-survey {
+    // vertically align items
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    width: 100%;
+    margin-right: 16px;
+
+    transition: margin-left 0.2s;
+
+    &.page-1 { margin-left: 0 }
+    &.page-2 { margin-left: calc( -100% - 16px) }
+
+    p {
+        text-align: center;
+        font-size: 110%;
+    }
+}
+
+.gf-nav {
+    .nav-button {
+        float: right;
+        width: 45px;
+        height: 45px;
+        line-height: 45px;
+        border-radius: 2px;
+        background: #3492cd;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+
+        &.disabled {
+            background: #bdbdbd;
+            pointer-events: none;
+        }
+
+        svg {
+            width: 45px;
+            height: 15px;
+        }
+    }
+}
+
+.input-like-gf {
+    background: white;
+    border-radius: 4px;
+    padding: 0 8px;
+    margin-bottom: 4px;
+    ion-input {
+        border: none;
+        margin: 0;
+        --padding-top: 16px;
+        --padding-bottom: 16px;
+    }
+}

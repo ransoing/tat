@@ -10,6 +10,7 @@ declare var document: any;
 })
 export class ScriptService {
 
+    // scripts are defined in the file `external-scripts.ts`
     private scripts: any = {};
 
     constructor() {

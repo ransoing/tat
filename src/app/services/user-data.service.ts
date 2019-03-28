@@ -81,10 +81,9 @@ export interface IUserData {
   city?: string,
   state?: string,
   zip?: string,
-  phone?: string,
-  email?: string,
   hoursLogs?: IHoursLog[],
-  unfinishedOutreachTargets?: IUnfinishedOutreachTarget[]
+  unfinishedOutreachTargets?: IUnfinishedOutreachTarget[],
+  unfinishedEvents?: [] // @@ fill this out
 }
 
 
@@ -118,6 +117,76 @@ export class UserDataService {
     private trx: TrxService,
     private storage: Storage
   ) {}
+
+  /**
+   * Submits a passcode to a server. Returns true if the passcode is right. Returns false and shows an error message if it is wrong.
+   * This is only a mild deterrent for abusive behavior, and doesn't actually protect anything as long as technovandals can dig
+   * through this source code and see expected network interactions.
+   * @param code The registration code
+   */
+  async checkRegistrationCode( code: string ) {
+    await this.showLoadingPopup();
+    try {
+      let response: any = await this.apiRequestGet( 'startRegistration?pass=' + encodeURIComponent(code) );
+      if ( response && response.success ) {
+        return true;
+      } else throw('');
+    } catch (e) {
+      // check the error code to show an appropriate message
+      let errorKey = ( e.error && e.error.errorCode && e.error.errorCode === 'INCORRECT_PASSWORD' ) ?
+        'volunteer.forms.signup.invalidCode' :
+        'misc.dataLoadErrorWithTip';
+      // show an error message.
+      const alert = await this.alertController.create({
+        header: await this.trx.t( 'misc.error' ),
+        message: await this.trx.t( errorKey ),
+        buttons: [await this.trx.t( 'misc.close' )]
+      });
+      alert.present();
+      return false;
+
+    } finally {
+      this.hideLoadingPopup();
+    }
+  }
+
+  /**
+   * Checks whether a salesforce Contact object exists which matches a given email address or phone number.
+   * Returns the id of the Contact object if there is a match.
+   * Returns false if a Contact object does match, but the object already has an associated TAT app account (an associated firebase account ID)
+   * Returns null if there is no match.
+   */
+  async searchForExistingContact( emailAddress: string, phoneNumber: string ) {
+    await this.showLoadingPopup();
+    try {
+      let response: any = await this.apiRequestGet( 'contactSearch?email=' + encodeURIComponent(emailAddress.trim()) + '&phone=' + encodeURIComponent(phoneNumber.trim()) );
+      if ( response && response.salesforceId ) {
+        return response.salesforceId;
+      } else throw('');
+    } catch (e) {
+      // check error code
+      let errorKey = 'misc.dataLoadErrorWithTip';
+      if ( e.error && e.error.errorCode ) {
+        if ( e.error.errorCode === 'NO_MATCHING_ENTRY' ) {
+          return null;
+        } else if ( e.error.errorCode === 'ENTRY_ALREADY_HAS_ACCOUNT' ) {
+          errorKey = 'volunteer.forms.signup.accountAlreadyExists';
+        }
+      }
+
+      // show an appropriate error message
+      const alert = await this.alertController.create({
+        header: await this.trx.t( 'misc.error' ),
+        message: await this.trx.t( errorKey ),
+        buttons: [await this.trx.t( 'misc.close' )]
+      });
+      alert.present();
+      return false;
+      
+    } finally {
+      this.hideLoadingPopup();
+    }
+  }
 
   /**
    * Fetches the volunteer user data from the proxy, only if it hasn't yet been fetched, or if `force` is set to `true`.
@@ -162,7 +231,7 @@ export class UserDataService {
     if ( dataRequestFlags & UserDataRequestFlags.HOURS_LOGS )                   parts.push( 'hoursLogs' );
     if ( dataRequestFlags & UserDataRequestFlags.UNFINISHED_OUTREACH_TARGETS )  parts.push( 'unfinishedOutreachTargets' );
     let url = 'getUserData?parts=' + parts.join( ',' );
-    this.apiRequest( url, token )
+    this.apiRequestPost( url, token )
     .then( responses => this.onFetchSuccess(responses) )
     .catch( e => this.onFetchError(e) )
     .finally( () => this.onFetchFinally() );
@@ -218,14 +287,19 @@ export class UserDataService {
     this.fetchingUserData = false;
   }
 
-  // takes a part of the API url, like '/getBasicUserData`.
+  // takes a part of the API url, like 'getBasicUserData`.
   // makes a POST request to the API and returns a promise.
-  private apiRequest( urlSegment: string, firebaseToken: string ) {
+  private apiRequestPost( urlSegment: string, firebaseToken: string ) {
     return this.http.post(
       environment.proxyServerURL + urlSegment,
       { firebaseIdToken: firebaseToken },
       { headers: new HttpHeaders({'Content-Type': 'application/json'}) }
     ).toPromise();
+  }
+
+  // takes a part of the API url, like 'contactSearch'. Makes a GET request and returns a promise.
+  private apiRequestGet( urlSegment: string ) {
+    return this.http.get( environment.proxyServerURL + urlSegment ).toPromise();
   }
 
   private convertJSONDates( object ) {

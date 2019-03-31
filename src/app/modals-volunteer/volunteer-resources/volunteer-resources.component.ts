@@ -9,7 +9,9 @@ import { MiscService } from '../../services';
 export class VolunteerResourcesComponent {
 
   public modal: HTMLIonModalElement;
-  
-  constructor( public miscService: MiscService ) { }
+
+  constructor(
+    public miscService: MiscService
+  ) {}
 
 }

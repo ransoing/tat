@@ -83,7 +83,7 @@ export interface IUserData {
   zip?: string,
   hoursLogs?: IHoursLog[],
   unfinishedOutreachTargets?: IUnfinishedOutreachTarget[],
-  unfinishedEvents?: [] // @@ fill this out
+  unfinishedEvents?: any // @@ fill this out
 }
 
 

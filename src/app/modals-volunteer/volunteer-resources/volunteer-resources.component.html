@@ -8,8 +8,8 @@
   <p>{{ 'volunteer.resources.intro' | translate }}</p>
 
   <p><b>{{ 'volunteer.resources.infographicTitle' | translate }}</b></p>
-  <!-- @@ get this infographic live from some reliable URL (managed by Directus? or some WP plugin?) -->
-  <img class="infographic" src="http://truckersagainsttrafficking.org/wp-content/uploads/2018/06/TATbyNumbersResch-01-6.11.18-compressed-2.jpg" alt="{{ 'volunteer.resources.infographicTitle' | translate }}">
+
+  <responsive-image altTagKey="volunteer.resources.infographicTitle" imageName="tat-by-the-numbers"></responsive-image>
 
   <p>
     <a (click)="miscService.openExternalLink('https://humantraffickinghotline.org/states')">{{ 'volunteer.resources.statsLink1' | translate }}</a>

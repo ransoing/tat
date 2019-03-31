@@ -1,0 +1,13 @@
+<div *ngIf="imageUrls && imageUrls[imageName]">
+
+  <img class="infographic for-phones"
+      [src]="imageUrls[imageName]['phone-portrait']"
+      alt="{{ altTagKey | translate }}"
+      (click)="miscService.openExternalLink(imageUrls[imageName]['phone-portrait'])">
+
+  <img class="infographic for-tablets"
+    [src]="imageUrls[imageName]['tablet-portrait']"
+    alt="{{ altTagKey | translate }}"
+    (click)="miscService.openExternalLink(imageUrls[imageName]['tablet-portrait'])">
+
+</div>

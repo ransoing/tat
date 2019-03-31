@@ -63,6 +63,7 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ModalGuard, AuthGuard } from './guards';
+import { CommonComponentsModule } from './components/common-components.module';
 import {
   PlacesComponent, EmailReportComponent, WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
   AboutTatComponent, HumanTraffickingLawsComponent,
@@ -110,6 +111,7 @@ import {
     AngularFireModule.initializeApp( environment.firebaseConfig ),
     AngularFireAuthModule, AngularFireDatabaseModule,
     FirebaseUIModule.forRoot( firebaseuiAuthConfig ),
+    CommonComponentsModule
   ],
   providers: [
     StatusBar, SplashScreen, Dialogs, Network, AndroidPermissions,

@@ -50,7 +50,7 @@ export class SettingsService implements IUserSettings {
     this.isReady = true;
   }
 
-  async waitForReady(): Promise<undefined> {
+  async waitForReady(): Promise<any> {
     let interval;
     return new Promise( (resolve, reject) => {
       interval = setInterval( () => {

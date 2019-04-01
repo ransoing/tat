@@ -33,8 +33,10 @@ export class AppComponent {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      this.translate.setDefaultLang( this.settings.language );
-      this.translate.use( this.settings.language );
+      this.settings.waitForReady().then( () => {
+        this.translate.setDefaultLang( this.settings.language );
+        this.translate.use( this.settings.language );
+      });
 
       // this observable will fire when the app starts up, so it's not just when the user has actively logged in or out
       var firstAuthCallback = true;

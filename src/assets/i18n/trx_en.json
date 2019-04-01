@@ -311,11 +311,11 @@
       "loggedInAs": "Logged in as",
       "logout": "Logout",
       "notifications": {
-        "event": "Event notifications",
-        "report": "Report notifications",
-        "survey": "Survey notifications",
+        "postEventReportReminder": "Remind me to complete post-event reports",
+        "postOutreachReportReminder": "Remind me to complete post-outreach reports",
+        "preEventSurveyReminder": "Remind me to complete pre-event surveys",
         "title": "Notifications",
-        "upcoming": "Upcoming events"
+        "upcomingEvents": "Notify me of upcoming events"
       },
       "title": "Settings"
     },

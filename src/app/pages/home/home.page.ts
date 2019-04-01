@@ -21,6 +21,7 @@ export class HomePage implements AfterViewInit {
 
   onSetLanguage() {
     this.translate.use( this.settings.language );
+    this.settings.saveSettings();
   }
 
   ngAfterViewInit() {

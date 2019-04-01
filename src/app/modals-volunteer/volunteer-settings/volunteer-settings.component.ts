@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SettingsService, UserDataService, ModalService, UserDataRequestFlags, GetFeedbackService } from '../../services';
+import { SettingsService, UserDataService, ModalService, UserDataRequestFlags, GetFeedbackService, VolunteerType } from '../../services';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { GetFeedbackSurveyComponent } from '../getfeedback-survey/getfeedback-survey.component';
 
@@ -9,6 +9,7 @@ import { GetFeedbackSurveyComponent } from '../getfeedback-survey/getfeedback-su
 export class VolunteerSettingsComponent {
 
   public modal: HTMLIonModalElement;
+  public VolunteerType = VolunteerType;
   
   constructor(
     public settings: SettingsService,

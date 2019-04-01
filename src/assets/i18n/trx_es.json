@@ -288,11 +288,7 @@
     "settings": {
       "logout": "Cerrar sesión",
       "notifications": {
-        "event": "Aviso de eventos",
-        "report": "Aviso de Reporte",
-        "survey": "Aviso de Encuesta",
-        "title": "Avisos",
-        "upcoming": "Proximos Eventos"
+        "title": "Avisos"
       },
       "title": "Configuración"
     },

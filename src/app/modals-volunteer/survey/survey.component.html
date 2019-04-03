@@ -15,23 +15,27 @@
           <div *ngFor="let field of page.fields" class="input-wrapper input-type-{{field.type}}">
             <div *ngIf="page.fields.length > 1 && field.isRequired" class="required-star"><span class="star">*</span></div>
             <!-- text field types -->
-            <ng-container *ngIf="[ISurveyFieldType.TEXT, ISurveyFieldType.EMAIL, ISurveyFieldType.TEL].includes( field.type )">
+            <ng-container *ngIf="[ISurveyFieldType.TEXT, ISurveyFieldType.EMAIL, ISurveyFieldType.TEL, ISurveyFieldType.NUMBER].includes( field.type )">
               <ion-input
-                placeholder="{{ field.labelTranslationKey | translate }}"
-                type="field.type"
+                [placeholder]="field.labelTranslationKey | translate"
+                [type]="field.type"
                 color="dark"
                 [attr.value]="field.defaultValue"
                 [name]="field.name">
               </ion-input>
             </ng-container>
+            <!-- textarea -->
+            <ng-container *ngIf="field.type === ISurveyFieldType.TEXTAREA">
+              <ion-textarea [name]="field.name" color="dark">{{field.defaultValue}}</ion-textarea>
+            </ng-container>
             <!-- select -->
             <ng-container *ngIf="field.type === ISurveyFieldType.SELECT">
               <ion-select
-                placeholder="{{ field.labelTranslationKey | translate }}"
+                [placeholder]="field.labelTranslationKey | translate"
                 [attr.value]="field.defaultValue"
                 [name]="field.name"
-                cancelText="{{ 'misc.cancel' | translate }}"
-                okText="{{ 'misc.ok' | translate }}">
+                [cancelText]="'misc.cancel' | translate"
+                [okText]="'misc.ok' | translate">
                 <ion-select-option *ngFor="let option of field.options" [value]="option.value">{{ option.labelTranslationKey | translate }}</ion-select-option>
               </ion-select>
             </ng-container>
@@ -47,6 +51,19 @@
                   <input type="checkbox" [name]="field.name" [value]="option.value">
                 </label>
               </ng-container>
+            </ng-container>
+            <!-- date -->
+            <ng-container *ngIf="field.type === ISurveyFieldType.DATE">
+              <ion-datetime
+                [attr.name]="field.name"
+                [placeholder]="field.labelTranslationKey | translate"
+                [cancelText]="'misc.cancel' | translate"
+                [doneText]="'misc.ok' | translate"
+                [attr.month-names]="'misc.monthNames' | translate"
+                [attr.month-short-names]="'misc.monthNamesShort' | translate"
+                [attr.day-names]="'misc.dayNames' | translate"
+                [attr.day-short-names]="'misc.dayNamesShort' | translate">
+              </ion-datetime>
             </ng-container>
           </div>
         </div>

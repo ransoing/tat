@@ -75,8 +75,12 @@
     "dataLoadError": "Hubo un problema al cargar tu cuenta de voluntario.",
     "dataLoadErrorWithTip": "@:misc.dataLoadError Asegúrate de tener conexión a Internet y trata de nuevo.",
     "date": "Fecha",
+    "dayNames": "domingo, lunes, martes, miércoles, jueves, viernes, sábado",
+    "dayNamesShort": "do, lu, ma, mi, ju, vi, sa",
     "error": "Error",
     "logoutMessage": "Se cerró tu sesión.",
+    "monthNames": "enero, febrero, marzo, abril, mayo, junio, julio, agosto, septiembre, octubure, noviembre, diciembre",
+    "monthNamesShort": "enero, feb, marzo, abr, mayo, jun, jul, agosto, sept, oct, nov, dic",
     "no": "No",
     "ok": "Aceptar",
     "pleaseWait": "Espera por favor...",
@@ -242,6 +246,7 @@
         "title": "@:volunteer.btns.testimonial"
       },
       "hoursLog": {
+        "labels": {},
         "title": "@:volunteer.hoursLog.addEntry"
       },
       "postEvent": {
@@ -260,7 +265,6 @@
         "submitSuccess": "@:volunteer.forms.successSurvey",
         "title": "@:volunteer.btns.preOutreachSurvey"
       },
-      "signup": {},
       "trainingFeedback": {
         "submitSuccess": "@:volunteer.forms.successFeedback",
         "title": "@:volunteer.btns.trainingFeedback"

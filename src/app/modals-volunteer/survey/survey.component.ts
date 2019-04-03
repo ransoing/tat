@@ -5,14 +5,17 @@ export enum ISurveyFieldType {
   TEXT = 'text',    // text field
   EMAIL = 'email',  // text field
   TEL = 'tel',      // text field
+  NUMBER = 'number',// text field
   SELECT = 'select',// select
-  CHOICE = 'choice' // single- or multi-select, displayed as large buttons to tap
+  CHOICE = 'choice',// single- or multi-select, displayed as large buttons to tap. Usually the only field on the page.
+  TEXTAREA = 'textarea', // usually the only field on the page.
+  DATE = 'date'     // datepicker popup
 }
 
 export interface ISurveyField {
   type: ISurveyFieldType,
   name: string,
-  labelTranslationKey: string,
+  labelTranslationKey?: string,
   defaultValue?: string,
   isRequired?: boolean,
   options?: {value: string, labelTranslationKey: string}[], // for 'SELECT' or 'CHOICE' input types
@@ -32,7 +35,8 @@ export interface ISurveyPage {
 }
 
 export interface ISurvey {
-  onComplete: Function,
+  // if onComplete resolves, then the modal closes. If it rejects, the modal does not close.
+  onComplete(): Promise<any>,
   pages: ISurveyPage[]
 }
 
@@ -47,11 +51,11 @@ export class SurveyComponent implements OnInit {
 
   @ViewChild('form') formRef: ElementRef;
 
-  public modal: HTMLIonModalElement;
-  public ISurveyFieldType = ISurveyFieldType;
+  modal: HTMLIonModalElement;
+  ISurveyFieldType = ISurveyFieldType;
 
-  public activePage = 0;
-  public pageHistory: number[] = [];
+  activePage = 0;
+  pageHistory: number[] = [];
 
   constructor(
     public miscService: MiscService,
@@ -70,6 +74,7 @@ export class SurveyComponent implements OnInit {
       page.onContinue = page.onContinue || noopTruePromise;
       page.isVisible = page.isVisible || noopTrue;
       page.fields = page.fields || [];
+      page.fields.forEach( field => field.labelTranslationKey = field.labelTranslationKey || '' );
     });
   }
 
@@ -111,6 +116,13 @@ export class SurveyComponent implements OnInit {
     return !subsequentPages.some( page => page.isVisible(this.getAllVals()) );
   }
 
+  finish() {
+    this.survey.onComplete().then(
+      () => this.modal.dismiss(),
+      () => {} // do nothing
+    );
+  }
+
   pageHasRequiredFields( page: ISurveyPage ): boolean {
     return page.fields.some( field => field.isRequired );
   }
@@ -135,6 +147,13 @@ export class SurveyComponent implements OnInit {
       } else {
         // for ion select elements, a blank field has the string value "undefined"
         return el.value === 'undefined' ? '' : el.value.trim();
+      }
+    } else if ( field.type === ISurveyFieldType.DATE ) {
+      let el = this.formRef.nativeElement.querySelector( 'ion-datetime[name='+field.name+']' );
+      if ( el && el.value ) {
+        // with Date, months are 0-indexed. With ion-datetime component, they are 1-indexed
+        let date = new Date( el.value.year.value, el.value.month.value - 1, el.value.day.value );
+        return date.toISOString();
       }
     }
     return '';

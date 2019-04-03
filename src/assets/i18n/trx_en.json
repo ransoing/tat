@@ -75,8 +75,12 @@
     "dataLoadError": "There was a problem while loading your volunteer account data.",
     "dataLoadErrorWithTip": "@:misc.dataLoadError Make sure you have an internet connection and try again.",
     "date": "Date",
+    "dayNames": "Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday",
+    "dayNamesShort": "Sun, Mon, Tues, Wed, Thurs, Fri, Sat",
     "error": "Error",
     "logoutMessage": "You have been logged out.",
+    "monthNames": "January, February, March, April, May, June, July, August, September, October, November, December",
+    "monthNamesShort": "Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec",
     "no": "No",
     "ok": "OK",
     "pleaseWait": "Please wait...",
@@ -247,6 +251,11 @@
         "title": "@:volunteer.btns.testimonial"
       },
       "hoursLog": {
+        "labels": {
+          "date": "Date of task",
+          "describe": "Please describe the volunteer task you performed. Include driving and training time.",
+          "numHours": "Number of hours spent on task"
+        },
         "submitSuccess": "Thank you for your time!",
         "title": "@:volunteer.hoursLog.addEntry"
       },

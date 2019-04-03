@@ -6,6 +6,7 @@ import { SettingsService, ModalService, MiscService, UserDataService, TrxService
 import { AngularFireAuth } from '@angular/fire/auth';
 import { LoginComponent, NewUserComponent, SurveyComponent } from './modals-volunteer';
 import { ISurvey, ISurveyFieldType } from './modals-volunteer/survey/survey.component';
+import { SurveyService } from './services/surveys.service';
 
 @Component({
   selector: 'app-root',
@@ -25,7 +26,8 @@ export class AppComponent {
     private miscService: MiscService,
     private userDataService: UserDataService,
     private alertCtrl: AlertController,
-    private trx: TrxService
+    private trx: TrxService,
+    private surveys: SurveyService
   ) {
     this.statusBar.styleBlackOpaque();
     this.statusBar.show();
@@ -68,55 +70,57 @@ export class AppComponent {
       //   this.modalService.open( NewUserComponent );
       // });
       // @@ uncomment the above and destroy the below to return to normal
-      let survey: ISurvey = {
-        pages: [{
-          topTextTranslationKey: 'redFlags.title',
-          fields: [{
-            type: ISurveyFieldType.TEXT,
-            name: 'test',
-            labelTranslationKey: 'volunteer.btns.resources'
-          }, {
-            type: ISurveyFieldType.EMAIL,
-            name: 'test2',
-            labelTranslationKey: 'volunteer.btns.resources',
-            isRequired: true
-          }, {
-            type: ISurveyFieldType.SELECT,
-            name: 'test3',
-            labelTranslationKey: 'volunteer.btns.resources',
-            isRequired: true,
-            options: [
-              { value: 'one', labelTranslationKey: 'misc.submit' },
-              { value: 'two', labelTranslationKey: 'misc.success' }
-            ]
-          }]
-        }, {
-          isVisible: (fields) => fields.test === 'sample',
-          topTextTranslationKey: 'volunteer.forms.signup.intro',
-          fields: [{
-            type: ISurveyFieldType.CHOICE,
-            name: 'p2test',
-            labelTranslationKey: 'volunteer.btns.resources',
-            isRequired: true,
-            options: [
-              { value: 'yes', labelTranslationKey: 'misc.yes' },
-              { value: 'no', labelTranslationKey: 'misc.no' }
-            ]
-          }]
-        }, {
-          fields: [{
-            type: ISurveyFieldType.TEXT,
-            name: 'p3test',
-            labelTranslationKey: 'volunteer.btns.resources',
-            isRequired: true
-          }]
-        }],
-        onComplete: () => {}
-      };
-      this.modalService.open( SurveyComponent, {
-        titleTranslationKey: 'volunteer.forms.signup.title',
-        survey: survey
-      });
+      // let survey: ISurvey = {
+      //   pages: [{
+      //     topTextTranslationKey: 'redFlags.title',
+      //     fields: [{
+      //       type: ISurveyFieldType.TEXT,
+      //       name: 'test',
+      //       labelTranslationKey: 'volunteer.btns.resources'
+      //     }, {
+      //       type: ISurveyFieldType.EMAIL,
+      //       name: 'test2',
+      //       labelTranslationKey: 'volunteer.btns.resources',
+      //       isRequired: true
+      //     }, {
+      //       type: ISurveyFieldType.SELECT,
+      //       name: 'test3',
+      //       labelTranslationKey: 'volunteer.btns.resources',
+      //       isRequired: true,
+      //       options: [
+      //         { value: 'one', labelTranslationKey: 'misc.submit' },
+      //         { value: 'two', labelTranslationKey: 'misc.success' }
+      //       ]
+      //     }]
+      //   }, {
+      //     isVisible: (fields) => fields.test === 'sample',
+      //     topTextTranslationKey: 'volunteer.forms.signup.intro',
+      //     fields: [{
+      //       type: ISurveyFieldType.CHOICE,
+      //       name: 'p2test',
+      //       labelTranslationKey: 'volunteer.btns.resources',
+      //       isRequired: true,
+      //       options: [
+      //         { value: 'yes', labelTranslationKey: 'misc.yes' },
+      //         { value: 'no', labelTranslationKey: 'misc.no' }
+      //       ]
+      //     }]
+      //   }, {
+      //     fields: [{
+      //       type: ISurveyFieldType.TEXT,
+      //       name: 'p3test',
+      //       labelTranslationKey: 'volunteer.btns.resources',
+      //       isRequired: true
+      //     }]
+      //   }],
+      //   onComplete: () => {}
+      // };
+      setTimeout( () => {
+        this.modalService.open( SurveyComponent, {
+          titleTranslationKey: 'volunteer.forms.signup.title',
+          survey: this.surveys.hoursLogSurvey
+        });
+      }, 1000 );
 
       // if the app was on the login modal when it was last closed, open that modal now
       if ( localStorage.getItem(LoginComponent.LOGIN_REDIRECT_URL_KEY) ) {

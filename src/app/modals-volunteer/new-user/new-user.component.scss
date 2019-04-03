@@ -25,7 +25,8 @@
 
 .gf-nav {
     .nav-button {
-        float: right;
+        &.nav-right { float: right }
+        &.nav-left { float: left }
         width: 45px;
         height: 45px;
         line-height: 45px;
@@ -38,11 +39,6 @@
         &.disabled {
             background: #bdbdbd;
             pointer-events: none;
-        }
-
-        svg {
-            width: 45px;
-            height: 15px;
         }
     }
 }

@@ -24,6 +24,7 @@ import { Dialogs } from '@ionic-native/dialogs/ngx';
 import { Network } from '@ionic-native/network/ngx';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { IonicStorageModule } from '@ionic/storage';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 // firebase and firebase auth
 import * as firebaseuiNamespace from 'firebaseui-en-es/dist'; // just for the namespace
@@ -70,7 +71,7 @@ import {
   CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent,
 } from './modals';
 import {
-  VolunteerSettingsComponent, VolunteerResourcesComponent, GetFeedbackSurveyComponent,
+  VolunteerSettingsComponent, VolunteerResourcesComponent, GetFeedbackSurveyComponent, SurveyComponent,
   HoursLogComponent, TrainingVideoComponent, LoginComponent, PostOutreachSelectionComponent, NewUserComponent
 } from './modals-volunteer';
 
@@ -80,14 +81,14 @@ import {
     PlacesComponent, EmailReportComponent, WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
     AboutTatComponent, HumanTraffickingLawsComponent,
     CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent,
-    VolunteerSettingsComponent, VolunteerResourcesComponent, GetFeedbackSurveyComponent,
+    VolunteerSettingsComponent, VolunteerResourcesComponent, GetFeedbackSurveyComponent, SurveyComponent,
     HoursLogComponent, TrainingVideoComponent, LoginComponent, PostOutreachSelectionComponent, NewUserComponent
   ],
   entryComponents: [
     PlacesComponent, EmailReportComponent, WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
     AboutTatComponent, HumanTraffickingLawsComponent,
     CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent,
-    VolunteerSettingsComponent, VolunteerResourcesComponent, GetFeedbackSurveyComponent,
+    VolunteerSettingsComponent, VolunteerResourcesComponent, GetFeedbackSurveyComponent, SurveyComponent,
     HoursLogComponent, TrainingVideoComponent, LoginComponent, PostOutreachSelectionComponent, NewUserComponent
   ],
   imports: [
@@ -114,7 +115,7 @@ import {
     CommonComponentsModule
   ],
   providers: [
-    StatusBar, SplashScreen, Dialogs, Network, AndroidPermissions,
+    StatusBar, SplashScreen, Dialogs, Network, AndroidPermissions, LocalNotifications,
     ModalGuard, AuthGuard,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

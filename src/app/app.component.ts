@@ -4,7 +4,8 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { TranslateService } from '@ngx-translate/core';
 import { SettingsService, ModalService, MiscService, UserDataService, TrxService } from './services';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { LoginComponent, NewUserComponent } from './modals-volunteer';
+import { LoginComponent, NewUserComponent, SurveyComponent } from './modals-volunteer';
+import { ISurvey, ISurveyFieldType } from './modals-volunteer/survey/survey.component';
 
 @Component({
   selector: 'app-root',
@@ -63,8 +64,58 @@ export class AppComponent {
       });
 
       // when a user has logged into firebase but has no salesforce entry, pop up the new user signup form
-      this.userDataService.newUserDetected.subscribe( () => {
-        this.modalService.open( NewUserComponent );
+      // this.userDataService.newUserDetected.subscribe( () => {
+      //   this.modalService.open( NewUserComponent );
+      // });
+      // @@ uncomment the above and destroy the below to return to normal
+      let survey: ISurvey = {
+        pages: [{
+          topTextTranslationKey: 'redFlags.title',
+          fields: [{
+            type: ISurveyFieldType.TEXT,
+            name: 'test',
+            labelTranslationKey: 'volunteer.btns.resources'
+          }, {
+            type: ISurveyFieldType.EMAIL,
+            name: 'test2',
+            labelTranslationKey: 'volunteer.btns.resources',
+            isRequired: true
+          }, {
+            type: ISurveyFieldType.SELECT,
+            name: 'test3',
+            labelTranslationKey: 'volunteer.btns.resources',
+            isRequired: true,
+            options: [
+              { value: 'one', labelTranslationKey: 'misc.submit' },
+              { value: 'two', labelTranslationKey: 'misc.success' }
+            ]
+          }]
+        }, {
+          isVisible: (fields) => fields.test === 'sample',
+          topTextTranslationKey: 'volunteer.forms.signup.intro',
+          fields: [{
+            type: ISurveyFieldType.CHOICE,
+            name: 'p2test',
+            labelTranslationKey: 'volunteer.btns.resources',
+            isRequired: true,
+            options: [
+              { value: 'yes', labelTranslationKey: 'misc.yes' },
+              { value: 'no', labelTranslationKey: 'misc.no' }
+            ]
+          }]
+        }, {
+          fields: [{
+            type: ISurveyFieldType.TEXT,
+            name: 'p3test',
+            labelTranslationKey: 'volunteer.btns.resources',
+            isRequired: true
+          }]
+        }],
+        onComplete: () => {}
+      };
+      this.modalService.open( SurveyComponent, {
+        titleTranslationKey: 'volunteer.forms.signup.title',
+        survey: survey
       });
 
       // if the app was on the login modal when it was last closed, open that modal now

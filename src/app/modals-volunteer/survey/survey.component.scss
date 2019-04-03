@@ -1,0 +1,141 @@
+@import "../../../theme/variables.scss";
+
+.survey-modal {
+    > div {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+
+        > h1 {
+            flex: 0 0 auto;
+        }
+    }
+}
+    
+.survey-wrapper {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    margin-left: 0;
+    transition: margin-left 0.2s;
+
+    .page {
+        // vertically align items
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex: 1 0 auto;
+
+        width: 100%;
+        margin-right: 16px;
+
+        p {
+            text-align: center;
+            font-size: 110%;
+        }
+
+        .required-warning {
+            text-align: left;
+            color: red;
+            font-size: 100%;
+            margin-bottom: 0.5em;
+        }
+
+        .star { font-size: 130% }
+
+        .input-wrapper {
+            background: white;
+            border-radius: 4px;
+            padding: 0 8px;
+            margin-bottom: 4px;
+            position: relative;
+
+            &.input-type-select { padding-left: 0 }
+
+            &.input-type-choice {
+                padding: 0;
+                background: none;
+                label {
+                    display: block;
+                    margin-bottom: 4px;
+                    padding: 1.2em;
+                    border-radius: 4px;
+                    border: 1px solid #444;
+                    background: black;
+                    color: white;
+                    cursor: pointer;
+
+                    &.selected { background: $color-primary }
+
+                    input { display: none }
+                }
+            }
+
+            ion-input {
+                border: none;
+                margin: 0;
+                --padding-top: 16px;
+                --padding-bottom: 16px;
+            }
+
+            .required-star {
+                position: absolute;
+                right: 0.5em;
+                top: 0.25em;
+                color: red;
+            }
+        }
+        
+    }
+
+}
+
+.progress-bar {
+    width: 100%;
+    height: 4px;
+    position: relative;
+    margin-bottom: 3px;
+    background: #333;
+
+    .progress-bar-fill {
+        height: 100%;
+        width: 0;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: $color-primary;
+        transition: width 0.2s;
+    }
+}
+
+.survey-nav {
+    .nav-button {
+        width: 45px;
+        height: 45px;
+        line-height: 45px;
+        border-radius: 2px;
+        background: $color-primary;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+
+        &.nav-right { float: right }
+        &.nav-left { float: left }
+        &.nav-submit {
+            width: auto;
+            text-transform: uppercase;
+            font-size: 80%;
+            padding: 0 1em;
+        }
+
+        &.disabled {
+            background: #bdbdbd;
+            pointer-events: none;
+        }
+    }
+}
+
+ion-select {
+    --ion-text-color: black;
+    --ion-text-color-step-600: #bbb;
+}

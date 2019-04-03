@@ -7,3 +7,4 @@ export { TrainingVideoComponent } from './training-video/training-video.componen
 export { LoginComponent } from './login/login.component';
 export { GetFeedbackSurveyComponent } from './getfeedback-survey/getfeedback-survey.component';
 export { NewUserComponent } from './new-user/new-user.component';
+export { SurveyComponent } from './survey/survey.component';

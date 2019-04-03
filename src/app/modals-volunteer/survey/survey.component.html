@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-toolbar></ion-toolbar>
+</ion-header>
+<ion-content class="survey-modal" fullscreen padding>
+  <div>
+    <h1 style="flex: 0 0 auto">{{ titleTranslationKey | translate }}</h1>
+    <ion-icon name="md-close" class="modal-close-btn" (click)="modal.dismiss()"></ion-icon>
+    
+    <form class="survey-wrapper" #form [style.margin-left]="getFormMarginLeft()">
+
+      <ng-container *ngFor="let page of survey.pages">
+        <div *ngIf="preDelay || page.isVisible(getAllVals())" class="page">
+          <p *ngIf="page.topTextTranslationKey">{{ page.topTextTranslationKey | translate }}</p>
+          <p *ngIf="page.fields.length > 1 && pageHasRequiredFields(page)" class="required-warning"><span class="star">*</span> = Required</p>
+          <div *ngFor="let field of page.fields" class="input-wrapper input-type-{{field.type}}">
+            <div *ngIf="page.fields.length > 1 && field.isRequired" class="required-star"><span class="star">*</span></div>
+            <!-- text field types -->
+            <ng-container *ngIf="[ISurveyFieldType.TEXT, ISurveyFieldType.EMAIL, ISurveyFieldType.TEL].includes( field.type )">
+              <ion-input
+                placeholder="{{ field.labelTranslationKey | translate }}"
+                type="field.type"
+                color="dark"
+                [attr.value]="field.defaultValue"
+                [name]="field.name">
+              </ion-input>
+            </ng-container>
+            <!-- select -->
+            <ng-container *ngIf="field.type === ISurveyFieldType.SELECT">
+              <ion-select
+                placeholder="{{ field.labelTranslationKey | translate }}"
+                [attr.value]="field.defaultValue"
+                [name]="field.name"
+                cancelText="{{ 'misc.cancel' | translate }}"
+                okText="{{ 'misc.ok' | translate }}">
+                <ion-select-option *ngFor="let option of field.options" [value]="option.value">{{ option.labelTranslationKey | translate }}</ion-select-option>
+              </ion-select>
+            </ng-container>
+            <!-- choice -->
+            <ng-container *ngIf="field.type === ISurveyFieldType.CHOICE">
+              <ng-container *ngIf="!field.multi">
+                <label *ngFor="let option of field.options" [class.selected]="getFieldVal(field) === option.value" (click)="noop()">{{ option.labelTranslationKey | translate }}
+                  <input type="radio" [name]="field.name" [value]="option.value">
+                </label>
+              </ng-container>
+              <ng-container *ngIf="field.multi">
+                <label *ngFor="let option of field.options" [class.selected]="getFieldVal(field).split(', ').includes(option.value)" (click)="noop()">{{ option.labelTranslationKey | translate }}
+                  <input type="checkbox" [name]="field.name" [value]="option.value">
+                </label>
+              </ng-container>
+            </ng-container>
+          </div>
+        </div>
+      </ng-container>
+
+    </form>
+
+    <div class="progress-bar">
+      <div class="progress-bar-fill" [style.width.%]="100 * (activePage + 1) / survey.pages.length"></div>
+    </div>
+
+    <div class="survey-nav">
+      <div class="nav-button nav-left" [class.disabled]="activePage === 0" (click)="goBack()">
+        <chevron-svg direction="left"></chevron-svg>
+      </div>
+      <div *ngIf="!isLastPage()" class="nav-button nav-right" [class.disabled]="!canContinue()" (click)="advance()">
+        <chevron-svg direction="right"></chevron-svg>
+      </div>
+      <div *ngIf="isLastPage()" class="nav-button nav-right nav-submit" [class.disabled]="!canContinue()" (click)="finish()">
+        Submit
+      </div>
+    </div>
+  </div>
+</ion-content>

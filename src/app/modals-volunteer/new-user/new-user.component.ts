@@ -38,6 +38,10 @@ export class NewUserComponent {
     }
   }
 
+  goBack() {
+    this.activePart--;
+  }
+
   async advance() {
     if ( this.activePart === 1 ) {
       // check if the registration code is valid. If so, proceed to part 2. If not, let the user know.

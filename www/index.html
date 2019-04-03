@@ -13,7 +13,7 @@
     default-src
     'self' 'unsafe-inline' 'unsafe-eval'
     mailto:* tel:* data: gap: ws://*
-    http://*.google.com https://*.google.com *.googleapis.com *.gstatic.com *.vimeo.com http://truckersagainsttrafficking.org
+    http://*.google.com https://*.google.com *.googleapis.com *.gstatic.com *.vimeo.com *.youtube.com *.ytimg.com http://truckersagainsttrafficking.org
     http://localhost http://macd3070.lasp.colorado.edu
     truckers-against-trafficking.firebaseapp.com truckers-against-trafficking.firebaseio.com truckers-against-trafficking.appspot.com;
     
@@ -21,7 +21,8 @@
     'self'
     https://player.vimeo.com https://www.youtube.com truckers-against-trafficking.firebaseapp.com www.getfeedback.com;
     
-    media-src *"
+    media-src *;
+    img-src 'self' * data:"
   >
 <!-- @@ remove the macd3070 address from the CSP above -->
   <link rel="icon" type="image/png" href="assets/icon/favicon.png">
@@ -75,7 +76,7 @@
 
   </style>
 
-<link rel="stylesheet" href="styles.58a8d3f9572d6cea0b0c.css"></head>
+</head>
 <body>
   <app-root>
     <!--
@@ -84,5 +85,5 @@
     -->
     <div class="lds-ring lds-ring-index"><div></div><div></div><div></div><div></div></div>
   </app-root>
-<script type="text/javascript" src="runtime.62b6ed97635d8ebbabcd.js"></script><script type="text/javascript" src="polyfills.30186cee2cfdfcc86d70.js"></script><script type="text/javascript" src="main.38655fe6e23b8f998988.js"></script></body>
+<script type="text/javascript" src="runtime.js"></script><script type="text/javascript" src="polyfills.js"></script><script type="text/javascript" src="styles.js"></script><script type="text/javascript" src="cordova.js"></script><script type="text/javascript" src="vendor.js"></script><script type="text/javascript" src="main.js"></script></body>
 </html>

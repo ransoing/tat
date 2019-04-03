@@ -25,10 +25,11 @@
     </div>
 
     <div class="gf-nav">
-      <div class="nav-button" [class.disabled]="nextIsDisabled()" (click)="advance()">
-        <svg version="1.1" id="chevron" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" class="chevron-icon right" viewBox="0 0 14 24" enable-background="new 0 0 14 24" xml:space="preserve">
-          <polygon class="chevron-polygon" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" points="2,0 0,2 10,12 0,22 2,24 14,12 "></polygon>
-        </svg>
+      <div class="nav-button nav-left" [class.disabled]="activePart === 1" (click)="goBack()">
+        <chevron-svg direction="left"></chevron-svg>
+      </div>
+      <div class="nav-button nav-right" [class.disabled]="nextIsDisabled()" (click)="advance()">
+        <chevron-svg direction="right"></chevron-svg>
       </div>
     </div>
   </div>

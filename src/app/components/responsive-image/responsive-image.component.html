@@ -1,13 +1,13 @@
 <div *ngIf="imageUrls && imageUrls[imageName]">
 
   <img class="infographic for-phones"
-      [src]="imageUrls[imageName]['phone-portrait']"
+      [src]="imageUrls[imageName].phone"
       alt="{{ altTagKey | translate }}"
-      (click)="miscService.openExternalLink(imageUrls[imageName]['phone-portrait'])">
+      (click)="miscService.openExternalLink(imageUrls[imageName].phone)">
 
   <img class="infographic for-tablets"
-    [src]="imageUrls[imageName]['tablet-portrait']"
+    [src]="imageUrls[imageName].tablet"
     alt="{{ altTagKey | translate }}"
-    (click)="miscService.openExternalLink(imageUrls[imageName]['tablet-portrait'])">
+    (click)="miscService.openExternalLink(imageUrls[imageName].tablet)">
 
 </div>

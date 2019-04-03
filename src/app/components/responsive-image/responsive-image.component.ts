@@ -10,8 +10,8 @@ import { environment } from '../../../environments/environment';
  * images: {
  *   {
  *     some-image-name: {
- *       phone-portrait: "some-url",
- *       tablet-portrait: "some-url"
+ *       phone: "some-url",
+ *       tablet: "some-url"
  *     },
  *     some-other-image-name: {
  *       ...
@@ -27,7 +27,7 @@ import { environment } from '../../../environments/environment';
 })
 export class ResponsiveImageComponent {
   @Input() altTagKey: string; // the translation key to be used for the alt tag
-  @Input() imageName: string; // the name of the image, which is the parent of the 'phone-portrait' and 'tablet-portrait' keys in the firebase object, i.e. 'ht-laws'
+  @Input() imageName: string; // the name of the image, which is the parent of the 'phone' and 'tablet' keys in the firebase object, i.e. 'ht-laws'
   
   private storageKey = 'firebase-image-urls';
   public imageUrls;

@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { LoadingController } from '@ionic/angular';
 import { TrxService } from './trx.service';
 import { UserDataService, IUnfinishedOutreachTarget, OutreachLocationType, VolunteerType } from './user-data.service';
-import { DomSanitizer } from '@angular/platform-browser';
 import { ISurvey, ISurveyFieldType } from '../modals-volunteer/survey/survey.component';
 
 // contains objects defining all surveys.
@@ -13,28 +11,9 @@ import { ISurvey, ISurveyFieldType } from '../modals-volunteer/survey/survey.com
 })
 export class SurveyService {
 
-
-  // The nice labels for the different outreach targets. This is required to pre-fill some getfeedback survey fields.
-  // The values must exactly match those in the survey.
-  private readonly outreachTargetBackwardsMapping = {
-    [OutreachLocationType.CDL_SCHOOL]: 'CDL School',
-    [OutreachLocationType.TRUCK_STOP]: 'Truck Stop',
-    [OutreachLocationType.TRUCKING_COMPANY]: 'Trucking Company'
-  };
-
-  // The nice labels for volunteer types. This is required to pre-fill some fields.
-  // The values must exactly match those in the survey.
-  private readonly volunteerTypeBackwardsMapping = {
-    [VolunteerType.TRUCK_STOP_VOLUNTEER]: 'Truck Stop Volunteer',
-    [VolunteerType.EVENT_VOLUNTEER]: 'Freedom Drivers Volunteer',
-    [VolunteerType.AMBASSADOR_VOLUNTEER]: 'TAT Ambassador'
-  };
-
-
   constructor(
     private loadingController: LoadingController,
     private userDataService: UserDataService,
-    private sanitizer: DomSanitizer,
     private trx: TrxService
   ) {}
 
@@ -43,7 +22,7 @@ export class SurveyService {
     { value: 'no', labelTranslationKey: 'misc.buttons.no' }
   ];
 
-  // @@ for all surveys, when submitting them, submit my firebase token as well.
+  // @@ for all surveys, when submitting them, submit the user's firebase token as well.
   // the proxy can glean the salesforceID from that.
 
   getHoursLogSurvey(): ISurvey {
@@ -284,6 +263,12 @@ export class SurveyService {
   }
 
 
+  // getPreEventSurvey
+
+
+  // getPostEventSurvey
+
+
   getTestimonialFeedbackSurvey(): ISurvey {
     return {
       pages: [{
@@ -356,28 +341,145 @@ export class SurveyService {
     };
   }
 
-  // /**
-  //  * Use this method when a new user is signing up, and does not have a Contact entry in salesforce.
-  //  */
-  // getSignupSurveyUrlForNewContact( email: string, phone: string ) {
-  //   return this.makeTrustedUrl( this.surveyUrlBases.signup, {
-  //     'gf_q[7447327][15018741]': this.userDataService.firebaseUser.uid,
-  //     'gf_q[7290681][14733013]': phone,
-  //     'gf_q[7290681][14733014]': email,
-  //     'gf_q[7447327][15019556]': 'true' // mark as new user
-  //   });
-  // }
 
-  // /**
-  //  * Use this method when a new user is signing up, and already has a Contact entry in salesforce.
-  //  */
-  // getSignupSurveyUrlForExistingContact( salesforceId: string ) {
-  //   return this.makeTrustedUrl( this.surveyUrlBases.signup, {
-  //     'ContactID': salesforceId,
-  //     'gf_q[7447327][15018741]': this.userDataService.firebaseUser.uid,
-  //     'gf_q[7447327][15019556]': 'true' // mark as new user
-  //   });
-  // }
+  getSignupSurvey(): ISurvey {
+    let salesforceId;
+    let personExistsInSalesforce: boolean;
+
+    return {
+      pages: [{
+        // page 1
+        fields: [{
+          type: ISurveyFieldType.TEXT,
+          name: 'registrationCode',
+          labelTranslationKey: 'volunteer.forms.signup.labels.registrationCode',
+          isRequired: true,
+        }],
+        onContinue: vals => {
+          return new Promise( async (resolve,reject) => {
+            // check if the code is right. Loading message and error is handled in userDataService
+            let codeIsValid = await this.userDataService.checkRegistrationCode( vals.registrationCode );
+            if ( codeIsValid ) resolve();
+            else reject();
+          });
+        }
+      }, {
+        // page 2
+        topTextTranslationKey: 'volunteer.forms.signup.labels.intro',
+        fields: [{
+          type: ISurveyFieldType.EMAIL,
+          name: 'email',
+          labelTranslationKey: 'volunteer.forms.signup.labels.email',
+          isRequired: true
+        }, {
+          type: ISurveyFieldType.TEL,
+          name: 'phone',
+          labelTranslationKey: 'volunteer.forms.signup.labels.phone',
+          isRequired: true
+        }],
+        onContinue: vals => {
+          return new Promise( async (resolve,reject) => {
+            // search for whether an existing entry in salesforce matches the submitted email and phone
+            salesforceId = await this.userDataService.searchForExistingContact( vals.email, vals.phone );
+            if ( salesforceId === false ) {
+              // This is an error case. An error message is shown by userDataService code.
+              reject();
+            } else {
+              // if salesforceId === null, then the new user has no existing entry in salesforce.
+              // otherwise, the new user already has an entry in salesforce, but it is not linked with a firebase uid.
+              personExistsInSalesforce = salesforceId !== null;
+              resolve();
+            }
+          });
+        }
+      }, {
+        // page 3: details for a new salesforce entry
+        isVisible: vals => !personExistsInSalesforce,
+        fields: [{
+          type: ISurveyFieldType.TEXT,
+          name: 'firstName',
+          labelTranslationKey: 'volunteer.forms.signup.labels.firstName',
+          isRequired: true
+        }, {
+          type: ISurveyFieldType.TEXT,
+          name: 'lastName',
+          labelTranslationKey: 'volunteer.forms.signup.labels.lastName',
+          isRequired: true
+        }]
+      }, {
+        // page 4
+        fields: [{
+          type: ISurveyFieldType.SELECT,
+          name: 'volunteerType',
+          labelTranslationKey: 'volunteer.forms.signup.labels.volunteerType',
+          isRequired: true,
+          options: [
+            { value: VolunteerType.TRUCK_STOP_VOLUNTEER, labelTranslationKey: 'volunteer.forms.signup.labels.volunteerTypes.truckStop' },
+            { value: VolunteerType.EVENT_VOLUNTEER, labelTranslationKey: 'volunteer.forms.signup.labels.volunteerTypes.event' },
+            { value: VolunteerType.AMBASSADOR_VOLUNTEER, labelTranslationKey: 'volunteer.forms.signup.labels.volunteerTypes.ambassador' }
+          ]
+        }]
+      }, {
+        // page 5
+        topTextTranslationKey: 'volunteer.forms.signup.labels.whatAddress',
+        fields: [{
+          type: ISurveyFieldType.TEXT,
+          labelTranslationKey: 'misc.location.address',
+          name: 'mailingAddress'
+        }, {
+          type: ISurveyFieldType.TEXT,
+          labelTranslationKey: 'misc.location.city',
+          name: 'mailingCity'
+        }, {
+          type: ISurveyFieldType.TEXT,
+          labelTranslationKey: 'misc.location.state',
+          name: 'mailingState'
+        }, {
+          type: ISurveyFieldType.TEXT,
+          labelTranslationKey: 'misc.location.zip',
+          name: 'mailingZip'
+        }]
+      }, {
+        // page 6
+        topTextTranslationKey: 'volunteer.forms.signup.labels.partOfTeam',
+        fields: [{
+          type: ISurveyFieldType.CHOICE,
+          name: 'partOfTeam',
+          isRequired: true,
+          options: this._yesNoOptions
+        }]
+      }, {
+        // page 7
+        isVisible: vals => vals.partOfTeam === 'yes',
+        topTextTranslationKey: 'volunteer.forms.signup.labels.isCoordinator',
+        fields: [{
+          type: ISurveyFieldType.CHOICE,
+          name: 'isCoordinator',
+          isRequired: true,
+          options: this._yesNoOptions
+        }]
+      }, {
+        isVisible: vals => vals.partOfTeam === 'yes' && vals.isCoordinator === 'no',
+        topTextTranslationKey: 'volunteer.forms.signup.labels.whatName',
+        fields: [{
+          type: ISurveyFieldType.TEXT,
+          name: 'coordinatorName',
+          labelTranslationKey: 'volunteer.forms.signup.labels.coordinatorName',
+          isRequired: true
+        }]
+      }],
+      onComplete: ( vals ) => {
+        return new Promise( (resolve,reject) => {
+          // @@ the registration code is sent near the beginning.
+          // @@ also send it when completing the form, so that new users are only made if the code is correct.
+          // @@ i.e. the reg code is required to make a new user, and an existing user is required to do all other tasks.
+          // @@ also send firebase uid, to be added to salesforce
+          alert('bam!');
+          resolve();
+        });
+      }
+    };
+  }
 
   // getEditAccountSurveyUrl() {
   //   // uses the same survey as signup, but fills in a bunch of fields and provides a salesforce merge field.
@@ -393,22 +495,6 @@ export class SurveyService {
   //     'gf_q[7290682][14733017]': udata.zip,
   //     'gf_q[7447327][15019556]': 'false' // mark as not new user
   //   });
-  // }
-
-  // /**
-  //  * 
-  //  * @param url 
-  //  * @param queryParams Key-value pairs which get converted to a GET query string
-  //  */
-  // private makeTrustedUrl( url: string, queryParams: Object ) {
-  //   // convert keys and values in the queryParams object to &[key]=[value] URL syntax
-  //   let queryString = Object.keys( queryParams ).reduce( (query, key) => {
-  //     // For values that are null or undefined, set them to a blank string, otherwise we'll end up
-  //     // literally passing the string 'null' to the form
-  //     let value = ( queryParams[key] === null || undefined ) ? '' : queryParams[key];
-  //     return query + '&' + key + '=' + encodeURIComponent( value );
-  //   }, '' );
-  //   return this.sanitizer.bypassSecurityTrustResourceUrl( url + '?' + queryString + '&gf_footer_background_off' );
   // }
 
 }

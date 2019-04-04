@@ -333,11 +333,26 @@
       },
       "signup": {
         "accountAlreadyExists": "It seems you already have a volunteer user account. For assistance, contact tat.truckers@gmail.com.",
-        "email": "Email address",
-        "intro": "Thank you for volunteering! Before you begin, please tell us a bit about yourself.",
         "invalidCode": "Invalid registration code.",
-        "phone": "Phone number",
-        "registrationCode": "Registration code",
+        "labels": {
+          "coordinatorName": "Team coordinator's name",
+          "email": "Email address",
+          "firstName": "First name",
+          "intro": "Thank you for volunteering! Before you begin, please tell us a bit about yourself.",
+          "isCoordinator": "Are you the team coordinator?",
+          "lastName": "Last name",
+          "partOfTeam": "Are you part of a volunteer team?",
+          "phone": "Phone number",
+          "registrationCode": "Registration code",
+          "volunteerType": "Volunteer type",
+          "volunteerTypes": {
+            "ambassador": "TAT Ambassador",
+            "event": "Freedom Drivers Volunteer",
+            "truckStop": "Truck Stop Volunteer"
+          },
+          "whatAddress": "What is your mailing address?",
+          "whatName": "What is the name of the team coordinator?"
+        },
         "submitSuccess": "Thank you for signing up!",
         "title": "Create new account"
       },

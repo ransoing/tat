@@ -3,6 +3,8 @@ import { TrxService, GetFeedbackService, UserDataService, ModalService } from '.
 import { GetFeedbackSurveyComponent } from '../getfeedback-survey/getfeedback-survey.component';
 import { NavController } from '@ionic/angular';
 
+// @@ delete this in favor of the generic survey component
+
 @Component({
   templateUrl: './new-user.component.html',
   styleUrls: ['./new-user.component.scss']

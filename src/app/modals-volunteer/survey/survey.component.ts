@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { TrxService, MiscService, GetFeedbackService } from '../../services';
+import { TrxService } from '../../services';
 
 export enum ISurveyFieldType {
   TEXT = 'text',    // text field
@@ -29,7 +29,7 @@ export interface ISurveyPage {
   // `onContinue` executes when the 'next' button is clicked.
   // if it resolves, then the next page of the survey is loaded. if it rejects, then it stays on the same page.
   onContinue?( formVals: any ): Promise<any>,
-  // if `isVisible` this returns false, then this page is skipped
+  // if `isVisible` returns false, then this page is skipped
   isVisible?( formVals: any ): boolean,
   fields?: ISurveyField[],
 }
@@ -60,8 +60,6 @@ export class SurveyComponent implements OnInit {
   pageHistory: number[] = [];
 
   constructor(
-    public miscService: MiscService,
-    public getFeedbackService: GetFeedbackService,
     public trx: TrxService
   ) {}
 

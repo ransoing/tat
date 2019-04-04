@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { TrxService, MiscService, GetFeedbackService } from '../../services';
 
+// @@ delete this component eventually
+
 @Component({
   templateUrl: './getfeedback-survey.component.html'
 })

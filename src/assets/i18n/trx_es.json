@@ -281,6 +281,11 @@
         "submitSuccess": "@:volunteer.forms.successSurvey",
         "title": "@:volunteer.btns.preOutreachSurvey"
       },
+      "signup": {
+        "labels": {
+          "volunteerTypes": {}
+        }
+      },
       "trainingFeedback": {
         "labels": {},
         "submitSuccess": "@:volunteer.forms.successFeedback",

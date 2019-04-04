@@ -5,6 +5,8 @@ import { TrxService } from './trx.service';
 import { UserDataService, IUnfinishedOutreachTarget, OutreachLocationType, VolunteerType } from './user-data.service';
 import { DomSanitizer } from '@angular/platform-browser';
 
+// @@ delete this service eventually
+
 @Injectable({
   providedIn: 'root',
 })

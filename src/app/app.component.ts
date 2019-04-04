@@ -75,7 +75,7 @@ export class AppComponent {
 
         this.modalService.open( SurveyComponent, {
           titleTranslationKey: 'volunteer.forms.signup.title',
-          survey: this.surveys.getTrainingVideoFeedbackSurvey()
+          survey: this.surveys.getSignupSurvey()
           // survey: this.surveys.getPostOutreachSurvey({
           //   type: OutreachLocationType.TRUCKING_COMPANY,
           //   postReports: [],

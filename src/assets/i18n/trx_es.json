@@ -249,6 +249,7 @@
         "title": "@:volunteer.settings.editAccount"
       },
       "feedback": {
+        "labels": {},
         "submitSuccess": "@:volunteer.forms.successFeedback",
         "title": "@:volunteer.btns.testimonial"
       },

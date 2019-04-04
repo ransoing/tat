@@ -283,23 +283,44 @@ export class SurveyService {
     };
   }
 
-  // getPostOutreachSurveyUrl( outreachTarget: IUnfinishedOutreachTarget ) {
-  //   return this.makeTrustedUrl( this.surveyUrlBases.postOutreach, {
-  //     'TAT_App_Outreach_Target__cID': outreachTarget.id,
-  //     'gf_q[7238014][14643871]': outreachTarget.name,
-  //     'gf_q[7238014][14643872]': this.outreachTargetBackwardsMapping[outreachTarget.type],
-  //     'gf_q[7238014][14643873]': outreachTarget.address,
-  //     'gf_q[7238014][14643874]': outreachTarget.city,
-  //     'gf_q[7238014][14643875]': outreachTarget.state,
-  //     'gf_q[7238014][14643876]': outreachTarget.zip
-  //   });
-  // }
 
-  // getTestimonialFeedbackSurveyUrl() {
-  //   return this.makeTrustedUrl( this.surveyUrlBases.testimonialFeedback, {
-  //     'ContactID': this.userDataService.data.salesforceId
-  //   });
-  // }
+  getTestimonialFeedbackSurvey(): ISurvey {
+    return {
+      pages: [{
+        topTextTranslationKey: 'volunteer.forms.feedback.labels.whatAdvice',
+        fields: [{ type: ISurveyFieldType.TEXTAREA, name: 'advice' }]
+      }, {
+        topTextTranslationKey: 'volunteer.forms.feedback.labels.bestPart',
+        fields: [{ type: ISurveyFieldType.TEXTAREA, name: 'bestPart' }]
+      }, {
+        topTextTranslationKey: 'volunteer.forms.feedback.labels.improvements',
+        fields: [{ type: ISurveyFieldType.TEXTAREA, name: 'improvements' }]
+      }, {
+        topTextTranslationKey: 'volunteer.forms.feedback.labels.giveAnonPermission',
+        fields: [{
+          type: ISurveyFieldType.CHOICE,
+          name: 'givesAnonPermission',
+          isRequired: true,
+          options: this._yesNoOptions
+        }]
+      }, {
+        topTextTranslationKey: 'volunteer.forms.feedback.labels.giveNamePermission',
+        fields: [{
+          type: ISurveyFieldType.CHOICE,
+          name: 'givesNamePermission',
+          isRequired: true,
+          options: this._yesNoOptions
+        }]
+      }],
+      onComplete: ( vals ) => {
+        return new Promise( (resolve,reject) => {
+          // @@
+          alert('bam!');
+          resolve();
+        });
+      }
+    };
+  }
 
   // /**
   //  * Use this method when a new user is signing up, and does not have a Contact entry in salesforce.

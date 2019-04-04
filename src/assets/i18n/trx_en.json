@@ -262,6 +262,13 @@
         "title": "@:volunteer.settings.editAccount"
       },
       "feedback": {
+        "labels": {
+          "bestPart": "What was the best part of your experience?",
+          "giveAnonPermission": "Do you give permission for TAT to anonymously quote you on social media or in reports?",
+          "giveNamePermission": "Do you give permission for TAT to use your name, organization, and quotes on social media and in reports?",
+          "improvements": "What could have been improved about your experience?",
+          "whatAdvice": "What advice would you give another volunteer?"
+        },
         "submitSuccess": "@:volunteer.forms.successFeedback",
         "title": "@:volunteer.btns.testimonial"
       },

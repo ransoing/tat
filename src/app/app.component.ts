@@ -70,59 +70,17 @@ export class AppComponent {
       //   this.modalService.open( NewUserComponent );
       // });
       // @@ uncomment the above and destroy the below to return to normal
-      // let survey: ISurvey = {
-      //   pages: [{
-      //     topTextTranslationKey: 'redFlags.title',
-      //     fields: [{
-      //       type: ISurveyFieldType.TEXT,
-      //       name: 'test',
-      //       labelTranslationKey: 'volunteer.btns.resources'
-      //     }, {
-      //       type: ISurveyFieldType.EMAIL,
-      //       name: 'test2',
-      //       labelTranslationKey: 'volunteer.btns.resources',
-      //       isRequired: true
-      //     }, {
-      //       type: ISurveyFieldType.SELECT,
-      //       name: 'test3',
-      //       labelTranslationKey: 'volunteer.btns.resources',
-      //       isRequired: true,
-      //       options: [
-      //         { value: 'one', labelTranslationKey: 'misc.buttons.submit' },
-      //         { value: 'two', labelTranslationKey: 'misc.success' }
-      //       ]
-      //     }]
-      //   }, {
-      //     isVisible: (fields) => fields.test === 'sample',
-      //     topTextTranslationKey: 'volunteer.forms.signup.intro',
-      //     fields: [{
-      //       type: ISurveyFieldType.CHOICE,
-      //       name: 'p2test',
-      //       labelTranslationKey: 'volunteer.btns.resources',
-      //       isRequired: true,
-      //       options: [
-      //         { value: 'yes', labelTranslationKey: 'misc.buttons.yes' },
-      //         { value: 'no', labelTranslationKey: 'misc.buttons.no' }
-      //       ]
-      //     }]
-      //   }, {
-      //     fields: [{
-      //       type: ISurveyFieldType.TEXT,
-      //       name: 'p3test',
-      //       labelTranslationKey: 'volunteer.btns.resources',
-      //       isRequired: true
-      //     }]
-      //   }],
-      //   onComplete: () => {}
-      // };
+      
       setTimeout( () => {
+
         this.modalService.open( SurveyComponent, {
           titleTranslationKey: 'volunteer.forms.signup.title',
-          survey: this.surveys.getPostOutreachSurvey({
-            type: OutreachLocationType.TRUCKING_COMPANY,
-            postReports: [],
-            id: '', name: '', address: '', city: '', state: '', zip: ''
-          })
+          survey: this.surveys.getTestimonialFeedbackSurvey()
+          // survey: this.surveys.getPostOutreachSurvey({
+          //   type: OutreachLocationType.TRUCKING_COMPANY,
+          //   postReports: [],
+          //   id: '', name: '', address: '', city: '', state: '', zip: ''
+          // })
         });
       }, 1000 );
 

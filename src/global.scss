@@ -183,6 +183,20 @@ ion-loading {
     --ion-text-color: black;
 }
 
+ion-alert.select-options {
+    .alert-radio-group {
+        button {
+            min-height: 44px;
+            height: auto;
+            contain: unset;
+        }
+        .alert-radio-label {
+            white-space: normal;
+            overflow: visible;
+        }
+    }
+}
+
 // GetFeedback survey modal
 // @@ delete this, after deleting the getfeedback-survey component
 .gf-survey-modal {

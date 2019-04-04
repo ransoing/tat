@@ -127,7 +127,7 @@ export class UserDataService {
   async checkRegistrationCode( code: string ) {
     await this.showLoadingPopup();
     try {
-      let response: any = await this.apiRequestGet( 'startRegistration?pass=' + encodeURIComponent(code) );
+      let response: any = await this.apiRequestGet( 'checkRegistrationCode?pass=' + encodeURIComponent(code) );
       if ( response && response.success ) {
         return true;
       } else throw('');

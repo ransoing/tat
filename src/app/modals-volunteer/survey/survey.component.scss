@@ -51,7 +51,7 @@
         .input-wrapper {
             background: white;
             border-radius: 4px;
-            padding: 0 8px;
+            padding: 0;
             margin-bottom: 4px;
             position: relative;
 
@@ -76,19 +76,65 @@
                 }
             }
 
-            ion-input, ion-textarea, ion-datetime {
+            ion-item {
+                ion-label.label-floating {
+                    margin: 0 16px;
+                    position: absolute;
+                    -webkit-transform: translate3d(0,16px,0);
+                    transform: translate3d(0,16px,0);
+                    color: grey;
+                }
+
+                &.item-has-focus.label-floating,
+                &.item-has-focus ion-label.label-floating,
+                &.item-has-value.label-floating,
+                &.item-has-value ion-label.label-floating {
+                    -webkit-transform: translate3d(0,8px,0) scale(.7);
+                    transform: translate3d(0,8px,0) scale(.7);
+                }
+
+                &.item-has-focus.label-floating,
+                &.item-has-focus ion-label.label-floating {
+                    color: $color-primary;
+                }
+
+                &.item-datetime {
+                    margin-top: 0;
+                    &:after { display: none }
+                }
+
+                --inner-border-width: 0;
+            }
+
+            ion-input, ion-datetime {
                 border: none;
                 margin: 0;
-                --padding-top: 16px;
-                --padding-bottom: 16px;
+                --padding-top: 24px;
+                --padding-end: 16px;
+                --padding-bottom: 8px;
+                --padding-start: 16px;
             }
             ion-textarea {
+                border: none;
                 padding: 0;
+                margin: 0;
                 height: 6em;
+                --padding-top: 16px;
+                --padding-end: 16px;
+                --padding-bottom: 16px;
+                --padding-start: 16px;
             }
             ion-datetime {
-                padding: 16px 8px;
+                padding: 24px 16px 8px 16px;
                 color: black !important;
+
+                button.datetime-cover { padding: 0 }
+            }
+
+            ion-select {
+                padding: 24px 16px 8px 16px;
+                --ion-text-color: black;
+                --ion-text-color-step-600: #bbb;
             }
 
             .required-star {
@@ -151,9 +197,4 @@
             pointer-events: none;
         }
     }
-}
-
-ion-select {
-    --ion-text-color: black;
-    --ion-text-color-step-600: #bbb;
 }

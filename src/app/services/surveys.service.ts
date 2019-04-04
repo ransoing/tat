@@ -190,7 +190,7 @@ export class SurveyService {
           }]
         }, {
           type: ISurveyFieldType.TEXTAREA,
-          name: 'otherAcoomplishments',
+          name: 'otherAccomplishments',
           labelTranslationKey: 'misc.other'
         }]
       }, {
@@ -211,7 +211,7 @@ export class SurveyService {
           }]
         }, {
           type: ISurveyFieldType.TEXTAREA,
-          name: 'otherAcoomplishments',
+          name: 'otherAccomplishments',
           labelTranslationKey: 'misc.other'
         }]
       }, {
@@ -229,7 +229,7 @@ export class SurveyService {
           }]
         }, {
           type: ISurveyFieldType.TEXTAREA,
-          name: 'otherAcoomplishments',
+          name: 'otherAccomplishments',
           labelTranslationKey: 'misc.other'
         }]
       }, {
@@ -481,20 +481,58 @@ export class SurveyService {
     };
   }
 
-  // getEditAccountSurveyUrl() {
-  //   // uses the same survey as signup, but fills in a bunch of fields and provides a salesforce merge field.
-  //   // The presence of the merge field causes GetFeedback to update a salesforce entry rather than make a new one.
-  //   let udata = this.userDataService.data;
-  //   return this.makeTrustedUrl( this.surveyUrlBases.signup, {
-  //     'ContactID': udata.salesforceId,
-  //     'gf_q[7447327][15018741]': this.userDataService.firebaseUser.uid,
-  //     'gf_q[7447327][15018742]': this.volunteerTypeBackwardsMapping[udata.volunteerType],
-  //     'gf_q[7290682][14733012]': udata.address,
-  //     'gf_q[7290682][14733015]': udata.city,
-  //     'gf_q[7290682][14733016]': udata.state,
-  //     'gf_q[7290682][14733017]': udata.zip,
-  //     'gf_q[7447327][15019556]': 'false' // mark as not new user
-  //   });
-  // }
+
+  // a survey to edit volunteer type and default mailing address
+  getEditAccountSurvey() {
+    let udata = this.userDataService.data;
+    return {
+      pages: [{
+        // page 1
+        fields: [{
+          type: ISurveyFieldType.SELECT,
+          name: 'volunteerType',
+          labelTranslationKey: 'volunteer.forms.signup.labels.volunteerType',
+          isRequired: true,
+          defaultValue: udata.volunteerType,
+          options: [
+            { value: VolunteerType.TRUCK_STOP_VOLUNTEER, labelTranslationKey: 'volunteer.forms.signup.labels.volunteerTypes.truckStop' },
+            { value: VolunteerType.EVENT_VOLUNTEER, labelTranslationKey: 'volunteer.forms.signup.labels.volunteerTypes.event' },
+            { value: VolunteerType.AMBASSADOR_VOLUNTEER, labelTranslationKey: 'volunteer.forms.signup.labels.volunteerTypes.ambassador' }
+          ]
+        }]
+      }, {
+        // page 2
+        topTextTranslationKey: 'volunteer.forms.signup.labels.whatAddress',
+        fields: [{
+          type: ISurveyFieldType.TEXT,
+          labelTranslationKey: 'misc.location.address',
+          name: 'mailingAddress',
+          defaultValue: udata.address
+        }, {
+          type: ISurveyFieldType.TEXT,
+          labelTranslationKey: 'misc.location.city',
+          name: 'mailingCity',
+          defaultValue: udata.city
+        }, {
+          type: ISurveyFieldType.TEXT,
+          labelTranslationKey: 'misc.location.state',
+          name: 'mailingState',
+          defaultValue: udata.state
+        }, {
+          type: ISurveyFieldType.TEXT,
+          labelTranslationKey: 'misc.location.zip',
+          name: 'mailingZip',
+          defaultValue: udata.zip
+        }]
+      }],
+      onComplete: ( vals ) => {
+        return new Promise( (resolve,reject) => {
+          // @@
+          alert('bam!');
+          resolve();
+        });
+      }
+    };
+  }
 
 }

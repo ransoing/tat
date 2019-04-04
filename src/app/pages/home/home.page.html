@@ -19,8 +19,8 @@
       placeholder="Select One"
       [(ngModel)]="settings.language"
       (ionChange)="onSetLanguage()"
-      cancelText="{{ 'misc.cancel' | translate }}"
-      okText="{{ 'misc.ok' | translate }}">
+      cancelText="{{ 'misc.buttons.cancel' | translate }}"
+      okText="{{ 'misc.buttons.ok' | translate }}">
       <ion-select-option value="en">English</ion-select-option>
       <ion-select-option value="es">Español</ion-select-option>
     </ion-select>

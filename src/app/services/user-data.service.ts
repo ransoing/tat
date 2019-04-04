@@ -135,12 +135,12 @@ export class UserDataService {
       // check the error code to show an appropriate message
       let errorKey = ( e.error && e.error.errorCode && e.error.errorCode === 'INCORRECT_PASSWORD' ) ?
         'volunteer.forms.signup.invalidCode' :
-        'misc.dataLoadErrorWithTip';
+        'misc.messages.dataLoadErrorWithTip';
       // show an error message.
       const alert = await this.alertController.create({
         header: await this.trx.t( 'misc.error' ),
         message: await this.trx.t( errorKey ),
-        buttons: [await this.trx.t( 'misc.close' )]
+        buttons: [await this.trx.t( 'misc.buttons.close' )]
       });
       alert.present();
       return false;
@@ -165,7 +165,7 @@ export class UserDataService {
       } else throw('');
     } catch (e) {
       // check error code
-      let errorKey = 'misc.dataLoadErrorWithTip';
+      let errorKey = 'misc.messages.dataLoadErrorWithTip';
       if ( e.error && e.error.errorCode ) {
         if ( e.error.errorCode === 'NO_MATCHING_ENTRY' ) {
           return null;
@@ -178,7 +178,7 @@ export class UserDataService {
       const alert = await this.alertController.create({
         header: await this.trx.t( 'misc.error' ),
         message: await this.trx.t( errorKey ),
-        buttons: [await this.trx.t( 'misc.close' )]
+        buttons: [await this.trx.t( 'misc.buttons.close' )]
       });
       alert.present();
       return false;
@@ -275,8 +275,8 @@ export class UserDataService {
       this.loadError = true;
       const alert = await this.alertController.create({
         header: await this.trx.t( 'misc.error' ),
-        message: await this.trx.t( 'misc.dataLoadErrorWithTip' ),
-        buttons: [await this.trx.t( 'misc.close' )]
+        message: await this.trx.t( 'misc.messages.dataLoadErrorWithTip' ),
+        buttons: [await this.trx.t( 'misc.buttons.close' )]
       });
       alert.present();
     }
@@ -333,7 +333,7 @@ export class UserDataService {
     }
     // create and preset the loading popup
     this.loadingPopup = await this.loadingController.create({
-      message: await this.trx.t( 'misc.pleaseWait' )
+      message: await this.trx.t( 'misc.messages.pleaseWait' )
     });
     this.loadingPopup.present();
   }

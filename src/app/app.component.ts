@@ -88,7 +88,7 @@ export class AppComponent {
       //       labelTranslationKey: 'volunteer.btns.resources',
       //       isRequired: true,
       //       options: [
-      //         { value: 'one', labelTranslationKey: 'misc.submit' },
+      //         { value: 'one', labelTranslationKey: 'misc.buttons.submit' },
       //         { value: 'two', labelTranslationKey: 'misc.success' }
       //       ]
       //     }]
@@ -101,8 +101,8 @@ export class AppComponent {
       //       labelTranslationKey: 'volunteer.btns.resources',
       //       isRequired: true,
       //       options: [
-      //         { value: 'yes', labelTranslationKey: 'misc.yes' },
-      //         { value: 'no', labelTranslationKey: 'misc.no' }
+      //         { value: 'yes', labelTranslationKey: 'misc.buttons.yes' },
+      //         { value: 'no', labelTranslationKey: 'misc.buttons.no' }
       //       ]
       //     }]
       //   }, {
@@ -118,7 +118,7 @@ export class AppComponent {
       setTimeout( () => {
         this.modalService.open( SurveyComponent, {
           titleTranslationKey: 'volunteer.forms.signup.title',
-          survey: this.surveys.hoursLogSurvey
+          survey: this.surveys.getPreOutreachSurvey()
         });
       }, 1000 );
 
@@ -131,8 +131,8 @@ export class AppComponent {
 
   async showLogoutNotice() {
     let alert = await this.alertCtrl.create({
-      message: await this.trx.t( 'misc.logoutMessage' ),
-      buttons: [await this.trx.t( 'misc.close' )]
+      message: await this.trx.t( 'misc.messages.logoutMessage' ),
+      buttons: [await this.trx.t( 'misc.buttons.close' )]
     });
     alert.present();
   }

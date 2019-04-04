@@ -81,7 +81,7 @@ export class MiscService {
       const alert = await this.alertController.create({
         header: title,
         message: message,
-        buttons: [await this.trx.t( 'misc.close' )]
+        buttons: [await this.trx.t( 'misc.buttons.close' )]
       });
       alert.present();
       alert.onDidDismiss().then( () => {

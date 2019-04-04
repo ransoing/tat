@@ -7,9 +7,9 @@
   <ion-icon *ngIf="userDataService.data" name="md-menu" class="modal-close-btn" (click)="modalService.open(VolunteerSettingsComponent)"></ion-icon>
 
   <div *ngIf="!userDataService.fetchingUserData && !alertIsVisible && !loadingIsVisible && (userDataService.loadError || !userDataService.data && !modalService.getActiveModal())">
-    <p>{{ 'misc.dataLoadError' | translate }}</p>
+    <p>{{ 'misc.messages.dataLoadError' | translate }}</p>
     <ion-button fill="solid" color="primary" size="default" (click)="userDataService.fetchUserData()">
-      {{ 'misc.retry' | translate }}
+      {{ 'misc.buttons.retry' | translate }}
     </ion-button>
     <ion-button fill="solid" color="primary" size="default" (click)="angularFireAuth.auth.signOut()">
       {{ 'volunteer.settings.logout' | translate }}

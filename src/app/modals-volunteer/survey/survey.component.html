@@ -11,7 +11,7 @@
       <ng-container *ngFor="let page of survey.pages">
         <div *ngIf="preDelay || page.isVisible(getAllVals())" class="page">
           <p *ngIf="page.topTextTranslationKey">{{ page.topTextTranslationKey | translate }}</p>
-          <p *ngIf="page.fields.length > 1 && pageHasRequiredFields(page)" class="required-warning"><span class="star">*</span> = Required</p>
+          <p *ngIf="page.fields.length > 1 && pageHasRequiredFields(page)" class="required-warning"><span class="star">*</span> = {{ 'misc.required' | translate }}</p>
           <div *ngFor="let field of page.fields" class="input-wrapper input-type-{{field.type}}">
             <div *ngIf="page.fields.length > 1 && field.isRequired" class="required-star"><span class="star">*</span></div>
             <!-- text field types -->
@@ -34,8 +34,8 @@
                 [placeholder]="field.labelTranslationKey | translate"
                 [attr.value]="field.defaultValue"
                 [name]="field.name"
-                [cancelText]="'misc.cancel' | translate"
-                [okText]="'misc.ok' | translate">
+                [cancelText]="'misc.buttons.cancel' | translate"
+                [okText]="'misc.buttons.ok' | translate">
                 <ion-select-option *ngFor="let option of field.options" [value]="option.value">{{ option.labelTranslationKey | translate }}</ion-select-option>
               </ion-select>
             </ng-container>
@@ -57,12 +57,12 @@
               <ion-datetime
                 [attr.name]="field.name"
                 [placeholder]="field.labelTranslationKey | translate"
-                [cancelText]="'misc.cancel' | translate"
-                [doneText]="'misc.ok' | translate"
-                [attr.month-names]="'misc.monthNames' | translate"
-                [attr.month-short-names]="'misc.monthNamesShort' | translate"
-                [attr.day-names]="'misc.dayNames' | translate"
-                [attr.day-short-names]="'misc.dayNamesShort' | translate">
+                [cancelText]="'misc.buttons.cancel' | translate"
+                [doneText]="'misc.buttons.ok' | translate"
+                [attr.month-names]="'misc.datetime.monthNames' | translate"
+                [attr.month-short-names]="'misc.datetime.monthNamesShort' | translate"
+                [attr.day-names]="'misc.datetime.dayNames' | translate"
+                [attr.day-short-names]="'misc.datetime.dayNamesShort' | translate">
               </ion-datetime>
             </ng-container>
           </div>
@@ -83,7 +83,7 @@
         <chevron-svg direction="right"></chevron-svg>
       </div>
       <div *ngIf="isLastPage()" class="nav-button nav-right nav-submit" [class.disabled]="!canContinue()" (click)="finish()">
-        Submit
+        {{ 'misc.buttons.submit' | translate }}
       </div>
     </div>
   </div>

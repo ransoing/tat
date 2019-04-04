@@ -70,25 +70,32 @@
     "resources": "@:nav.resources"
   },
   "misc": {
-    "cancel": "Cancelar",
-    "close": "Cerrar",
-    "dataLoadError": "Hubo un problema al cargar tu cuenta de voluntario.",
-    "dataLoadErrorWithTip": "@:misc.dataLoadError Asegúrate de tener conexión a Internet y trata de nuevo.",
-    "date": "Fecha",
-    "dayNames": "domingo, lunes, martes, miércoles, jueves, viernes, sábado",
-    "dayNamesShort": "do, lu, ma, mi, ju, vi, sa",
+    "buttons": {
+      "cancel": "Cancelar",
+      "close": "Cerrar",
+      "no": "No",
+      "ok": "Aceptar",
+      "submit": "Enviar",
+      "yes": "Sí"
+    },
+    "datetime": {
+      "date": "Fecha",
+      "dayNames": "domingo, lunes, martes, miércoles, jueves, viernes, sábado",
+      "dayNamesShort": "do, lu, ma, mi, ju, vi, sa",
+      "monthNames": "enero, febrero, marzo, abril, mayo, junio, julio, agosto, septiembre, octubure, noviembre, diciembre",
+      "monthNamesShort": "enero, feb, marzo, abr, mayo, jun, jul, agosto, sept, oct, nov, dic",
+      "time": "Hora"
+    },
     "error": "Error",
-    "logoutMessage": "Se cerró tu sesión.",
-    "monthNames": "enero, febrero, marzo, abril, mayo, junio, julio, agosto, septiembre, octubure, noviembre, diciembre",
-    "monthNamesShort": "enero, feb, marzo, abr, mayo, jun, jul, agosto, sept, oct, nov, dic",
-    "no": "No",
-    "ok": "Aceptar",
-    "pleaseWait": "Espera por favor...",
+    "location": {},
+    "messages": {
+      "dataLoadError": "Hubo un problema al cargar tu cuenta de voluntario.",
+      "dataLoadErrorWithTip": "@:misc.messages.dataLoadError Asegúrate de tener conexión a Internet y trata de nuevo.",
+      "logoutMessage": "Se cerró tu sesión.",
+      "pleaseWait": "Espera por favor..."
+    },
     "setLanguage": "Seleccionar idioma",
-    "submit": "Enviar",
-    "success": "Éxito",
-    "time": "Hora",
-    "yes": "Sí"
+    "success": "Éxito"
   },
   "nav": {
     "home": "Inicio",
@@ -262,6 +269,9 @@
         "title": "@:volunteer.btns.preEventSurvey"
       },
       "preOutreach": {
+        "labels": {
+          "locationTypes": {}
+        },
         "submitSuccess": "@:volunteer.forms.successSurvey",
         "title": "@:volunteer.btns.preOutreachSurvey"
       },

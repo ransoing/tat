@@ -70,26 +70,39 @@
     "resources": "@:nav.resources"
   },
   "misc": {
-    "cancel": "Cancel",
-    "close": "Close",
-    "dataLoadError": "There was a problem while loading your volunteer account data.",
-    "dataLoadErrorWithTip": "@:misc.dataLoadError Make sure you have an internet connection and try again.",
-    "date": "Date",
-    "dayNames": "Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday",
-    "dayNamesShort": "Sun, Mon, Tues, Wed, Thurs, Fri, Sat",
+    "buttons": {
+      "cancel": "Cancel",
+      "close": "Close",
+      "no": "No",
+      "ok": "OK",
+      "retry": "Retry",
+      "submit": "Submit",
+      "yes": "Yes"
+    },
+    "datetime": {
+      "date": "Date",
+      "dayNames": "Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday",
+      "dayNamesShort": "Sun, Mon, Tues, Wed, Thurs, Fri, Sat",
+      "monthNames": "January, February, March, April, May, June, July, August, September, October, November, December",
+      "monthNamesShort": "Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec",
+      "time": "Time"
+    },
     "error": "Error",
-    "logoutMessage": "You have been logged out.",
-    "monthNames": "January, February, March, April, May, June, July, August, September, October, November, December",
-    "monthNamesShort": "Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec",
-    "no": "No",
-    "ok": "OK",
-    "pleaseWait": "Please wait...",
-    "retry": "Retry",
+    "location": {
+      "address": "Address",
+      "city": "City",
+      "state": "State",
+      "zip": "Zip"
+    },
+    "messages": {
+      "dataLoadError": "There was a problem while loading your volunteer account data.",
+      "dataLoadErrorWithTip": "@:misc.messages.dataLoadError Make sure you have an internet connection and try again.",
+      "logoutMessage": "You have been logged out.",
+      "pleaseWait": "Please wait..."
+    },
+    "required": "Required",
     "setLanguage": "Set language",
-    "submit": "Submit",
-    "success": "Success",
-    "time": "Time",
-    "yes": "Yes"
+    "success": "Success"
   },
   "nav": {
     "home": "Home",
@@ -274,6 +287,19 @@
         "title": "@:volunteer.btns.preEventSurvey"
       },
       "preOutreach": {
+        "labels": {
+          "areYouReady": "Are you ready to receive TAT materials?",
+          "haveYouContacted": "Have you contacted the general manager (or other contact) to make an appointment?",
+          "locationName": "Location name",
+          "locationType": "Location type",
+          "locationTypes": {
+            "cdlSchool": "CDL School",
+            "truckStop": "Truck Stop",
+            "truckingCompany": "Trucking Company"
+          },
+          "whatAddress": "What is a good mailing address to send the materials to?",
+          "whatLocation": "What location do you plan on visiting?"
+        },
         "submitSuccess": "@:volunteer.forms.successSurvey",
         "title": "@:volunteer.btns.preOutreachSurvey"
       },

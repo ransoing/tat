@@ -72,7 +72,7 @@ export class GetFeedbackService {
       } else {
         // not enough time has passed. just wait a moment, and show a loading popup while we force the user to wait.
         let loadingPopup = await this.loadingController.create({
-          message: await this.trx.t( 'misc.pleaseWait' )
+          message: await this.trx.t( 'misc.messages.pleaseWait' )
         });
         loadingPopup.present();
         setTimeout( () => {

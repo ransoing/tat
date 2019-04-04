@@ -36,7 +36,7 @@ export interface ISurveyPage {
 
 export interface ISurvey {
   // if onComplete resolves, then the modal closes. If it rejects, the modal does not close.
-  onComplete(): Promise<any>,
+  onComplete( formVals: any ): Promise<any>,
   pages: ISurveyPage[]
 }
 
@@ -117,7 +117,7 @@ export class SurveyComponent implements OnInit {
   }
 
   finish() {
-    this.survey.onComplete().then(
+    this.survey.onComplete( this.getAllVals() ).then(
       () => this.modal.dismiss(),
       () => {} // do nothing
     );

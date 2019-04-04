@@ -322,6 +322,40 @@ export class SurveyService {
     };
   }
 
+
+  getTrainingVideoFeedbackSurvey(): ISurvey {
+    return {
+      pages: [{
+        // page 1
+        topTextTranslationKey:
+          this.userDataService.data.volunteerType === VolunteerType.TRUCK_STOP_VOLUNTEER ?
+          'volunteer.forms.trainingFeedback.labels.equippedForOutreach' :
+          'volunteer.forms.trainingFeedback.labels.confidentInPresenting',
+        fields: [{
+          type: ISurveyFieldType.CHOICE,
+          name: 'feelsPrepared',
+          options: this._yesNoOptions,
+          isRequired: true
+        }]
+      }, {
+        // page 2
+        isVisible: vals => vals.feelsPrepared === 'no',
+        topTextTranslationKey: 'volunteer.forms.trainingFeedback.labels.whatQuestions',
+        fields: [{
+          type: ISurveyFieldType.TEXTAREA,
+          name: 'questions'
+        }]
+      }],
+      onComplete: ( vals ) => {
+        return new Promise( (resolve,reject) => {
+          // @@
+          alert('bam!');
+          resolve();
+        });
+      }
+    };
+  }
+
   // /**
   //  * Use this method when a new user is signing up, and does not have a Contact entry in salesforce.
   //  */
@@ -358,13 +392,6 @@ export class SurveyService {
   //     'gf_q[7290682][14733016]': udata.state,
   //     'gf_q[7290682][14733017]': udata.zip,
   //     'gf_q[7447327][15019556]': 'false' // mark as not new user
-  //   });
-  // }
-
-  // getTrainingVideoFeedbackSurveyUrl() {
-  //   return this.makeTrustedUrl( this.surveyUrlBases.trainingVideoFeedback, {
-  //     'ContactID': this.userDataService.data.salesforceId,
-  //     'gf_q[7304458][14765212]': this.volunteerTypeBackwardsMapping[this.userDataService.data.volunteerType]
   //   });
   // }
 

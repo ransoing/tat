@@ -345,6 +345,11 @@
       "successReport": "Thank you for completing this report.",
       "successSurvey": "Thank you for completing this survey.",
       "trainingFeedback": {
+        "labels": {
+          "confidentInPresenting": "Do you feel confident in presenting the TAT PowerPoint presentation?",
+          "equippedForOutreach": "After watching the training video, do you feel equipped for your outreach?",
+          "whatQuestions": "What questions do you have for TAT staff?"
+        },
         "submitSuccess": "@:volunteer.forms.successFeedback",
         "title": "@:volunteer.btns.trainingFeedback"
       }

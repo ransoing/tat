@@ -54,7 +54,9 @@ export class SurveyComponent implements OnInit {
   modal: HTMLIonModalElement;
   ISurveyFieldType = ISurveyFieldType;
 
-  activePage = 0;
+  activePage = -1;
+  firstPage = -1;
+
   pageHistory: number[] = [];
 
   constructor(
@@ -76,6 +78,9 @@ export class SurveyComponent implements OnInit {
       page.fields = page.fields || [];
       page.fields.forEach( field => field.labelTranslationKey = field.labelTranslationKey || '' );
     });
+
+    this.goToNextVisiblePage();
+    this.firstPage = this.activePage; // in case we skipped some pages right off the bat
   }
 
   canContinue(): boolean {
@@ -96,14 +101,17 @@ export class SurveyComponent implements OnInit {
     this.survey.pages[this.activePage].onContinue( this.getAllVals() ).then( () => {
       // add the current page to the 'undo' history
       this.pageHistory.push( this.activePage );
-      // if any pages are not visible, skip over them
-      do {
-        this.activePage++;
-      } while ( !this.survey.pages[this.activePage].isVisible(this.getAllVals()) );
-
+      this.goToNextVisiblePage();
     }, () => {
       // do nothing if we're not allowed to advance
     });
+  }
+
+  goToNextVisiblePage() {
+    // if any pages are not visible, skip over them
+    do {
+      this.activePage++;
+    } while ( !this.survey.pages[this.activePage].isVisible(this.getAllVals()) );
   }
 
   goBack() {
@@ -140,10 +148,16 @@ export class SurveyComponent implements OnInit {
       let el = this.formRef.nativeElement.elements[field.name];
       if ( field.type === ISurveyFieldType.CHOICE && field.multi ) {
         // join the values of the checked boxes into a comma-separated list
-        return Array.prototype.slice.call( el )
-        .filter( checkboxInput => checkboxInput.checked )
-        .map( checkboxInput => checkboxInput.value )
-        .join( ', ' );
+        if ( el[0] ) {
+          // there are multiple checkboxes, so this behaves like an array
+          return Array.prototype.slice.call( el )
+          .filter( checkboxInput => checkboxInput.checked )
+          .map( checkboxInput => checkboxInput.value )
+          .join( '; ' );
+        } else {
+          // just one checkbox.
+          return el.checked ? el.value : '';
+        }
       } else {
         // for ion select elements, a blank field has the string value "undefined"
         return el.value === 'undefined' ? '' : el.value.trim();

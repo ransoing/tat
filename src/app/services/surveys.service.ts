@@ -43,6 +43,9 @@ export class SurveyService {
     { value: 'no', labelTranslationKey: 'misc.buttons.no' }
   ];
 
+  // @@ for all surveys, when submitting them, submit my firebase token as well.
+  // the proxy can glean the salesforceID from that.
+
   getHoursLogSurvey(): ISurvey {
     return {
       pages: [{
@@ -70,7 +73,7 @@ export class SurveyService {
 
       onComplete: ( vals ) => {
         return new Promise( (resolve,reject) => {
-          // @@ pass ContactID to proxy: this.userDataService.data.salesforceId
+          // @@
           alert('bam!');
           resolve();
         });
@@ -173,7 +176,106 @@ export class SurveyService {
 
       onComplete: ( vals ) => {
         return new Promise( (resolve,reject) => {
-          // @@ pass ContactID to proxy: udata.salesforceId
+          // @@
+          alert('bam!');
+          resolve();
+        });
+      }
+    };
+  }
+
+
+  getPostOutreachSurvey( outreachTarget: IUnfinishedOutreachTarget ): ISurvey {
+    return {
+      pages: [{
+        // page 1: truck stop
+        isVisible: vals => outreachTarget.type === OutreachLocationType.TRUCK_STOP,
+        topTextTranslationKey: 'volunteer.forms.postOutreach.labels.whichAccomplishments',
+        fields: [{
+          type: ISurveyFieldType.CHOICE,
+          name: 'accomplishments',
+          multi: true,
+          // The form will submit the English versions of the text, but the user's language will be displayed
+          options: [{
+            value: 'Truck stop is now distributing TAT materials at their location',
+            labelTranslationKey: 'volunteer.forms.postOutreach.labels.truckStop.distributing'
+          }, {
+            value: 'Truck stop will now train employees with TAT materials',
+            labelTranslationKey: 'volunteer.forms.postOutreach.labels.truckStop.training'
+          }, {
+            value: 'Truck stop has asked for an in-person training for all employees',
+            labelTranslationKey: 'volunteer.forms.postOutreach.labels.truckStop.inPersonTraining'
+          }, {
+            value: 'Truck stop is open to having an outreach at their location to speak with drivers in an appropriate format',
+            labelTranslationKey: 'volunteer.forms.postOutreach.labels.truckStop.hostOutreach'
+          }]
+        }, {
+          type: ISurveyFieldType.TEXTAREA,
+          name: 'otherAcoomplishments',
+          labelTranslationKey: 'misc.other'
+        }]
+      }, {
+        // page 2: CDL school
+        isVisible: vals => outreachTarget.type === OutreachLocationType.CDL_SCHOOL,
+        topTextTranslationKey: 'volunteer.forms.postOutreach.labels.whichAccomplishments',
+        fields: [{
+          type: ISurveyFieldType.CHOICE,
+          name: 'accomplishments',
+          multi: true,
+          // The form will submit the English versions of the text, but the user's language will be displayed
+          options: [{
+            value: 'CDL instructor will begin using TAT training with students',
+            labelTranslationKey: 'volunteer.forms.postOutreach.labels.cdlSchool.using'
+          }, {
+            value: 'CDL instructor plans to pass on TAT information to other faculty',
+            labelTranslationKey: 'volunteer.forms.postOutreach.labels.cdlSchool.passInfo'
+          }]
+        }, {
+          type: ISurveyFieldType.TEXTAREA,
+          name: 'otherAcoomplishments',
+          labelTranslationKey: 'misc.other'
+        }]
+      }, {
+        // page 3: trucking company
+        isVisible: vals => outreachTarget.type === OutreachLocationType.TRUCKING_COMPANY,
+        topTextTranslationKey: 'volunteer.forms.postOutreach.labels.whichAccomplishments',
+        fields: [{
+          type: ISurveyFieldType.CHOICE,
+          name: 'accomplishments',
+          multi: true,
+          // The form will submit the English versions of the text, but the user's language will be displayed
+          options: [{
+            value: 'Trucking company plans to show their drivers the TAT training video and hand out wallet cards.',
+            labelTranslationKey: 'volunteer.forms.postOutreach.labels.truckingCompany.showDrivers'
+          }]
+        }, {
+          type: ISurveyFieldType.TEXTAREA,
+          name: 'otherAcoomplishments',
+          labelTranslationKey: 'misc.other'
+        }]
+      }, {
+        // page 4
+        topTextTranslationKey: 'volunteer.forms.postOutreach.labels.followUp',
+        fields: [{
+          type: ISurveyFieldType.CHOICE,
+          name: 'willFollowUp',
+          isRequired: true,
+          options: this._yesNoOptions
+        }]
+      }, {
+        // page 5
+        isVisible: vals => vals.willFollowUp === 'yes',
+        topTextTranslationKey: 'volunteer.forms.postOutreach.labels.followUpWhen',
+        fields: [{
+          type: ISurveyFieldType.DATE,
+          name: 'followUpDate',
+          labelTranslationKey: 'volunteer.forms.postOutreach.labels.followUpDate',
+          isRequired: true
+        }]
+      }],
+      onComplete: ( vals ) => {
+        return new Promise( (resolve,reject) => {
+          // @@
           alert('bam!');
           resolve();
         });

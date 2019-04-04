@@ -79,6 +79,7 @@
       "submit": "Submit",
       "yes": "Yes"
     },
+    "chooseMultiple": "Choose as many options as you'd like.",
     "datetime": {
       "date": "Date",
       "dayNames": "Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday",
@@ -100,6 +101,7 @@
       "logoutMessage": "You have been logged out.",
       "pleaseWait": "Please wait..."
     },
+    "other": "Other (please specify)",
     "required": "Required",
     "setLanguage": "Set language",
     "success": "Success"
@@ -278,7 +280,26 @@
         "title": "@:volunteer.btns.postEventReport"
       },
       "postOutreach": {
-        "select": "Which location did you volunteer at?",
+        "labels": {
+          "cdlSchool": {
+            "passInfo": "CDL instructor plans to pass on TAT information to other faculty",
+            "using": "CDL instructor will begin using TAT training with students"
+          },
+          "followUp": "Do you plan to follow up with your contact?",
+          "followUpDate": "Follow-up date",
+          "followUpWhen": "When do you plan to do the follow-up?",
+          "truckStop": {
+            "distributing": "Truck stop is now distributing TAT materials at their location",
+            "hostOutreach": "Truck stop is open to having an outreach at their location to speak with drivers in an appropriate format",
+            "inPersonTraining": "Truck stop has asked for an in-person training for all employees",
+            "training": "Truck stop will now train employees with TAT materials"
+          },
+          "truckingCompany": {
+            "showDrivers": "Trucking company plans to show their drivers the TAT training video and hand out wallet cards."
+          },
+          "whichAccomplishments": "Which of the following were you able to accomplish? Please select all that apply:"
+        },
+        "select": "Which location did you visit?",
         "submitSuccess": "@:volunteer.forms.successReport",
         "title": "@:volunteer.btns.postOutreachReport"
       },

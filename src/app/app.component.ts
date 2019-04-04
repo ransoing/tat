@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Platform, IonRouterOutlet, AlertController } from '@ionic/angular';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { TranslateService } from '@ngx-translate/core';
-import { SettingsService, ModalService, MiscService, UserDataService, TrxService } from './services';
+import { SettingsService, ModalService, MiscService, UserDataService, TrxService, OutreachLocationType } from './services';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { LoginComponent, NewUserComponent, SurveyComponent } from './modals-volunteer';
 import { ISurvey, ISurveyFieldType } from './modals-volunteer/survey/survey.component';
@@ -118,7 +118,11 @@ export class AppComponent {
       setTimeout( () => {
         this.modalService.open( SurveyComponent, {
           titleTranslationKey: 'volunteer.forms.signup.title',
-          survey: this.surveys.getPreOutreachSurvey()
+          survey: this.surveys.getPostOutreachSurvey({
+            type: OutreachLocationType.TRUCKING_COMPANY,
+            postReports: [],
+            id: '', name: '', address: '', city: '', state: '', zip: ''
+          })
         });
       }, 1000 );
 

@@ -261,6 +261,11 @@
         "title": "@:volunteer.btns.postEventReport"
       },
       "postOutreach": {
+        "labels": {
+          "cdlSchool": {},
+          "truckStop": {},
+          "truckingCompany": {}
+        },
         "submitSuccess": "@:volunteer.forms.successReport",
         "title": "@:volunteer.btns.postOutreachReport"
       },

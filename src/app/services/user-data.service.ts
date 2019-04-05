@@ -127,13 +127,13 @@ export class UserDataService {
   async checkRegistrationCode( code: string ) {
     await this.showLoadingPopup();
     try {
-      let response: any = await this.apiRequestGet( 'checkRegistrationCode?pass=' + encodeURIComponent(code) );
+      let response: any = await this.apiRequestGet( 'checkRegistrationCode?code=' + encodeURIComponent(code) );
       if ( response && response.success ) {
         return true;
       } else throw('');
     } catch (e) {
       // check the error code to show an appropriate message
-      let errorKey = ( e.error && e.error.errorCode && e.error.errorCode === 'INCORRECT_PASSWORD' ) ?
+      let errorKey = ( e.error && e.error.errorCode && e.error.errorCode === 'INCORRECT_REGISTRATION_CODE' ) ?
         'volunteer.forms.signup.invalidCode' :
         'misc.messages.dataLoadErrorWithTip';
       // show an error message.

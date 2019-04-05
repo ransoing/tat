@@ -255,6 +255,7 @@ export class SurveyService {
       onComplete: ( vals ) => {
         return new Promise( (resolve,reject) => {
           // @@
+          // @@ merge `accomplishments` and `other accomplishments`
           alert('bam!');
           resolve();
         });

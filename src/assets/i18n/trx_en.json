@@ -96,10 +96,12 @@
       "zip": "Zip"
     },
     "messages": {
+      "connectionTip": "Make sure you have an internet connection and try again.",
       "dataLoadError": "There was a problem while loading your volunteer account data.",
-      "dataLoadErrorWithTip": "@:misc.messages.dataLoadError Make sure you have an internet connection and try again.",
+      "dataLoadErrorWithTip": "@:misc.messages.dataLoadError @:misc.messages.connectionTip",
       "logoutMessage": "You have been logged out.",
-      "pleaseWait": "Please wait..."
+      "pleaseWait": "Please wait...",
+      "requestError": "There was an error making the request. @:misc.messages.connectionTip"
     },
     "other": "Other (please specify)",
     "required": "Required",

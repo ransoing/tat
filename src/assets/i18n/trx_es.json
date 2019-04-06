@@ -89,8 +89,9 @@
     "error": "Error",
     "location": {},
     "messages": {
+      "connectionTip": "Asegúrate de tener conexión a Internet y trata de nuevo.",
       "dataLoadError": "Hubo un problema al cargar tu cuenta de voluntario.",
-      "dataLoadErrorWithTip": "@:misc.messages.dataLoadError Asegúrate de tener conexión a Internet y trata de nuevo.",
+      "dataLoadErrorWithTip": "@:misc.messages.dataLoadError @:misc.messages.connectionTip",
       "logoutMessage": "Se cerró tu sesión.",
       "pleaseWait": "Espera por favor..."
     },

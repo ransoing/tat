@@ -1,28 +1,11 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from 'firebase';
-import { LoadingController, AlertController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 import { Subject } from 'rxjs';
 import { Storage } from '@ionic/storage';
 import { TrxService } from './trx.service';
-import { StorageKeys } from './misc.service';
-
-/**
- * This service doesn't communicate directly with Salesforce (SF), but communicates with a
- * proxy which communicates with Salesforce. The reason for this is that access to Salesforce
- * data requires a Salesforce username/password combo, and we don't want to make a SF user
- * account for every TAT volunteer, nor do we want every volunteer to use a shared account,
- * because then the client HTTP requests could be analyzed and modified to scrape data on all
- * TAT volunteers and contacts from the SF database.
- * 
- * Instead, only the proxy has the SF username/password, and has access to all SF data.
- * The user authenticates with Firebase inside the app, and the user's email and auth token
- * are sent to the proxy. If the credentials are correct, then the proxy filters the data from
- * SF so that user can retrieve only the data about himself.
- * 
- * The proxy can only get data -- it can't make changes to the salesforce database.
-*/
+import { StorageKeys, MiscService } from './misc.service';
+import { ProxyAPIService } from './proxy-api.service';
 
 
 // ******************* enums and interfaces used by the service ******************* //
@@ -107,86 +90,15 @@ export class UserDataService {
   firebaseUser.uid
   */
 
-  private loadingPopup;
   private fetchingUserData: boolean = false;
 
   constructor(
-    private http: HttpClient,
-    private loadingController: LoadingController,
     private alertController: AlertController,
     private trx: TrxService,
-    private storage: Storage
+    private storage: Storage,
+    private miscService: MiscService,
+    private proxyAPI: ProxyAPIService
   ) {}
-
-  /**
-   * Submits a passcode to a server. Returns true if the passcode is right. Returns false and shows an error message if it is wrong.
-   * This is only a mild deterrent for abusive behavior, and doesn't actually protect anything as long as technovandals can dig
-   * through this source code and see expected network interactions.
-   * @param code The registration code
-   */
-  async checkRegistrationCode( code: string ) {
-    await this.showLoadingPopup();
-    try {
-      let response: any = await this.apiRequestGet( 'checkRegistrationCode?code=' + encodeURIComponent(code) );
-      if ( response && response.success ) {
-        return true;
-      } else throw('');
-    } catch (e) {
-      // check the error code to show an appropriate message
-      let errorKey = ( e.error && e.error.errorCode && e.error.errorCode === 'INCORRECT_REGISTRATION_CODE' ) ?
-        'volunteer.forms.signup.invalidCode' :
-        'misc.messages.dataLoadErrorWithTip';
-      // show an error message.
-      const alert = await this.alertController.create({
-        header: await this.trx.t( 'misc.error' ),
-        message: await this.trx.t( errorKey ),
-        buttons: [await this.trx.t( 'misc.buttons.close' )]
-      });
-      alert.present();
-      return false;
-
-    } finally {
-      this.hideLoadingPopup();
-    }
-  }
-
-  /**
-   * Checks whether a salesforce Contact object exists which matches a given email address or phone number.
-   * Returns the id of the Contact object if there is a match.
-   * Returns false if a Contact object does match, but the object already has an associated TAT app account (an associated firebase account ID)
-   * Returns null if there is no match.
-   */
-  async searchForExistingContact( emailAddress: string, phoneNumber: string ) {
-    await this.showLoadingPopup();
-    try {
-      let response: any = await this.apiRequestGet( 'contactSearch?email=' + encodeURIComponent(emailAddress.trim()) + '&phone=' + encodeURIComponent(phoneNumber.trim()) );
-      if ( response && response.salesforceId ) {
-        return response.salesforceId;
-      } else throw('');
-    } catch (e) {
-      // check error code
-      let errorKey = 'misc.messages.dataLoadErrorWithTip';
-      if ( e.error && e.error.errorCode ) {
-        if ( e.error.errorCode === 'NO_MATCHING_ENTRY' ) {
-          return null;
-        } else if ( e.error.errorCode === 'ENTRY_ALREADY_HAS_ACCOUNT' ) {
-          errorKey = 'volunteer.forms.signup.accountAlreadyExists';
-        }
-      }
-
-      // show an appropriate error message
-      const alert = await this.alertController.create({
-        header: await this.trx.t( 'misc.error' ),
-        message: await this.trx.t( errorKey ),
-        buttons: [await this.trx.t( 'misc.buttons.close' )]
-      });
-      alert.present();
-      return false;
-      
-    } finally {
-      this.hideLoadingPopup();
-    }
-  }
 
   /**
    * Fetches the volunteer user data from the proxy, only if it hasn't yet been fetched, or if `force` is set to `true`.
@@ -216,7 +128,7 @@ export class UserDataService {
       }
 
       // the loading popup might not have been triggered. We need it now.
-      await this.showLoadingPopup();
+      await this.miscService.showLoadingPopup();
       // get the idToken before a request to the proxy
       var token = await this.firebaseUser.getIdToken();
       
@@ -231,19 +143,13 @@ export class UserDataService {
     if ( dataRequestFlags & UserDataRequestFlags.HOURS_LOGS )                   parts.push( 'hoursLogs' );
     if ( dataRequestFlags & UserDataRequestFlags.UNFINISHED_OUTREACH_TARGETS )  parts.push( 'unfinishedOutreachTargets' );
     let url = 'getUserData?parts=' + parts.join( ',' );
-    this.apiRequestPost( url, token )
+    this.proxyAPI.post( url, {firebaseIdToken: token} )
     .then( responses => this.onFetchSuccess(responses) )
     .catch( e => this.onFetchError(e) )
     .finally( () => this.onFetchFinally() );
   }
 
   private onFetchSuccess( response ) {
-    // in some cases, the response can be 200 but completely blank (perhaps some uncaught error in the proxy?)
-    if ( typeof response !== 'object' || response === null ) {
-      throw new Error( 'Response is not an object: ' + JSON.stringify(response) );
-    }
-    // convert ISO time strings to Date objects
-    this.convertJSONDates( response );
     // save the data. For each key in each response, overwrite the existing key in the saved data.
     if ( !this.data ) {
       this.data = {};
@@ -273,80 +179,15 @@ export class UserDataService {
       console.error( e );
       // show an error message.
       this.loadError = true;
-      const alert = await this.alertController.create({
-        header: await this.trx.t( 'misc.error' ),
-        message: await this.trx.t( 'misc.messages.dataLoadErrorWithTip' ),
-        buttons: [await this.trx.t( 'misc.buttons.close' )]
-      });
-      alert.present();
+      this.miscService.showErrorPopup( 'misc.messages.dataLoadErrorWithTip' );
     }
   }
 
   private onFetchFinally() {
-    this.hideLoadingPopup();
+    this.miscService.hideLoadingPopup();
     this.fetchingUserData = false;
   }
 
-  // takes a part of the API url, like 'getBasicUserData`.
-  // makes a POST request to the API and returns a promise.
-  private apiRequestPost( urlSegment: string, firebaseToken: string ) {
-    return this.http.post(
-      environment.proxyServerURL + urlSegment,
-      { firebaseIdToken: firebaseToken },
-      { headers: new HttpHeaders({'Content-Type': 'application/json'}) }
-    ).toPromise();
-  }
-
-  // takes a part of the API url, like 'contactSearch'. Makes a GET request and returns a promise.
-  private apiRequestGet( urlSegment: string ) {
-    return this.http.get( environment.proxyServerURL + urlSegment ).toPromise();
-  }
-
-  private convertJSONDates( object ) {
-    Object.keys( object )
-    .filter( key => {
-      return object.hasOwnProperty( key );
-    })
-    .forEach( key => {
-      let val = object[key];
-      if ( typeof val === 'object' && val !== null ) {
-        this.convertJSONDates( val );
-      // if the string looks like ISO-8601 date or a YYYY-MM-DD date, convert it to a Date object
-      } else if ( typeof val === 'string' ) {
-        if ( val.match(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/) ) {
-          object[key] = new Date( val );
-        } else if ( val.match(/\d{4}-\d{2}-\d{2}/) ) {
-          // adding a time prevents timezone-based parsing errors
-          object[key] = new Date( val + 'T00:00:00' );
-        }
-      }
-    })
-  }
-
-  /**
-   * Shows the loading popup, but only if it isn't yet shown.
-   */
-  private async showLoadingPopup() {
-    if ( this.loadingPopup ) {
-      // quit now; it's already been presented.
-      return;
-    }
-    // create and preset the loading popup
-    this.loadingPopup = await this.loadingController.create({
-      message: await this.trx.t( 'misc.messages.pleaseWait' )
-    });
-    this.loadingPopup.present();
-  }
-
-  /**
-   * Only tries to hide the loading popup if the thing exists
-   */
-  private async hideLoadingPopup() {
-    if ( this.loadingPopup ) {
-      this.loadingPopup.dismiss();
-      this.loadingPopup = null;
-    }
-  }
 
   /**
    * Updates the cache, saving the current state of user data in local storage

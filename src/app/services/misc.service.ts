@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { Observable } from 'rxjs';
-import { AlertController, NavController } from '@ionic/angular';
+import { AlertController, NavController, LoadingController } from '@ionic/angular';
 import { TrxService } from './trx.service';
 import { ModalService } from './modal.service';
 
@@ -24,7 +23,8 @@ export class MiscService {
     private alertController: AlertController,
     private trx: TrxService,
     private navCtrl: NavController,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private loadingController :LoadingController
   ) {
     // listen for route changes. This subscriber is used for onRouteHere
     this.router.events.subscribe( event => {
@@ -73,14 +73,15 @@ export class MiscService {
 
   /**
    * Shows a small alert on the screen, with a close button.
-   * @param message The text to show in the body of the alert
+   * @param titleTranslationKey The translation key of the title of the alert
+   * @param messageTranslationKey The translation key of the text to show in the body of the alert
    * @returns A Promise which resolves when the alert has been dismissed.
    */
-  public showSimpleAlert( title: string, message: string ): Promise<null> {
+  public showSimpleAlert( titleTranslationKey: string, messageTranslationKey: string ): Promise<null> {
     return new Promise( async (resolve, reject) => {
       const alert = await this.alertController.create({
-        header: title,
-        message: message,
+        header: await this.trx.t( titleTranslationKey ),
+        message: await this.trx.t( messageTranslationKey ),
         buttons: [await this.trx.t( 'misc.buttons.close' )]
       });
       alert.present();
@@ -89,4 +90,41 @@ export class MiscService {
       });
     });
   }
+
+  /**
+   * Shows an error message. By default, shows a message appropriate for when some HTTP request has failed.
+   */
+  public async showErrorPopup( translationKey = 'misc.messages.requestError' ) {
+    return this.showSimpleAlert(
+      await this.trx.t( 'misc.error' ),
+      await this.trx.t( translationKey )
+    );
+  }
+
+  /**
+   * Shows a loading popup, ensuring that only one loading popup exists at a time.
+   */
+  public async showLoadingPopup(): Promise<any> {
+    let popup = await this.loadingController.getTop();
+    if ( popup ) {
+      // there is already a popup. quit now.
+      return this.loadingController.getTop();
+    }
+    // create and present the loading popup
+    popup = await this.loadingController.create({
+      message: await this.trx.t( 'misc.messages.pleaseWait' )
+    });
+    return popup.present();
+  }
+
+  /**
+   * Hides the loading popup, if one exists
+   */
+  public async hideLoadingPopup() {
+    let popup = await this.loadingController.getTop();
+    if ( popup ) {
+      popup.dismiss();
+    }
+  }
+
 }

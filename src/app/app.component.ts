@@ -4,8 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { TranslateService } from '@ngx-translate/core';
 import { SettingsService, ModalService, MiscService, UserDataService, TrxService, OutreachLocationType } from './services';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { LoginComponent, NewUserComponent, SurveyComponent } from './modals-volunteer';
-import { ISurvey, ISurveyFieldType } from './modals-volunteer/survey/survey.component';
+import { LoginComponent, SurveyComponent } from './modals-volunteer';
 import { SurveyService } from './services/surveys.service';
 
 @Component({
@@ -75,7 +74,7 @@ export class AppComponent {
 
         this.modalService.open( SurveyComponent, {
           titleTranslationKey: 'volunteer.forms.signup.title',
-          survey: this.surveys.getSignupSurvey()
+          survey: this.surveys.signupSurvey()
           // survey: this.surveys.getPostOutreachSurvey({
           //   type: OutreachLocationType.TRUCKING_COMPANY,
           //   postReports: [],

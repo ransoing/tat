@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { LoadingController } from '@ionic/angular';
 import { TrxService } from './trx.service';
 import { UserDataService, IUnfinishedOutreachTarget, OutreachLocationType, VolunteerType } from './user-data.service';
 import { ISurvey, ISurveyFieldType } from '../modals-volunteer/survey/survey.component';
+import { ProxyAPIService } from './proxy-api.service';
+import { MiscService } from './misc.service';
 
 // contains objects defining all surveys.
 
@@ -12,9 +13,10 @@ import { ISurvey, ISurveyFieldType } from '../modals-volunteer/survey/survey.com
 export class SurveyService {
 
   constructor(
-    private loadingController: LoadingController,
     private userDataService: UserDataService,
-    private trx: TrxService
+    private trx: TrxService,
+    private proxyAPI: ProxyAPIService,
+    private miscService: MiscService
   ) {}
 
   private _yesNoOptions = [
@@ -25,7 +27,7 @@ export class SurveyService {
   // @@ for all surveys, when submitting them, submit the user's firebase token as well.
   // the proxy can glean the salesforceID from that.
 
-  getHoursLogSurvey(): ISurvey {
+  hoursLogSurvey(): ISurvey {
     return {
       pages: [{
         // page 1
@@ -61,7 +63,7 @@ export class SurveyService {
   }
 
 
-  getPreOutreachSurvey(): ISurvey {
+  preOutreachSurvey(): ISurvey {
     let udata = this.userDataService.data;
     return {
       pages: [{
@@ -164,7 +166,7 @@ export class SurveyService {
   }
 
 
-  getPostOutreachSurvey( outreachTarget: IUnfinishedOutreachTarget ): ISurvey {
+  postOutreachSurvey( outreachTarget: IUnfinishedOutreachTarget ): ISurvey {
     return {
       pages: [{
         // page 1: truck stop
@@ -264,13 +266,13 @@ export class SurveyService {
   }
 
 
-  // getPreEventSurvey
+  // preEventSurvey
 
 
-  // getPostEventSurvey
+  // postEventSurvey
 
 
-  getTestimonialFeedbackSurvey(): ISurvey {
+  testimonialFeedbackSurvey(): ISurvey {
     return {
       pages: [{
         topTextTranslationKey: 'volunteer.forms.feedback.labels.whatAdvice',
@@ -309,7 +311,7 @@ export class SurveyService {
   }
 
 
-  getTrainingVideoFeedbackSurvey(): ISurvey {
+  trainingVideoFeedbackSurvey(): ISurvey {
     return {
       pages: [{
         // page 1
@@ -343,9 +345,8 @@ export class SurveyService {
   }
 
 
-  getSignupSurvey(): ISurvey {
+  signupSurvey(): ISurvey {
     let salesforceId;
-    let personExistsInSalesforce: boolean;
 
     return {
       pages: [{
@@ -357,12 +358,20 @@ export class SurveyService {
           isRequired: true,
         }],
         onContinue: vals => {
-          return new Promise( async (resolve,reject) => {
-            // check if the code is right. Loading message and error is handled in userDataService
-            let codeIsValid = await this.userDataService.checkRegistrationCode( vals.registrationCode );
-            if ( codeIsValid ) resolve();
-            else reject();
-          });
+          // check if the registration code is valid
+          return this.proxyAPI.get( 'checkRegistrationCode?code=' + encodeURIComponent(vals.registrationCode) ).then(
+            response => {
+              if ( !response || !response.success ) throw('');
+            },
+            e => {
+              // check the error code to show an appropriate message
+              let errorKey = ( e.error && e.error.errorCode && e.error.errorCode === 'INCORRECT_REGISTRATION_CODE' ) ?
+                'volunteer.forms.signup.invalidCode' :
+                'misc.messages.requestError';
+              // show an error message.
+              throw this.miscService.showErrorPopup( errorKey );
+            }
+          );
         }
       }, {
         // page 2
@@ -379,23 +388,32 @@ export class SurveyService {
           isRequired: true
         }],
         onContinue: vals => {
-          return new Promise( async (resolve,reject) => {
-            // search for whether an existing entry in salesforce matches the submitted email and phone
-            salesforceId = await this.userDataService.searchForExistingContact( vals.email, vals.phone );
-            if ( salesforceId === false ) {
-              // This is an error case. An error message is shown by userDataService code.
-              reject();
-            } else {
-              // if salesforceId === null, then the new user has no existing entry in salesforce.
-              // otherwise, the new user already has an entry in salesforce, but it is not linked with a firebase uid.
-              personExistsInSalesforce = salesforceId !== null;
-              resolve();
+          // search for whether there is an existing salesforce Contact that matches the phone/email
+          return this.proxyAPI.get( 'contactSearch?email=' + encodeURIComponent(vals.email) + '&phone=' + encodeURIComponent(vals.phone) )
+          .then( response => {
+            if ( response && response.salesforceId ) {
+              salesforceId = response.salesforceId;
+              return;
+            } else throw '';
+          }, e => {
+            // check error code and show an appropriate error message
+            let errorKey = 'misc.messages.requestError';
+            if ( e.error && e.error.errorCode ) {
+              if ( e.error.errorCode === 'NO_MATCHING_ENTRY' ) {
+                return; // it's ok to continue with the survey
+              } else if ( e.error.errorCode === 'ENTRY_ALREADY_HAS_ACCOUNT' ) {
+                errorKey = 'volunteer.forms.signup.accountAlreadyExists';
+              }
             }
+      
+            // show an appropriate error message
+            this.miscService.showErrorPopup( errorKey );
+            throw '';
           });
         }
       }, {
         // page 3: details for a new salesforce entry
-        isVisible: vals => !personExistsInSalesforce,
+        isVisible: vals => !salesforceId,
         fields: [{
           type: ISurveyFieldType.TEXT,
           name: 'firstName',
@@ -484,7 +502,7 @@ export class SurveyService {
 
 
   // a survey to edit volunteer type and default mailing address
-  getEditAccountSurvey() {
+  editAccountSurvey() {
     let udata = this.userDataService.data;
     return {
       pages: [{

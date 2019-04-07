@@ -52,12 +52,14 @@ export class SurveyService {
         }]
       }],
 
-      onComplete: ( vals ) => {
-        return new Promise( (resolve,reject) => {
-          // @@
-          alert('bam!');
-          resolve();
-        });
+      onComplete: async vals => {
+        // modify some of the form values before submitting to the proxy
+        vals.firebaseIdToken = await this.userDataService.firebaseUser.getIdToken();
+        vals.date = this.miscService.dateToLocalYYYYMMDD( vals.date );
+        vals.numHours = parseFloat( vals.numHours );
+
+        // send to the proxy and show an error message if appropriate
+        return this.genericProxyPOST( 'createHoursLogEntry', vals );
       }
     };
   }
@@ -155,12 +157,14 @@ export class SurveyService {
         }]
       }],
 
-      onComplete: ( vals ) => {
-        return new Promise( (resolve,reject) => {
-          // @@
-          alert('bam!');
-          resolve();
-        });
+      onComplete: async vals => {
+        vals.firebaseIdToken = await this.userDataService.firebaseUser.getIdToken();
+        // convert some yes/no values to booleans
+        vals.hasContactedManager = vals.hasContactedManager === 'yes';
+        vals.isReadyToReceive = vals.isReadyToReceive === 'yes';
+
+        // send to the proxy and show an error message if appropriate
+        return this.genericProxyPOST( 'createPreOutreachSurvey', vals );
       }
     };
   }
@@ -254,13 +258,16 @@ export class SurveyService {
           isRequired: true
         }]
       }],
-      onComplete: ( vals ) => {
-        return new Promise( (resolve,reject) => {
-          // @@
-          // @@ merge `accomplishments` and `other accomplishments`
-          alert('bam!');
-          resolve();
-        });
+      onComplete: async vals => {
+        // alter some values before sending to the proxy
+        vals.firebaseIdToken = await this.userDataService.firebaseUser.getIdToken();
+        vals.willFollowUp = vals.willFollowUp === 'yes';
+        vals.followUpDate = this.miscService.dateToLocalYYYYMMDD( vals.followUpDate );
+        // merge 'accomplishments' and 'other accomplishments'
+        vals.accomplishments += ' ' + vals.otherAccomplishments;
+
+        // send to the proxy and show an error message if appropriate
+        return this.genericProxyPOST( 'createPostOutreachReport', vals );
       }
     };
   }
@@ -300,12 +307,14 @@ export class SurveyService {
           options: this._yesNoOptions
         }]
       }],
-      onComplete: ( vals ) => {
-        return new Promise( (resolve,reject) => {
-          // @@
-          alert('bam!');
-          resolve();
-        });
+      onComplete: async vals => {
+        // modify some of the form values before submitting to the proxy
+        vals.firebaseIdToken = await this.userDataService.firebaseUser.getIdToken();
+        vals.givesAnonPermission = vals.givesAnonPermission === 'yes';
+        vals.givesNamePermission = vals.givesNamePermission === 'yes';
+
+        // send to the proxy and show an error message if appropriate
+        return this.genericProxyPOST( 'createTestimonial', vals );
       }
     };
   }
@@ -334,12 +343,13 @@ export class SurveyService {
           name: 'questions'
         }]
       }],
-      onComplete: ( vals ) => {
-        return new Promise( (resolve,reject) => {
-          // @@
-          alert('bam!');
-          resolve();
-        });
+      onComplete: async vals => {
+        // modify some of the form values before submitting to the proxy
+        vals.firebaseIdToken = await this.userDataService.firebaseUser.getIdToken();
+        vals.feelsPrepared = vals.feelsPrepared === 'yes';
+
+        // send to the proxy and show an error message if appropriate
+        return this.genericProxyPOST( 'createTrainingVideoFeedback', vals );
       }
     };
   }
@@ -359,19 +369,17 @@ export class SurveyService {
         }],
         onContinue: vals => {
           // check if the registration code is valid
-          return this.proxyAPI.get( 'checkRegistrationCode?code=' + encodeURIComponent(vals.registrationCode) ).then(
-            response => {
-              if ( !response || !response.success ) throw('');
-            },
-            e => {
-              // check the error code to show an appropriate message
-              let errorKey = ( e.error && e.error.errorCode && e.error.errorCode === 'INCORRECT_REGISTRATION_CODE' ) ?
-                'volunteer.forms.signup.invalidCode' :
-                'misc.messages.requestError';
-              // show an error message.
-              throw this.miscService.showErrorPopup( errorKey );
-            }
-          );
+          return this.proxyAPI.get( 'checkRegistrationCode?code=' + encodeURIComponent(vals.registrationCode) )
+          .then( response => {
+            if ( !response || !response.success ) throw '';
+          }).catch( e => {
+            // check the error code to show an appropriate message
+            let errorKey = ( e.error && e.error.errorCode && e.error.errorCode === 'INCORRECT_REGISTRATION_CODE' ) ?
+              'volunteer.forms.signup.invalidCode' :
+              'misc.messages.requestError';
+            // show an error message.
+            throw this.miscService.showErrorPopup( errorKey );
+          });
         }
       }, {
         // page 2
@@ -395,7 +403,7 @@ export class SurveyService {
               salesforceId = response.salesforceId;
               return;
             } else throw '';
-          }, e => {
+          }).catch( e => {
             // check error code and show an appropriate error message
             let errorKey = 'misc.messages.requestError';
             if ( e.error && e.error.errorCode ) {
@@ -487,14 +495,26 @@ export class SurveyService {
           isRequired: true
         }]
       }],
-      onComplete: ( vals ) => {
-        return new Promise( (resolve,reject) => {
-          // @@ the registration code is sent near the beginning.
-          // @@ also send it when completing the form, so that new users are only made if the code is correct.
-          // @@ i.e. the reg code is required to make a new user, and an existing user is required to do all other tasks.
-          // @@ also send firebase uid, to be added to salesforce
-          alert('bam!');
-          resolve();
+      onComplete: async vals => {
+        // modify some of the form values before submitting to the proxy
+        vals.firebaseIdToken = await this.userDataService.firebaseUser.getIdToken();
+        vals.partOfTeam = vals.partOfTeam === 'yes';
+        vals.isCoordinator = vals.isCoordinator === 'yes';
+
+        // the registration code is verified near the beginning of this survey, but that's just a courtesy to the user,
+        // so that the user doesn't fill out a long survey just to be stopped by a registration code.
+        // the code is needed to authorize the request that actually creates the new account, so it's send with this request.
+        // (it's already in 'vals')
+        return this.proxyAPI.post( 'createNewUser', vals )
+        .then( response => {
+          if ( !(response && response.contactId) ) throw '';
+        }).catch( e => {
+          const errorKey = e.error && e.errorCode === 'INCORRECT_REGISTRATION_CODE' ?
+            'volunteer.forms.signup.invalidCode' :
+            'misc.messages.requestError';
+          // show an error message.
+          this.miscService.showErrorPopup( errorKey );
+          throw '';
         });
       }
     };
@@ -544,14 +564,26 @@ export class SurveyService {
           defaultValue: udata.zip
         }]
       }],
-      onComplete: ( vals ) => {
-        return new Promise( (resolve,reject) => {
-          // @@
-          alert('bam!');
-          resolve();
-        });
+      onComplete: async vals => {
+        // modify some of the form values before submitting to the proxy
+        vals.firebaseIdToken = await this.userDataService.firebaseUser.getIdToken();
+
+        // send to the proxy and show an error message if appropriate
+        return this.genericProxyPOST( 'updateUser', vals );
       }
     };
   }
 
+
+  // makes a POST request to the proxy, and expects a response of `{"success": true}`.
+  // Shows an error message alert upon failure.
+  private genericProxyPOST( urlSegment: string, payload: object ): Promise<any> {
+    return this.proxyAPI.post( urlSegment, payload )
+    .then( response => {
+      if ( !(response && response.success) ) throw '';
+    }).catch( e => {
+      this.miscService.showErrorPopup();
+      throw '';
+    });
+  }
 }

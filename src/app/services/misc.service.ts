@@ -127,4 +127,22 @@ export class MiscService {
     }
   }
 
+
+  /**
+   * Takes a date object, and returns the local date as YYYY-MM-DD
+   * @param date A Date object or ISO-8601 formatted datestring
+   */
+  public dateToLocalYYYYMMDD( date: Date | string ): string {
+    try {
+      if ( typeof date === 'string' ) date = new Date( date );
+      // undo the timezone offset so that .toISOString() outputs the local date/time instead of UTC date/time
+      const alteredDate = new Date(date.getTime() - date.getTimezoneOffset() * 60 * 1000 ).toISOString();
+      // return the segment before the 'T'
+      return alteredDate.split( 'T' )[0];
+    } catch(e) {
+      // invalid date.
+      return '';
+    }
+  }
+
 }

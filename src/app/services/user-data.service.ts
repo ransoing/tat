@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from 'firebase';
-import { AlertController } from '@ionic/angular';
 import { Subject } from 'rxjs';
 import { Storage } from '@ionic/storage';
-import { TrxService } from './trx.service';
 import { StorageKeys, MiscService } from './misc.service';
 import { ProxyAPIService } from './proxy-api.service';
 
@@ -93,8 +91,6 @@ export class UserDataService {
   private fetchingUserData: boolean = false;
 
   constructor(
-    private alertController: AlertController,
-    private trx: TrxService,
     private storage: Storage,
     private miscService: MiscService,
     private proxyAPI: ProxyAPIService

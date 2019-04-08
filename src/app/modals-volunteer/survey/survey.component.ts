@@ -1,5 +1,22 @@
 import { Component, Input, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { TrxService } from '../../services';
+import { TrxService, MiscService } from '../../services';
+
+/**
+ * This component is a modal that shows a survey.
+ * If the modal dismisses with the value 'true', then the survey was completed and submitted successfully.
+ * Use like this:
+ * 
+ * let someSurvey: ISurvey = { ... };
+ * this.modalService.open( SurveyComponent, {
+ *   titleTranslationKey: 'some.translation.key',
+ *   successTranslationKey: 'some.other.key',
+ *   survey: someSurvey,
+ *   onSuccess: () => {
+ *     // survey was completed successfully
+ *   }
+ * });
+ *
+ */
 
 export enum ISurveyFieldType {
   TEXT = 'text',    // text field
@@ -36,7 +53,7 @@ export interface ISurveyPage {
 
 export interface ISurvey {
   // if onComplete resolves, then the modal closes. If it rejects, the modal does not close.
-  onComplete( formVals: any ): Promise<any>,
+  onSubmit( formVals: any ): Promise<any>,
   pages: ISurveyPage[]
 }
 
@@ -47,7 +64,10 @@ export interface ISurvey {
 export class SurveyComponent implements OnInit {
 
   @Input('titleTranslationKey') titleTranslationKey: string;
+  @Input('successTranslationKey') successTranslationKey: string;
   @Input('survey') survey: ISurvey;
+  // if the survey is submitted and the response indicates success, this function runs after the modal closes
+  @Input('onSuccess') onSuccess: Function;
 
   @ViewChild('form') formRef: ElementRef;
 
@@ -60,7 +80,8 @@ export class SurveyComponent implements OnInit {
   pageHistory: number[] = [];
 
   constructor(
-    public trx: TrxService
+    public trx: TrxService,
+    public miscService: MiscService
   ) {}
 
   ngOnInit() {
@@ -123,8 +144,13 @@ export class SurveyComponent implements OnInit {
   }
 
   finish() {
-    this.survey.onComplete( this.getAllVals() ).then(
-      () => this.modal.dismiss(),
+    this.survey.onSubmit( this.getAllVals() ).then(
+      async () => {
+        // show a success alert
+        await this.miscService.showSimpleAlert( await this.trx.t( 'misc.success' ), await this.trx.t( this.successTranslationKey ) );
+        await this.modal.dismiss( true );
+        this.onSuccess();
+      },
       () => {} // do nothing
     );
   }

@@ -1,6 +1,7 @@
 import { Component, AfterViewInit } from '@angular/core';
-import { MiscService, ModalService, UserDataService, GetFeedbackService, UserDataRequestFlags } from '../../services';
-import { GetFeedbackSurveyComponent } from '../getfeedback-survey/getfeedback-survey.component';
+import { MiscService, ModalService, UserDataService, UserDataRequestFlags } from '../../services';
+import { SurveyService } from '../../services/surveys.service';
+import { SurveyComponent } from '../survey/survey.component';
 
 @Component({
   templateUrl: './hours-log.component.html',
@@ -14,24 +15,21 @@ export class HoursLogComponent implements AfterViewInit {
     public miscService: MiscService,
     public modalService: ModalService,
     public userDataService: UserDataService,
-    private getFeedbackService: GetFeedbackService
+    private surveys: SurveyService
   ) {}
 
   ngAfterViewInit() {
     this.userDataService.fetchUserData();
   }
 
-  openHoursLogForm() {
-    this.modalService.open( GetFeedbackSurveyComponent, {
+  async openHoursLogForm() {
+    this.modalService.open( SurveyComponent, {
       titleTranslationKey: 'volunteer.forms.hoursLog.title',
       successTranslationKey: 'volunteer.forms.hoursLog.submitSuccess',
-      surveyUrl: this.getFeedbackService.getHoursLogSurveyUrl(),
-      onSurveyFinished: () => {
-        this.getFeedbackService.waitForSalesforceToUpdate()
-        .then( () => {
-          // update the hours logs in the user data
-          this.userDataService.fetchUserData( true, UserDataRequestFlags.HOURS_LOGS );
-        });
+      survey: this.surveys.hoursLogSurvey(),
+      onSuccess: () => {
+        // update the hours logs part of the user data
+        this.userDataService.fetchUserData( true, UserDataRequestFlags.HOURS_LOGS );
       }
     });
   }

@@ -24,8 +24,6 @@ export class SurveyService {
     { value: 'no', labelTranslationKey: 'misc.buttons.no' }
   ];
 
-  // @@ for all surveys, when submitting them, submit the user's firebase token as well.
-  // the proxy can glean the salesforceID from that.
 
   hoursLogSurvey(): ISurvey {
     return {
@@ -52,7 +50,7 @@ export class SurveyService {
         }]
       }],
 
-      onComplete: async vals => {
+      onSubmit: async vals => {
         // modify some of the form values before submitting to the proxy
         vals.firebaseIdToken = await this.userDataService.firebaseUser.getIdToken();
         vals.date = this.miscService.dateToLocalYYYYMMDD( vals.date );
@@ -157,7 +155,7 @@ export class SurveyService {
         }]
       }],
 
-      onComplete: async vals => {
+      onSubmit: async vals => {
         vals.firebaseIdToken = await this.userDataService.firebaseUser.getIdToken();
         // convert some yes/no values to booleans
         vals.hasContactedManager = vals.hasContactedManager === 'yes';
@@ -258,7 +256,7 @@ export class SurveyService {
           isRequired: true
         }]
       }],
-      onComplete: async vals => {
+      onSubmit: async vals => {
         // alter some values before sending to the proxy
         vals.firebaseIdToken = await this.userDataService.firebaseUser.getIdToken();
         vals.willFollowUp = vals.willFollowUp === 'yes';
@@ -307,7 +305,7 @@ export class SurveyService {
           options: this._yesNoOptions
         }]
       }],
-      onComplete: async vals => {
+      onSubmit: async vals => {
         // modify some of the form values before submitting to the proxy
         vals.firebaseIdToken = await this.userDataService.firebaseUser.getIdToken();
         vals.givesAnonPermission = vals.givesAnonPermission === 'yes';
@@ -343,7 +341,7 @@ export class SurveyService {
           name: 'questions'
         }]
       }],
-      onComplete: async vals => {
+      onSubmit: async vals => {
         // modify some of the form values before submitting to the proxy
         vals.firebaseIdToken = await this.userDataService.firebaseUser.getIdToken();
         vals.feelsPrepared = vals.feelsPrepared === 'yes';
@@ -495,7 +493,7 @@ export class SurveyService {
           isRequired: true
         }]
       }],
-      onComplete: async vals => {
+      onSubmit: async vals => {
         // modify some of the form values before submitting to the proxy
         vals.firebaseIdToken = await this.userDataService.firebaseUser.getIdToken();
         vals.partOfTeam = vals.partOfTeam === 'yes';

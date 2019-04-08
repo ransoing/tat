@@ -34,7 +34,7 @@ export class SelfReferentialCompiler extends TranslateCompiler {
                 return;
             }
             if (typeof currentTranslations[key] === 'string') {
-                currentTranslations[key] = currentTranslations[key].replace(/@:(\S+)/, (matches, key) => this.getDescendantPropertyValue(masterLanguageFile, key) );
+                currentTranslations[key] = currentTranslations[key].replace(/@:(\S+)/g, (matches, key) => this.getDescendantPropertyValue(masterLanguageFile, key) );
             }
         });
     }

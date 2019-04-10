@@ -3,9 +3,10 @@ import { NavController, AlertController, LoadingController } from '@ionic/angula
 import {
   PostOutreachSelectionComponent, HoursLogComponent, 
   VolunteerResourcesComponent, VolunteerSettingsComponent, TrainingVideoComponent,
-  GetFeedbackSurveyComponent
+  SurveyComponent
 } from '../../modals-volunteer';
-import { ModalService, UserDataService, MiscService, GetFeedbackService, UserDataRequestFlags, VolunteerType } from '../../services';
+import { ModalService, UserDataService, MiscService, SurveyService } from '../../services';
+import { UserDataRequestFlags, VolunteerType } from '../../models/user-data';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
@@ -32,7 +33,7 @@ export class VolunteerPage {
     public alertCtrl: AlertController,
     public loadingCtrl: LoadingController,
     private miscService: MiscService,
-    private getFeedbackService: GetFeedbackService
+    private surveys: SurveyService
   ) {
     this.miscService.onRouteHere(() => {
       this.userDataService.fetchUserData();
@@ -45,25 +46,22 @@ export class VolunteerPage {
   }
 
   showFeedbackForm() {
-    this.modalService.open( GetFeedbackSurveyComponent, {
+    this.modalService.open( SurveyComponent, {
       titleTranslationKey: 'volunteer.forms.feedback.title',
       successTranslationKey: 'volunteer.forms.feedback.submitSuccess',
-      surveyUrl: this.getFeedbackService.getTestimonialFeedbackSurveyUrl(),
-      onSurveyFinished: () => {}
+      survey: this.surveys.testimonialFeedbackSurvey(),
+      onSuccess: () => {}
     });
   }
 
   showPreOutreachForm() {
-    this.modalService.open( GetFeedbackSurveyComponent, {
+    this.modalService.open( SurveyComponent, {
       titleTranslationKey: 'volunteer.forms.preOutreach.title',
       successTranslationKey: 'volunteer.forms.preOutreach.submitSuccess',
-      surveyUrl: this.getFeedbackService.getPreOutreachSurveyUrl(),
-      onSurveyFinished: () => {
-        this.getFeedbackService.waitForSalesforceToUpdate()
-        .then( () => {
-          // update just the unfinished outreach targets in the user data
-          this.userDataService.fetchUserData( true, UserDataRequestFlags.UNFINISHED_OUTREACH_TARGETS );
-        });
+      survey: this.surveys.preOutreachSurvey(),
+      onSuccess: () => {
+        // update just the unfinished outreach targets in the user data
+        this.userDataService.fetchUserData( true, UserDataRequestFlags.UNFINISHED_OUTREACH_TARGETS );
       }
     });
   }
@@ -74,16 +72,13 @@ export class VolunteerPage {
   }
 
   showTrainingVideoFeedbackForm() {
-    this.modalService.open( GetFeedbackSurveyComponent, {
+    this.modalService.open( SurveyComponent, {
       titleTranslationKey: 'volunteer.forms.trainingFeedback.title',
       successTranslationKey: 'volunteer.forms.trainingFeedback.submitSuccess',
-      surveyUrl: this.getFeedbackService.getTrainingVideoFeedbackSurveyUrl(),
-      onSurveyFinished: () => {
-        this.getFeedbackService.waitForSalesforceToUpdate()
-        .then( () => {
-          // update just the basic user data
-          this.userDataService.fetchUserData( true, UserDataRequestFlags.BASIC_USER_DATA );
-        });
+      survey: this.surveys.trainingVideoFeedbackSurvey(),
+      onSuccess: () => {
+        // update just the basic user data
+        this.userDataService.fetchUserData( true, UserDataRequestFlags.BASIC_USER_DATA );
       }
     });
   }

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { VolunteerType, UserDataService, ScriptService } from '../../services';
+import { UserDataService, ScriptService } from '../../services';
+import { VolunteerType } from '../../models/user-data';
 
 @Component({
   templateUrl: './training-video.component.html',

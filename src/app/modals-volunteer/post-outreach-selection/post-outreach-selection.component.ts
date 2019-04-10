@@ -1,6 +1,7 @@
 import { Component, AfterViewInit } from '@angular/core';
-import { UserDataService, IUnfinishedOutreachTarget, ModalService, GetFeedbackService, UserDataRequestFlags } from '../../services';
-import { GetFeedbackSurveyComponent } from '../getfeedback-survey/getfeedback-survey.component';
+import { UserDataService, ModalService, SurveyService } from '../../services';
+import { SurveyComponent } from '../survey/survey.component';
+import { IUnfinishedOutreachTarget, UserDataRequestFlags } from '../../models/user-data';
 
 @Component({
   templateUrl: './post-outreach-selection.component.html',
@@ -12,21 +13,18 @@ export class PostOutreachSelectionComponent implements AfterViewInit {
   constructor(
     public userDataService: UserDataService,
     public modalService: ModalService,
-    private getFeedbackService: GetFeedbackService
+    private surveys: SurveyService,
   ) {}
 
   onTargetClick( outreachTarget: IUnfinishedOutreachTarget ) {
     // open the post outreach survey, passing in data from the selected target
-    this.modalService.open( GetFeedbackSurveyComponent, {
+    this.modalService.open( SurveyComponent, {
       titleTranslationKey: 'volunteer.forms.postOutreach.title',
       successTranslationKey: 'volunteer.forms.postOutreach.submitSuccess',
-      surveyUrl: this.getFeedbackService.getPostOutreachSurveyUrl( outreachTarget ),
-      onSurveyFinished: () => {
-        this.getFeedbackService.waitForSalesforceToUpdate()
-        .then( () => {
-          // update just the unfinished outreach targets in the user data
-          this.userDataService.fetchUserData( true, UserDataRequestFlags.UNFINISHED_OUTREACH_TARGETS );
-        });
+      surveyUrl: this.surveys.postOutreachSurvey( outreachTarget ),
+      onSuccess: () => {
+        // update just the unfinished outreach targets in the user data
+        this.userDataService.fetchUserData( true, UserDataRequestFlags.UNFINISHED_OUTREACH_TARGETS );
       }
     });
   }

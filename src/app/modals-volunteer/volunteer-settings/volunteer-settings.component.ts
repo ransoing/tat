@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { SettingsService, UserDataService, ModalService, UserDataRequestFlags, GetFeedbackService, VolunteerType } from '../../services';
+import { SettingsService, UserDataService, ModalService, SurveyService } from '../../services';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { SurveyComponent } from '../survey/survey.component';
-import { SurveyService } from '../../services/surveys.service';
+import { UserDataRequestFlags, VolunteerType } from '../../models/user-data';
 
 @Component({
   templateUrl: './volunteer-settings.component.html'

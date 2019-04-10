@@ -1,7 +1,8 @@
 import { Component, AfterViewInit } from '@angular/core';
-import { MiscService, ModalService, UserDataService, UserDataRequestFlags } from '../../services';
+import { MiscService, ModalService, UserDataService } from '../../services';
 import { SurveyService } from '../../services/surveys.service';
 import { SurveyComponent } from '../survey/survey.component';
+import { UserDataRequestFlags } from '../../models/user-data';
 
 @Component({
   templateUrl: './hours-log.component.html',

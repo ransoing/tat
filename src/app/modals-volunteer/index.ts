@@ -5,5 +5,4 @@ export { PostOutreachSelectionComponent } from './post-outreach-selection/post-o
 export { VolunteerSettingsComponent } from './volunteer-settings/volunteer-settings.component';
 export { TrainingVideoComponent } from './training-video/training-video.component';
 export { LoginComponent } from './login/login.component';
-export { GetFeedbackSurveyComponent } from './getfeedback-survey/getfeedback-survey.component';
 export { SurveyComponent } from './survey/survey.component';

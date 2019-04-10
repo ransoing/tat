@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { TrxService } from './trx.service';
-import { UserDataService, IUnfinishedOutreachTarget, OutreachLocationType, VolunteerType } from './user-data.service';
-import { ISurvey, ISurveyFieldType } from '../modals-volunteer/survey/survey.component';
+import { UserDataService } from './user-data.service';
+import { ISurvey, ISurveyFieldType } from '../models/survey';
 import { ProxyAPIService } from './proxy-api.service';
 import { MiscService } from './misc.service';
+import { IUnfinishedOutreachTarget, OutreachLocationType, VolunteerType } from '../models/user-data';
 
 // contains objects defining all surveys.
 

@@ -71,7 +71,7 @@ import {
   CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent,
 } from './modals';
 import {
-  VolunteerSettingsComponent, VolunteerResourcesComponent, GetFeedbackSurveyComponent, SurveyComponent,
+  VolunteerSettingsComponent, VolunteerResourcesComponent, SurveyComponent,
   HoursLogComponent, TrainingVideoComponent, LoginComponent, PostOutreachSelectionComponent
 } from './modals-volunteer';
 
@@ -81,14 +81,14 @@ import {
     PlacesComponent, EmailReportComponent, WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
     AboutTatComponent, HumanTraffickingLawsComponent,
     CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent,
-    VolunteerSettingsComponent, VolunteerResourcesComponent, GetFeedbackSurveyComponent, SurveyComponent,
+    VolunteerSettingsComponent, VolunteerResourcesComponent, SurveyComponent,
     HoursLogComponent, TrainingVideoComponent, LoginComponent, PostOutreachSelectionComponent
   ],
   entryComponents: [
     PlacesComponent, EmailReportComponent, WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
     AboutTatComponent, HumanTraffickingLawsComponent,
     CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent,
-    VolunteerSettingsComponent, VolunteerResourcesComponent, GetFeedbackSurveyComponent, SurveyComponent,
+    VolunteerSettingsComponent, VolunteerResourcesComponent, SurveyComponent,
     HoursLogComponent, TrainingVideoComponent, LoginComponent, PostOutreachSelectionComponent
   ],
   imports: [

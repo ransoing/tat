@@ -64,7 +64,7 @@ export interface ISurvey {
 export class SurveyComponent implements OnInit {
 
   @Input('titleTranslationKey') titleTranslationKey: string;
-  @Input('successTranslationKey') successTranslationKey: string;
+  @Input('successTranslationKey') successTranslationKey?: string;
   @Input('survey') survey: ISurvey;
   // if the survey is submitted and the response indicates success, this function runs after the modal closes
   @Input('onSuccess') onSuccess: Function;
@@ -146,8 +146,10 @@ export class SurveyComponent implements OnInit {
   finish() {
     this.survey.onSubmit( this.getAllVals() ).then(
       async () => {
-        // show a success alert
-        await this.miscService.showSimpleAlert( await this.trx.t( 'misc.success' ), await this.trx.t( this.successTranslationKey ) );
+        if ( this.successTranslationKey ) {
+          // show a success alert
+          await this.miscService.showSimpleAlert( await this.trx.t( 'misc.success' ), await this.trx.t( this.successTranslationKey ) );
+        }
         await this.modal.dismiss( true );
         this.onSuccess();
       },

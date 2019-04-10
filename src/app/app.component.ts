@@ -69,7 +69,6 @@ export class AppComponent {
     this.userDataService.newUserDetected.subscribe( () => {
       this.modalService.open( SurveyComponent, {
         titleTranslationKey: 'volunteer.forms.signup.title',
-        // @@ add successTranslationKey
         survey: this.surveys.signupSurvey(),
         onSuccess: () => {
           // new user successfully registered. Get the user data and redirect to the volunteer page.

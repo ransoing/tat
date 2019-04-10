@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { SettingsService, UserDataService, ModalService, UserDataRequestFlags, GetFeedbackService, VolunteerType } from '../../services';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { GetFeedbackSurveyComponent } from '../getfeedback-survey/getfeedback-survey.component';
+import { SurveyComponent } from '../survey/survey.component';
+import { SurveyService } from '../../services/surveys.service';
 
 @Component({
   templateUrl: './volunteer-settings.component.html'
@@ -16,7 +17,7 @@ export class VolunteerSettingsComponent {
     public userDataService: UserDataService,
     private angularFireAuth: AngularFireAuth,
     private modalService: ModalService,
-    private getFeedbackService: GetFeedbackService
+    private surveys: SurveyService
   ) { }
 
   onLogout() {
@@ -25,16 +26,13 @@ export class VolunteerSettingsComponent {
   }
 
   showEditAccountForm() {
-    this.modalService.open( GetFeedbackSurveyComponent, {
+    this.modalService.open( SurveyComponent, {
       titleTranslationKey: 'volunteer.forms.editAccount.title',
       successTranslationKey: 'volunteer.forms.editAccount.submitSuccess',
-      surveyUrl: this.getFeedbackService.getEditAccountSurveyUrl(),
-      onSurveyFinished: () => {
-        this.getFeedbackService.waitForSalesforceToUpdate()
-        .then( () => {
-          // update just the unfinished outreach targets in the user data
-          this.userDataService.fetchUserData( true, UserDataRequestFlags.BASIC_USER_DATA );
-        });
+      survey: this.surveys.editAccountSurvey(),
+      onSuccess: () => {
+        // update just the unfinished outreach targets in the user data
+        this.userDataService.fetchUserData( true, UserDataRequestFlags.BASIC_USER_DATA );
       }
     });
   }

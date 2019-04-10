@@ -498,6 +498,9 @@ export class SurveyService {
         vals.firebaseIdToken = await this.userDataService.firebaseUser.getIdToken();
         vals.partOfTeam = vals.partOfTeam === 'yes';
         vals.isCoordinator = vals.isCoordinator === 'yes';
+        if ( salesforceId ) {
+          vals.salesforceId = salesforceId;
+        }
 
         // the registration code is verified near the beginning of this survey, but that's just a courtesy to the user,
         // so that the user doesn't fill out a long survey just to be stopped by a registration code.
@@ -562,7 +565,7 @@ export class SurveyService {
           defaultValue: udata.zip
         }]
       }],
-      onComplete: async vals => {
+      onSubmit: async vals => {
         // modify some of the form values before submitting to the proxy
         vals.firebaseIdToken = await this.userDataService.firebaseUser.getIdToken();
 

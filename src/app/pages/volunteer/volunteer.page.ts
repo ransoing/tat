@@ -85,11 +85,14 @@ export class VolunteerPage {
 
   openTrainingVideo1() {
     // training video 1 varies by volunteer type
-    const video = this.userDataService.data.volunteerType === VolunteerType.TRUCK_STOP_VOLUNTEER ?
-      TrainingVideoComponent.videos[VolunteerType.TRUCK_STOP_VOLUNTEER][0] :
-      TrainingVideoComponent.videos[this.userDataService.data.volunteerType];
+    const videoKeys = {
+      [ VolunteerType.TRUCK_STOP_VOLUNTEER ]: 'truck-stop-volunteer-1',
+      [ VolunteerType.AMBASSADOR_VOLUNTEER ]: 'tat-ambassador',
+      [ VolunteerType.EVENT_VOLUNTEER ]: 'freedom-drivers'
+    };
+    const videoUrlKey = videoKeys[this.userDataService.data.volunteerType];
     this.modalService.open( TrainingVideoComponent, {
-      video: video,
+      videoUrlKey: videoUrlKey,
       onFinishedWatching: () => {
         // for truck stop volunteers, mark the first video as finished. otherwise, mark all videos as finished
         if ( this.userDataService.data.volunteerType === VolunteerType.TRUCK_STOP_VOLUNTEER ) {
@@ -107,7 +110,7 @@ export class VolunteerPage {
     // training video 2 is always a truck stop volunteer video, because truck stop volunteers are the only
     // ones who watch two training videos
     this.modalService.open( TrainingVideoComponent, {
-      video: TrainingVideoComponent.videos[VolunteerType.TRUCK_STOP_VOLUNTEER][1],
+      videoUrlKey: 'truck-stop-volunteer-2',
       onFinishedWatching: () => {
         this.userDataService.data.hasWatchedTrainingVideos = true;
         // save the state to the cache

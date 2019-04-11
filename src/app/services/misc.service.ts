@@ -3,6 +3,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { AlertController, NavController, LoadingController } from '@ionic/angular';
 import { TrxService } from './trx.service';
 import { ModalService } from './modal.service';
+import { IEmbeddableVideo, VideoType } from '../models/video';
 
 export enum StorageKeys {
   USER_DATA = 'user_data'
@@ -143,6 +144,44 @@ export class MiscService {
       // invalid date.
       return '';
     }
+  }
+
+  /**
+   * Takes any youtube or vimeo URL and returns a URL which can be used for embedding a video on a page.
+   */
+  public getEmbeddableVideo( url: string ): IEmbeddableVideo {
+    let videoId: string;
+    if ( url.substr(0,17) === 'https://youtu.be/' ) {
+      // format: https://youtu.be/{videoId}?t={startTimestamp}
+      videoId = url.substr( 17 ).split( '?' )[0];
+      return {
+        url: this.makeYoutubeEmbedURL( videoId ),
+        type: VideoType.YOUTUBE
+      };
+    } else if ( url.substr(0,24) === 'https://www.youtube.com/' ) {
+      // format: https://www.youtube.com/watch?v={videoId}&t={startTimestamp}s
+      videoId = url.substr( 24 + 8 ).split( '&' )[0];
+      return {
+        url: this.makeYoutubeEmbedURL( videoId ),
+        type: VideoType.YOUTUBE
+      };
+    } else if ( url.substr(0,18) === 'https://vimeo.com/' ) {
+      // format: https://vimeo.com/{videoId}/some-other-parameters
+      videoId = url.substr( 18 ).split( '/' )[0];
+      return {
+        url: this.makeVimeoEmbedURL( videoId ),
+        type: VideoType.VIMEO
+      };
+    } else {
+      throw 'Unable to parse video URL: ' + url;
+    }
+  }
+
+  private makeYoutubeEmbedURL( videoId: string ): string {
+    return 'https://www.youtube.com/embed/' + videoId + '?rel=0&enablejsapi=1';
+  }
+  private makeVimeoEmbedURL( videoId: string ): string {
+    return 'https://player.vimeo.com/video/' + videoId + '?title=0&portrait=0';
   }
 
 }

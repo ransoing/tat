@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TrxService } from './trx.service';
 import { UserDataService } from './user-data.service';
-import { ISurvey, ISurveyFieldType } from '../models/survey';
+import { ISurvey, SurveyFieldType } from '../models/survey';
 import { ProxyAPIService } from './proxy-api.service';
 import { MiscService } from './misc.service';
 import { IUnfinishedOutreachTarget, OutreachLocationType, VolunteerType } from '../models/user-data';
@@ -32,19 +32,19 @@ export class SurveyService {
         // page 1
         topTextTranslationKey: 'volunteer.forms.hoursLog.labels.describe',
         fields: [{
-          type: ISurveyFieldType.TEXTAREA,
+          type: SurveyFieldType.TEXTAREA,
           name: 'description',
           isRequired: true
         }]
       }, {
         // page 2
         fields: [{
-          type: ISurveyFieldType.DATE,
+          type: SurveyFieldType.DATE,
           labelTranslationKey: 'volunteer.forms.hoursLog.labels.date',
           name: 'date',
           isRequired: true
         }, {
-          type: ISurveyFieldType.NUMBER,
+          type: SurveyFieldType.NUMBER,
           labelTranslationKey: 'volunteer.forms.hoursLog.labels.numHours',
           name: 'numHours',
           isRequired: true
@@ -71,12 +71,12 @@ export class SurveyService {
         // page 1
         topTextTranslationKey: 'volunteer.forms.preOutreach.labels.whatLocation',
         fields: [{
-          type: ISurveyFieldType.TEXT,
+          type: SurveyFieldType.TEXT,
           labelTranslationKey: 'volunteer.forms.preOutreach.labels.locationName',
           name: 'locationName',
           isRequired: true
         }, {
-          type: ISurveyFieldType.SELECT,
+          type: SurveyFieldType.SELECT,
           labelTranslationKey: 'volunteer.forms.preOutreach.labels.locationType',
           name: 'locationType',
           options: [
@@ -86,22 +86,22 @@ export class SurveyService {
           ],
           isRequired: true
         }, {
-          type: ISurveyFieldType.TEXT,
+          type: SurveyFieldType.TEXT,
           labelTranslationKey: 'misc.location.address',
           name: 'locationAddress',
           isRequired: true
         }, {
-          type: ISurveyFieldType.TEXT,
+          type: SurveyFieldType.TEXT,
           labelTranslationKey: 'misc.location.city',
           name: 'locationCity',
           isRequired: true
         }, {
-          type: ISurveyFieldType.TEXT,
+          type: SurveyFieldType.TEXT,
           labelTranslationKey: 'misc.location.state',
           name: 'locationState',
           isRequired: true
         }, {
-          type: ISurveyFieldType.TEXT,
+          type: SurveyFieldType.TEXT,
           labelTranslationKey: 'misc.location.zip',
           name: 'locationZip',
           isRequired: true
@@ -110,7 +110,7 @@ export class SurveyService {
         // page 2
         topTextTranslationKey: 'volunteer.forms.preOutreach.labels.haveYouContacted',
         fields: [{
-          type: ISurveyFieldType.CHOICE,
+          type: SurveyFieldType.CHOICE,
           name: 'hasContactedManager',
           options: this._yesNoOptions,
           isRequired: true
@@ -120,7 +120,7 @@ export class SurveyService {
         topTextTranslationKey: 'volunteer.forms.preOutreach.labels.areYouReady',
         isVisible: vals => vals.hasContactedManager == 'yes',
         fields: [{
-          type: ISurveyFieldType.CHOICE,
+          type: SurveyFieldType.CHOICE,
           name: 'isReadyToReceive',
           options: this._yesNoOptions,
           isRequired: true
@@ -130,25 +130,25 @@ export class SurveyService {
         topTextTranslationKey: 'volunteer.forms.preOutreach.labels.whatAddress',
         isVisible: vals => vals.hasContactedManager == 'yes' && vals.isReadyToReceive == 'yes',
         fields: [{
-          type: ISurveyFieldType.TEXT,
+          type: SurveyFieldType.TEXT,
           labelTranslationKey: 'misc.location.address',
           name: 'mailingAddress',
           isRequired: true,
           defaultValue: udata.address
         }, {
-          type: ISurveyFieldType.TEXT,
+          type: SurveyFieldType.TEXT,
           labelTranslationKey: 'misc.location.city',
           name: 'mailingCity',
           isRequired: true,
           defaultValue: udata.city
         }, {
-          type: ISurveyFieldType.TEXT,
+          type: SurveyFieldType.TEXT,
           labelTranslationKey: 'misc.location.state',
           name: 'mailingState',
           isRequired: true,
           defaultValue: udata.state
         }, {
-          type: ISurveyFieldType.TEXT,
+          type: SurveyFieldType.TEXT,
           labelTranslationKey: 'misc.location.zip',
           name: 'mailingZip',
           isRequired: true,
@@ -176,7 +176,7 @@ export class SurveyService {
         isVisible: vals => outreachTarget.type === OutreachLocationType.TRUCK_STOP,
         topTextTranslationKey: 'volunteer.forms.postOutreach.labels.whichAccomplishments',
         fields: [{
-          type: ISurveyFieldType.CHOICE,
+          type: SurveyFieldType.CHOICE,
           name: 'accomplishments',
           multi: true,
           // The form will submit the English versions of the text, but the user's language will be displayed
@@ -194,7 +194,7 @@ export class SurveyService {
             labelTranslationKey: 'volunteer.forms.postOutreach.labels.truckStop.hostOutreach'
           }]
         }, {
-          type: ISurveyFieldType.TEXTAREA,
+          type: SurveyFieldType.TEXTAREA,
           name: 'otherAccomplishments',
           labelTranslationKey: 'misc.other'
         }]
@@ -203,7 +203,7 @@ export class SurveyService {
         isVisible: vals => outreachTarget.type === OutreachLocationType.CDL_SCHOOL,
         topTextTranslationKey: 'volunteer.forms.postOutreach.labels.whichAccomplishments',
         fields: [{
-          type: ISurveyFieldType.CHOICE,
+          type: SurveyFieldType.CHOICE,
           name: 'accomplishments',
           multi: true,
           // The form will submit the English versions of the text, but the user's language will be displayed
@@ -215,7 +215,7 @@ export class SurveyService {
             labelTranslationKey: 'volunteer.forms.postOutreach.labels.cdlSchool.passInfo'
           }]
         }, {
-          type: ISurveyFieldType.TEXTAREA,
+          type: SurveyFieldType.TEXTAREA,
           name: 'otherAccomplishments',
           labelTranslationKey: 'misc.other'
         }]
@@ -224,7 +224,7 @@ export class SurveyService {
         isVisible: vals => outreachTarget.type === OutreachLocationType.TRUCKING_COMPANY,
         topTextTranslationKey: 'volunteer.forms.postOutreach.labels.whichAccomplishments',
         fields: [{
-          type: ISurveyFieldType.CHOICE,
+          type: SurveyFieldType.CHOICE,
           name: 'accomplishments',
           multi: true,
           // The form will submit the English versions of the text, but the user's language will be displayed
@@ -233,7 +233,7 @@ export class SurveyService {
             labelTranslationKey: 'volunteer.forms.postOutreach.labels.truckingCompany.showDrivers'
           }]
         }, {
-          type: ISurveyFieldType.TEXTAREA,
+          type: SurveyFieldType.TEXTAREA,
           name: 'otherAccomplishments',
           labelTranslationKey: 'misc.other'
         }]
@@ -241,7 +241,7 @@ export class SurveyService {
         // page 4
         topTextTranslationKey: 'volunteer.forms.postOutreach.labels.followUp',
         fields: [{
-          type: ISurveyFieldType.CHOICE,
+          type: SurveyFieldType.CHOICE,
           name: 'willFollowUp',
           isRequired: true,
           options: this._yesNoOptions
@@ -251,7 +251,7 @@ export class SurveyService {
         isVisible: vals => vals.willFollowUp === 'yes',
         topTextTranslationKey: 'volunteer.forms.postOutreach.labels.followUpWhen',
         fields: [{
-          type: ISurveyFieldType.DATE,
+          type: SurveyFieldType.DATE,
           name: 'followUpDate',
           labelTranslationKey: 'volunteer.forms.postOutreach.labels.followUpDate',
           isRequired: true
@@ -282,17 +282,17 @@ export class SurveyService {
     return {
       pages: [{
         topTextTranslationKey: 'volunteer.forms.feedback.labels.whatAdvice',
-        fields: [{ type: ISurveyFieldType.TEXTAREA, name: 'advice' }]
+        fields: [{ type: SurveyFieldType.TEXTAREA, name: 'advice' }]
       }, {
         topTextTranslationKey: 'volunteer.forms.feedback.labels.bestPart',
-        fields: [{ type: ISurveyFieldType.TEXTAREA, name: 'bestPart' }]
+        fields: [{ type: SurveyFieldType.TEXTAREA, name: 'bestPart' }]
       }, {
         topTextTranslationKey: 'volunteer.forms.feedback.labels.improvements',
-        fields: [{ type: ISurveyFieldType.TEXTAREA, name: 'improvements' }]
+        fields: [{ type: SurveyFieldType.TEXTAREA, name: 'improvements' }]
       }, {
         topTextTranslationKey: 'volunteer.forms.feedback.labels.giveAnonPermission',
         fields: [{
-          type: ISurveyFieldType.CHOICE,
+          type: SurveyFieldType.CHOICE,
           name: 'givesAnonPermission',
           isRequired: true,
           options: this._yesNoOptions
@@ -300,7 +300,7 @@ export class SurveyService {
       }, {
         topTextTranslationKey: 'volunteer.forms.feedback.labels.giveNamePermission',
         fields: [{
-          type: ISurveyFieldType.CHOICE,
+          type: SurveyFieldType.CHOICE,
           name: 'givesNamePermission',
           isRequired: true,
           options: this._yesNoOptions
@@ -328,7 +328,7 @@ export class SurveyService {
           'volunteer.forms.trainingFeedback.labels.equippedForOutreach' :
           'volunteer.forms.trainingFeedback.labels.confidentInPresenting',
         fields: [{
-          type: ISurveyFieldType.CHOICE,
+          type: SurveyFieldType.CHOICE,
           name: 'feelsPrepared',
           options: this._yesNoOptions,
           isRequired: true
@@ -338,7 +338,7 @@ export class SurveyService {
         isVisible: vals => vals.feelsPrepared === 'no',
         topTextTranslationKey: 'volunteer.forms.trainingFeedback.labels.whatQuestions',
         fields: [{
-          type: ISurveyFieldType.TEXTAREA,
+          type: SurveyFieldType.TEXTAREA,
           name: 'questions'
         }]
       }],
@@ -361,7 +361,7 @@ export class SurveyService {
       pages: [{
         // page 1
         fields: [{
-          type: ISurveyFieldType.TEXT,
+          type: SurveyFieldType.TEXT,
           name: 'registrationCode',
           labelTranslationKey: 'volunteer.forms.signup.labels.registrationCode',
           isRequired: true,
@@ -384,12 +384,12 @@ export class SurveyService {
         // page 2
         topTextTranslationKey: 'volunteer.forms.signup.labels.intro',
         fields: [{
-          type: ISurveyFieldType.EMAIL,
+          type: SurveyFieldType.EMAIL,
           name: 'email',
           labelTranslationKey: 'volunteer.forms.signup.labels.email',
           isRequired: true
         }, {
-          type: ISurveyFieldType.TEL,
+          type: SurveyFieldType.TEL,
           name: 'phone',
           labelTranslationKey: 'volunteer.forms.signup.labels.phone',
           isRequired: true
@@ -423,12 +423,12 @@ export class SurveyService {
         // page 3: details for a new salesforce entry
         isVisible: vals => !salesforceId,
         fields: [{
-          type: ISurveyFieldType.TEXT,
+          type: SurveyFieldType.TEXT,
           name: 'firstName',
           labelTranslationKey: 'volunteer.forms.signup.labels.firstName',
           isRequired: true
         }, {
-          type: ISurveyFieldType.TEXT,
+          type: SurveyFieldType.TEXT,
           name: 'lastName',
           labelTranslationKey: 'volunteer.forms.signup.labels.lastName',
           isRequired: true
@@ -436,7 +436,7 @@ export class SurveyService {
       }, {
         // page 4
         fields: [{
-          type: ISurveyFieldType.SELECT,
+          type: SurveyFieldType.SELECT,
           name: 'volunteerType',
           labelTranslationKey: 'volunteer.forms.signup.labels.volunteerType',
           isRequired: true,
@@ -450,19 +450,19 @@ export class SurveyService {
         // page 5
         topTextTranslationKey: 'volunteer.forms.signup.labels.whatAddress',
         fields: [{
-          type: ISurveyFieldType.TEXT,
+          type: SurveyFieldType.TEXT,
           labelTranslationKey: 'misc.location.address',
           name: 'mailingAddress'
         }, {
-          type: ISurveyFieldType.TEXT,
+          type: SurveyFieldType.TEXT,
           labelTranslationKey: 'misc.location.city',
           name: 'mailingCity'
         }, {
-          type: ISurveyFieldType.TEXT,
+          type: SurveyFieldType.TEXT,
           labelTranslationKey: 'misc.location.state',
           name: 'mailingState'
         }, {
-          type: ISurveyFieldType.TEXT,
+          type: SurveyFieldType.TEXT,
           labelTranslationKey: 'misc.location.zip',
           name: 'mailingZip'
         }]
@@ -470,7 +470,7 @@ export class SurveyService {
         // page 6
         topTextTranslationKey: 'volunteer.forms.signup.labels.partOfTeam',
         fields: [{
-          type: ISurveyFieldType.CHOICE,
+          type: SurveyFieldType.CHOICE,
           name: 'partOfTeam',
           isRequired: true,
           options: this._yesNoOptions
@@ -480,7 +480,7 @@ export class SurveyService {
         isVisible: vals => vals.partOfTeam === 'yes',
         topTextTranslationKey: 'volunteer.forms.signup.labels.isCoordinator',
         fields: [{
-          type: ISurveyFieldType.CHOICE,
+          type: SurveyFieldType.CHOICE,
           name: 'isCoordinator',
           isRequired: true,
           options: this._yesNoOptions
@@ -489,7 +489,7 @@ export class SurveyService {
         isVisible: vals => vals.partOfTeam === 'yes' && vals.isCoordinator === 'no',
         topTextTranslationKey: 'volunteer.forms.signup.labels.whatName',
         fields: [{
-          type: ISurveyFieldType.TEXT,
+          type: SurveyFieldType.TEXT,
           name: 'coordinatorName',
           labelTranslationKey: 'volunteer.forms.signup.labels.coordinatorName',
           isRequired: true
@@ -531,7 +531,7 @@ export class SurveyService {
       pages: [{
         // page 1
         fields: [{
-          type: ISurveyFieldType.SELECT,
+          type: SurveyFieldType.SELECT,
           name: 'volunteerType',
           labelTranslationKey: 'volunteer.forms.signup.labels.volunteerType',
           isRequired: true,
@@ -546,22 +546,22 @@ export class SurveyService {
         // page 2
         topTextTranslationKey: 'volunteer.forms.signup.labels.whatAddress',
         fields: [{
-          type: ISurveyFieldType.TEXT,
+          type: SurveyFieldType.TEXT,
           labelTranslationKey: 'misc.location.address',
           name: 'mailingAddress',
           defaultValue: udata.address
         }, {
-          type: ISurveyFieldType.TEXT,
+          type: SurveyFieldType.TEXT,
           labelTranslationKey: 'misc.location.city',
           name: 'mailingCity',
           defaultValue: udata.city
         }, {
-          type: ISurveyFieldType.TEXT,
+          type: SurveyFieldType.TEXT,
           labelTranslationKey: 'misc.location.state',
           name: 'mailingState',
           defaultValue: udata.state
         }, {
-          type: ISurveyFieldType.TEXT,
+          type: SurveyFieldType.TEXT,
           labelTranslationKey: 'misc.location.zip',
           name: 'mailingZip',
           defaultValue: udata.zip

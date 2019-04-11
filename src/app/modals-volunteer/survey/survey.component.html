@@ -15,7 +15,7 @@
           <div *ngFor="let field of page.fields" class="input-wrapper input-type-{{field.type}}">
             <div *ngIf="page.fields.length > 1 && field.isRequired" class="required-star"><span class="star">*</span></div>
             <!-- text field types -->
-            <ion-item *ngIf="[ISurveyFieldType.TEXT, ISurveyFieldType.EMAIL, ISurveyFieldType.TEL, ISurveyFieldType.NUMBER].includes( field.type )">
+            <ion-item *ngIf="[SurveyFieldType.TEXT, SurveyFieldType.EMAIL, SurveyFieldType.TEL, SurveyFieldType.NUMBER].includes( field.type )">
               <ion-label color="dark" position="floating">{{ field.labelTranslationKey | translate }}</ion-label>
               <ion-input
                 [type]="field.type"
@@ -25,11 +25,11 @@
               </ion-input>
             </ion-item>
             <!-- textarea -->
-            <ng-container *ngIf="field.type === ISurveyFieldType.TEXTAREA">
+            <ng-container *ngIf="field.type === SurveyFieldType.TEXTAREA">
               <ion-textarea [name]="field.name" color="dark" [placeholder]="field.labelTranslationKey | translate">{{field.defaultValue}}</ion-textarea>
             </ng-container>
             <!-- select -->
-            <ion-item *ngIf="field.type === ISurveyFieldType.SELECT">
+            <ion-item *ngIf="field.type === SurveyFieldType.SELECT">
               <ion-label color="dark" position="floating">{{ field.labelTranslationKey | translate }}</ion-label>
               <ion-select
                 [attr.value]="field.defaultValue"
@@ -41,7 +41,7 @@
               </ion-select>
             </ion-item>
             <!-- choice -->
-            <ng-container *ngIf="field.type === ISurveyFieldType.CHOICE">
+            <ng-container *ngIf="field.type === SurveyFieldType.CHOICE">
               <ng-container *ngIf="!field.multi">
                 <label *ngFor="let option of field.options" [class.selected]="getFieldVal(field) === option.value" (click)="noop()">{{ option.labelTranslationKey | translate }}
                   <input type="radio" [name]="field.name" [value]="option.value">
@@ -55,7 +55,7 @@
               </ng-container>
             </ng-container>
             <!-- date -->
-            <ion-item *ngIf="field.type === ISurveyFieldType.DATE">
+            <ion-item *ngIf="field.type === SurveyFieldType.DATE">
               <ion-label color="dark" position="floating">{{ field.labelTranslationKey | translate }}</ion-label>
               <ion-datetime
                 [attr.name]="field.name"

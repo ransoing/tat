@@ -35,7 +35,13 @@ export class DynamicURLsService {
     let cache = await this.storage.get( this.storageKey );
     if ( !cache || cache.expires < new Date() ) {
       // get new images.
-      let data = await this.http.get( environment.firebaseConfig.databaseURL + '/urls.json' ).toPromise();
+      let data;
+      try {
+        data = await this.http.get( environment.firebaseConfig.databaseURL + '/urls.json' ).toPromise();
+      } catch (e) {
+        // couldn't get URLs. return something.
+        return cache ? cache.urls : {};
+      }
       // save to the cache
       let expireDate = new Date();
       expireDate.setDate( expireDate.getDate() + 1 );
@@ -45,4 +51,5 @@ export class DynamicURLsService {
       return cache.urls;
     }
   }
+
 }

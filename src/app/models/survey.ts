@@ -1,5 +1,5 @@
 
-export enum ISurveyFieldType {
+export enum SurveyFieldType {
   TEXT = 'text',    // text field
   EMAIL = 'email',  // text field
   TEL = 'tel',      // text field
@@ -11,7 +11,7 @@ export enum ISurveyFieldType {
 }
   
 export interface ISurveyField {
-  type: ISurveyFieldType,
+  type: SurveyFieldType,
   name: string,
   labelTranslationKey?: string,
   defaultValue?: string,

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
-import { UserDataService, ScriptService } from '../../services';
-import { VolunteerType } from '../../models/user-data';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { ScriptService, MiscService, DynamicURLsService } from '../../services';
+import { VideoType } from '../../models/video';
 
 @Component({
   templateUrl: './training-video.component.html',
@@ -9,51 +9,33 @@ import { VolunteerType } from '../../models/user-data';
 })
 export class TrainingVideoComponent implements OnInit {
 
-  static readonly videos = {
-    [ VolunteerType.TRUCK_STOP_VOLUNTEER ]: [
-      {
-        type: 'vimeo',
-        id: '265816556'
-      }, {
-        type: 'vimeo',
-        id: '21392891'
-      }
-    ],
-    [ VolunteerType.EVENT_VOLUNTEER ]: {
-      type: 'youtube',
-      id: 'SxmfgDT5f4c'
-    },
-    [ VolunteerType.AMBASSADOR_VOLUNTEER ]: {
-      type: 'vimeo',
-      id: '221037855'
-    }
-  };
-
-  @Input ('video') video; // an object from the `videos` static property
+  // one of the keys in the firebase dynamic urls, under urls->videos->volunteer-training
+  @Input ('videoUrlKey') videoUrlKey: string;
   @Input ('onFinishedWatching') onFinishedWatching: Function;
 
   public modal: HTMLIonModalElement;
-  
-  public videos;
   public error: boolean = false;
-  public videoUrl;
+  public videoUrl: SafeResourceUrl;
+  public videoType: VideoType;
 
   constructor(
     public domSanitizer: DomSanitizer,
-    public userDataService: UserDataService,
-    public scriptService: ScriptService
+    public scriptService: ScriptService,
+    public miscService: MiscService,
+    public dynamicUrls: DynamicURLsService
   ) {}
 
   ngOnInit() {
-    let url = this.video.type === 'vimeo' ? 
-      'https://player.vimeo.com/video/' + this.video.id + '?title=0&portrait=0' :
-      'https://www.youtube.com/embed/' + this.video.id + '?rel=0&enablejsapi=1';
-    
-    this.videoUrl = this.domSanitizer.bypassSecurityTrustResourceUrl( url );
+    this.dynamicUrls.getURLs().then( urls => {
+      let embeddableUrl = this.miscService.getEmbeddableVideo( urls.videos['volunteer-training'][this.videoUrlKey] );
+      this.videoUrl = this.domSanitizer.bypassSecurityTrustResourceUrl( embeddableUrl.url );
+      this.videoType = embeddableUrl.type;
+    });
   }
 
+  // this function runs when the video's iframe loads
   onVideoFrameLoaded() {
-    if ( this.video.type === 'vimeo' ) {
+    if ( this.videoType === VideoType.VIMEO ) {
       // load the vimeo controller script
       let frame = document.querySelector( '#video-iframe' );
       this.scriptService.load( 'vimeo-player' ).then( data => {
@@ -64,9 +46,8 @@ export class TrainingVideoComponent implements OnInit {
         this.error = true;
       });
 
-    } else if ( this.video.type === 'youtube' ) {
-      let frame = document.querySelector( '#video-iframe' );
-      window['onYouTubeIframeAPIReady'] = () => {
+    } else if ( this.videoType === VideoType.YOUTUBE ) {
+      let onYoutubeAPIReady = () => {
         let player = new window['YT'].Player( 'video-iframe', {
           events: {
             onStateChange: ( evt ) => {
@@ -76,10 +57,16 @@ export class TrainingVideoComponent implements OnInit {
           }
         });
       };
-      this.scriptService.load( 'youtube-api' ).then( data => {} );
+      
+      if ( window['YT'] ) {
+        onYoutubeAPIReady();
+      } else {
+        window['onYouTubeIframeAPIReady'] = () => onYoutubeAPIReady();
+        this.scriptService.load( 'youtube-api' ).then( data => {} );
+      } 
 
     } else {
-      console.error( 'Unknown video type: ' + this.video.type );
+      console.error( 'Unknown video type: ' + this.videoType );
     }
   }
 

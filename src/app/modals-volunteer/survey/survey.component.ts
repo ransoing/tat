@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { TrxService, MiscService } from '../../services';
-import { ISurvey, ISurveyField, ISurveyFieldType, ISurveyPage } from '../../models/survey';
+import { ISurvey, ISurveyField, SurveyFieldType, ISurveyPage } from '../../models/survey';
 
 /**
  * This component is a modal that shows a survey.
@@ -34,7 +34,7 @@ export class SurveyComponent implements OnInit {
   @ViewChild('form') formRef: ElementRef;
 
   modal: HTMLIonModalElement;
-  ISurveyFieldType = ISurveyFieldType;
+  SurveyFieldType = SurveyFieldType;
 
   activePage = -1;
   firstPage = -1;
@@ -134,7 +134,7 @@ export class SurveyComponent implements OnInit {
   getFieldVal( field: ISurveyField ) {
     if ( this.formRef.nativeElement.elements[field.name] ) {
       let el = this.formRef.nativeElement.elements[field.name];
-      if ( field.type === ISurveyFieldType.CHOICE && field.multi ) {
+      if ( field.type === SurveyFieldType.CHOICE && field.multi ) {
         // join the values of the checked boxes into a comma-separated list
         if ( el[0] ) {
           // there are multiple checkboxes, so this behaves like an array
@@ -150,7 +150,7 @@ export class SurveyComponent implements OnInit {
         // for ion select elements, a blank field has the string value "undefined"
         return el.value === 'undefined' ? '' : el.value.trim();
       }
-    } else if ( field.type === ISurveyFieldType.DATE ) {
+    } else if ( field.type === SurveyFieldType.DATE ) {
       let el = this.formRef.nativeElement.querySelector( 'ion-datetime[name='+field.name+']' );
       if ( el && el.value ) {
         // with Date, months are 0-indexed. With ion-datetime component, they are 1-indexed

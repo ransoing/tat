@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { DynamicURLsService, MiscService } from '../../services';
+import { VideoType } from '../../models/video';
 
 @Component({
   selector: 'app-videos',
@@ -9,32 +11,56 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class VideosComponent implements OnInit {
 
   public modal: HTMLIonModalElement;
+  public VideoType = VideoType;
   
-  public videos = [
-    {
-      title: 'resources.videos.video1.title',
-      desc: 'resources.videos.video1.description',
-      type: 'vimeo',
-      id: '21392891'
-    }, {
-      title: 'resources.videos.video2.title',
-      desc: 'resources.videos.video2.description',
-      type: 'youtube',
-      id: 'Oufu2oahutA'
-    }, {
-      title: 'resources.videos.video3.title',
-      desc: 'resources.videos.video3.description',
-      type: 'vimeo',
-      id: '210270400'
-    }, {
-      title: 'resources.videos.video4.title',
-      desc: 'resources.videos.video4.description',
-      type: 'youtube',
-      id: '9LdK55ixWqE'
-    }
-  ];
+  public videos: {
+    title: string,
+    desc: string,
+    type: VideoType,
+    url: SafeResourceUrl
+  }[] = [];
 
-  constructor( public domSanitizer: DomSanitizer ) { }
+  constructor(
+    public domSanitizer: DomSanitizer,
+    public dynamicUrls: DynamicURLsService,
+    public miscService: MiscService
+  ) {
+    this.dynamicUrls.getURLs().then( urls => {
+      let resourceVideos = urls.videos.resources;
+
+      let video = miscService.getEmbeddableVideo( resourceVideos['tat-training'] );
+      this.videos.push({
+        title: 'resources.videos.video1.title',
+        desc: 'resources.videos.video1.description',
+        type: video.type,
+        url: this.domSanitizer.bypassSecurityTrustResourceUrl( video.url )
+      });
+
+      video = miscService.getEmbeddableVideo( resourceVideos['be-a-changemaker'] );
+      this.videos.push({
+        title: 'resources.videos.video2.title',
+        desc: 'resources.videos.video2.description',
+        type: video.type,
+        url: this.domSanitizer.bypassSecurityTrustResourceUrl( video.url )
+      });
+
+      video = miscService.getEmbeddableVideo( resourceVideos['law-enforcement-training'] );
+      this.videos.push({
+        title: 'resources.videos.video3.title',
+        desc: 'resources.videos.video3.description',
+        type: video.type,
+        url: this.domSanitizer.bypassSecurityTrustResourceUrl( video.url )
+      });
+
+      video = miscService.getEmbeddableVideo( resourceVideos['wallet-card-webinar'] );
+      this.videos.push({
+        title: 'resources.videos.video4.title',
+        desc: 'resources.videos.video4.description',
+        type: video.type,
+        url: this.domSanitizer.bypassSecurityTrustResourceUrl( video.url )
+      });
+    });
+  }
 
   ngOnInit() {
   }

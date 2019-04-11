@@ -7,7 +7,6 @@ import { ProxyAPIService } from './proxy-api.service';
 import { IUserData, UserDataRequestFlags } from '../models/user-data';
 
 
-// ******************* the service ******************* //
 @Injectable({
   providedIn: 'root',
 })

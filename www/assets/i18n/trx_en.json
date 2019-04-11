@@ -70,22 +70,43 @@
     "resources": "@:nav.resources"
   },
   "misc": {
-    "cancel": "Cancel",
-    "close": "Close",
-    "dataLoadError": "There was a problem while loading your volunteer account data.",
-    "dataLoadErrorWithTip": "@:misc.dataLoadError Make sure you have an internet connection and try again.",
-    "date": "Date",
+    "buttons": {
+      "cancel": "Cancel",
+      "close": "Close",
+      "no": "No",
+      "ok": "OK",
+      "retry": "Retry",
+      "submit": "Submit",
+      "yes": "Yes"
+    },
+    "chooseMultiple": "Choose as many options as you'd like.",
+    "datetime": {
+      "date": "Date",
+      "dayNames": "Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday",
+      "dayNamesShort": "Sun, Mon, Tues, Wed, Thurs, Fri, Sat",
+      "monthNames": "January, February, March, April, May, June, July, August, September, October, November, December",
+      "monthNamesShort": "Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec",
+      "time": "Time"
+    },
     "error": "Error",
-    "logoutMessage": "You have been logged out.",
-    "no": "No",
-    "ok": "OK",
-    "pleaseWait": "Please wait...",
-    "retry": "Retry",
+    "location": {
+      "address": "Address",
+      "city": "City",
+      "state": "State",
+      "zip": "Zip"
+    },
+    "messages": {
+      "connectionTip": "Make sure you have an internet connection and try again.",
+      "dataLoadError": "There was a problem while loading your volunteer account data.",
+      "dataLoadErrorWithTip": "@:misc.messages.dataLoadError @:misc.messages.connectionTip",
+      "logoutMessage": "You have been logged out.",
+      "pleaseWait": "Please wait...",
+      "requestError": "There was an error making the request. @:misc.messages.connectionTip"
+    },
+    "other": "Other (please specify)",
+    "required": "Required",
     "setLanguage": "Set language",
-    "submit": "Submit",
-    "success": "Success",
-    "time": "Time",
-    "yes": "Yes"
+    "success": "Success"
   },
   "nav": {
     "home": "Home",
@@ -243,10 +264,22 @@
         "title": "@:volunteer.settings.editAccount"
       },
       "feedback": {
+        "labels": {
+          "bestPart": "What was the best part of your experience?",
+          "giveAnonPermission": "Do you give permission for TAT to anonymously quote you on social media or in reports?",
+          "giveNamePermission": "Do you give permission for TAT to use your name, organization, and quotes on social media and in reports?",
+          "improvements": "What could have been improved about your experience?",
+          "whatAdvice": "What advice would you give another volunteer?"
+        },
         "submitSuccess": "@:volunteer.forms.successFeedback",
         "title": "@:volunteer.btns.testimonial"
       },
       "hoursLog": {
+        "labels": {
+          "date": "Date of task",
+          "describe": "Please describe the volunteer task you performed. Include driving and training time.",
+          "numHours": "Number of hours spent on task"
+        },
         "submitSuccess": "Thank you for your time!",
         "title": "@:volunteer.hoursLog.addEntry"
       },
@@ -256,7 +289,26 @@
         "title": "@:volunteer.btns.postEventReport"
       },
       "postOutreach": {
-        "select": "Which location did you volunteer at?",
+        "labels": {
+          "cdlSchool": {
+            "passInfo": "CDL instructor plans to pass on TAT information to other faculty",
+            "using": "CDL instructor will begin using TAT training with students"
+          },
+          "followUp": "Do you plan to follow up with your contact?",
+          "followUpDate": "Follow-up date",
+          "followUpWhen": "When do you plan to do the follow-up?",
+          "truckStop": {
+            "distributing": "Truck stop is now distributing TAT materials at their location",
+            "hostOutreach": "Truck stop is open to having an outreach at their location to speak with drivers in an appropriate format",
+            "inPersonTraining": "Truck stop has asked for an in-person training for all employees",
+            "training": "Truck stop will now train employees with TAT materials"
+          },
+          "truckingCompany": {
+            "showDrivers": "Trucking company plans to show their drivers the TAT training video and hand out wallet cards."
+          },
+          "whichAccomplishments": "Which of the following were you able to accomplish? Please select all that apply:"
+        },
+        "select": "Which location did you visit?",
         "submitSuccess": "@:volunteer.forms.successReport",
         "title": "@:volunteer.btns.postOutreachReport"
       },
@@ -265,16 +317,44 @@
         "title": "@:volunteer.btns.preEventSurvey"
       },
       "preOutreach": {
+        "labels": {
+          "areYouReady": "Are you ready to receive TAT materials?",
+          "haveYouContacted": "Have you contacted the general manager (or other contact) to make an appointment?",
+          "locationName": "Location name",
+          "locationType": "Location type",
+          "locationTypes": {
+            "cdlSchool": "CDL School",
+            "truckStop": "Truck Stop",
+            "truckingCompany": "Trucking Company"
+          },
+          "whatAddress": "What is a good mailing address to send the materials to?",
+          "whatLocation": "What location do you plan on visiting?"
+        },
         "submitSuccess": "@:volunteer.forms.successSurvey",
         "title": "@:volunteer.btns.preOutreachSurvey"
       },
       "signup": {
         "accountAlreadyExists": "It seems you already have a volunteer user account. For assistance, contact tat.truckers@gmail.com.",
-        "email": "Email address",
-        "intro": "Thank you for volunteering! Before you begin, please tell us a bit about yourself.",
         "invalidCode": "Invalid registration code.",
-        "phone": "Phone number",
-        "registrationCode": "Registration code",
+        "labels": {
+          "coordinatorName": "Team coordinator's name",
+          "email": "Email address",
+          "firstName": "First name",
+          "intro": "Thank you for volunteering! Before you begin, please tell us a bit about yourself.",
+          "isCoordinator": "Are you the team coordinator?",
+          "lastName": "Last name",
+          "partOfTeam": "Are you part of a volunteer team?",
+          "phone": "Phone number",
+          "registrationCode": "Registration code",
+          "volunteerType": "Volunteer type",
+          "volunteerTypes": {
+            "ambassador": "TAT Ambassador",
+            "event": "Freedom Drivers Volunteer",
+            "truckStop": "Truck Stop Volunteer"
+          },
+          "whatAddress": "What is your mailing address?",
+          "whatName": "What is the name of the team coordinator?"
+        },
         "submitSuccess": "Thank you for signing up!",
         "title": "Create new account"
       },
@@ -282,6 +362,11 @@
       "successReport": "Thank you for completing this report.",
       "successSurvey": "Thank you for completing this survey.",
       "trainingFeedback": {
+        "labels": {
+          "confidentInPresenting": "Do you feel confident in presenting the TAT PowerPoint presentation?",
+          "equippedForOutreach": "After watching the training video, do you feel equipped for your outreach?",
+          "whatQuestions": "What questions do you have for TAT staff?"
+        },
         "submitSuccess": "@:volunteer.forms.successFeedback",
         "title": "@:volunteer.btns.trainingFeedback"
       }

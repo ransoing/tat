@@ -395,6 +395,7 @@ export class SurveyService {
           isRequired: true
         }],
         onContinue: vals => {
+          salesforceId = undefined;
           // search for whether there is an existing salesforce Contact that matches the phone/email
           return this.proxyAPI.get( 'contactSearch?email=' + encodeURIComponent(vals.email) + '&phone=' + encodeURIComponent(vals.phone) )
           .then( response => {

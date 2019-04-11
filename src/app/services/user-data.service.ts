@@ -17,6 +17,7 @@ export class UserDataService {
   public firebaseUser: User;
   public loadError = false;
   public newUserDetected: Subject<null> = new Subject();
+  public fetchingUserData: boolean = false;
 
   /*
   Possibly useful properties:
@@ -26,8 +27,6 @@ export class UserDataService {
   firebaseUser.refreshToken
   firebaseUser.uid
   */
-
-  private fetchingUserData: boolean = false;
 
   constructor(
     private storage: Storage,

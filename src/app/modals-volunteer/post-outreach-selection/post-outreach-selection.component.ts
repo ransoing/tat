@@ -1,7 +1,7 @@
 import { Component, AfterViewInit } from '@angular/core';
-import { UserDataService, ModalService, SurveyService } from '../../services';
+import { UserDataService, ModalService, SurveyService, MiscService } from '../../services';
 import { SurveyComponent } from '../survey/survey.component';
-import { IUnfinishedOutreachTarget, UserDataRequestFlags } from '../../models/user-data';
+import { IUnfinishedActivity, UserDataRequestFlags } from '../../models/user-data';
 
 @Component({
   templateUrl: './post-outreach-selection.component.html',
@@ -14,17 +14,20 @@ export class PostOutreachSelectionComponent implements AfterViewInit {
     public userDataService: UserDataService,
     public modalService: ModalService,
     private surveys: SurveyService,
+    private miscService: MiscService
   ) {}
 
-  onTargetClick( outreachTarget: IUnfinishedOutreachTarget ) {
+  openPostOutreachReport( outreachTarget: IUnfinishedActivity ) {
     // open the post outreach survey, passing in data from the selected target
     this.modalService.open( SurveyComponent, {
       titleTranslationKey: 'volunteer.forms.postOutreach.title',
       successTranslationKey: 'volunteer.forms.postOutreach.submitSuccess',
-      surveyUrl: this.surveys.postOutreachSurvey( outreachTarget ),
-      onSuccess: () => {
-        // update just the unfinished outreach targets in the user data
-        this.userDataService.fetchUserData( true, UserDataRequestFlags.UNFINISHED_OUTREACH_TARGETS );
+      survey: this.surveys.postOutreachSurvey( outreachTarget ),
+      onSuccess: async () => {
+        // update just the unfinished activities in the user data
+        await this.userDataService.fetchUserData( true, UserDataRequestFlags.UNFINISHED_ACTIVITIES );
+        // check if there is a scheduled notification for this unfinished activity, and cancel it
+        this.miscService.cancelNotificationIf( notification => notification.data.salesforceId === outreachTarget.id );
       }
     });
   }

@@ -60,8 +60,8 @@ export class VolunteerPage {
       successTranslationKey: 'volunteer.forms.preOutreach.submitSuccess',
       survey: this.surveys.preOutreachSurvey(),
       onSuccess: () => {
-        // update just the unfinished outreach targets in the user data
-        this.userDataService.fetchUserData( true, UserDataRequestFlags.UNFINISHED_OUTREACH_TARGETS );
+        // update just the unfinished activities in the user data
+        this.userDataService.fetchUserData( true, UserDataRequestFlags.UNFINISHED_ACTIVITIES );
       }
     });
   }

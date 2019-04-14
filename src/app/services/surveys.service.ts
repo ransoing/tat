@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { TrxService } from './trx.service';
 import { UserDataService } from './user-data.service';
 import { ISurvey, SurveyFieldType } from '../models/survey';
 import { ProxyAPIService } from './proxy-api.service';
 import { MiscService } from './misc.service';
-import { IUnfinishedOutreachTarget, OutreachLocationType, VolunteerType } from '../models/user-data';
+import { IUnfinishedActivity, OutreachLocationType, VolunteerType } from '../models/user-data';
 
 // contains objects defining all surveys.
 
@@ -15,7 +14,6 @@ export class SurveyService {
 
   constructor(
     private userDataService: UserDataService,
-    private trx: TrxService,
     private proxyAPI: ProxyAPIService,
     private miscService: MiscService
   ) {}
@@ -169,7 +167,7 @@ export class SurveyService {
   }
 
 
-  postOutreachSurvey( outreachTarget: IUnfinishedOutreachTarget ): ISurvey {
+  postOutreachSurvey( outreachTarget: IUnfinishedActivity ): ISurvey {
     return {
       pages: [{
         // page 1: truck stop

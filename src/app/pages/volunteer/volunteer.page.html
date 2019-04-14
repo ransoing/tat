@@ -80,7 +80,7 @@
       image="volunteer.post-outreach-report.jpg"
       (click)="modalService.open(PostOutreachSelectionComponent)"
       [required]="true"
-      [disabled]="!userDataService.data.hasCompletedTrainingFeedback || userDataService.data.unfinishedOutreachTargets.length === 0">
+      [disabled]="!userDataService.data.hasCompletedTrainingFeedback || userDataService.data.unfinishedActivities.length === 0">
         {{ 'volunteer.btns.postOutreachReport' | translate }}
     </image-button>
     
@@ -89,7 +89,7 @@
       image="volunteer.post-outreach-report.jpg"
       (click)="modalService.open(PostEventSelectionComponent)"
       [required]="true"
-      [disabled]="!userDataService.data.hasCompletedTrainingFeedback || userDataService.data.unfinishedEvents.length === 0">
+      [disabled]="!userDataService.data.hasCompletedTrainingFeedback || userDataService.data.unfinishedActivities.length === 0">
         {{ 'volunteer.btns.postEventReport' | translate }}
     </image-button>
 

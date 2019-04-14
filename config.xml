@@ -48,6 +48,7 @@
         <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
             <application android:icon="@mipmap/ic_launcher" android:roundIcon="@mipmap/ic_launcher_round" />
         </edit-config>
+        <resource-file src="resources/android/notification-icon.png" target="app/src/main/res/mipmap-hdpi/n_icon.png" />
         <resource-file src="resources/android/adaptiveicon/values/ic_launcher_background.xml" target="app/src/main/res/values/ic_launcher_background.xml" />
         <resource-file src="resources/android/adaptiveicon/drawable-v24/ic_launcher_foreground.xml" target="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" />
         <resource-file src="resources/android/adaptiveicon/mipmap-anydpi-v26/ic_launcher.xml" target="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" />

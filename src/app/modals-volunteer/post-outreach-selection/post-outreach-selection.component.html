@@ -8,8 +8,8 @@
   <div *ngIf="userDataService.data">
     <p>{{ 'volunteer.forms.postOutreach.select' | translate }}</p>
 
-    <ion-list *ngIf="userDataService.data.unfinishedOutreachTargets.length > 0">
-      <ion-item *ngFor="let target of userDataService.data.unfinishedOutreachTargets" (click)="onTargetClick(target)" class="has-border">
+    <ion-list *ngIf="userDataService.data.unfinishedActivities.length > 0">
+      <ion-item *ngFor="let target of userDataService.data.unfinishedActivities" (click)="openPostOutreachReport(target)" class="has-border">
         <ion-label>
           <b>{{target.name}}</b><br>
           <small>

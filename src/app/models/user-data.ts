@@ -15,7 +15,7 @@ export enum OutreachLocationType {
 export enum UserDataRequestFlags {
   BASIC_USER_DATA = 1,
   HOURS_LOGS = 2,
-  UNFINISHED_OUTREACH_TARGETS = 4,
+  UNFINISHED_ACTIVITIES = 4,
   ALL = 7
 }
 
@@ -25,21 +25,22 @@ export interface IHoursLog {
   numHours: number
 }
 
-export interface IPostOutreachReport {
+export interface IPostActivityReport {
   followUpDate: Date | null
 }
 
 // If the user filled out a pre-outreach or pre-event survey, there will be an "incomplete post-report"
 // until they submit the post-report
-export interface IUnfinishedOutreachTarget {
+export interface IUnfinishedActivity {
   id: string, // ID of the object in salesforce
-  name: string, // name of the location
-  type: OutreachLocationType,
-  address: string, // street address
-  city: string,
-  state: string,
-  zip: string,
-  postReports: IPostOutreachReport[]
+  name: string, // name of the location or event that was volunteered at
+  type: OutreachLocationType | 'EVENT',
+  address?: string, // street address of location or event
+  city?: string,
+  state?: string,
+  zip?: string,
+  date?: Date, // the date of the event, if it was an event
+  postReports: IPostActivityReport[]
 }
 
 export interface IUserData {
@@ -55,6 +56,5 @@ export interface IUserData {
   state?: string,
   zip?: string,
   hoursLogs?: IHoursLog[],
-  unfinishedOutreachTargets?: IUnfinishedOutreachTarget[],
-  unfinishedEvents?: any // @@ fill this out
+  unfinishedActivities?: IUnfinishedActivity[]
 }

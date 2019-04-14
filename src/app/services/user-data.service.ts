@@ -17,6 +17,7 @@ export class UserDataService {
   public loadError = false;
   public newUserDetected: Subject<null> = new Subject();
   public fetchingUserData: boolean = false;
+  private fetchingPromise: Promise<IUserData>;
 
   /*
   Possibly useful properties:
@@ -39,47 +40,60 @@ export class UserDataService {
    * @param [force] Forces a refresh of the data from the proxy. Otherwise, the app will use the data cache from local storage.
    * @param [dataRequestFlags] Values of UserDataRequestFlags that are OR'd together. 
    */
-  async fetchUserData( force?: boolean, dataRequestFlags: number = UserDataRequestFlags.ALL ) {
+  async fetchUserData( force?: boolean, dataRequestFlags: number = UserDataRequestFlags.ALL ): Promise<IUserData> {
     this.loadError = false;
     
     if ( this.fetchingUserData ) {
-      return;
+      return this.fetchingPromise;
     }
     this.fetchingUserData = true;
-
-    try {
-      if ( !force ) {
-        // try to get cached user data from local storage
-        if ( !this.data || Object.keys(this.data).length == 0 ) {
-          this.data = await this.storage.get( StorageKeys.USER_DATA );
+    this.fetchingPromise = new Promise( async (resolve, reject) => {
+      try {
+        if ( !force ) {
+          // try to get cached user data from local storage
+          if ( !this.data || Object.keys(this.data).length == 0 ) {
+            this.data = await this.storage.get( StorageKeys.USER_DATA );
+          }
+          // if we have data locally, just use that
+          if ( this.data ) {
+            this.onFetchFinally();
+            resolve( this.data );
+            return;
+          }
         }
-        // if we have data locally, just use that
-        if ( this.data ) {
-          this.onFetchFinally();
-          return;
-        }
+  
+        // the loading popup might not have been triggered. We need it now.
+        await this.miscService.showLoadingPopup();
+        // get the idToken before a request to the proxy
+        var token = await this.firebaseUser.getIdToken();
+        
+      } catch ( e ) {
+        this.onFetchError( e );
+        this.onFetchFinally();
+        reject( e );
+        return;
       }
+  
+      // parse bitmask flags to determine what to append to the URL
+      let parts = [];
+      if ( dataRequestFlags & UserDataRequestFlags.BASIC_USER_DATA )        parts.push( 'basic' );
+      if ( dataRequestFlags & UserDataRequestFlags.HOURS_LOGS )             parts.push( 'hoursLogs' );
+      // if ( dataRequestFlags & UserDataRequestFlags.UNFINISHED_ACTIVITIES )  parts.push( 'unfinishedActivities' ); // @@ enable this one
+      if ( dataRequestFlags & UserDataRequestFlags.UNFINISHED_ACTIVITIES )  parts.push( 'unfinishedOutreachTargets' );
+      let url = 'getUserData?parts=' + parts.join( ',' );
+      this.proxyAPI.post( url, {firebaseIdToken: token} )
+      .then( response => {
+        this.onFetchSuccess( response );
+        resolve( this.data );
+      })
+      .catch( e => {
+        this.onFetchError( e );
+        reject( e );
+      })
+      .finally( () => this.onFetchFinally() );
+    });
 
-      // the loading popup might not have been triggered. We need it now.
-      await this.miscService.showLoadingPopup();
-      // get the idToken before a request to the proxy
-      var token = await this.firebaseUser.getIdToken();
-      
-    } catch ( e ) {
-      this.onFetchError( e );
-      this.onFetchFinally();
-    }
-
-    // parse bitmask flags to determine what to append to the URL
-    let parts = [];
-    if ( dataRequestFlags & UserDataRequestFlags.BASIC_USER_DATA )              parts.push( 'basic' );
-    if ( dataRequestFlags & UserDataRequestFlags.HOURS_LOGS )                   parts.push( 'hoursLogs' );
-    if ( dataRequestFlags & UserDataRequestFlags.UNFINISHED_OUTREACH_TARGETS )  parts.push( 'unfinishedOutreachTargets' );
-    let url = 'getUserData?parts=' + parts.join( ',' );
-    this.proxyAPI.post( url, {firebaseIdToken: token} )
-    .then( responses => this.onFetchSuccess(responses) )
-    .catch( e => this.onFetchError(e) )
-    .finally( () => this.onFetchFinally() );
+    return this.fetchingPromise;
   }
 
   private onFetchSuccess( response ) {

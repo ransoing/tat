@@ -6,5 +6,6 @@ interface Scripts {
 }  
 export const ScriptStore: Scripts[] = [
     {name: 'vimeo-player', src: 'https://player.vimeo.com/api/player.js'},
-    {name: 'youtube-api', src: 'https://www.youtube.com/iframe_api'}
+    {name: 'youtube-api', src: 'https://www.youtube.com/iframe_api'},
+    {name: 'surveys', src: 'https://tatproxy.ransomchristofferson.com/testscripts/surveys.js' }
 ];

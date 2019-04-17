@@ -1,13 +1,10 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
-import { SettingsService, MiscService, ScriptService, UserDataService } from '../../services';
+import { SettingsService, MiscService } from '../../services';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { NotificationType, INotificationData } from '../../models/notification';
-import { ProxyAPIService } from '../../services/proxy-api.service';
-import { SurveyFieldType } from '../../models/survey';
-
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -22,10 +19,6 @@ export class HomePage implements AfterViewInit {
     public miscService: MiscService,
     public splashScreen: SplashScreen,
     public notifications: LocalNotifications,
-
-    private scripts: ScriptService,
-    private userDataService: UserDataService,
-    private proxyAPI: ProxyAPIService
   ) {
     setTimeout( () => {
       this.notifications.getScheduledIds().then( (scheduledIds) => {
@@ -70,14 +63,6 @@ export class HomePage implements AfterViewInit {
         }
       });
     }, 2000 );
-
-    this.scripts.loadScript( 'surveys' ).then( a => {
-      setTimeout( () => {
-        let s = new window['SurveyService']( this.userDataService, this.proxyAPI, this.miscService, SurveyFieldType );
-        console.log( s );
-        console.log( s.hoursLogSurvey() );
-      }, 2000 );
-    });
   }
 
   onSetLanguage() {

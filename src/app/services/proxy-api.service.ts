@@ -15,16 +15,19 @@ import { MiscService } from './misc.service';
  * The user authenticates with Firebase inside the app, and the user's email and auth token
  * are sent to the proxy. If the credentials are correct, then the proxy filters the data from
  * SF so that user can retrieve only the data about himself.
- * 
- * The proxy can only get data -- it can't make changes to the salesforce database.
 */
 
+// define a partial interface for code hinting in external packages/modules
+export interface IProxyAPIService {
+  get( urlSegment: string ): Promise<any>,
+  post( urlSegment: string, payload: any ): Promise<any>
+}
 
 // ******************* the service ******************* //
 @Injectable({
   providedIn: 'root',
 })
-export class ProxyAPIService {
+export class ProxyAPIService implements IProxyAPIService {
 
   constructor(
     private http: HttpClient,

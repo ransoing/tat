@@ -6,11 +6,17 @@ import { StorageKeys, MiscService } from './misc.service';
 import { ProxyAPIService } from './proxy-api.service';
 import { IUserData, UserDataRequestFlags } from '../models/user-data';
 
+// define a partial interface for code hinting in external packages/modules
+export interface IUserDataService {
+  firebaseUser: User,
+  data: IUserData
+}
+
 
 @Injectable({
   providedIn: 'root',
 })
-export class UserDataService {
+export class UserDataService implements IUserDataService {
 
   public data: IUserData = null; // the data that comes from salesforce
   public firebaseUser: User;

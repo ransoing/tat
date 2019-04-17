@@ -10,10 +10,16 @@ export enum StorageKeys {
   USER_DATA = 'user_data'
 }
 
+// define a partial interface for code hinting in external packages/modules
+export interface IMiscService {
+  dateToLocalYYYYMMDD( date: Date | string ): string,
+  showErrorPopup( translationKey?: string ): Promise<any>
+}
+
 @Injectable({
   providedIn: 'root',
 })
-export class MiscService {
+export class MiscService implements IMiscService {
 
   isLoggedIn: boolean = false;
   loginRedirectUrl: string;

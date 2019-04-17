@@ -1,16 +1,28 @@
-// only import things from models. If I imported things from services, then tsc would try to bundle
-// all of that together with this. It would be nice for typechecking, but oh well.
+// only import models and interfaces. If I imported services, then tsc and webpack would try to bundle
+// all of those and their dependencies together with this, and the resulting file would be large.
+// Interfaces are not included in the compiled js -- importing them only helps with code hinting and
+// compile-time error checking.
 import { ISurvey, SurveyFieldType } from '../src/app/models/survey';
 import { IUnfinishedActivity, OutreachLocationType, VolunteerType } from '../src/app/models/user-data';
+import { IUserDataService } from '../src/app/services/user-data.service';
+import { IProxyAPIService } from '../src/app/services/proxy-api.service';
+import { IMiscService } from '../src/app/services/misc.service';
+
+// To compile this down to something that can be dynamically imported...
+// ../node_modules/typescript/bin/tsc surveys.external.service.ts --target ES5 --lib es2018,dom,es5,ScriptHost --outDir build/ --experimentalDecorators
+// ../node_modules/webpack/bin/webpack.js
+// Then delete the `build` folder
+// And output a message that the resource is in the `dist` folder
+
 
 // contains objects defining all surveys.
 
 export class SurveyService {
 
   constructor(
-    private userDataService: any,
-    private proxyAPI: any,
-    private miscService: any
+    private userDataService: IUserDataService,
+    private proxyAPI: IProxyAPIService,
+    private miscService: IMiscService
   ) {}
 
   private _yesNoOptions = [

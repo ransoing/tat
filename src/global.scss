@@ -197,6 +197,11 @@ ion-alert.select-options {
     }
 }
 
+ion-picker-column .picker-opts .picker-opt {
+    // fix an issue in the time picker where "pm" is cut off as "p..."
+    text-overflow: clip;
+}
+
 @media only screen and (min-height: 768px) and (min-width: 768px) {
     .modal-large .modal-wrapper {
         width: 100%;

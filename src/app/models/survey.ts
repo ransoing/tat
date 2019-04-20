@@ -7,7 +7,8 @@ export enum SurveyFieldType {
   SELECT = 'select',// select
   CHOICE = 'choice',// single- or multi-select, displayed as large buttons to tap. Usually the only field on the page.
   TEXTAREA = 'textarea', // usually the only field on the page.
-  DATE = 'date'     // datepicker popup
+  DATE = 'date',     // datepicker popup
+  TIME = 'time'      // timepicker popup
 }
   
 export interface ISurveyField {
@@ -16,6 +17,7 @@ export interface ISurveyField {
   labelTranslationKey?: string,
   defaultValue?: string,
   isRequired?: boolean,
+  helperTranslationKey?: string, // some helper text, for TEXTAREA
   options?: {value: string, labelTranslationKey: string}[], // for 'SELECT' or 'CHOICE' input types
   multi?: boolean // for 'CHOICE' input type. allows selecting multiple options.
 }
@@ -35,5 +37,6 @@ export interface ISurveyPage {
 export interface ISurvey {
   // if onComplete resolves, then the modal closes. If it rejects, the modal does not close.
   onSubmit( formVals: any ): Promise<any>,
-  pages: ISurveyPage[]
+  pages: ISurveyPage[],
+  submitButtonTranslationKey?: string
 }

@@ -27,6 +27,7 @@
             <!-- textarea -->
             <ng-container *ngIf="field.type === SurveyFieldType.TEXTAREA">
               <ion-textarea [name]="field.name" color="dark" [placeholder]="field.labelTranslationKey | translate">{{field.defaultValue}}</ion-textarea>
+              <p *ngIf="field.helperTranslationKey" class="helper">{{ field.helperTranslationKey | translate }}</p>
             </ng-container>
             <!-- select -->
             <ion-item *ngIf="field.type === SurveyFieldType.SELECT">
@@ -67,6 +68,16 @@
                 [attr.day-short-names]="'misc.datetime.dayNamesShort' | translate">
               </ion-datetime>
             </ion-item>
+            <!-- time -->
+            <ion-item *ngIf="field.type === SurveyFieldType.TIME">
+              <ion-label color="dark" position="floating">{{ field.labelTranslationKey | translate }}</ion-label>
+              <ion-datetime
+                [attr.name]="field.name"
+                [cancelText]="'misc.buttons.cancel' | translate"
+                [doneText]="'misc.buttons.ok' | translate"
+                displayFormat="h:mm a">
+              </ion-datetime>
+            </ion-item>
           </div>
         </div>
       </ng-container>
@@ -85,7 +96,7 @@
         <chevron-svg direction="right"></chevron-svg>
       </div>
       <div *ngIf="isLastPage()" class="nav-button nav-right nav-submit" [class.disabled]="!canContinue()" (click)="finish()">
-        {{ 'misc.buttons.submit' | translate }}
+        {{ (survey.submitButtonTranslationKey || 'misc.buttons.submit') | translate }}
       </div>
     </div>
   </div>

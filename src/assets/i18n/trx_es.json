@@ -15,7 +15,7 @@
     },
     "emailButton": "Envíe su reporte por correo electrónico",
     "intro": "Para que las autoridades policíacas puedan abrir una investigación con base en la información que usted les dé, necesitarán información clave. Anote lo que sepa sobre el incidente.",
-    "notes": "<p>Si tomó fotos, muéstreselas a las autoridades policíacas.</p><p>El siguiente botón abrirá su programa de correo electrónico.</p>",
+    "notes": "Si tomó fotos, muéstreselas a las autoridades policíacas.",
     "otherPeople": {
       "label": "Descripción de las otras personas",
       "placeholder": "Describa qué los hace sospechosos y anote su estatura, peso, raza, color de pelo, edad, etc."
@@ -87,7 +87,6 @@
       "time": "Hora"
     },
     "error": "Error",
-    "location": {},
     "messages": {
       "connectionTip": "Asegúrate de tener conexión a Internet y trata de nuevo.",
       "dataLoadError": "Hubo un problema al cargar tu cuenta de voluntario.",
@@ -250,12 +249,10 @@
         "title": "@:volunteer.settings.editAccount"
       },
       "feedback": {
-        "labels": {},
         "submitSuccess": "@:volunteer.forms.successFeedback",
         "title": "@:volunteer.btns.testimonial"
       },
       "hoursLog": {
-        "labels": {},
         "title": "@:volunteer.hoursLog.addEntry"
       },
       "postEvent": {
@@ -263,11 +260,6 @@
         "title": "@:volunteer.btns.postEventReport"
       },
       "postOutreach": {
-        "labels": {
-          "cdlSchool": {},
-          "truckStop": {},
-          "truckingCompany": {}
-        },
         "submitSuccess": "@:volunteer.forms.successReport",
         "title": "@:volunteer.btns.postOutreachReport"
       },
@@ -276,19 +268,10 @@
         "title": "@:volunteer.btns.preEventSurvey"
       },
       "preOutreach": {
-        "labels": {
-          "locationTypes": {}
-        },
         "submitSuccess": "@:volunteer.forms.successSurvey",
         "title": "@:volunteer.btns.preOutreachSurvey"
       },
-      "signup": {
-        "labels": {
-          "volunteerTypes": {}
-        }
-      },
       "trainingFeedback": {
-        "labels": {},
         "submitSuccess": "@:volunteer.forms.successFeedback",
         "title": "@:volunteer.btns.trainingFeedback"
       }

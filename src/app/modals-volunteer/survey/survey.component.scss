@@ -20,19 +20,25 @@
     transition: margin-left 0.2s;
 
     .page {
-        // vertically align items
+        // vertically align items... not by using justify-content,
+        // but by using margin-top/bottom: auto, because centering
+        // with justify-content breaks stuff when content overflows
+        overflow: auto;
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
         flex: 1 0 auto;
 
         width: 100%;
         margin-right: 16px;
+        padding: 10px 0;
 
         > * {
             width: 100%;
             max-width: 500px;
+
+            &:first-child { margin-top: auto !important }
+            &:last-child  { margin-bottom: auto !important }
         }
 
         p {
@@ -54,6 +60,12 @@
             padding: 0;
             margin-bottom: 4px;
             position: relative;
+
+            .helper {
+                color: black;
+                font-size: 80%;
+                padding: 0 1em;
+            }
 
             &.input-type-select { padding-left: 0 }
 

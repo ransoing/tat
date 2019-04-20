@@ -21,49 +21,49 @@ export class HomePage implements AfterViewInit {
     public splashScreen: SplashScreen,
     public notifications: LocalNotifications
   ) {
-    setTimeout( () => {
-      this.notifications.getScheduledIds().then( (scheduledIds) => {
-        if ( scheduledIds.length === 0 ) {
-          // schedule a notification
-          let d = new Date();
-          d.setSeconds( d.getSeconds() + 20 );
-          let d2 = new Date();
-          d2.setSeconds( d2.getSeconds() + 22 );
-          // the id of the notification is a mirror of its data
-          let data: INotificationData = {
-            type: NotificationType.UNFINISHED_ACTIVITY,
-            salesforceId: 'blabla'
-          };
-          this.notifications.schedule([{
-            id: Math.round( Math.random() * 99999999 ),
-            data: data,
-            title: 'Hello Elanora',
-            text: 'How did your outreach to ___ go? Fill out this report.',
-            trigger: { at: d }
-          }, {
-            id: Math.round( Math.random() * 99999999 ),
-            data: {
-              type: NotificationType.UNFINISHED_ACTIVITY,
-              salesforceId: 'h8hoh'
-            },
-            title: 'Elanora Elanora Elanora',
-            text: 'Don\'t eat my beard!',
-            trigger: { at: d2 }
-          }]);
-          console.log( '@@@ notifications scheduled' ); 
-        } else {
-          // if there is a notification scheduled
-          // for all scheduledIds, search for which one is 'blabla' and cancel it
-          scheduledIds.forEach( async id => {
-            const notification = await this.notifications.get( id );
-            const data = typeof notification.data === 'string' ? JSON.parse( notification.data ) : notification.data;
-            if ( data.salesforceId === 'blabla' ) {
-              this.notifications.cancel( id );
-            }
-          });
-        }
-      });
-    }, 2000 );
+    // setTimeout( () => {
+    //   this.notifications.getScheduledIds().then( (scheduledIds) => {
+    //     if ( scheduledIds.length === 0 ) {
+    //       // schedule a notification
+    //       let d = new Date();
+    //       d.setSeconds( d.getSeconds() + 20 );
+    //       let d2 = new Date();
+    //       d2.setSeconds( d2.getSeconds() + 22 );
+    //       // the id of the notification is a mirror of its data
+    //       let data: INotificationData = {
+    //         type: NotificationType.UNFINISHED_ACTIVITY,
+    //         salesforceId: 'blabla'
+    //       };
+    //       this.notifications.schedule([{
+    //         id: Math.round( Math.random() * 99999999 ),
+    //         data: data,
+    //         title: 'Hello Elanora',
+    //         text: 'How did your outreach to ___ go? Fill out this report.',
+    //         trigger: { at: d }
+    //       }, {
+    //         id: Math.round( Math.random() * 99999999 ),
+    //         data: {
+    //           type: NotificationType.UNFINISHED_ACTIVITY,
+    //           salesforceId: 'h8hoh'
+    //         },
+    //         title: 'Elanora Elanora Elanora',
+    //         text: 'Don\'t eat my beard!',
+    //         trigger: { at: d2 }
+    //       }]);
+    //       console.log( '@@@ notifications scheduled' ); 
+    //     } else {
+    //       // if there is a notification scheduled
+    //       // for all scheduledIds, search for which one is 'blabla' and cancel it
+    //       scheduledIds.forEach( async id => {
+    //         const notification = await this.notifications.get( id );
+    //         const data = typeof notification.data === 'string' ? JSON.parse( notification.data ) : notification.data;
+    //         if ( data.salesforceId === 'blabla' ) {
+    //           this.notifications.cancel( id );
+    //         }
+    //       });
+    //     }
+    //   });
+    // }, 2000 );
   }
 
   onSetLanguage() {

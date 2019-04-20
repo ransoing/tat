@@ -66,7 +66,7 @@ import { AppComponent } from './app.component';
 import { ModalGuard, AuthGuard } from './guards';
 import { CommonComponentsModule } from './components/common-components.module';
 import {
-  PlacesComponent, EmailReportComponent, WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
+  PlacesComponent, WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
   AboutTatComponent, HumanTraffickingLawsComponent,
   CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent,
 } from './modals';
@@ -78,14 +78,14 @@ import {
 @NgModule({
   declarations: [
     AppComponent,
-    PlacesComponent, EmailReportComponent, WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
+    PlacesComponent, WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
     AboutTatComponent, HumanTraffickingLawsComponent,
     CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent,
     VolunteerSettingsComponent, VolunteerResourcesComponent, SurveyComponent,
     HoursLogComponent, TrainingVideoComponent, LoginComponent, PostOutreachSelectionComponent
   ],
   entryComponents: [
-    PlacesComponent, EmailReportComponent, WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
+    PlacesComponent, WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
     AboutTatComponent, HumanTraffickingLawsComponent,
     CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent,
     VolunteerSettingsComponent, VolunteerResourcesComponent, SurveyComponent,

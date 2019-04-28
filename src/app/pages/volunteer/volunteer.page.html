@@ -4,7 +4,7 @@
 
 <ion-content padding>
   <h1>{{ 'volunteer.title' | translate }}</h1>
-  <ion-icon *ngIf="userDataService.data" name="md-menu" class="modal-close-btn" (click)="modalService.open(VolunteerSettingsComponent)"></ion-icon>
+  <ion-icon *ngIf="userDataService.data" name="md-menu" class="modal-close-btn" slot="fixed" (click)="modalService.open(VolunteerSettingsComponent)"></ion-icon>
 
   <div *ngIf="!userDataService.fetchingUserData && !alertIsVisible && !loadingIsVisible && (userDataService.loadError || !userDataService.data && !modalService.getActiveModal())">
     <p>{{ 'misc.messages.dataLoadError' | translate }}</p>

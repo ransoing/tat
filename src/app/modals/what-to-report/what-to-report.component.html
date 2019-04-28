@@ -4,7 +4,7 @@
 
 <ion-content fullscreen padding>
   <h1>{{ 'whatToReport.title' | translate }}</h1>
-  <ion-icon name="md-close" class="modal-close-btn" (click)="modal.dismiss()"></ion-icon>
+  <ion-icon name="md-close" class="modal-close-btn" slot="fixed" (click)="modal.dismiss()"></ion-icon>
 
   <p>{{ 'whatToReport.intro' | translate }}</p>
   

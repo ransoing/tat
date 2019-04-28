@@ -4,7 +4,7 @@
 <ion-content fullscreen padding>
   <h1>{{ 'resources.books.title' | translate }}</h1>
   <h5 class="subtitle">{{ 'resources.books.subtitle' | translate }}</h5>
-  <ion-icon name="md-close" class="modal-close-btn" (click)="modal.dismiss()"></ion-icon>
+  <ion-icon name="md-close" class="modal-close-btn" slot="fixed" (click)="modal.dismiss()"></ion-icon>
 
   <div class="book-list" padding-bottom>
     <div *ngFor="let book of books">

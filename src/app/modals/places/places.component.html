@@ -4,7 +4,7 @@
 
 <ion-content fullscreen padding>
   <h1>Choose your location</h1>
-  <ion-icon name="md-close" class="modal-close-btn" (click)="modal.dismiss()"></ion-icon>
+  <ion-icon name="md-close" class="modal-close-btn" slot="fixed" (click)="modal.dismiss()"></ion-icon>
 
   <div *ngIf="places.length === 0">Loading...</div>
   <ion-list *ngIf="places.length > 0">

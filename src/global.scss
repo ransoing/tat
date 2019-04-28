@@ -107,6 +107,7 @@ ion-header > ion-toolbar {
 
 .modal-close-btn {
     position: fixed;
+    z-index: 9999;
     top: var( --ion-padding );
     right: var( --ion-padding );
     z-index: 100;

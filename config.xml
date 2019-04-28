@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-packageName="sherprog.walletcards.tat" ios-CFBundleIdentifier="org.truckersagainsttrafficking.walletcard" version="3.0.0" android-versionCode="100" ios-CFBundleVersion="100" xmlns="http://www.w3.org/ns/widgets" xmlns:android="schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-packageName="sherprog.walletcards.tat" android-versionCode="100" ios-CFBundleIdentifier="org.truckersagainsttrafficking.walletcard" ios-CFBundleVersion="100" version="3.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:android="schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Truckers Against Trafficking</name>
     <description>Make the call, save lives. Use this simple app to help you identify and report instances of human trafficking.</description>
     <author email="appdev@truckersagainsttrafficking.org" href="http://www.truckersagainsttrafficking.org/">Truckers Against Trafficking</author>
     <content src="index.html" />
     <access origin="*" />
-    <comment>launch-texternal is required for phone number or SMS links to work properly</comment>
+    <comment>launch-external is required for phone number, SMS, and mailto links to work properly</comment>
     <access launch-external="yes" origin="mailto:*" />
     <access launch-external="yes" origin="tel:*" />
     <access launch-external="yes" origin="sms:*" />
@@ -44,7 +44,7 @@
     <preference name="fullscreen" value="false" />
     <platform name="android">
         <allow-intent href="market:*" />
-        <comment>Edit the manifest file to get adaptive icons in Android 8 to work correctly</comment>
+        <comment>The below edit-config tag edits the manifest file to get adaptive icons in Android 8 to work correctly</comment>
         <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
             <application android:icon="@mipmap/ic_launcher" android:roundIcon="@mipmap/ic_launcher_round" />
         </edit-config>

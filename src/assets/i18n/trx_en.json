@@ -65,6 +65,7 @@
     }
   },
   "home": {
+    "contentWarning": "This app contains information about human trafficking and may not be suitable for all audiences.",
     "redFlags": "@:nav.redFlags",
     "reportActivity": "Report Activity",
     "resources": "@:nav.resources"
@@ -73,6 +74,8 @@
     "buttons": {
       "cancel": "Cancel",
       "close": "Close",
+      "continue": "Continue",
+      "doNotShow": "Do not show again",
       "no": "No",
       "ok": "OK",
       "retry": "Retry",

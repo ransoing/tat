@@ -94,6 +94,7 @@
       "logoutMessage": "Se cerró tu sesión.",
       "pleaseWait": "Espera por favor..."
     },
+    "required": "Requerido",
     "setLanguage": "Seleccionar idioma",
     "success": "Éxito"
   },

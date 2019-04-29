@@ -107,14 +107,15 @@ ion-header > ion-toolbar {
 
 .modal-close-btn {
     position: fixed;
-    z-index: 9999;
+    z-index: 9999 !important;
     top: var( --ion-padding );
     right: var( --ion-padding );
-    z-index: 100;
     font-size: 300%;
     cursor: pointer;
     background: rgba(0,0,0,0.7);
     border-radius: 50%;
+    // ios has issues with z-indexing for fixed items unless we do this
+    -webkit-transform: translate3d(0,0,0);
 }
 
 ion-modal ion-content,

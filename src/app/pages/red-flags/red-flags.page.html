@@ -11,6 +11,28 @@
 
   <hr>
 
+  <h1>{{ 'redFlags.flags.subtitle' | translate }}</h1>
+
+  <ul>
+    <li>{{ 'redFlags.flags.1' | translate }}</li>
+    <li>{{ 'redFlags.flags.2' | translate }}</li>
+    <li>{{ 'redFlags.flags.3' | translate }}</li>
+    <li>{{ 'redFlags.flags.4' | translate }}</li>
+  </ul>
+
+  <image-button image="red-flags.example-3.jpg" (click)="modalService.open(CaseStudyCComponent)">{{ 'redFlags.example' | translate }}</image-button>
+
+  <ul>
+    <li>{{ 'redFlags.flags.5' | translate }}</li>
+  </ul>
+
+  <image-button image="red-flags.example-4.jpg" (click)="modalService.open(CaseStudyDComponent)">{{ 'redFlags.example' | translate }}</image-button>
+
+  <ul>
+    <li>{{ 'redFlags.flags.6' | translate }}</li>
+  </ul>
+
+
   <h1>{{ 'redFlags.questions.title' | translate }}</h1>
   <p>
     <b>{{ 'redFlags.questions.subtitle' | translate }}</b>
@@ -34,27 +56,8 @@
     <li>{{ 'redFlags.questions.6' | translate }}</li>
   </ul>
 
-  <p><b>{{ 'redFlags.flags.subtitle' | translate }}</b></p>
-
-  <ul>
-    <li>{{ 'redFlags.flags.1' | translate }}</li>
-    <li>{{ 'redFlags.flags.2' | translate }}</li>
-    <li>{{ 'redFlags.flags.3' | translate }}</li>
-    <li>{{ 'redFlags.flags.4' | translate }}</li>
-  </ul>
-
-  <image-button image="red-flags.example-3.jpg" (click)="modalService.open(CaseStudyCComponent)">{{ 'redFlags.example' | translate }}</image-button>
-
-  <ul>
-    <li>{{ 'redFlags.flags.5' | translate }}</li>
-  </ul>
-
-  <image-button image="red-flags.example-4.jpg" (click)="modalService.open(CaseStudyDComponent)">{{ 'redFlags.example' | translate }}</image-button>
-
-  <ul>
-    <li>{{ 'redFlags.flags.6' | translate }}</li>
-  </ul>
+  <hr>
 
   <p>{{ 'redFlags.post1' | translate }} <a (click)="miscService.openExternalLink('https://education.truckersagainsttrafficking.org/lesson/the-tat-training-video/')">{{ 'redFlags.post1Link' | translate }}</a>.</p>
-  <p>{{ 'redFlags.post2' | translate }} <a (click)="miscService.openExternalLink('http://159.203.75.207:3080/')">{{ 'redFlags.post2Link' | translate }}</a>.</p>
+
 </ion-content>

@@ -449,7 +449,7 @@ export class SurveyService {
           labelTranslationKey: 'volunteer.forms.signup.labels.volunteerType',
           isRequired: true,
           options: [
-            { value: VolunteerType.VOLUNTEER_DISTRIBUTOR, labelTranslationKey: 'volunteer.forms.signup.labels.volunteerTypes.truckStop' },
+            { value: VolunteerType.VOLUNTEER_DISTRIBUTOR, labelTranslationKey: 'volunteer.forms.signup.labels.volunteerTypes.distributor' },
             { value: VolunteerType.AMBASSADOR_VOLUNTEER, labelTranslationKey: 'volunteer.forms.signup.labels.volunteerTypes.ambassador' }
           ]
         }]
@@ -544,7 +544,7 @@ export class SurveyService {
           isRequired: true,
           defaultValue: udata.volunteerType,
           options: [
-            { value: VolunteerType.VOLUNTEER_DISTRIBUTOR, labelTranslationKey: 'volunteer.forms.signup.labels.volunteerTypes.truckStop' },
+            { value: VolunteerType.VOLUNTEER_DISTRIBUTOR, labelTranslationKey: 'volunteer.forms.signup.labels.volunteerTypes.distributor' },
             { value: VolunteerType.AMBASSADOR_VOLUNTEER, labelTranslationKey: 'volunteer.forms.signup.labels.volunteerTypes.ambassador' }
           ]
         }]

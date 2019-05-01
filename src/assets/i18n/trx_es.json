@@ -5,8 +5,8 @@
       "placeholder": "Anote información adicional"
     },
     "cars": {
-      "label": "Descripción de los carros",
-      "placeholder": "Anote la marca, modelo, color, número de placas, etc. de todos los vehículos involucrados"
+      "label": "Descripcion de vehiculos",
+      "placeholder": "De todos los vehiculos, anote de que forma estan involucrados y la marca, modelo, color numero de registro de vehiculo de la secretaria de comunicaciones y transportes, placas, etc."
     },
     "checkboxes": {
       "cars": "¿Hay vehículos involucrados en la actividad sospechosa?",
@@ -61,7 +61,7 @@
     },
     "where": {
       "label": "¿Dónde se llevó a cabo la actividad sospechosa?",
-      "placeholder": "Anote la ubicación suya"
+      "placeholder": "Escriba el nombre del lugar y su ubicacion, si corresponde"
     }
   },
   "home": {
@@ -75,9 +75,11 @@
       "close": "Cerrar",
       "no": "No",
       "ok": "Aceptar",
+      "retry": "Intentar de nuevo",
       "submit": "Enviar",
       "yes": "Sí"
     },
+    "chooseMultiple": "Elija tantas opciones como desee.",
     "datetime": {
       "date": "Fecha",
       "dayNames": "domingo, lunes, martes, miércoles, jueves, viernes, sábado",
@@ -87,13 +89,21 @@
       "time": "Hora"
     },
     "error": "Error",
+    "location": {
+      "address": "Dirección",
+      "city": "Ciudad",
+      "state": "Estado",
+      "zip": "Código postal"
+    },
     "messages": {
       "connectionTip": "Asegúrate de tener conexión a Internet y trata de nuevo.",
       "dataLoadError": "Hubo un problema al cargar tu cuenta de voluntario.",
       "dataLoadErrorWithTip": "@:misc.messages.dataLoadError @:misc.messages.connectionTip",
       "logoutMessage": "Se cerró tu sesión.",
-      "pleaseWait": "Espera por favor..."
+      "pleaseWait": "Espera por favor...",
+      "requestError": "Hubo un error al hacer la solicitud. @:misc.messages.connectionTip"
     },
+    "other": "Otro (favor de especificar)",
     "required": "Requerido",
     "setLanguage": "Seleccionar idioma",
     "success": "Éxito"
@@ -216,7 +226,7 @@
     "videos": {
       "title": "@:resources.btns.videos",
       "video1": {
-        "description": "<p>Escuche lo que dicen los choferes de camiones que han presenciado la trata de personas en sus rutas, escuche al FBI, a una víctima que fue rescatada gracias a la llamada de un chofer, y reciba información acerca de formas concretas en las cuales los miembros de la industria camionera y de las áreas de descanso pueden combatir este delito en el transcurso de su trabajo diario.</p>",
+        "description": "<p>Escuche lo que dicen los choferes de camiones que han presenciado la trata de personas en sus rutas, escuche al FBI, a una sobreviviente de trata de personas rescatada gracias a la llamada de un chofer, y reciba información acerca de formas concretas en las cuales los miembros de la industria camionera y de las áreas de descanso pueden combatir este delito en el transcurso de su trabajo diario.</p>",
         "title": "Video de capacitación de TAT"
       },
       "video2": {
@@ -237,28 +247,65 @@
   "volunteer": {
     "btns": {
       "hoursLog": "Registro de horas",
+      "postEventReport": "Reporte después del evento",
       "postOutreachReport": "Encuesta posterior a entrevista con encargado de seguridad",
+      "preEventSurvey": "Encuesta antes del evento",
       "preOutreachSurvey": "Encuesta previa a entrevista con encargado de seguridad",
       "resources": "Recursos",
       "testimonial": "Testimonio/Comentarios",
+      "trainingFeedback": "Opinión sobre el vídeo de capacitación",
       "trainingVideo": "Video de capacitación"
     },
     "forms": {
       "editAccount": {
+        "submitSuccess": "Su cuenta fue actualizada.",
         "title": "@:volunteer.settings.editAccount"
       },
       "feedback": {
+        "labels": {
+          "bestPart": "¿Cual fue la mejor parte de su experiencia?",
+          "giveAnonPermission": "¿Le da permiso usted a TAT para mencionar de forma anónima afirmaciones suyas en los medos sociales o en reportes?",
+          "giveNamePermission": "¿Le da permiso usted a TAT para usar su nombre, organizacion y citar lo que haya dicho en las redes sociales y en reportes?",
+          "improvements": "¿Que se pudo haber mejorado con respecto a su experiencia?",
+          "whatAdvice": "¿Que consejo le daría usted a otro voluntario?"
+        },
         "submitSuccess": "@:volunteer.forms.successFeedback",
         "title": "@:volunteer.btns.testimonial"
       },
       "hoursLog": {
+        "labels": {
+          "date": "Fecha en que realizó la actividad de voluntario",
+          "describe": "Por favor describa la tarea de voluntario que realizon. Incluya el tiempo que manejo y el tiempo de capacitacion.",
+          "numHours": "Número de horas que paso en la actividad"
+        },
+        "submitSuccess": "¡Gracias por su tiempo!",
         "title": "@:volunteer.hoursLog.addEntry"
       },
       "postEvent": {
+        "select": "¿En que evento fue usted voluntario?",
         "submitSuccess": "@:volunteer.forms.successReport",
         "title": "@:volunteer.btns.postEventReport"
       },
       "postOutreach": {
+        "labels": {
+          "cdlSchool": {
+            "using": "El instructor de choferes comerciales empezará a usar capacitación de TAT con sus alumnos"
+          },
+          "followUp": "¿Planea usted dar seguimiento con su contacto?",
+          "followUpDate": "Fecha para darle seguimiento",
+          "followUpWhen": "¿Cuando planea hacer ese seguimiento?",
+          "truckStop": {
+            "distributing": "La parada de camiones ya está distribuyendo materiales de TAT en su ubicación",
+            "hostOutreach": "La parada de camiones esta dispuesta a tener servir de enlance en su ubicacion para hablar con choferes en un formato apropiado",
+            "inPersonTraining": "La parada de caminones ha pedido capacitacion en persona para todos los empleados",
+            "training": "La parada de camiones ahora capacitara a sus empleados con los materiales de TAT"
+          },
+          "truckingCompany": {
+            "showDrivers": "La compañía transportista planea mostrar a sus choferes el vídeo de capacitación de TAT y distribures tarjetas de información para llevar en sus carteras"
+          },
+          "whichAccomplishments": "¿Cual de las siguientes actividades pudo realizar? Por favor seleccione todas las aplicables."
+        },
+        "select": "¿Que lugar visitó usted?",
         "submitSuccess": "@:volunteer.forms.successReport",
         "title": "@:volunteer.btns.postOutreachReport"
       },
@@ -267,11 +314,51 @@
         "title": "@:volunteer.btns.preEventSurvey"
       },
       "preOutreach": {
-        "labels": {},
+        "labels": {
+          "areYouReady": "¿Esta listo para recibir los materiales de TAT?",
+          "haveYouContacted": "¿Se comunico usted con el gerente general (u otro contacto) para hacer la cita?",
+          "locationName": "Nombre del lugar",
+          "locationType": "Tipo de lugar",
+          "locationTypes": {
+            "cdlSchool": "Escuela de manejo para choferes comerciales",
+            "truckStop": "Parada de camiones",
+            "truckingCompany": "Compania camionera/transportista"
+          },
+          "whatAddress": "¿A que direccion de correo postal prefiere que se le envien materiales de TAT?",
+          "whatLocation": "¿Que lugar planea visitar?"
+        },
         "submitSuccess": "@:volunteer.forms.successSurvey",
         "title": "@:volunteer.btns.preOutreachSurvey"
       },
+      "signup": {
+        "accountAlreadyExists": "Parece que usted ya tiene cuenta de voluntario. Para ayuda, escriba a tat.truckers@gmail.com",
+        "invalidCode": "Código de registro inválido.",
+        "labels": {
+          "coordinatorName": "Nombre del coordinador del equipo",
+          "email": "Correo electrónico",
+          "firstName": "Nombre",
+          "intro": "¡Gracias por ser voluntario! antes de iniciar, por favor cuéntanos un poco acerca de usted.",
+          "isCoordinator": "¿Es usted el coordinador(a) del equipo?",
+          "lastName": "Apellido",
+          "partOfTeam": "¿Forma parte de un equipo de voluntarios?",
+          "phone": "Número de teléfono",
+          "registrationCode": "Código de registro",
+          "volunteerType": "Tipo de voluntario",
+          "whatAddress": "¿Cuál es su dirección de correo?",
+          "whatName": "¿Cual es el nombre de su coordinador de equipo?"
+        },
+        "submitSuccess": "¡Gracias por inscribirse!",
+        "title": "Crear una nueva cuenta"
+      },
+      "successFeedback": "Gracias por su opinión.",
+      "successReport": "Gracias por llenar este reporte.",
+      "successSurvey": "Gracias por responder a esta encuesta.",
       "trainingFeedback": {
+        "labels": {
+          "confidentInPresenting": "¿Se siente con la seguridad para hacer la presentación de PowerPoint de TAT?",
+          "equippedForOutreach": "¿Despues de ver el video de capacitacion, se siente usted preparado para establecer un enlace con las organizaciones?",
+          "whatQuestions": "¿Que preguntas tiene para el personal de TAT?"
+        },
         "submitSuccess": "@:volunteer.forms.successFeedback",
         "title": "@:volunteer.btns.trainingFeedback"
       }
@@ -281,6 +368,7 @@
       "hour": "hora",
       "hours": "horas",
       "intro": "El llevar un registro de sus horas no solamente le permite apreciar el impacto que está teniendo, sino que nos permite compartir ese trabajo con nuestros colaboradores y patrocinadores. ¡Gracias!",
+      "noEntries": "¡No tiene anotaciones todavía!",
       "title": "@:volunteer.btns.hoursLog"
     },
     "intro": "¡Gracias por participar como voluntario con TAT! Su tiempo en preparación, voluntariado y seguimiento no solamente nos ayuda a avanzar con nuestra misión, sino que demuestra la dedicación de esta industria para combatir este atroz delito. A continuación, le proporcionamos lo que necesitara en el proceso de voluntario. Estamos encantados de que forme parte de nuestro equipo.",
@@ -296,9 +384,15 @@
       "title": "@:volunteer.btns.resources"
     },
     "settings": {
+      "editAccount": "Editar cuenta",
+      "loggedInAs": "Conectado como",
       "logout": "Cerrar sesión",
       "notifications": {
-        "title": "Avisos"
+        "postEventReportReminder": "Acuerdame de llenar los reportes después del evento",
+        "postOutreachReportReminder": "Acuerdame de llenar los reportes posteriores a ponerme en contacto con la organización",
+        "preEventSurveyReminder": "Acuerdame de llenar las encuestas antes del evento",
+        "title": "Avisos",
+        "upcomingEvents": "Avisame de próximos eventos"
       },
       "title": "Configuración"
     },

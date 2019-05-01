@@ -267,6 +267,7 @@
         "title": "@:volunteer.btns.preEventSurvey"
       },
       "preOutreach": {
+        "labels": {},
         "submitSuccess": "@:volunteer.forms.successSurvey",
         "title": "@:volunteer.btns.preOutreachSurvey"
       },

@@ -137,7 +137,7 @@ export class AppComponent {
       const unfinishedActivity = this.userDataService.data.unfinishedActivities.find( unfinished => notification.data.salesforceId === unfinished.id );
       if ( unfinishedActivity ) {
         // open a modal to fill out the report
-        if ( this.userDataService.data.volunteerType === VolunteerType.TRUCK_STOP_VOLUNTEER ) {
+        if ( this.userDataService.data.volunteerType === VolunteerType.VOLUNTEER_DISTRIBUTOR ) {
           // for truck stop volunteers
           this.modalService.open( SurveyComponent, {
             titleTranslationKey: 'volunteer.forms.postOutreach.title',

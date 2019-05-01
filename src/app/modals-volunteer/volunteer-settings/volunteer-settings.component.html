@@ -8,17 +8,17 @@
   <p><strong>{{ 'volunteer.settings.notifications.title' | translate }}</strong></p>
 
   <ion-list>
-    <ion-item *ngIf="userDataService.data.volunteerType !== VolunteerType.TRUCK_STOP_VOLUNTEER">
+    <ion-item *ngIf="userDataService.data.volunteerType !== VolunteerType.VOLUNTEER_DISTRIBUTOR">
       <ion-label>{{ 'volunteer.settings.notifications.preEventSurveyReminder' | translate }}</ion-label>
       <ion-toggle [(ngModel)]="settings.notifications.preEventSurveyReminder" (ionChange)="settings.saveSettings()"></ion-toggle>
     </ion-item>
 
     <ion-item>
-      <ion-label>{{ ('volunteer.settings.notifications.' + (userDataService.data.volunteerType === VolunteerType.TRUCK_STOP_VOLUNTEER ? 'postOutreachReportReminder' : 'postEventReportReminder')) | translate }}</ion-label>
+      <ion-label>{{ ('volunteer.settings.notifications.' + (userDataService.data.volunteerType === VolunteerType.VOLUNTEER_DISTRIBUTOR ? 'postOutreachReportReminder' : 'postEventReportReminder')) | translate }}</ion-label>
       <ion-toggle [(ngModel)]="settings.notifications.reportReminder" (ionChange)="settings.saveSettings()"></ion-toggle>
     </ion-item>
 
-    <ion-item *ngIf="userDataService.data.volunteerType !== VolunteerType.TRUCK_STOP_VOLUNTEER">
+    <ion-item *ngIf="userDataService.data.volunteerType !== VolunteerType.VOLUNTEER_DISTRIBUTOR">
       <ion-label>{{ 'volunteer.settings.notifications.upcomingEvents' | translate }}</ion-label>
       <ion-toggle [(ngModel)]="settings.notifications.upcomingEvents" (ionChange)="settings.saveSettings()"></ion-toggle>
     </ion-item>

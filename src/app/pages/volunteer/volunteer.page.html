@@ -22,36 +22,24 @@
 
     <image-button
       image="volunteer.training-video.jpg"
-      (click)="openTrainingVideo1()"
+      (click)="openTrainingVideo()"
       [required]="userDataService.data.volunteerType !== VolunteerType.AMBASSADOR_VOLUNTEER"
-      [completed]="userDataService.data.hasWatchedTrainingVideos || userDataService.data.hasWatchedTrainingVideo1">
-        {{ 'volunteer.btns.trainingVideo' | translate }} {{ userDataService.data.volunteerType === VolunteerType.TRUCK_STOP_VOLUNTEER ? '1' : '' }}
+      [completed]="userDataService.data.hasWatchedTrainingVideo">
+        {{ 'volunteer.btns.trainingVideo' | translate }}
     </image-button>
 
-    <!-- @@TODO find a different image for this button -->
-    <image-button
-      *ngIf="userDataService.data.volunteerType === VolunteerType.TRUCK_STOP_VOLUNTEER"
-      image="volunteer.training-video.jpg"
-      (click)="openTrainingVideo2()"
-      [required]="true"
-      [completed]="userDataService.data.hasWatchedTrainingVideos"
-      [disabled]="!userDataService.data.hasWatchedTrainingVideo1">
-        {{ 'volunteer.btns.trainingVideo' | translate }} 2
-    </image-button>
-
-    <!-- @@TODO find a different image for this button -->
     <image-button
       *ngIf="!userDataService.data.hasCompletedTrainingFeedback"
-      image="volunteer.training-video.jpg"
+      image="volunteer.training-video-feedback.jpg"
       (click)="showTrainingVideoFeedbackForm()"
       [required]="true"
       [completed]="userDataService.data.hasCompletedTrainingFeedback"
-      [disabled]="!(userDataService.data.hasWatchedTrainingVideos && !userDataService.data.hasCompletedTrainingFeedback)">
+      [disabled]="!(userDataService.data.hasWatchedTrainingVideo && !userDataService.data.hasCompletedTrainingFeedback)">
         {{ 'volunteer.btns.trainingFeedback' | translate }}
     </image-button>
 
     <image-button
-      *ngIf="userDataService.data.volunteerType === VolunteerType.TRUCK_STOP_VOLUNTEER"
+      *ngIf="userDataService.data.volunteerType === VolunteerType.VOLUNTEER_DISTRIBUTOR"
       image="volunteer.pre-outreach-survey.jpg"
       (click)="showPreOutreachForm()"
       [required]="true"
@@ -60,7 +48,7 @@
     </image-button>
 
     <image-button
-      *ngIf="userDataService.data.volunteerType !== VolunteerType.TRUCK_STOP_VOLUNTEER"
+      *ngIf="userDataService.data.volunteerType !== VolunteerType.VOLUNTEER_DISTRIBUTOR"
       image="volunteer.pre-outreach-survey.jpg"
       (click)="showPreEventForm()"
       [required]="true"
@@ -76,7 +64,7 @@
     </image-button>
     
     <image-button
-      *ngIf="userDataService.data.volunteerType === VolunteerType.TRUCK_STOP_VOLUNTEER"
+      *ngIf="userDataService.data.volunteerType === VolunteerType.VOLUNTEER_DISTRIBUTOR"
       image="volunteer.post-outreach-report.jpg"
       (click)="modalService.open(PostOutreachSelectionComponent)"
       [required]="true"
@@ -85,7 +73,7 @@
     </image-button>
     
     <image-button
-      *ngIf="userDataService.data.volunteerType !== VolunteerType.TRUCK_STOP_VOLUNTEER"
+      *ngIf="userDataService.data.volunteerType !== VolunteerType.VOLUNTEER_DISTRIBUTOR"
       image="volunteer.post-outreach-report.jpg"
       (click)="modalService.open(PostEventSelectionComponent)"
       [required]="true"

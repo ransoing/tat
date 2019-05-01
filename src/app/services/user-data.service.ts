@@ -113,7 +113,7 @@ export class UserDataService {
     });
     // save the data in local cache
     if ( this.data.hasCompletedTrainingFeedback ) {
-      this.data.hasWatchedTrainingVideos = true;
+      this.data.hasWatchedTrainingVideo = true;
     }
     this.updateCache();
   }
@@ -180,8 +180,8 @@ export class UserDataService {
 //   onFetchSuccess() {
 //     // return some fake data.
 //     this.data = {
-//       volunteerType: VolunteerType.truckStopVolunteer,
-//       hasWatchedTrainingVideos: false,
+//       volunteerType: VolunteerType.volunteerDistributor,
+//       hasWatchedTrainingVideo: false,
 //       hoursLogs: [
 //         {
 //           taskDescription: 'Handed out TAT flyers to every truck stop in Nebraska',
@@ -192,10 +192,6 @@ export class UserDataService {
 //           date: new Date('11/15/2018'),
 //           numHours: 3
 //         }
-//       ],
-//       incompletePostReports: [
-//         { title: 'Some truck stop' },
-//         { title: 'Some other truck stop' }
 //       ]
 //     };
 

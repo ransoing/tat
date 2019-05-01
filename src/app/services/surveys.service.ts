@@ -106,6 +106,15 @@ export class SurveyService {
         }]
       }, {
         // page 2
+        topTextTranslationKey: 'volunteer.forms.preOutreach.labels.plannedDate',
+        fields: [{
+          type: SurveyFieldType.DATE,
+          labelTranslationKey: 'misc.datetime.date',
+          name: 'date',
+          isRequired: true
+        }]
+      }, {
+        // page 3
         topTextTranslationKey: 'volunteer.forms.preOutreach.labels.haveYouContacted',
         fields: [{
           type: SurveyFieldType.CHOICE,
@@ -114,7 +123,7 @@ export class SurveyService {
           isRequired: true
         }]
       }, {
-        // page 3
+        // page 4
         topTextTranslationKey: 'volunteer.forms.preOutreach.labels.areYouReady',
         isVisible: vals => vals.hasContactedManager == 'yes',
         fields: [{
@@ -124,7 +133,7 @@ export class SurveyService {
           isRequired: true
         }]
       }, {
-        // page 4
+        // page 5
         topTextTranslationKey: 'volunteer.forms.preOutreach.labels.whatAddress',
         isVisible: vals => vals.hasContactedManager == 'yes' && vals.isReadyToReceive == 'yes',
         fields: [{
@@ -159,6 +168,7 @@ export class SurveyService {
         // convert some yes/no values to booleans
         vals.hasContactedManager = vals.hasContactedManager === 'yes';
         vals.isReadyToReceive = vals.isReadyToReceive === 'yes';
+        vals.date = this.miscService.dateToLocalYYYYMMDD( vals.date );
 
         // send to the proxy and show an error message if appropriate
         return this.genericProxyPOST( 'createPreOutreachSurvey', vals );
@@ -322,7 +332,7 @@ export class SurveyService {
       pages: [{
         // page 1
         topTextTranslationKey:
-          this.userDataService.data.volunteerType === VolunteerType.TRUCK_STOP_VOLUNTEER ?
+          this.userDataService.data.volunteerType === VolunteerType.VOLUNTEER_DISTRIBUTOR ?
           'volunteer.forms.trainingFeedback.labels.equippedForOutreach' :
           'volunteer.forms.trainingFeedback.labels.confidentInPresenting',
         fields: [{
@@ -439,8 +449,7 @@ export class SurveyService {
           labelTranslationKey: 'volunteer.forms.signup.labels.volunteerType',
           isRequired: true,
           options: [
-            { value: VolunteerType.TRUCK_STOP_VOLUNTEER, labelTranslationKey: 'volunteer.forms.signup.labels.volunteerTypes.truckStop' },
-            { value: VolunteerType.EVENT_VOLUNTEER, labelTranslationKey: 'volunteer.forms.signup.labels.volunteerTypes.event' },
+            { value: VolunteerType.VOLUNTEER_DISTRIBUTOR, labelTranslationKey: 'volunteer.forms.signup.labels.volunteerTypes.truckStop' },
             { value: VolunteerType.AMBASSADOR_VOLUNTEER, labelTranslationKey: 'volunteer.forms.signup.labels.volunteerTypes.ambassador' }
           ]
         }]
@@ -535,8 +544,7 @@ export class SurveyService {
           isRequired: true,
           defaultValue: udata.volunteerType,
           options: [
-            { value: VolunteerType.TRUCK_STOP_VOLUNTEER, labelTranslationKey: 'volunteer.forms.signup.labels.volunteerTypes.truckStop' },
-            { value: VolunteerType.EVENT_VOLUNTEER, labelTranslationKey: 'volunteer.forms.signup.labels.volunteerTypes.event' },
+            { value: VolunteerType.VOLUNTEER_DISTRIBUTOR, labelTranslationKey: 'volunteer.forms.signup.labels.volunteerTypes.truckStop' },
             { value: VolunteerType.AMBASSADOR_VOLUNTEER, labelTranslationKey: 'volunteer.forms.signup.labels.volunteerTypes.ambassador' }
           ]
         }]

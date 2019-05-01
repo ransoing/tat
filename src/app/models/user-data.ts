@@ -1,7 +1,6 @@
 
 export enum VolunteerType {
-  TRUCK_STOP_VOLUNTEER = 'truckStopVolunteer',
-  EVENT_VOLUNTEER = 'freedomDriversVolunteer',
+  VOLUNTEER_DISTRIBUTOR = 'volunteerDistributor',
   AMBASSADOR_VOLUNTEER = 'ambassadorVolunteer'
 }
 
@@ -39,8 +38,7 @@ export interface IUnfinishedActivity {
   city?: string,
   state?: string,
   zip?: string,
-  date?: Date, // the date of the event, if it was an event
-  postReports: IPostActivityReport[]
+  date?: Date // the date of the event, or the planned date of outreach
 }
 
 export interface IUserData {
@@ -48,8 +46,7 @@ export interface IUserData {
   firstName?: string,
   lastName?: string,
   volunteerType?: VolunteerType,
-  hasWatchedTrainingVideo1?: boolean,
-  hasWatchedTrainingVideos?: boolean, // this property and the one above are the only properties which aren't retrieved by salesforce. 
+  hasWatchedTrainingVideo?: boolean, // this property is the only one which isn't retrieved by salesforce. 
   hasCompletedTrainingFeedback?: boolean,
   address?: string,
   city?: string,

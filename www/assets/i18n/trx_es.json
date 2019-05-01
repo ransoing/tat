@@ -15,7 +15,7 @@
     },
     "emailButton": "Envíe su reporte por correo electrónico",
     "intro": "Para que las autoridades policíacas puedan abrir una investigación con base en la información que usted les dé, necesitarán información clave. Anote lo que sepa sobre el incidente.",
-    "notes": "<p>Si tomó fotos, muéstreselas a las autoridades policíacas.</p><p>El siguiente botón abrirá su programa de correo electrónico.</p>",
+    "notes": "Si tomó fotos, muéstreselas a las autoridades policíacas.",
     "otherPeople": {
       "label": "Descripción de las otras personas",
       "placeholder": "Describa qué los hace sospechosos y anote su estatura, peso, raza, color de pelo, edad, etc."
@@ -87,7 +87,6 @@
       "time": "Hora"
     },
     "error": "Error",
-    "location": {},
     "messages": {
       "connectionTip": "Asegúrate de tener conexión a Internet y trata de nuevo.",
       "dataLoadError": "Hubo un problema al cargar tu cuenta de voluntario.",
@@ -95,6 +94,7 @@
       "logoutMessage": "Se cerró tu sesión.",
       "pleaseWait": "Espera por favor..."
     },
+    "required": "Requerido",
     "setLanguage": "Seleccionar idioma",
     "success": "Éxito"
   },
@@ -134,8 +134,6 @@
     },
     "post1": "Si no ha visto el DVD de capacitación de TAT puede visitar nuestro",
     "post1Link": "portal de educación para realizar su capacitación de TAT",
-    "post2": "Si ya vio el DVD de capacitación de TAT  y revisó su contenido, por favor regístrese para indicar que ha recibido la capacitación de TAT",
-    "post2Link": "aquí",
     "questions": {
       "1": "¿Te quedas con el dinero? Si no es así, ¿quién se lo queda?",
       "2": "¿Tus padres, hermanos o parientes saben dónde estás? Si no, ¿por qué no lo saben?",
@@ -250,12 +248,10 @@
         "title": "@:volunteer.settings.editAccount"
       },
       "feedback": {
-        "labels": {},
         "submitSuccess": "@:volunteer.forms.successFeedback",
         "title": "@:volunteer.btns.testimonial"
       },
       "hoursLog": {
-        "labels": {},
         "title": "@:volunteer.hoursLog.addEntry"
       },
       "postEvent": {
@@ -263,11 +259,6 @@
         "title": "@:volunteer.btns.postEventReport"
       },
       "postOutreach": {
-        "labels": {
-          "cdlSchool": {},
-          "truckStop": {},
-          "truckingCompany": {}
-        },
         "submitSuccess": "@:volunteer.forms.successReport",
         "title": "@:volunteer.btns.postOutreachReport"
       },
@@ -276,19 +267,10 @@
         "title": "@:volunteer.btns.preEventSurvey"
       },
       "preOutreach": {
-        "labels": {
-          "locationTypes": {}
-        },
         "submitSuccess": "@:volunteer.forms.successSurvey",
         "title": "@:volunteer.btns.preOutreachSurvey"
       },
-      "signup": {
-        "labels": {
-          "volunteerTypes": {}
-        }
-      },
       "trainingFeedback": {
-        "labels": {},
         "submitSuccess": "@:volunteer.forms.successFeedback",
         "title": "@:volunteer.btns.trainingFeedback"
       }

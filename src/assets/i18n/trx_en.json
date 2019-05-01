@@ -328,6 +328,7 @@
             "truckStop": "Truck Stop",
             "truckingCompany": "Trucking Company"
           },
+          "plannedDate": "When do you plan on visiting this location?",
           "whatAddress": "What is a good mailing address to send the materials to?",
           "whatLocation": "What location do you plan on visiting?"
         },
@@ -350,7 +351,6 @@
           "volunteerType": "Volunteer type",
           "volunteerTypes": {
             "ambassador": "TAT Ambassador",
-            "event": "Freedom Drivers Volunteer",
             "truckStop": "Truck Stop Volunteer"
           },
           "whatAddress": "What is your mailing address?",

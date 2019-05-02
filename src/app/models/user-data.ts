@@ -33,7 +33,7 @@ export interface IPostActivityReport {
 export interface IUnfinishedActivity {
   id: string, // ID of the object in salesforce
   name: string, // name of the location or event that was volunteered at
-  type: OutreachLocationType | 'EVENT',
+  type: OutreachLocationType | 'event',
   address?: string, // street address of location or event
   city?: string,
   state?: string,
@@ -52,6 +52,12 @@ export interface IUserData {
   city?: string,
   state?: string,
   zip?: string,
+
+  // the next few apply to Distributor Volunteers only
+  isOnVolunteerTeam?: boolean,
+  isTeamCoordinator?: boolean,
+  teamCoordinatorID?: string,
+
   hoursLogs?: IHoursLog[],
   unfinishedActivities?: IUnfinishedActivity[]
 }

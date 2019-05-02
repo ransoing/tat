@@ -78,8 +78,7 @@ export class UserDataService {
       let parts = [];
       if ( dataRequestFlags & UserDataRequestFlags.BASIC_USER_DATA )        parts.push( 'basic' );
       if ( dataRequestFlags & UserDataRequestFlags.HOURS_LOGS )             parts.push( 'hoursLogs' );
-      // if ( dataRequestFlags & UserDataRequestFlags.UNFINISHED_ACTIVITIES )  parts.push( 'unfinishedActivities' ); // @@ enable this one
-      if ( dataRequestFlags & UserDataRequestFlags.UNFINISHED_ACTIVITIES )  parts.push( 'unfinishedOutreachTargets' );
+      if ( dataRequestFlags & UserDataRequestFlags.UNFINISHED_ACTIVITIES )  parts.push( 'unfinishedActivities' );
       let url = 'getUserData?parts=' + parts.join( ',' );
       this.proxyAPI.post( url, {firebaseIdToken: token} )
       .then( response => {

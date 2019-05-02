@@ -65,6 +65,7 @@
     }
   },
   "home": {
+    "contentWarning": "Esta aplicación contiene información sobre la trata de personas y podría ser inapropiada para algunas personas.",
     "redFlags": "Señales de advertencia",
     "reportActivity": "Reporte la Actividad",
     "resources": "@:nav.resources"
@@ -73,6 +74,8 @@
     "buttons": {
       "cancel": "Cancelar",
       "close": "Cerrar",
+      "continue": "Continuar",
+      "doNotShow": "No mostrar de nuevo",
       "no": "No",
       "ok": "Aceptar",
       "retry": "Intentar de nuevo",

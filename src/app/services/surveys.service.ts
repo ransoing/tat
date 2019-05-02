@@ -494,11 +494,12 @@ export class SurveyService {
         }]
       }, {
         isVisible: vals => vals.partOfTeam === 'yes' && vals.isCoordinator === 'no',
+        // @@ get a list of all team coordinators, and use their IDs here instead of having the user fill out a name
         topTextTranslationKey: 'volunteer.forms.signup.labels.whatName',
         fields: [{
           type: SurveyFieldType.TEXT,
-          name: 'coordinatorName',
-          labelTranslationKey: 'volunteer.forms.signup.labels.coordinatorName',
+          name: 'coordinatorID',
+          labelTranslationKey: 'volunteer.forms.signup.labels.coordinatorID',
           isRequired: true
         }]
       }],

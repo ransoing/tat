@@ -13,7 +13,8 @@
 }
     
 .survey-wrapper {
-    height: 100%;
+    // 100% - headerHeight - bottomButtonHeight - progressBarHeight
+    height: calc( 100% - 53px - 45px - 7px );
     width: 100%;
     display: flex;
     margin-left: 0;

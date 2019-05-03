@@ -46,7 +46,11 @@ export class SurveyComponent implements OnInit {
     public miscService: MiscService
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
+    if ( this.survey instanceof Promise ) {
+      this.survey = await this.survey;
+    }
+
     // assign default values to optional functions
     let noopTrue = () => true;
     let noopTruePromise = () => {

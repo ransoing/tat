@@ -25,11 +25,11 @@ export class VolunteerSettingsComponent {
     this.angularFireAuth.auth.signOut();
   }
 
-  showEditAccountForm() {
+  async showEditAccountForm() {
     this.modalService.open( SurveyComponent, {
       titleTranslationKey: 'volunteer.forms.editAccount.title',
       successTranslationKey: 'volunteer.forms.editAccount.submitSuccess',
-      survey: this.surveys.editAccountSurvey(),
+      survey: await this.surveys.editAccountSurvey(),
       onSuccess: () => {
         // update just the unfinished outreach targets in the user data
         this.userDataService.fetchUserData( true, UserDataRequestFlags.BASIC_USER_DATA );

@@ -362,226 +362,242 @@ export class SurveyService {
   }
 
 
-  signupSurvey(): ISurvey {
+  signupSurvey(): Promise<ISurvey> {
     let salesforceId;
-
-    return {
-      pages: [{
-        // page 1
-        fields: [{
-          type: SurveyFieldType.TEXT,
-          name: 'registrationCode',
-          labelTranslationKey: 'volunteer.forms.signup.labels.registrationCode',
-          isRequired: true,
+    return this.getTeamCoordinators().then( coordinatorOptions => {
+      return {
+        pages: [{
+          // page 1
+          fields: [{
+            type: SurveyFieldType.TEXT,
+            name: 'registrationCode',
+            labelTranslationKey: 'volunteer.forms.signup.labels.registrationCode',
+            isRequired: true,
+          }],
+          onContinue: vals => {
+            // check if the registration code is valid
+            return this.proxyAPI.get( 'checkRegistrationCode?code=' + encodeURIComponent(vals.registrationCode) )
+            .then( response => {
+              if ( !response || !response.success ) throw '';
+            }).catch( e => {
+              // check the error code to show an appropriate message
+              let errorKey = ( e.error && e.error.errorCode && e.error.errorCode === 'INCORRECT_REGISTRATION_CODE' ) ?
+                'volunteer.forms.signup.invalidCode' :
+                'misc.messages.requestError';
+              // show an error message.
+              throw this.miscService.showErrorPopup( errorKey );
+            });
+          }
+        }, {
+          // page 2
+          topTextTranslationKey: 'volunteer.forms.signup.labels.intro',
+          fields: [{
+            type: SurveyFieldType.EMAIL,
+            name: 'email',
+            labelTranslationKey: 'volunteer.forms.signup.labels.email',
+            isRequired: true
+          }, {
+            type: SurveyFieldType.TEL,
+            name: 'phone',
+            labelTranslationKey: 'volunteer.forms.signup.labels.phone',
+            isRequired: true
+          }],
+          onContinue: vals => {
+            salesforceId = undefined;
+            // search for whether there is an existing salesforce Contact that matches the phone/email
+            return this.proxyAPI.get( 'contactSearch?email=' + encodeURIComponent(vals.email) + '&phone=' + encodeURIComponent(vals.phone) )
+            .then( response => {
+              if ( response && response.salesforceId ) {
+                salesforceId = response.salesforceId;
+                return;
+              } else throw '';
+            }).catch( e => {
+              // check error code and show an appropriate error message
+              let errorKey = 'misc.messages.requestError';
+              if ( e.error && e.error.errorCode ) {
+                if ( e.error.errorCode === 'NO_MATCHING_ENTRY' ) {
+                  return; // it's ok to continue with the survey
+                } else if ( e.error.errorCode === 'ENTRY_ALREADY_HAS_ACCOUNT' ) {
+                  errorKey = 'volunteer.forms.signup.accountAlreadyExists';
+                }
+              }
+        
+              // show an appropriate error message
+              this.miscService.showErrorPopup( errorKey );
+              throw '';
+            });
+          }
+        }, {
+          // page 3: details for a new salesforce entry
+          isVisible: vals => !salesforceId,
+          fields: [{
+            type: SurveyFieldType.TEXT,
+            name: 'firstName',
+            labelTranslationKey: 'volunteer.forms.signup.labels.firstName',
+            isRequired: true
+          }, {
+            type: SurveyFieldType.TEXT,
+            name: 'lastName',
+            labelTranslationKey: 'volunteer.forms.signup.labels.lastName',
+            isRequired: true
+          }]
+        }, {
+          // page 4
+          fields: [{
+            type: SurveyFieldType.SELECT,
+            name: 'volunteerType',
+            labelTranslationKey: 'volunteer.forms.signup.labels.volunteerType',
+            isRequired: true,
+            options: [
+              { value: VolunteerType.VOLUNTEER_DISTRIBUTOR, labelTranslationKey: 'volunteer.forms.signup.labels.volunteerTypes.distributor' },
+              { value: VolunteerType.AMBASSADOR_VOLUNTEER, labelTranslationKey: 'volunteer.forms.signup.labels.volunteerTypes.ambassador' }
+            ]
+          }]
+        }, {
+          // page 5
+          topTextTranslationKey: 'volunteer.forms.signup.labels.whatAddress',
+          fields: [{
+            type: SurveyFieldType.TEXT,
+            labelTranslationKey: 'misc.location.address',
+            name: 'mailingAddress'
+          }, {
+            type: SurveyFieldType.TEXT,
+            labelTranslationKey: 'misc.location.city',
+            name: 'mailingCity'
+          }, {
+            type: SurveyFieldType.TEXT,
+            labelTranslationKey: 'misc.location.state',
+            name: 'mailingState'
+          }, {
+            type: SurveyFieldType.TEXT,
+            labelTranslationKey: 'misc.location.zip',
+            name: 'mailingZip'
+          }]
+        }, {
+          // page 6
+          topTextTranslationKey: 'volunteer.forms.signup.labels.partOfTeam',
+          fields: [{
+            type: SurveyFieldType.CHOICE,
+            name: 'partOfTeam',
+            isRequired: true,
+            options: this._yesNoOptions
+          }]
+        }, {
+          // page 7
+          isVisible: vals => vals.partOfTeam === 'yes',
+          topTextTranslationKey: 'volunteer.forms.signup.labels.isCoordinator',
+          fields: [{
+            type: SurveyFieldType.CHOICE,
+            name: 'isCoordinator',
+            isRequired: true,
+            options: this._yesNoOptions
+          }]
+        }, {
+          // page 8
+          isVisible: vals => vals.partOfTeam === 'yes' && vals.isCoordinator === 'no',
+          topTextTranslationKey: 'volunteer.forms.signup.labels.whatName',
+          fields: [{
+            type: SurveyFieldType.SELECT,
+            name: 'coordinatorID',
+            labelTranslationKey: 'volunteer.forms.signup.labels.coordinatorName',
+            isRequired: true,
+            options: coordinatorOptions
+          }]
         }],
-        onContinue: vals => {
-          // check if the registration code is valid
-          return this.proxyAPI.get( 'checkRegistrationCode?code=' + encodeURIComponent(vals.registrationCode) )
+        onSubmit: async vals => {
+          // modify some of the form values before submitting to the proxy
+          vals.firebaseIdToken = await this.userDataService.firebaseUser.getIdToken();
+          vals.partOfTeam = vals.partOfTeam === 'yes';
+          vals.isCoordinator = vals.isCoordinator === 'yes';
+          if ( salesforceId ) {
+            vals.salesforceId = salesforceId;
+          }
+
+          // the registration code is verified near the beginning of this survey, but that's just a courtesy to the user,
+          // so that the user doesn't fill out a long survey just to be stopped by a registration code.
+          // the code is needed to authorize the request that actually creates the new account, so it's send with this request.
+          // (it's already in 'vals')
+          return this.proxyAPI.post( 'createNewUser', vals )
           .then( response => {
-            if ( !response || !response.success ) throw '';
+            if ( !(response && response.contactId) ) throw '';
           }).catch( e => {
-            // check the error code to show an appropriate message
-            let errorKey = ( e.error && e.error.errorCode && e.error.errorCode === 'INCORRECT_REGISTRATION_CODE' ) ?
+            const errorKey = e.error && e.errorCode === 'INCORRECT_REGISTRATION_CODE' ?
               'volunteer.forms.signup.invalidCode' :
               'misc.messages.requestError';
             // show an error message.
-            throw this.miscService.showErrorPopup( errorKey );
-          });
-        }
-      }, {
-        // page 2
-        topTextTranslationKey: 'volunteer.forms.signup.labels.intro',
-        fields: [{
-          type: SurveyFieldType.EMAIL,
-          name: 'email',
-          labelTranslationKey: 'volunteer.forms.signup.labels.email',
-          isRequired: true
-        }, {
-          type: SurveyFieldType.TEL,
-          name: 'phone',
-          labelTranslationKey: 'volunteer.forms.signup.labels.phone',
-          isRequired: true
-        }],
-        onContinue: vals => {
-          salesforceId = undefined;
-          // search for whether there is an existing salesforce Contact that matches the phone/email
-          return this.proxyAPI.get( 'contactSearch?email=' + encodeURIComponent(vals.email) + '&phone=' + encodeURIComponent(vals.phone) )
-          .then( response => {
-            if ( response && response.salesforceId ) {
-              salesforceId = response.salesforceId;
-              return;
-            } else throw '';
-          }).catch( e => {
-            // check error code and show an appropriate error message
-            let errorKey = 'misc.messages.requestError';
-            if ( e.error && e.error.errorCode ) {
-              if ( e.error.errorCode === 'NO_MATCHING_ENTRY' ) {
-                return; // it's ok to continue with the survey
-              } else if ( e.error.errorCode === 'ENTRY_ALREADY_HAS_ACCOUNT' ) {
-                errorKey = 'volunteer.forms.signup.accountAlreadyExists';
-              }
-            }
-      
-            // show an appropriate error message
             this.miscService.showErrorPopup( errorKey );
             throw '';
           });
         }
-      }, {
-        // page 3: details for a new salesforce entry
-        isVisible: vals => !salesforceId,
-        fields: [{
-          type: SurveyFieldType.TEXT,
-          name: 'firstName',
-          labelTranslationKey: 'volunteer.forms.signup.labels.firstName',
-          isRequired: true
-        }, {
-          type: SurveyFieldType.TEXT,
-          name: 'lastName',
-          labelTranslationKey: 'volunteer.forms.signup.labels.lastName',
-          isRequired: true
-        }]
-      }, {
-        // page 4
-        fields: [{
-          type: SurveyFieldType.SELECT,
-          name: 'volunteerType',
-          labelTranslationKey: 'volunteer.forms.signup.labels.volunteerType',
-          isRequired: true,
-          options: [
-            { value: VolunteerType.VOLUNTEER_DISTRIBUTOR, labelTranslationKey: 'volunteer.forms.signup.labels.volunteerTypes.distributor' },
-            { value: VolunteerType.AMBASSADOR_VOLUNTEER, labelTranslationKey: 'volunteer.forms.signup.labels.volunteerTypes.ambassador' }
-          ]
-        }]
-      }, {
-        // page 5
-        topTextTranslationKey: 'volunteer.forms.signup.labels.whatAddress',
-        fields: [{
-          type: SurveyFieldType.TEXT,
-          labelTranslationKey: 'misc.location.address',
-          name: 'mailingAddress'
-        }, {
-          type: SurveyFieldType.TEXT,
-          labelTranslationKey: 'misc.location.city',
-          name: 'mailingCity'
-        }, {
-          type: SurveyFieldType.TEXT,
-          labelTranslationKey: 'misc.location.state',
-          name: 'mailingState'
-        }, {
-          type: SurveyFieldType.TEXT,
-          labelTranslationKey: 'misc.location.zip',
-          name: 'mailingZip'
-        }]
-      }, {
-        // page 6
-        topTextTranslationKey: 'volunteer.forms.signup.labels.partOfTeam',
-        fields: [{
-          type: SurveyFieldType.CHOICE,
-          name: 'partOfTeam',
-          isRequired: true,
-          options: this._yesNoOptions
-        }]
-      }, {
-        // page 7
-        isVisible: vals => vals.partOfTeam === 'yes',
-        topTextTranslationKey: 'volunteer.forms.signup.labels.isCoordinator',
-        fields: [{
-          type: SurveyFieldType.CHOICE,
-          name: 'isCoordinator',
-          isRequired: true,
-          options: this._yesNoOptions
-        }]
-      }, {
-        isVisible: vals => vals.partOfTeam === 'yes' && vals.isCoordinator === 'no',
-        // @@ get a list of all team coordinators, and use their IDs here instead of having the user fill out a name
-        topTextTranslationKey: 'volunteer.forms.signup.labels.whatName',
-        fields: [{
-          type: SurveyFieldType.TEXT,
-          name: 'coordinatorID',
-          labelTranslationKey: 'volunteer.forms.signup.labels.coordinatorID',
-          isRequired: true
-        }]
-      }],
-      onSubmit: async vals => {
-        // modify some of the form values before submitting to the proxy
-        vals.firebaseIdToken = await this.userDataService.firebaseUser.getIdToken();
-        vals.partOfTeam = vals.partOfTeam === 'yes';
-        vals.isCoordinator = vals.isCoordinator === 'yes';
-        if ( salesforceId ) {
-          vals.salesforceId = salesforceId;
-        }
-
-        // the registration code is verified near the beginning of this survey, but that's just a courtesy to the user,
-        // so that the user doesn't fill out a long survey just to be stopped by a registration code.
-        // the code is needed to authorize the request that actually creates the new account, so it's send with this request.
-        // (it's already in 'vals')
-        return this.proxyAPI.post( 'createNewUser', vals )
-        .then( response => {
-          if ( !(response && response.contactId) ) throw '';
-        }).catch( e => {
-          const errorKey = e.error && e.errorCode === 'INCORRECT_REGISTRATION_CODE' ?
-            'volunteer.forms.signup.invalidCode' :
-            'misc.messages.requestError';
-          // show an error message.
-          this.miscService.showErrorPopup( errorKey );
-          throw '';
-        });
-      }
-    };
+      };
+    });
   }
 
 
   // a survey to edit volunteer type and default mailing address
-  editAccountSurvey() {
+  editAccountSurvey(): Promise<ISurvey> {
     let udata = this.userDataService.data;
-    return {
-      pages: [{
-        // page 1
-        fields: [{
-          type: SurveyFieldType.SELECT,
-          name: 'volunteerType',
-          labelTranslationKey: 'volunteer.forms.signup.labels.volunteerType',
-          isRequired: true,
-          defaultValue: udata.volunteerType,
-          options: [
-            { value: VolunteerType.VOLUNTEER_DISTRIBUTOR, labelTranslationKey: 'volunteer.forms.signup.labels.volunteerTypes.distributor' },
-            { value: VolunteerType.AMBASSADOR_VOLUNTEER, labelTranslationKey: 'volunteer.forms.signup.labels.volunteerTypes.ambassador' }
-          ]
-        }]
-      }, {
-        // page 2
-        topTextTranslationKey: 'volunteer.forms.signup.labels.whatAddress',
-        fields: [{
-          type: SurveyFieldType.TEXT,
-          labelTranslationKey: 'misc.location.address',
-          name: 'mailingAddress',
-          defaultValue: udata.address
+    return this.getTeamCoordinators().then( coordinatorOptions => {
+      return {
+        pages: [{
+          // page 1
+          fields: [{
+            type: SurveyFieldType.SELECT,
+            name: 'volunteerType',
+            labelTranslationKey: 'volunteer.forms.signup.labels.volunteerType',
+            isRequired: true,
+            defaultValue: udata.volunteerType,
+            options: [
+              { value: VolunteerType.VOLUNTEER_DISTRIBUTOR, labelTranslationKey: 'volunteer.forms.signup.labels.volunteerTypes.distributor' },
+              { value: VolunteerType.AMBASSADOR_VOLUNTEER, labelTranslationKey: 'volunteer.forms.signup.labels.volunteerTypes.ambassador' }
+            ]
+          }]
         }, {
-          type: SurveyFieldType.TEXT,
-          labelTranslationKey: 'misc.location.city',
-          name: 'mailingCity',
-          defaultValue: udata.city
+          // page 2
+          topTextTranslationKey: 'volunteer.forms.signup.labels.whatAddress',
+          fields: [{
+            type: SurveyFieldType.TEXT,
+            labelTranslationKey: 'misc.location.address',
+            name: 'mailingAddress',
+            defaultValue: udata.address
+          }, {
+            type: SurveyFieldType.TEXT,
+            labelTranslationKey: 'misc.location.city',
+            name: 'mailingCity',
+            defaultValue: udata.city
+          }, {
+            type: SurveyFieldType.TEXT,
+            labelTranslationKey: 'misc.location.state',
+            name: 'mailingState',
+            defaultValue: udata.state
+          }, {
+            type: SurveyFieldType.TEXT,
+            labelTranslationKey: 'misc.location.zip',
+            name: 'mailingZip',
+            defaultValue: udata.zip
+          }]
         }, {
-          type: SurveyFieldType.TEXT,
-          labelTranslationKey: 'misc.location.state',
-          name: 'mailingState',
-          defaultValue: udata.state
-        }, {
-          type: SurveyFieldType.TEXT,
-          labelTranslationKey: 'misc.location.zip',
-          name: 'mailingZip',
-          defaultValue: udata.zip
-        }]
-      }],
-      onSubmit: async vals => {
-        // modify some of the form values before submitting to the proxy
-        vals.firebaseIdToken = await this.userDataService.firebaseUser.getIdToken();
-
-        // send to the proxy and show an error message if appropriate
-        return this.genericProxyPOST( 'updateUser', vals );
-      }
-    };
+          // page 3
+          isVisible: vals => !this.userDataService.data.isTeamCoordinator,
+          topTextTranslationKey: 'volunteer.forms.signup.labels.whatName',
+          fields: [{
+            type: SurveyFieldType.SELECT,
+            name: 'coordinatorID',
+            labelTranslationKey: 'volunteer.forms.signup.labels.coordinatorName',
+            isRequired: true,
+            defaultValue: this.userDataService.data.teamCoordinatorID,
+            options: coordinatorOptions
+          }]
+        }],
+        onSubmit: async vals => {
+          // modify some of the form values before submitting to the proxy
+          vals.firebaseIdToken = await this.userDataService.firebaseUser.getIdToken();
+  
+          // send to the proxy and show an error message if appropriate
+          return this.genericProxyPOST( 'updateUser', vals );
+        }
+      };
+    });
   }
 
 
@@ -592,6 +608,19 @@ export class SurveyService {
     .then( response => {
       if ( !(response && response.success) ) throw '';
     }).catch( e => {
+      this.miscService.showErrorPopup();
+      throw '';
+    });
+  }
+
+  private getTeamCoordinators(): Promise<any> {
+    return this.proxyAPI.get( 'getTeamCoordinators' )
+    .then( teamCoordinators => {
+      return teamCoordinators.map( coordinator => {
+        return { label: coordinator.name, value: coordinator.salesforceId }
+      });
+    })
+    .catch( e => {
       this.miscService.showErrorPopup();
       throw '';
     });

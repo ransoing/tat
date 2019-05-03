@@ -14,11 +14,23 @@ export enum SurveyFieldType {
 export interface ISurveyField {
   type: SurveyFieldType,
   name: string,
+
+  // either `label` or `labelTranslationKey` is required
+  label?: string,
   labelTranslationKey?: string,
+
   defaultValue?: string,
   isRequired?: boolean,
   helperTranslationKey?: string, // some helper text, for TEXTAREA
-  options?: {value: string, labelTranslationKey: string}[], // for 'SELECT' or 'CHOICE' input types
+
+  // for 'SELECT' or 'CHOICE' input types.
+  options?: {
+    value: string,
+    //either `label` or `labelTranslationKey` is required
+    label?: string,
+    labelTranslationKey?: string
+  }[],
+
   multi?: boolean // for 'CHOICE' input type. allows selecting multiple options.
 }
   

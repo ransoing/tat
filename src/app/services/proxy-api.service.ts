@@ -15,8 +15,7 @@ import { MiscService } from './misc.service';
  * The user authenticates with Firebase inside the app, and the user's email and auth token
  * are sent to the proxy. If the credentials are correct, then the proxy filters the data from
  * SF so that user can retrieve only the data about himself.
- * 
- * The proxy can only get data -- it can't make changes to the salesforce database.
+ *
 */
 
 

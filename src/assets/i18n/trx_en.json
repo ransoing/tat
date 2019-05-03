@@ -354,7 +354,7 @@
             "distributor": "Volunteer Distributor"
           },
           "whatAddress": "What is your mailing address?",
-          "whatName": "What is the name of the team coordinator?"
+          "whatName": "What is the name of your team coordinator?"
         },
         "submitSuccess": "Thank you for signing up!",
         "title": "Create new account"

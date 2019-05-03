@@ -270,8 +270,9 @@ export class SurveyService {
         vals.firebaseIdToken = await this.userDataService.firebaseUser.getIdToken();
         vals.willFollowUp = vals.willFollowUp === 'yes';
         vals.followUpDate = this.miscService.dateToLocalYYYYMMDD( vals.followUpDate );
+        vals.activityId = outreachTarget.id;
         // merge 'accomplishments' and 'other accomplishments'
-        vals.accomplishments += ' ' + vals.otherAccomplishments;
+        vals.accomplishments += '; ' + vals.otherAccomplishments;
 
         // send to the proxy and show an error message if appropriate
         return this.genericProxyPOST( 'createPostOutreachReport', vals );

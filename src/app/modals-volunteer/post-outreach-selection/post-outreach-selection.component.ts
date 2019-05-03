@@ -33,6 +33,10 @@ export class PostOutreachSelectionComponent implements AfterViewInit {
         await this.userDataService.fetchUserData( true, UserDataRequestFlags.UNFINISHED_ACTIVITIES );
         // check if there is a scheduled notification for this unfinished activity, and cancel it
         this.miscService.cancelNotificationIf( notification => notification.data.salesforceId === outreachTarget.id );
+        // close the modal if there are no more unfinished activities
+        if ( this.userDataService.data.unfinishedActivities.length == 0 ) {
+          this.modal.dismiss();
+        }
       }
     });
   }
@@ -57,10 +61,17 @@ export class PostOutreachSelectionComponent implements AfterViewInit {
             activityId: target.id
           };
           // send a request to the proxy to delete this
-          this.proxyAPI.post( 'deleteVolunteerActivity', payload )
+          try {
+            await this.proxyAPI.post( 'deleteVolunteerActivity', payload );
+          } catch ( e ) {
+            this.miscService.showErrorPopup()
+          }
           // reload the unfinished activities
-          .then( () => this.userDataService.fetchUserData(true, UserDataRequestFlags.UNFINISHED_ACTIVITIES) )
-          .catch( () => this.miscService.showErrorPopup() );
+          await this.userDataService.fetchUserData( true, UserDataRequestFlags.UNFINISHED_ACTIVITIES );
+          // close the modal if there are no more unfinished activities
+          if ( this.userDataService.data.unfinishedActivities.length == 0 ) {
+            this.modal.dismiss();
+          }
         }
       }]
     });

@@ -75,6 +75,7 @@
       "cancel": "Cancel",
       "close": "Close",
       "continue": "Continue",
+      "delete": "Delete",
       "doNotShow": "Do not show again",
       "no": "No",
       "ok": "OK",
@@ -102,6 +103,7 @@
       "connectionTip": "Make sure you have an internet connection and try again.",
       "dataLoadError": "There was a problem while loading your volunteer account data.",
       "dataLoadErrorWithTip": "@:misc.messages.dataLoadError @:misc.messages.connectionTip",
+      "deleteConfirm": "Are you sure you want to delete this?",
       "logoutMessage": "You have been logged out.",
       "pleaseWait": "Please wait...",
       "requestError": "There was an error making the request. @:misc.messages.connectionTip"
@@ -309,6 +311,7 @@
           },
           "whichAccomplishments": "Which of the following were you able to accomplish? Please select all that apply:"
         },
+        "plannedDate": "Planned outreach date",
         "select": "Which location did you visit?",
         "submitSuccess": "@:volunteer.forms.successReport",
         "title": "@:volunteer.btns.postOutreachReport"

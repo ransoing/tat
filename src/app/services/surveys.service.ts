@@ -498,7 +498,7 @@ export class SurveyService {
           topTextTranslationKey: 'volunteer.forms.signup.labels.whatName',
           fields: [{
             type: SurveyFieldType.SELECT,
-            name: 'coordinatorID',
+            name: 'coordinatorId',
             labelTranslationKey: 'volunteer.forms.signup.labels.coordinatorName',
             isRequired: true,
             options: coordinatorOptions
@@ -582,10 +582,10 @@ export class SurveyService {
           topTextTranslationKey: 'volunteer.forms.signup.labels.whatName',
           fields: [{
             type: SurveyFieldType.SELECT,
-            name: 'coordinatorID',
+            name: 'coordinatorId',
             labelTranslationKey: 'volunteer.forms.signup.labels.coordinatorName',
             isRequired: true,
-            defaultValue: this.userDataService.data.teamCoordinatorID,
+            defaultValue: this.userDataService.data.teamCoordinatorId,
             options: coordinatorOptions
           }]
         }],

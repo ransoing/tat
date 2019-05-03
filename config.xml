@@ -9,12 +9,15 @@
     <access launch-external="yes" origin="mailto:*" />
     <access launch-external="yes" origin="tel:*" />
     <access launch-external="yes" origin="sms:*" />
+    <access launch-external="yes" origin="geo:*" />
+    <access launch-external="yes" origin="maps:*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <allow-intent href="maps:*" />
     <comment>
         The allow-navigation tags let OAuth work better, since OAuth requires opening up a new webpage on a third-party
         site. Using allow-intent lets this happen within the app, instead of swithing to Chrome or Safari.

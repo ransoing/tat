@@ -1,0 +1,27 @@
+.outreach-date {
+    margin-top: 0.5em;
+    opacity: 0.5;
+}
+
+ion-card {
+    margin-left: 0;
+    margin-right: 0;
+
+    ion-card-content { padding-top: 0 }
+}
+
+.card-actions {
+    margin: -10px 0 20px 0;
+    display: flex;
+    justify-content: flex-end;
+
+    ion-button {
+        margin: 0;
+        flex: 0 0 auto;
+        --margin-top: 0;
+        --margin-end: 0;
+        --margin-bottom: 0;
+        --margin-start: 0;
+        --width: 100%;
+    }
+}

@@ -56,7 +56,7 @@ export interface IUserData {
   // the next few apply to Distributor Volunteers only
   isOnVolunteerTeam?: boolean,
   isTeamCoordinator?: boolean,
-  teamCoordinatorID?: string,
+  teamCoordinatorId?: string,
 
   hoursLogs?: IHoursLog[],
   unfinishedActivities?: IUnfinishedActivity[]

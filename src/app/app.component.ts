@@ -79,13 +79,13 @@ export class AppComponent {
     // configure behavior for when the user logs in/out
     // this observable will fire when the app starts up, so it's not just when the user has actively logged in or out
     var firstAuthCallback = true;
-    this.angularFireAuth.authState.subscribe( response => {
+    this.angularFireAuth.authState.subscribe( async response => {
       this.miscService.isLoggedIn = !!response;
       if ( response ) {
         // logged in.
         // save the firebase user object and fetch the user's data from the proxy
         this.userDataService.firebaseUser = response;
-        this.userDataService.fetchUserData();
+        this.userDataService.fetchUserData( true ); // always load fresh from salesforce on first login
       } else {
         // logged out.
         this.userDataService.clearData();

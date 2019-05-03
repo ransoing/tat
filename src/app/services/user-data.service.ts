@@ -38,7 +38,7 @@ export class UserDataService {
    * Fetches the volunteer user data from the proxy, only if it hasn't yet been fetched, or if `force` is set to `true`.
    * Shows a 'loading' popup while data is loading.
    * @param [force] Forces a refresh of the data from the proxy. Otherwise, the app will use the data cache from local storage.
-   * @param [dataRequestFlags] Values of UserDataRequestFlags that are OR'd together. 
+   * @param [dataRequestFlags] Values of UserDataRequestFlags that are OR'd together.
    */
   async fetchUserData( force?: boolean, dataRequestFlags: number = UserDataRequestFlags.ALL ): Promise<IUserData> {
     this.loadError = false;
@@ -104,12 +104,9 @@ export class UserDataService {
       this.data[key] = response[key];
     });
     // sort the hours log entries by descending date
-    this.data.hoursLogs = this.data.hoursLogs.sort( (a, b) => {
-      if ( a.date.getTime() == b.date.getTime() ) {
-        return 0;
-      }
-      return a.date < b.date ? 1 : -1;
-    });
+    this.data.hoursLogs = this.data.hoursLogs.sort( (a, b) => b.date.getTime() - a.date.getTime() );
+    // sort unfinished activities by ascending date
+    this.data.unfinishedActivities = this.data.unfinishedActivities.sort( (a, b) => a.date.getTime() - b.date.getTime() );
     // save the data in local cache
     if ( this.data.hasCompletedTrainingFeedback ) {
       this.data.hasWatchedTrainingVideo = true;

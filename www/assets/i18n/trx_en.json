@@ -5,8 +5,8 @@
       "placeholder": "Enter additional info"
     },
     "cars": {
-      "label": "Description of cars",
-      "placeholder": "For all vehicles involved, record how they're involved and the make, model, color, license plate, etc."
+      "label": "Description of vehicles",
+      "placeholder": "For all vehicles involved, record how they're involved and the make, model, color, DOT number, license plate, etc."
     },
     "checkboxes": {
       "cars": "Are there any vehicles involved in the suspicious activity?",
@@ -61,7 +61,7 @@
     },
     "where": {
       "label": "Where did the suspicious activity take place?",
-      "placeholder": "Enter your location"
+      "placeholder": "Enter the location address and name if applicable"
     }
   },
   "home": {
@@ -75,6 +75,7 @@
       "cancel": "Cancel",
       "close": "Close",
       "continue": "Continue",
+      "delete": "Delete",
       "doNotShow": "Do not show again",
       "no": "No",
       "ok": "OK",
@@ -102,6 +103,7 @@
       "connectionTip": "Make sure you have an internet connection and try again.",
       "dataLoadError": "There was a problem while loading your volunteer account data.",
       "dataLoadErrorWithTip": "@:misc.messages.dataLoadError @:misc.messages.connectionTip",
+      "deleteConfirm": "Are you sure you want to delete this?",
       "logoutMessage": "You have been logged out.",
       "pleaseWait": "Please wait...",
       "requestError": "There was an error making the request. @:misc.messages.connectionTip"
@@ -229,7 +231,7 @@
     "videos": {
       "title": "@:resources.btns.videos",
       "video1": {
-        "description": "<p>Hear from truckers who have seen human trafficking on their routes, the FBI, a trafficking victim rescued through the call of a trucker, and information on concrete ways members of the trucking/travel plaza industry can fight this crime in the course of their daily work.</p>",
+        "description": "<p>Hear from truckers who have seen human trafficking on their routes, the FBI, a trafficking survivor rescued through the call of a trucker, and information on concrete ways members of the trucking/travel plaza industry can fight this crime in the course of their daily work.</p>",
         "title": "TAT Training Video"
       },
       "video2": {
@@ -309,6 +311,7 @@
           },
           "whichAccomplishments": "Which of the following were you able to accomplish? Please select all that apply:"
         },
+        "plannedDate": "Planned outreach date",
         "select": "Which location did you visit?",
         "submitSuccess": "@:volunteer.forms.successReport",
         "title": "@:volunteer.btns.postOutreachReport"
@@ -328,6 +331,7 @@
             "truckStop": "Truck Stop",
             "truckingCompany": "Trucking Company"
           },
+          "plannedDate": "When do you plan on visiting this location?",
           "whatAddress": "What is a good mailing address to send the materials to?",
           "whatLocation": "What location do you plan on visiting?"
         },
@@ -335,7 +339,7 @@
         "title": "@:volunteer.btns.preOutreachSurvey"
       },
       "signup": {
-        "accountAlreadyExists": "It seems you already have a volunteer user account. For assistance, contact tat.truckers@gmail.com.",
+        "accountAlreadyExists": "It seems you already have a volunteer user account. For assistance, contact tat.truckers@gmail.com",
         "invalidCode": "Invalid registration code.",
         "labels": {
           "coordinatorName": "Team coordinator's name",
@@ -350,11 +354,10 @@
           "volunteerType": "Volunteer type",
           "volunteerTypes": {
             "ambassador": "TAT Ambassador",
-            "event": "Freedom Drivers Volunteer",
-            "truckStop": "Truck Stop Volunteer"
+            "distributor": "Volunteer Distributor"
           },
           "whatAddress": "What is your mailing address?",
-          "whatName": "What is the name of the team coordinator?"
+          "whatName": "What is the name of your team coordinator?"
         },
         "submitSuccess": "Thank you for signing up!",
         "title": "Create new account"

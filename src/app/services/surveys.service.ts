@@ -4,6 +4,7 @@ import { ISurvey, SurveyFieldType } from '../models/survey';
 import { ProxyAPIService } from './proxy-api.service';
 import { MiscService } from './misc.service';
 import { IUnfinishedActivity, OutreachLocationType, VolunteerType } from '../models/user-data';
+import { TrxService } from './trx.service';
 
 // contains objects defining all surveys.
 
@@ -15,7 +16,8 @@ export class SurveyService {
   constructor(
     private userDataService: UserDataService,
     private proxyAPI: ProxyAPIService,
-    private miscService: MiscService
+    private miscService: MiscService,
+    private trx: TrxService
   ) {}
 
   private _yesNoOptions = [
@@ -62,21 +64,25 @@ export class SurveyService {
   }
 
 
-  preOutreachSurvey(): ISurvey {
+  async preOutreachSurvey( numLocations: number ): Promise<ISurvey> {
     let udata = this.userDataService.data;
-    return {
-      pages: [{
+    // Collect info for each location the team is going to visit. This requires duplicating some of the pages.
+    let pages = [];
+    let createLocationPages = async ( locationNumber: number ) => {
+      const titleText = (await this.trx.t('volunteer.forms.preOutreach.labels.location') ) + ' ' + (locationNumber + 1);
+      return [{
         // page 1
+        titleText: titleText,
         topTextTranslationKey: 'volunteer.forms.preOutreach.labels.whatLocation',
         fields: [{
           type: SurveyFieldType.TEXT,
           labelTranslationKey: 'volunteer.forms.preOutreach.labels.locationName',
-          name: 'locationName',
+          name: `location[${locationNumber}].name`,
           isRequired: true
         }, {
           type: SurveyFieldType.SELECT,
           labelTranslationKey: 'volunteer.forms.preOutreach.labels.locationType',
-          name: 'locationType',
+          name: `location[${locationNumber}].type`,
           options: [
             { value: OutreachLocationType.CDL_SCHOOL, labelTranslationKey: 'volunteer.forms.preOutreach.labels.locationTypes.cdlSchool' },
             { value: OutreachLocationType.TRUCK_STOP, labelTranslationKey: 'volunteer.forms.preOutreach.labels.locationTypes.truckStop' },
@@ -86,89 +92,112 @@ export class SurveyService {
         }, {
           type: SurveyFieldType.TEXT,
           labelTranslationKey: 'misc.location.address',
-          name: 'locationAddress',
+          name: `location[${locationNumber}].address`,
           isRequired: true
         }, {
           type: SurveyFieldType.TEXT,
           labelTranslationKey: 'misc.location.city',
-          name: 'locationCity',
+          name: `location[${locationNumber}].city`,
           isRequired: true
         }, {
           type: SurveyFieldType.TEXT,
           labelTranslationKey: 'misc.location.state',
-          name: 'locationState',
+          name: `location[${locationNumber}].state`,
           isRequired: true
         }, {
           type: SurveyFieldType.TEXT,
           labelTranslationKey: 'misc.location.zip',
-          name: 'locationZip',
+          name: `location[${locationNumber}].zip`,
           isRequired: true
-        }]
-      }, {
-        // page 2
-        topTextTranslationKey: 'volunteer.forms.preOutreach.labels.plannedDate',
-        fields: [{
+        }, {
+          preFieldTextTranslationKey: 'volunteer.forms.preOutreach.labels.plannedDate',
           type: SurveyFieldType.DATE,
           labelTranslationKey: 'misc.datetime.date',
-          name: 'date',
+          name: `location[${locationNumber}].date`,
           isRequired: true
-        }]
-      }, {
-        // page 3
-        topTextTranslationKey: 'volunteer.forms.preOutreach.labels.haveYouContacted',
-        fields: [{
+        }, {
+          preFieldTextTranslationKey: 'volunteer.forms.preOutreach.labels.haveYouContacted',
           type: SurveyFieldType.CHOICE,
-          name: 'hasContactedManager',
+          name: `location[${locationNumber}].hasContactedManager`,
           options: this._yesNoOptions,
           isRequired: true
         }]
-      }, {
-        // page 4
-        topTextTranslationKey: 'volunteer.forms.preOutreach.labels.areYouReady',
-        isVisible: vals => vals.hasContactedManager == 'yes',
-        fields: [{
-          type: SurveyFieldType.CHOICE,
-          name: 'isReadyToReceive',
-          options: this._yesNoOptions,
-          isRequired: true
-        }]
-      }, {
-        // page 5
-        topTextTranslationKey: 'volunteer.forms.preOutreach.labels.whatAddress',
-        isVisible: vals => vals.hasContactedManager == 'yes' && vals.isReadyToReceive == 'yes',
-        fields: [{
-          type: SurveyFieldType.TEXT,
-          labelTranslationKey: 'misc.location.address',
-          name: 'mailingAddress',
-          isRequired: true,
-          defaultValue: udata.address
-        }, {
-          type: SurveyFieldType.TEXT,
-          labelTranslationKey: 'misc.location.city',
-          name: 'mailingCity',
-          isRequired: true,
-          defaultValue: udata.city
-        }, {
-          type: SurveyFieldType.TEXT,
-          labelTranslationKey: 'misc.location.state',
-          name: 'mailingState',
-          isRequired: true,
-          defaultValue: udata.state
-        }, {
-          type: SurveyFieldType.TEXT,
-          labelTranslationKey: 'misc.location.zip',
-          name: 'mailingZip',
-          isRequired: true,
-          defaultValue: udata.zip
-        }]
-      }],
+      }];
+    }
 
+    for ( let i = 0; i < numLocations; i++ ) {
+      pages = pages.concat( await createLocationPages(i) );
+    }
+
+    pages = pages.concat([{
+      // page 4
+      topTextTranslationKey: 'volunteer.forms.preOutreach.labels.areYouReady',
+      fields: [{
+        type: SurveyFieldType.CHOICE,
+        name: 'isReadyToReceive',
+        options: this._yesNoOptions,
+        isRequired: true
+      }]
+    }, {
+      // page 5
+      topTextTranslationKey: 'volunteer.forms.preOutreach.labels.whatAddress',
+      isVisible: vals => vals.isReadyToReceive == 'yes',
+      fields: [{
+        type: SurveyFieldType.TEXT,
+        labelTranslationKey: 'misc.location.address',
+        name: 'mailingAddress',
+        isRequired: true,
+        defaultValue: udata.address
+      }, {
+        type: SurveyFieldType.TEXT,
+        labelTranslationKey: 'misc.location.city',
+        name: 'mailingCity',
+        isRequired: true,
+        defaultValue: udata.city
+      }, {
+        type: SurveyFieldType.TEXT,
+        labelTranslationKey: 'misc.location.state',
+        name: 'mailingState',
+        isRequired: true,
+        defaultValue: udata.state
+      }, {
+        type: SurveyFieldType.TEXT,
+        labelTranslationKey: 'misc.location.zip',
+        name: 'mailingZip',
+        isRequired: true,
+        defaultValue: udata.zip
+      }]
+    }]);
+
+    return {
+      pages: pages,
       onSubmit: async vals => {
         vals.firebaseIdToken = await this.userDataService.firebaseUser.getIdToken();
-        // convert some yes/no values to booleans
-        vals.hasContactedManager = vals.hasContactedManager === 'yes';
+        // convert some yes/no values to booleans, and convert all numbered fields to an array.
+        vals.locations = [];
+        // find the values which have a name that looks like an array/object access, like `location[1].name`
+        // Turn it into an actual array of objects
+        for ( let i = 0; i < numLocations; i ++ ) {
+          let newLocation: any = {};
+          let regex = new RegExp( '^location\\[' + i + '\\]\\.(.+)' );
+          Object.keys( vals ) // get all key names
+          .filter( key => key.match(regex) ) // get only the ones for this location index
+          .map( key => key.match(regex) ) // parse the key name
+          .forEach( match => {
+            // add the value to the location object
+            // i.e. newLocation[ 'type' ] = vals[ 'location[0].type' ];
+            newLocation[ match[1] ] = vals[ match[0] ];
+            // remove the key from the original `vals` object
+            delete vals[ match[0] ];
+          });
+
+          newLocation.hasContactedManager = newLocation.hasContactedManager === 'yes';
+          newLocation.date = this.miscService.dateToLocalYYYYMMDD( newLocation.date );
+
+          vals.locations.push( newLocation );
+        }
+
         vals.isReadyToReceive = vals.isReadyToReceive === 'yes';
-        vals.date = this.miscService.dateToLocalYYYYMMDD( vals.date );
 
         // send to the proxy and show an error message if appropriate
         return this.genericProxyPOST( 'createPreOutreachSurvey', vals );

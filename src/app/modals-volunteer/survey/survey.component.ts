@@ -155,14 +155,14 @@ export class SurveyComponent implements OnInit {
         return el.value === 'undefined' ? '' : el.value.trim();
       }
     } else if ( field.type === SurveyFieldType.DATE ) {
-      let el = this.formRef.nativeElement.querySelector( 'ion-datetime[name='+field.name+']' );
+      let el = this.formRef.nativeElement.querySelector( 'ion-datetime[name="'+field.name+'"]' );
       if ( el && el.value ) {
         // with Date, months are 0-indexed. With ion-datetime component, they are 1-indexed
         let date = new Date( el.value.year.value, el.value.month.value - 1, el.value.day.value );
         return date.toISOString();
       }
     } else if ( field.type === SurveyFieldType.TIME ) {
-      let el = this.formRef.nativeElement.querySelector( 'ion-datetime[name='+field.name+']' );
+      let el = this.formRef.nativeElement.querySelector( 'ion-datetime[name="'+field.name+'"]' );
       if ( el && el.value ) {
         // return the time value as HH:MM:SS, but SS is always 00
         const hour = el.value.hour.value.toString().padStart( 2, '0' );

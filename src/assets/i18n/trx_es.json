@@ -320,6 +320,7 @@
         "labels": {
           "areYouReady": "¿Esta listo para recibir los materiales de TAT?",
           "haveYouContacted": "¿Se comunico usted con el gerente general (u otro contacto) para hacer la cita?",
+          "location": "Lugar",
           "locationName": "Nombre del lugar",
           "locationType": "Tipo de lugar",
           "locationTypes": {

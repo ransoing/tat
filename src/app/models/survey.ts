@@ -15,6 +15,8 @@ export interface ISurveyField {
   type: SurveyFieldType,
   name: string,
 
+  preFieldTextTranslationKey?: string, // text that shows above the field
+
   // either `label` or `labelTranslationKey` is required
   label?: string,
   labelTranslationKey?: string,
@@ -35,7 +37,9 @@ export interface ISurveyField {
 }
   
 export interface ISurveyPage {
+  titleText?: string,
   topTextTranslationKey?: string,
+  topText?: string,
   // `canContinue` whether the 'next' button is enabled
   canContinue?( formVals: any ): boolean,
   // `onContinue` executes when the 'next' button is clicked.

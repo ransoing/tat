@@ -319,8 +319,9 @@
       "preOutreach": {
         "labels": {
           "areYouReady": "¿Esta listo para recibir los materiales de TAT?",
+          "equippedForOutreach": "¿Se siente usted preparado para establecer un enlace con las organizaciones?",
           "haveYouContacted": "¿Se comunico usted con el gerente general (u otro contacto) para hacer la cita?",
-          "location": "Lugar",
+          "location": "Lugar {{num}}",
           "locationName": "Nombre del lugar",
           "locationType": "Tipo de lugar",
           "locationTypes": {
@@ -329,7 +330,8 @@
             "truckingCompany": "Compania camionera/transportista"
           },
           "whatAddress": "¿A que direccion de correo postal prefiere que se le envien materiales de TAT?",
-          "whatLocation": "¿Que lugar planea visitar?"
+          "whatLocation": "¿Que lugar planea visitar?",
+          "whatQuestions": "¿Que preguntas tiene para el personal de TAT?"
         },
         "submitSuccess": "@:volunteer.forms.successSurvey",
         "title": "@:volunteer.btns.preOutreachSurvey"
@@ -359,9 +361,7 @@
       "successSurvey": "Gracias por responder a esta encuesta.",
       "trainingFeedback": {
         "labels": {
-          "confidentInPresenting": "¿Se siente con la seguridad para hacer la presentación de PowerPoint de TAT?",
-          "equippedForOutreach": "¿Despues de ver el video de capacitacion, se siente usted preparado para establecer un enlace con las organizaciones?",
-          "whatQuestions": "¿Que preguntas tiene para el personal de TAT?"
+          "confidentInPresenting": "¿Se siente con la seguridad para hacer la presentación de PowerPoint de TAT?"
         },
         "submitSuccess": "@:volunteer.forms.successFeedback",
         "title": "@:volunteer.btns.trainingFeedback"

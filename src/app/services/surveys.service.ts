@@ -69,9 +69,9 @@ export class SurveyService {
     // Collect info for each location the team is going to visit. This requires duplicating some of the pages.
     let pages = [];
     let createLocationPages = async ( locationNumber: number ) => {
-      const titleText = (await this.trx.t('volunteer.forms.preOutreach.labels.location') ) + ' ' + (locationNumber + 1);
+      const titleText = (await this.trx.t('volunteer.forms.preOutreach.labels.location', {num: locationNumber + 1}) );
+      const titleTextCont = (await this.trx.t('volunteer.forms.preOutreach.labels.locationCont', {num: locationNumber + 1}) );
       return [{
-        // page 1
         titleText: titleText,
         topTextTranslationKey: 'volunteer.forms.preOutreach.labels.whatLocation',
         fields: [{
@@ -115,12 +115,39 @@ export class SurveyService {
           labelTranslationKey: 'misc.datetime.date',
           name: `location[${locationNumber}].date`,
           isRequired: true
-        }, {
-          preFieldTextTranslationKey: 'volunteer.forms.preOutreach.labels.haveYouContacted',
+        }]
+      }, {
+        titleText: titleTextCont,
+        topTextTranslationKey: 'volunteer.forms.preOutreach.labels.haveYouContacted',
+        fields: [{
           type: SurveyFieldType.CHOICE,
           name: `location[${locationNumber}].hasContactedManager`,
           options: this._yesNoOptions,
           isRequired: true
+        }]
+      }, {
+        isVisible: ((num) => {
+          return vals => vals[`location[${num}].hasContactedManager`] === 'yes'
+        })( locationNumber ),
+        titleText: titleTextCont,
+        topTextTranslationKey: 'volunteer.forms.preOutreach.labels.contactInfo',
+        fields: [{
+          type: SurveyFieldType.TEXT,
+          labelTranslationKey: 'volunteer.forms.preOutreach.labels.contactName',
+          name: `location[${locationNumber}].contactName`,
+          isRequired: true
+        }, {
+          type: SurveyFieldType.TEXT,
+          labelTranslationKey: 'volunteer.forms.preOutreach.labels.contactTitle',
+          name: `location[${locationNumber}].contactTitle`,
+        }, {
+          type: SurveyFieldType.EMAIL,
+          labelTranslationKey: 'volunteer.forms.preOutreach.labels.contactEmail',
+          name: `location[${locationNumber}].contactEmail`,
+        }, {
+          type: SurveyFieldType.TEL,
+          labelTranslationKey: 'volunteer.forms.preOutreach.labels.contactPhone',
+          name: `location[${locationNumber}].contactPhone`,
         }]
       }];
     }
@@ -130,7 +157,6 @@ export class SurveyService {
     }
 
     pages = pages.concat([{
-      // page 4
       topTextTranslationKey: 'volunteer.forms.preOutreach.labels.areYouReady',
       fields: [{
         type: SurveyFieldType.CHOICE,
@@ -139,7 +165,6 @@ export class SurveyService {
         isRequired: true
       }]
     }, {
-      // page 5
       topTextTranslationKey: 'volunteer.forms.preOutreach.labels.whatAddress',
       isVisible: vals => vals.isReadyToReceive == 'yes',
       fields: [{
@@ -166,6 +191,20 @@ export class SurveyService {
         name: 'mailingZip',
         isRequired: true,
         defaultValue: udata.zip
+      }]
+    }, {
+      topTextTranslationKey: 'volunteer.forms.preOutreach.labels.equippedForOutreach',
+      fields: [{
+        type: SurveyFieldType.CHOICE,
+        name: 'feelsPrepared',
+        options: this._yesNoOptions,
+        isRequired: true
+      }]
+    }, {
+      topTextTranslationKey: 'volunteer.forms.preOutreach.labels.whatQuestions',
+      fields: [{
+        type: SurveyFieldType.TEXTAREA,
+        name: 'questions'
       }]
     }]);
 
@@ -293,6 +332,7 @@ export class SurveyService {
           labelTranslationKey: 'volunteer.forms.postOutreach.labels.followUpDate',
           isRequired: true
         }]
+        // @@TODO add hours log question here
       }],
       onSubmit: async vals => {
         // alter some values before sending to the proxy
@@ -356,7 +396,7 @@ export class SurveyService {
     };
   }
 
-
+  // @@TODO delete this survey
   trainingVideoFeedbackSurvey(): ISurvey {
     return {
       pages: [{
@@ -370,14 +410,6 @@ export class SurveyService {
           name: 'feelsPrepared',
           options: this._yesNoOptions,
           isRequired: true
-        }]
-      }, {
-        // page 2
-        isVisible: vals => vals.feelsPrepared === 'no',
-        topTextTranslationKey: 'volunteer.forms.trainingFeedback.labels.whatQuestions',
-        fields: [{
-          type: SurveyFieldType.TEXTAREA,
-          name: 'questions'
         }]
       }],
       onSubmit: async vals => {

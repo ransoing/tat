@@ -9,7 +9,7 @@ export class TrxService {
 
   constructor( private translateService: TranslateService ) { }
 
-  public async t( key: string ) {
-    return await this.translateService.get( key ).toPromise();
+  public async t( key: string, params: any = {} ) {
+    return await this.translateService.get( key, params ).toPromise();
   }
 }

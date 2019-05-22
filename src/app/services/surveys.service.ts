@@ -3,7 +3,7 @@ import { UserDataService } from './user-data.service';
 import { ISurvey, SurveyFieldType } from '../models/survey';
 import { ProxyAPIService } from './proxy-api.service';
 import { MiscService } from './misc.service';
-import { IUnfinishedActivity, OutreachLocationType, VolunteerType } from '../models/user-data';
+import { IOutreachLocation, OutreachLocationType, VolunteerType } from '../models/user-data';
 import { TrxService } from './trx.service';
 
 // contains objects defining all surveys.
@@ -65,6 +65,7 @@ export class SurveyService {
 
 
   async preOutreachSurvey( numLocations: number ): Promise<ISurvey> {
+    // @@TODO: retrieve a list of the user's campaigns, and ask the user which campaign this pre-outreach survey is for.
     let udata = this.userDataService.data;
     // Collect info for each location the team is going to visit. This requires duplicating some of the pages.
     let pages = [];
@@ -77,12 +78,12 @@ export class SurveyService {
         fields: [{
           type: SurveyFieldType.TEXT,
           labelTranslationKey: 'volunteer.forms.preOutreach.labels.locationName',
-          name: `location[${locationNumber}].name`,
+          name: `locations[${locationNumber}].name`,
           isRequired: true
         }, {
           type: SurveyFieldType.SELECT,
           labelTranslationKey: 'volunteer.forms.preOutreach.labels.locationType',
-          name: `location[${locationNumber}].type`,
+          name: `locations[${locationNumber}].type`,
           options: [
             { value: OutreachLocationType.CDL_SCHOOL, labelTranslationKey: 'volunteer.forms.preOutreach.labels.locationTypes.cdlSchool' },
             { value: OutreachLocationType.TRUCK_STOP, labelTranslationKey: 'volunteer.forms.preOutreach.labels.locationTypes.truckStop' },
@@ -92,28 +93,28 @@ export class SurveyService {
         }, {
           type: SurveyFieldType.TEXT,
           labelTranslationKey: 'misc.location.address',
-          name: `location[${locationNumber}].address`,
+          name: `locations[${locationNumber}].address`,
           isRequired: true
         }, {
           type: SurveyFieldType.TEXT,
           labelTranslationKey: 'misc.location.city',
-          name: `location[${locationNumber}].city`,
+          name: `locations[${locationNumber}].city`,
           isRequired: true
         }, {
           type: SurveyFieldType.TEXT,
           labelTranslationKey: 'misc.location.state',
-          name: `location[${locationNumber}].state`,
+          name: `locations[${locationNumber}].state`,
           isRequired: true
         }, {
           type: SurveyFieldType.TEXT,
           labelTranslationKey: 'misc.location.zip',
-          name: `location[${locationNumber}].zip`,
+          name: `locations[${locationNumber}].zip`,
           isRequired: true
         }, {
           preFieldTextTranslationKey: 'volunteer.forms.preOutreach.labels.plannedDate',
           type: SurveyFieldType.DATE,
           labelTranslationKey: 'misc.datetime.date',
-          name: `location[${locationNumber}].date`,
+          name: `locations[${locationNumber}].date`,
           isRequired: true
         }]
       }, {
@@ -121,33 +122,33 @@ export class SurveyService {
         topTextTranslationKey: 'volunteer.forms.preOutreach.labels.haveYouContacted',
         fields: [{
           type: SurveyFieldType.CHOICE,
-          name: `location[${locationNumber}].hasContactedManager`,
+          name: `locations[${locationNumber}].hasContactedManager`,
           options: this._yesNoOptions,
           isRequired: true
         }]
       }, {
         isVisible: ((num) => {
-          return vals => vals[`location[${num}].hasContactedManager`] === 'yes'
+          return vals => vals[`locations[${num}].hasContactedManager`] === 'yes'
         })( locationNumber ),
         titleText: titleTextCont,
         topTextTranslationKey: 'volunteer.forms.preOutreach.labels.contactInfo',
         fields: [{
           type: SurveyFieldType.TEXT,
           labelTranslationKey: 'volunteer.forms.preOutreach.labels.contactName',
-          name: `location[${locationNumber}].contactName`,
+          name: `locations[${locationNumber}].contactName`,
           isRequired: true
         }, {
           type: SurveyFieldType.TEXT,
           labelTranslationKey: 'volunteer.forms.preOutreach.labels.contactTitle',
-          name: `location[${locationNumber}].contactTitle`,
+          name: `locations[${locationNumber}].contactTitle`,
         }, {
           type: SurveyFieldType.EMAIL,
           labelTranslationKey: 'volunteer.forms.preOutreach.labels.contactEmail',
-          name: `location[${locationNumber}].contactEmail`,
+          name: `locations[${locationNumber}].contactEmail`,
         }, {
           type: SurveyFieldType.TEL,
           labelTranslationKey: 'volunteer.forms.preOutreach.labels.contactPhone',
-          name: `location[${locationNumber}].contactPhone`,
+          name: `locations[${locationNumber}].contactPhone`,
         }]
       }];
     }
@@ -214,7 +215,7 @@ export class SurveyService {
         vals.firebaseIdToken = await this.userDataService.firebaseUser.getIdToken();
         // convert some yes/no values to booleans, and convert all numbered fields to an array.
         vals.locations = [];
-        // find the values which have a name that looks like an array/object access, like `location[1].name`
+        // find the values which have a name that looks like an array/object access, like `locations[1].name`
         // Turn it into an actual array of objects
         for ( let i = 0; i < numLocations; i ++ ) {
           let newLocation: any = {};
@@ -224,7 +225,7 @@ export class SurveyService {
           .map( key => key.match(regex) ) // parse the key name
           .forEach( match => {
             // add the value to the location object
-            // i.e. newLocation[ 'type' ] = vals[ 'location[0].type' ];
+            // i.e. newLocation[ 'type' ] = vals[ 'locations[0].type' ];
             newLocation[ match[1] ] = vals[ match[0] ];
             // remove the key from the original `vals` object
             delete vals[ match[0] ];
@@ -245,11 +246,11 @@ export class SurveyService {
   }
 
 
-  postOutreachSurvey( outreachTarget: IUnfinishedActivity ): ISurvey {
+  postOutreachSurvey( location: IOutreachLocation ): ISurvey {
     return {
       pages: [{
         // page 1: truck stop
-        isVisible: vals => outreachTarget.type === OutreachLocationType.TRUCK_STOP,
+        isVisible: vals => location.type === OutreachLocationType.TRUCK_STOP,
         topTextTranslationKey: 'volunteer.forms.postOutreach.labels.whichAccomplishments',
         fields: [{
           type: SurveyFieldType.CHOICE,
@@ -276,7 +277,7 @@ export class SurveyService {
         }]
       }, {
         // page 2: CDL school
-        isVisible: vals => outreachTarget.type === OutreachLocationType.CDL_SCHOOL,
+        isVisible: vals => location.type === OutreachLocationType.CDL_SCHOOL,
         topTextTranslationKey: 'volunteer.forms.postOutreach.labels.whichAccomplishments',
         fields: [{
           type: SurveyFieldType.CHOICE,
@@ -297,7 +298,7 @@ export class SurveyService {
         }]
       }, {
         // page 3: trucking company
-        isVisible: vals => outreachTarget.type === OutreachLocationType.TRUCKING_COMPANY,
+        isVisible: vals => location.type === OutreachLocationType.TRUCKING_COMPANY,
         topTextTranslationKey: 'volunteer.forms.postOutreach.labels.whichAccomplishments',
         fields: [{
           type: SurveyFieldType.CHOICE,
@@ -333,13 +334,15 @@ export class SurveyService {
           isRequired: true
         }]
         // @@TODO add hours log question here
+        // @@ translation key for man-hours question:   volunteer.forms.postOutreach.labels.hoursQuestion
+        // @@ translation key for field label, "Hours": volunteer.forms.postOutreach.labels.hours
       }],
       onSubmit: async vals => {
         // alter some values before sending to the proxy
         vals.firebaseIdToken = await this.userDataService.firebaseUser.getIdToken();
         vals.willFollowUp = vals.willFollowUp === 'yes';
         vals.followUpDate = this.miscService.dateToLocalYYYYMMDD( vals.followUpDate );
-        vals.activityId = outreachTarget.id;
+        vals.activityId = location.id;
         // merge 'accomplishments' and 'other accomplishments'
         vals.accomplishments += '; ' + vals.otherAccomplishments;
 

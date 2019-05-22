@@ -37,7 +37,7 @@ export class HomePage implements AfterViewInit {
     //       d2.setSeconds( d2.getSeconds() + 22 );
     //       // the id of the notification is a mirror of its data
     //       let data: INotificationData = {
-    //         type: NotificationType.UNFINISHED_ACTIVITY,
+    //         type: NotificationType.OUTREACH_LOCATION,
     //         salesforceId: 'blabla'
     //       };
     //       this.notifications.schedule([{
@@ -49,7 +49,7 @@ export class HomePage implements AfterViewInit {
     //       }, {
     //         id: Math.round( Math.random() * 99999999 ),
     //         data: {
-    //           type: NotificationType.UNFINISHED_ACTIVITY,
+    //           type: NotificationType.OUTREACH_LOCATION,
     //           salesforceId: 'h8hoh'
     //         },
     //         title: 'Elanora Elanora Elanora',

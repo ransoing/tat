@@ -12,16 +12,9 @@ export enum OutreachLocationType {
 
 // bitmask flags for passing into fetchUserData()
 export enum UserDataRequestFlags {
-  BASIC_USER_DATA = 1,
-  HOURS_LOGS = 2,
-  UNFINISHED_ACTIVITIES = 4,
-  ALL = 7
-}
-
-export interface IHoursLog {
-  taskDescription: string,
-  date: Date,
-  numHours: number
+  BASIC_USER_DATA = 1,        // 2^0
+  UNFINISHED_ACTIVITIES = 2,  // 2^1
+  ALL = 3                     // 2^0 + 2^1
 }
 
 export interface IPostActivityReport {
@@ -30,15 +23,21 @@ export interface IPostActivityReport {
 
 // If the user filled out a pre-outreach or pre-event survey, there will be an "incomplete post-report"
 // until they submit the post-report
-export interface IUnfinishedActivity {
+export interface IOutreachLocation {
   id: string, // ID of the object in salesforce
-  name: string, // name of the location or event that was volunteered at
-  type: OutreachLocationType | 'event',
-  address?: string, // street address of location or event
+  name: string, // name of the location to be volunteered at
+  type: OutreachLocationType,
+  address?: string, // street address of location
   city?: string,
   state?: string,
   zip?: string,
-  date?: Date // the date of the event, or the planned date of outreach
+  date?: Date, // the planned date of outreach
+  contact?: { // the person to be contacted at the location
+    name: string,
+    title?: string,
+    email?: string,
+    phone?: string
+  }
 }
 
 export interface IUserData {
@@ -58,6 +57,6 @@ export interface IUserData {
   isTeamCoordinator?: boolean,
   teamCoordinatorId?: string,
 
-  hoursLogs?: IHoursLog[],
-  unfinishedActivities?: IUnfinishedActivity[]
+  outreachLocations?: IOutreachLocation[]
+  events?: any[] // @@TODO define events object
 }

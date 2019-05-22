@@ -129,38 +129,29 @@ export class AppComponent {
   }
 
   private async handleNotificationTapped( notification: ILocalNotification ) {
-    if ( notification.data && notification.data.type === NotificationType.UNFINISHED_ACTIVITY ) {
+    if ( notification.data && notification.data.type === NotificationType.OUTREACH_LOCATION ) {
       // get user data before handling this notification
       await this.userDataService.fetchUserData();
-      // the notification contains the salesforce ID of the unfinished activity.
-      // Verify that this ID corresponds with an unfinished activity
-      const unfinishedActivity = this.userDataService.data.unfinishedActivities.find( unfinished => notification.data.salesforceId === unfinished.id );
-      if ( unfinishedActivity ) {
+      // the notification contains the salesforce ID of the location.
+      // Verify that this ID corresponds with a location
+      const outreachLocation = this.userDataService.data.outreachLocations.find( location => notification.data.salesforceId === location.id );
+      if ( outreachLocation ) {
         // open a modal to fill out the report
         if ( this.userDataService.data.volunteerType === VolunteerType.VOLUNTEER_DISTRIBUTOR ) {
           // for truck stop volunteers
           this.modalService.open( SurveyComponent, {
             titleTranslationKey: 'volunteer.forms.postOutreach.title',
             successTranslationKey: 'volunteer.forms.postOutreach.submitSuccess',
-            survey: this.surveys.postOutreachSurvey( unfinishedActivity ),
+            survey: this.surveys.postOutreachSurvey( outreachLocation ),
             onSuccess: () => {
               // update just the unfinished activities in the user data
               this.userDataService.fetchUserData( true, UserDataRequestFlags.UNFINISHED_ACTIVITIES );
             }
           });
-        } else {
-          // for other volunteers @@
-          // this.modalService.open( SurveyComponent, {
-          //   titleTranslationKey: 'volunteer.forms.postEvent.title',
-          //   successTranslationKey: 'volunteer.forms.postEvent.submitSuccess',
-          //   survey: this.surveys.postEventSurvey( unfinishedActivity ),
-          //   onSuccess: () => {
-          //     // update just the unfinished activities in the user data
-          //     this.userDataService.fetchUserData( true, UserDataRequestFlags.UNFINISHED_ACTIVITIES );
-          //   }
-          // });
         }
       }
+    } else {
+      // for other volunteers @@ . check to see if it's the notification type for events
     }
   };
 

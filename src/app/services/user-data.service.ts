@@ -77,7 +77,6 @@ export class UserDataService {
       // parse bitmask flags to determine what to append to the URL
       let parts = [];
       if ( dataRequestFlags & UserDataRequestFlags.BASIC_USER_DATA )        parts.push( 'basic' );
-      if ( dataRequestFlags & UserDataRequestFlags.HOURS_LOGS )             parts.push( 'hoursLogs' );
       if ( dataRequestFlags & UserDataRequestFlags.UNFINISHED_ACTIVITIES )  parts.push( 'unfinishedActivities' );
       let url = 'getUserData?parts=' + parts.join( ',' );
       this.proxyAPI.post( url, {firebaseIdToken: token} )
@@ -103,10 +102,13 @@ export class UserDataService {
     Object.keys( response ).filter( key => response.hasOwnProperty(key) ).forEach( key => {
       this.data[key] = response[key];
     });
-    // sort the hours log entries by descending date
-    this.data.hoursLogs = this.data.hoursLogs.sort( (a, b) => b.date.getTime() - a.date.getTime() );
-    // sort unfinished activities by ascending date
-    this.data.unfinishedActivities = this.data.unfinishedActivities.sort( (a, b) => a.date.getTime() - b.date.getTime() );
+    // sort outreach locations and events by ascending date
+    if ( this.data.outreachLocations ) {
+      this.data.outreachLocations = this.data.outreachLocations.sort( (a, b) => a.date.getTime() - b.date.getTime() );
+    }
+    if ( this.data.events ) {
+      this.data.events = this.data.events.sort( (a, b) => a.date.getTime() - b.date.getTime() );
+    }
     // save the data in local cache
     if ( this.data.hasCompletedTrainingFeedback ) {
       this.data.hasWatchedTrainingVideo = true;
@@ -177,18 +179,7 @@ export class UserDataService {
 //     // return some fake data.
 //     this.data = {
 //       volunteerType: VolunteerType.volunteerDistributor,
-//       hasWatchedTrainingVideo: false,
-//       hoursLogs: [
-//         {
-//           taskDescription: 'Handed out TAT flyers to every truck stop in Nebraska',
-//           date: new Date('11/29/2018'),
-//           numHours: 14
-//         }, {
-//           taskDescription: 'Convinced the manager at Love\'s to train 1000 employees.',
-//           date: new Date('11/15/2018'),
-//           numHours: 3
-//         }
-//       ]
+//       hasWatchedTrainingVideo: false
 //     };
 
 //     this.fetchingUserData = false;

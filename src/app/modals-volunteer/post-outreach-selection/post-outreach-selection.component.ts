@@ -1,7 +1,7 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { UserDataService, ModalService, SurveyService, MiscService, TrxService } from '../../services';
 import { SurveyComponent } from '../survey/survey.component';
-import { IUnfinishedActivity, UserDataRequestFlags } from '../../models/user-data';
+import { IOutreachLocation, UserDataRequestFlags } from '../../models/user-data';
 import { AlertController } from '@ionic/angular';
 import { ProxyAPIService } from '../../services/proxy-api.service';
 
@@ -22,30 +22,30 @@ export class PostOutreachSelectionComponent implements AfterViewInit {
     private proxyAPI: ProxyAPIService
   ) {}
 
-  openPostOutreachReport( outreachTarget: IUnfinishedActivity ) {
+  openPostOutreachReport( outreachTarget: IOutreachLocation ) {
     // open the post outreach survey, passing in data from the selected target
     this.modalService.open( SurveyComponent, {
       titleTranslationKey: 'volunteer.forms.postOutreach.title',
       successTranslationKey: 'volunteer.forms.postOutreach.submitSuccess',
       survey: this.surveys.postOutreachSurvey( outreachTarget ),
       onSuccess: async () => {
-        // update just the unfinished activities in the user data
+        // update just the outreach locations in the user data
         await this.userDataService.fetchUserData( true, UserDataRequestFlags.UNFINISHED_ACTIVITIES );
-        // check if there is a scheduled notification for this unfinished activity, and cancel it
+        // check if there is a scheduled notification for this outreach location, and cancel it
         this.miscService.cancelNotificationIf( notification => notification.data.salesforceId === outreachTarget.id );
-        // close the modal if there are no more unfinished activities
-        if ( this.userDataService.data.unfinishedActivities.length == 0 ) {
+        // close the modal if there are no more outreach locations
+        if ( this.userDataService.data.outreachLocations.length == 0 ) {
           this.modal.dismiss();
         }
       }
     });
   }
 
-  getMapsLink( target: IUnfinishedActivity ): string {
+  getMapsLink( target: IOutreachLocation ): string {
     return 'http://maps.google.com?q=' + encodeURIComponent( `${target.address}, ${target.city}, ${target.state} ${target.zip}` );
   }
 
-  async deleteTarget( target: IUnfinishedActivity ) {
+  async deleteTarget( target: IOutreachLocation ) {
     // show a confirmation prompt
     const alert = await this.alertController.create({
       message: await this.trx.t( 'misc.messages.deleteConfirm' ),
@@ -66,10 +66,10 @@ export class PostOutreachSelectionComponent implements AfterViewInit {
           } catch ( e ) {
             this.miscService.showErrorPopup()
           }
-          // reload the unfinished activities
+          // reload the outreach locations
           await this.userDataService.fetchUserData( true, UserDataRequestFlags.UNFINISHED_ACTIVITIES );
-          // close the modal if there are no more unfinished activities
-          if ( this.userDataService.data.unfinishedActivities.length == 0 ) {
+          // close the modal if there are no more left
+          if ( this.userDataService.data.outreachLocations.length == 0 ) {
             this.modal.dismiss();
           }
         }

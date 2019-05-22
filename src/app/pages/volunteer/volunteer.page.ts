@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController, LoadingController } from '@ionic/angular';
 import {
-  PostOutreachSelectionComponent, HoursLogComponent, 
+  PostOutreachSelectionComponent, 
   VolunteerResourcesComponent, VolunteerSettingsComponent, TrainingVideoComponent,
   SurveyComponent
 } from '../../modals-volunteer';
@@ -17,7 +17,6 @@ import { AngularFireAuth } from '@angular/fire/auth';
 export class VolunteerPage {
 
   public VolunteerResourcesComponent = VolunteerResourcesComponent;
-  public HoursLogComponent = HoursLogComponent;
   public PostOutreachSelectionComponent = PostOutreachSelectionComponent;
   public VolunteerSettingsComponent = VolunteerSettingsComponent;
   public VolunteerType = VolunteerType;

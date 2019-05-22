@@ -68,7 +68,7 @@
       image="volunteer.post-outreach-report.jpg"
       (click)="modalService.open(PostOutreachSelectionComponent)"
       [required]="true"
-      [disabled]="!userDataService.data.hasCompletedTrainingFeedback || userDataService.data.unfinishedActivities.length === 0">
+      [disabled]="!userDataService.data.hasCompletedTrainingFeedback || userDataService.data.outreachLocations.length === 0">
         {{ 'volunteer.btns.postOutreachReport' | translate }}
     </image-button>
     
@@ -77,16 +77,8 @@
       image="volunteer.post-outreach-report.jpg"
       (click)="modalService.open(PostEventSelectionComponent)"
       [required]="true"
-      [disabled]="!userDataService.data.hasCompletedTrainingFeedback || userDataService.data.unfinishedActivities.length === 0">
+      [disabled]="!userDataService.data.hasCompletedTrainingFeedback || userDataService.data.events.length === 0"> <!-- @@TODO make a userDataService.data.events object -->
         {{ 'volunteer.btns.postEventReport' | translate }}
-    </image-button>
-
-    <image-button
-      image="volunteer.hours-log.jpg"
-      (click)="modalService.open(HoursLogComponent)"
-      [required]="true"
-      [disabled]="!userDataService.data.hasCompletedTrainingFeedback">
-        {{ 'volunteer.btns.hoursLog' | translate }}
     </image-button>
     
     <image-button

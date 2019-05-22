@@ -1,6 +1,6 @@
 
 export enum NotificationType {
-    UNFINISHED_ACTIVITY = 'unfinished_activity'
+    OUTREACH_LOCATION = 'outreach_location'
 }
 
 export interface INotificationData {

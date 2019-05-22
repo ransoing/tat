@@ -72,7 +72,7 @@ import {
 } from './modals';
 import {
   VolunteerSettingsComponent, VolunteerResourcesComponent, SurveyComponent,
-  HoursLogComponent, TrainingVideoComponent, LoginComponent, PostOutreachSelectionComponent
+  TrainingVideoComponent, LoginComponent, PostOutreachSelectionComponent
 } from './modals-volunteer';
 
 @NgModule({
@@ -82,14 +82,14 @@ import {
     AboutTatComponent, HumanTraffickingLawsComponent,
     CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent,
     VolunteerSettingsComponent, VolunteerResourcesComponent, SurveyComponent,
-    HoursLogComponent, TrainingVideoComponent, LoginComponent, PostOutreachSelectionComponent
+    TrainingVideoComponent, LoginComponent, PostOutreachSelectionComponent
   ],
   entryComponents: [
     PlacesComponent, WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
     AboutTatComponent, HumanTraffickingLawsComponent,
     CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent,
     VolunteerSettingsComponent, VolunteerResourcesComponent, SurveyComponent,
-    HoursLogComponent, TrainingVideoComponent, LoginComponent, PostOutreachSelectionComponent
+    TrainingVideoComponent, LoginComponent, PostOutreachSelectionComponent
   ],
   imports: [
     BrowserModule,

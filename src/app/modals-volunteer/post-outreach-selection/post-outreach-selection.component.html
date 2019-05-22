@@ -8,7 +8,7 @@
   <div *ngIf="userDataService.data">
     <p>{{ 'volunteer.forms.postOutreach.select' | translate }}</p>
 
-    <ng-container *ngFor="let target of userDataService.data.unfinishedActivities">
+    <ng-container *ngFor="let target of userDataService.data.outreachLocations">
       <ion-card (click)="openPostOutreachReport(target)" color="primary">
         <ion-card-header>
           <ion-card-title>{{target.name}}</ion-card-title>

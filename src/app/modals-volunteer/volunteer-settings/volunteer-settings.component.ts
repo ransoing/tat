@@ -31,8 +31,7 @@ export class VolunteerSettingsComponent {
       successTranslationKey: 'volunteer.forms.editAccount.submitSuccess',
       survey: await this.surveys.editAccountSurvey(),
       onSuccess: () => {
-        // update just the unfinished outreach targets in the user data
-        this.userDataService.fetchUserData( true, UserDataRequestFlags.BASIC_USER_DATA );
+        this.userDataService.fetchUserData( true, UserDataRequestFlags.ALL );
       }
     });
   }

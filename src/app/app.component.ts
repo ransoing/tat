@@ -35,6 +35,7 @@ export class AppComponent {
   ) {
     this.statusBar.styleBlackOpaque();
     this.statusBar.show();
+    this.statusBar.overlaysWebView( false ); // @@TODO test to make sure this looks fine in android. It may do nothing in ios.
     this.initializeApp();
   }
 

@@ -251,7 +251,6 @@
   },
   "volunteer": {
     "btns": {
-      "hoursLog": "Hours Log",
       "postEventReport": "Post-Event Report",
       "postOutreachReport": "Post-Outreach Report",
       "preEventSurvey": "Pre-Event Survey",
@@ -277,15 +276,6 @@
         "submitSuccess": "@:volunteer.forms.successFeedback",
         "title": "@:volunteer.btns.testimonial"
       },
-      "hoursLog": {
-        "labels": {
-          "date": "Date of task",
-          "describe": "Please describe the volunteer task you performed. Include driving and training time.",
-          "numHours": "Number of hours spent on task"
-        },
-        "submitSuccess": "Thank you for your time!",
-        "title": "@:volunteer.hoursLog.addEntry"
-      },
       "postEvent": {
         "select": "Which event did you volunteer at?",
         "submitSuccess": "@:volunteer.forms.successReport",
@@ -300,6 +290,8 @@
           "followUp": "Do you plan to follow up with your contact?",
           "followUpDate": "Follow-up date",
           "followUpWhen": "When do you plan to do the follow-up?",
+          "hours": "Number of hours",
+          "hoursQuestion": "How many man-hours did your team spend on this outreach effort? Include driving time.",
           "truckStop": {
             "distributing": "Truck stop is now distributing TAT materials at their location",
             "hostOutreach": "Truck stop is open to having an outreach at their location to speak with drivers in an appropriate format",
@@ -323,7 +315,16 @@
       "preOutreach": {
         "labels": {
           "areYouReady": "Are you ready to receive TAT materials?",
+          "contactEmail": "Contact's email",
+          "contactInfo": "Please provide some details about the general manager (or other contact).",
+          "contactName": "Contact's name",
+          "contactPhone": "Contact's phone number",
+          "contactTitle": "Contact's title",
+          "equippedForOutreach": "Do you feel equipped for your outreach?",
           "haveYouContacted": "Have you contacted the general manager (or other contact) to make an appointment?",
+          "howMany": "How many locations will your team visit?",
+          "location": "Location {{num}}",
+          "locationCont": "Location {{num}} (cont.)",
           "locationName": "Location name",
           "locationType": "Location type",
           "locationTypes": {
@@ -333,7 +334,8 @@
           },
           "plannedDate": "When do you plan on visiting this location?",
           "whatAddress": "What is a good mailing address to send the materials to?",
-          "whatLocation": "What location do you plan on visiting?"
+          "whatLocation": "What location do you plan on visiting?",
+          "whatQuestions": "What questions do you have for TAT staff?"
         },
         "submitSuccess": "@:volunteer.forms.successSurvey",
         "title": "@:volunteer.btns.preOutreachSurvey"
@@ -367,21 +369,11 @@
       "successSurvey": "Thank you for completing this survey.",
       "trainingFeedback": {
         "labels": {
-          "confidentInPresenting": "Do you feel confident in presenting the TAT PowerPoint presentation?",
-          "equippedForOutreach": "After watching the training video, do you feel equipped for your outreach?",
-          "whatQuestions": "What questions do you have for TAT staff?"
+          "confidentInPresenting": "Do you feel confident in presenting the TAT PowerPoint presentation?"
         },
         "submitSuccess": "@:volunteer.forms.successFeedback",
         "title": "@:volunteer.btns.trainingFeedback"
       }
-    },
-    "hoursLog": {
-      "addEntry": "Add new log entry",
-      "hour": "hour",
-      "hours": "hours",
-      "intro": "Logging your hours here not only allows you to see the impact you’re making, but allows us to share that work with our partners and sponsors. Thank you!",
-      "noEntries": "No log entries yet!",
-      "title": "@:volunteer.btns.hoursLog"
     },
     "intro": "Thank you for volunteering with TAT! Your time in preparation, volunteering and follow up not only helps further our mission, but further exemplifies how passionate this industry is about fighting this heinous crime. Below are the items you will need throughout the volunteer process. We are thrilled to have you as part of the team.",
     "loginTitle": "Volunteer Login",

@@ -337,10 +337,8 @@
           "intro": "¡Gracias por ser voluntario! antes de iniciar, por favor cuéntanos un poco acerca de usted.",
           "isCoordinator": "¿Es usted el coordinador(a) del equipo?",
           "lastName": "Apellido",
-          "partOfTeam": "¿Forma parte de un equipo de voluntarios?",
           "phone": "Número de teléfono",
           "registrationCode": "Código de registro",
-          "volunteerType": "Tipo de voluntario",
           "whatAddress": "¿Cuál es su dirección de correo?",
           "whatName": "¿Cual es el nombre de su coordinador de equipo?"
         },

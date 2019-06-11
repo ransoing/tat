@@ -41,10 +41,11 @@ export interface IOutreachLocation {
 }
 
 export interface IUserData {
-  salesforceId?: string, // ID of the AppUser object in salesforce which represents this user
+  salesforceId?: string, // ID of the Contact object in salesforce which represents this user
   firstName?: string,
   lastName?: string,
   volunteerType?: VolunteerType,
+  accountId?: string, // salesforce ID of the Account object associated with this user
   hasWatchedTrainingVideo?: boolean, // this property is the only one which isn't retrieved by salesforce. 
   hasCompletedTrainingFeedback?: boolean,
   address?: string,

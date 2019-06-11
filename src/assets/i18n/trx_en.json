@@ -291,7 +291,7 @@
           "followUpDate": "Follow-up date",
           "followUpWhen": "When do you plan to do the follow-up?",
           "hours": "Number of hours",
-          "hoursQuestion": "How many man-hours did your team spend on this outreach effort? Include driving time.",
+          "hoursQuestion": "How many man-hours did your team spend on this outreach effort?",
           "truckStop": {
             "distributing": "Truck stop is now distributing TAT materials at their location",
             "hostOutreach": "Truck stop is open to having an outreach at their location to speak with drivers in an appropriate format",
@@ -301,6 +301,7 @@
           "truckingCompany": {
             "showDrivers": "Trucking company plans to show their drivers the TAT training video and hand out wallet cards."
           },
+          "when": "When did you visit this location?",
           "whichAccomplishments": "Which of the following were you able to accomplish? Please select all that apply:"
         },
         "plannedDate": "Planned outreach date",
@@ -350,14 +351,8 @@
           "intro": "Thank you for volunteering! Before you begin, please tell us a bit about yourself.",
           "isCoordinator": "Are you the team coordinator?",
           "lastName": "Last name",
-          "partOfTeam": "Are you part of a volunteer team?",
           "phone": "Phone number",
           "registrationCode": "Registration code",
-          "volunteerType": "Volunteer type",
-          "volunteerTypes": {
-            "ambassador": "TAT Ambassador",
-            "distributor": "Volunteer Distributor"
-          },
           "whatAddress": "What is your mailing address?",
           "whatName": "What is the name of your team coordinator?"
         },

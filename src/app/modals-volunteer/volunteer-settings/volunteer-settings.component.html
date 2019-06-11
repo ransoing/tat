@@ -29,7 +29,8 @@
     {{ 'volunteer.settings.loggedInAs' | translate }} <b>{{userDataService.data.firstName}} {{userDataService.data.lastName}}</b>
   </p>
   <p></p>
-  <p>
+  <!-- If more options are added to the 'edit account' survey, then potentially show this to other volunteers -->
+  <p *ngIf="userDataService.data.volunteerType === VolunteerType.VOLUNTEER_DISTRIBUTOR && !userDataService.data.isTeamCoordinator">
     <ion-button fill="solid" color="primary" expand="block" (click)="showEditAccountForm()">{{ 'volunteer.settings.editAccount' | translate }}</ion-button>
   </p>
   <p>

@@ -75,15 +75,22 @@ export class VolunteerPage {
           if ( isNaN(numLocations) ) {
             return;
           }
-          this.modalService.open( SurveyComponent, {
-            titleTranslationKey: 'volunteer.forms.preOutreach.title',
-            successTranslationKey: 'volunteer.forms.preOutreach.submitSuccess',
-            survey: await this.surveys.preOutreachSurvey( numLocations ),
-            onSuccess: () => {
-              // update just the unfinished activities in the user data
-              this.userDataService.fetchUserData( true, UserDataRequestFlags.UNFINISHED_ACTIVITIES );
-            }
-          });
+          
+          try {
+            let survey = await this.surveys.preOutreachSurvey( numLocations );
+            this.modalService.open( SurveyComponent, {
+              titleTranslationKey: 'volunteer.forms.preOutreach.title',
+              successTranslationKey: 'volunteer.forms.preOutreach.submitSuccess',
+              survey: survey,
+              onSuccess: () => {
+                // update just the unfinished activities in the user data
+                this.userDataService.fetchUserData( true, UserDataRequestFlags.UNFINISHED_ACTIVITIES );
+              }
+            });
+          } catch ( e ) {
+            this.miscService.showErrorPopup( e );
+          }
+
         }
       }]
     });

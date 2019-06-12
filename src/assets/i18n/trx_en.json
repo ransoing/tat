@@ -335,9 +335,11 @@
           },
           "plannedDate": "When do you plan on visiting this location?",
           "whatAddress": "What is a good mailing address to send the materials to?",
+          "whatCampaign": "What campaign is this for?",
           "whatLocation": "What location do you plan on visiting?",
           "whatQuestions": "What questions do you have for TAT staff?"
         },
+        "noCampaignsError": "You have no active campaigns. Please contact TAT staff for assistance.",
         "submitSuccess": "@:volunteer.forms.successSurvey",
         "title": "@:volunteer.btns.preOutreachSurvey"
       },
@@ -351,6 +353,7 @@
           "intro": "Thank you for volunteering! Before you begin, please tell us a bit about yourself.",
           "isCoordinator": "Are you the team coordinator?",
           "lastName": "Last name",
+          "noCoordinators": "Notice: after your team coordinator signs up, you will need to edit your account and select your team coordinator.",
           "phone": "Phone number",
           "registrationCode": "Registration code",
           "whatAddress": "What is your mailing address?",

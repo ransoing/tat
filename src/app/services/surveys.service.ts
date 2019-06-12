@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UserDataService } from './user-data.service';
-import { ISurvey, SurveyFieldType } from '../models/survey';
+import { ISurvey, SurveyFieldType, ISurveyPage } from '../models/survey';
 import { ProxyAPIService } from './proxy-api.service';
 import { MiscService } from './misc.service';
 import { IOutreachLocation, OutreachLocationType, VolunteerType } from '../models/user-data';
@@ -27,10 +27,31 @@ export class SurveyService {
 
 
   async preOutreachSurvey( numLocations: number ): Promise<ISurvey> {
-    // @@TODO: retrieve a list of the user's campaigns, and ask the user which campaign this pre-outreach survey is for.
     let udata = this.userDataService.data;
+
+    // retrieve a list of the user's campaigns, and ask the user which campaign this pre-outreach survey is for.
+    let campaigns = await this.proxyAPI.post( 'getCampaigns', {firebaseIdToken: await this.userDataService.firebaseUser.getIdToken()} );
+    campaigns.sort( (a,b) => a.daysSinceCreated - b.daysSinceCreated );
+    if ( campaigns.length === 0 ) {
+      throw 'volunteer.forms.preOutreach.noCampaignsError';
+    }
+
+    // add a campaign selection page
+    let pages: ISurveyPage[] = [{
+      topTextTranslationKey: 'volunteer.forms.preOutreach.labels.whatCampaign',
+      onContinue: vals => { console.log( vals.campaignId ); return Promise.resolve() },
+      fields: [{
+        type: SurveyFieldType.CHOICE,
+        name: 'campaignId',
+        isRequired: true,
+        multi: false,
+        options: campaigns.map( campaign => {
+          return { value: campaign.salesforceId, label: campaign.name }
+        })
+      }]
+    }];
+    
     // Collect info for each location the team is going to visit. This requires duplicating some of the pages.
-    let pages = [];
     let createLocationPages = async ( locationNumber: number ) => {
       const titleText = (await this.trx.t('volunteer.forms.preOutreach.labels.location', {num: locationNumber + 1}) );
       const titleTextCont = (await this.trx.t('volunteer.forms.preOutreach.labels.locationCont', {num: locationNumber + 1}) );
@@ -509,8 +530,8 @@ export class SurveyService {
       }, {
         // page 5
         isVisible: vals => vals.isCoordinator === 'no',
-        topTextTranslationKey: 'volunteer.forms.signup.labels.whatName',
-        fields: [{
+        topTextTranslationKey: !coordinatorOptions || coordinatorOptions.length === 0 ? 'volunteer.forms.signup.labels.noCoordinators' : 'volunteer.forms.signup.labels.whatName',
+        fields: !coordinatorOptions || coordinatorOptions.length === 0 ? [] : [{
           type: SurveyFieldType.SELECT,
           name: 'coordinatorId',
           labelTranslationKey: 'volunteer.forms.signup.labels.coordinatorName',
@@ -523,6 +544,7 @@ export class SurveyService {
         vals.firebaseIdToken = await this.userDataService.firebaseUser.getIdToken();
         // marking individual distributors as coordinators allows them to submit pre-outreach surveys
         vals.isCoordinator = vals.isCoordinator === 'yes' || isIndividualDistributor;
+        vals.coordinatorId = vals.coordinatorId || ''; // the value may be undefined because it's hidden in some cases
         if ( salesforceId ) {
           vals.salesforceId = salesforceId;
         }

@@ -569,9 +569,9 @@ export class SurveyService {
   }
 
 
-  // a survey to edit volunteer type and default mailing address
+  // a survey to edit some account settings
   // @@ if more options are added to this survey, edit volunteer-settings.component.html so that more volunteer types
-  // can see the button to pop up this survey
+  // @@ can see the button to pop up this survey
   editAccountSurvey(): Promise<ISurvey> {
     let udata = this.userDataService.data;
     return this.getTeamCoordinators( udata.accountId ).then( coordinatorOptions => {

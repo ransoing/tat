@@ -58,11 +58,11 @@ export class PostOutreachSelectionComponent implements AfterViewInit {
         handler: async () => {
           let payload = {
             firebaseIdToken: await this.userDataService.firebaseUser.getIdToken(),
-            activityId: target.id
+            outreachLocationId: target.id
           };
           // send a request to the proxy to delete this
           try {
-            await this.proxyAPI.post( 'deleteVolunteerActivity', payload );
+            await this.proxyAPI.post( 'deleteOutreachLocation', payload );
           } catch ( e ) {
             this.miscService.showErrorPopup()
           }

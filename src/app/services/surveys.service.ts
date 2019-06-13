@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UserDataService } from './user-data.service';
-import { ISurvey, SurveyFieldType, ISurveyPage } from '../models/survey';
+import { ISurvey, SurveyFieldType, ISurveyPage, ISurveyPageFunc } from '../models/survey';
 import { ProxyAPIService } from './proxy-api.service';
 import { MiscService } from './misc.service';
 import { IOutreachLocation, OutreachLocationType, VolunteerType } from '../models/user-data';
@@ -37,9 +37,8 @@ export class SurveyService {
     }
 
     // add a campaign selection page
-    let pages: ISurveyPage[] = [{
+    let pages: ISurveyPageFunc[] = [() => { return {
       topTextTranslationKey: 'volunteer.forms.preOutreach.labels.whatCampaign',
-      onContinue: vals => { console.log( vals.campaignId ); return Promise.resolve() },
       fields: [{
         type: SurveyFieldType.CHOICE,
         name: 'campaignId',
@@ -49,13 +48,13 @@ export class SurveyService {
           return { value: campaign.salesforceId, label: campaign.name }
         })
       }]
-    }];
+    }}];
     
     // Collect info for each location the team is going to visit. This requires duplicating some of the pages.
-    let createLocationPages = async ( locationNumber: number ) => {
+    let createLocationPages = async ( locationNumber: number ): Promise<ISurveyPageFunc[]> => {
       const titleText = (await this.trx.t('volunteer.forms.preOutreach.labels.location', {num: locationNumber + 1}) );
       const titleTextCont = (await this.trx.t('volunteer.forms.preOutreach.labels.locationCont', {num: locationNumber + 1}) );
-      return [{
+      return [() => { return {
         titleText: titleText,
         topTextTranslationKey: 'volunteer.forms.preOutreach.labels.whatLocation',
         fields: [{
@@ -100,7 +99,7 @@ export class SurveyService {
           name: `locations[${locationNumber}].date`,
           isRequired: true
         }]
-      }, {
+      }}, () => { return {
         titleText: titleTextCont,
         topTextTranslationKey: 'volunteer.forms.preOutreach.labels.haveYouContacted',
         fields: [{
@@ -109,7 +108,7 @@ export class SurveyService {
           options: this._yesNoOptions,
           isRequired: true
         }]
-      }, {
+      }}, () => { return {
         isVisible: ((num) => {
           return vals => vals[`locations[${num}].hasContactedManager`] === 'yes'
         })( locationNumber ),
@@ -133,14 +132,14 @@ export class SurveyService {
           labelTranslationKey: 'volunteer.forms.preOutreach.labels.contactPhone',
           name: `locations[${locationNumber}].contactPhone`,
         }]
-      }];
+      }}];
     }
 
     for ( let i = 0; i < numLocations; i++ ) {
       pages = pages.concat( await createLocationPages(i) );
     }
 
-    pages = pages.concat([{
+    pages = pages.concat([() => { return {
       topTextTranslationKey: 'volunteer.forms.preOutreach.labels.areYouReady',
       fields: [{
         type: SurveyFieldType.CHOICE,
@@ -148,7 +147,7 @@ export class SurveyService {
         options: this._yesNoOptions,
         isRequired: true
       }]
-    }, {
+    }}, () => { return {
       topTextTranslationKey: 'volunteer.forms.preOutreach.labels.whatAddress',
       isVisible: vals => vals.isReadyToReceive == 'yes',
       fields: [{
@@ -176,7 +175,7 @@ export class SurveyService {
         isRequired: true,
         defaultValue: udata.zip
       }]
-    }, {
+    }}, () => { return {
       topTextTranslationKey: 'volunteer.forms.preOutreach.labels.equippedForOutreach',
       fields: [{
         type: SurveyFieldType.CHOICE,
@@ -184,13 +183,13 @@ export class SurveyService {
         options: this._yesNoOptions,
         isRequired: true
       }]
-    }, {
+    }}, () => { return {
       topTextTranslationKey: 'volunteer.forms.preOutreach.labels.whatQuestions',
       fields: [{
         type: SurveyFieldType.TEXTAREA,
         name: 'questions'
       }]
-    }]);
+    }}]);
 
     return {
       pages: pages,
@@ -202,7 +201,7 @@ export class SurveyService {
         // Turn it into an actual array of objects
         for ( let i = 0; i < numLocations; i ++ ) {
           let newLocation: any = {};
-          let regex = new RegExp( '^location\\[' + i + '\\]\\.(.+)' );
+          let regex = new RegExp( '^locations\\[' + i + '\\]\\.(.+)' );
           Object.keys( vals ) // get all key names
           .filter( key => key.match(regex) ) // get only the ones for this location index
           .map( key => key.match(regex) ) // parse the key name
@@ -231,7 +230,7 @@ export class SurveyService {
 
   postOutreachSurvey( location: IOutreachLocation ): ISurvey {
     return {
-      pages: [{
+      pages: [() => { return {
         topTextTranslationKey: 'volunteer.forms.postOutreach.labels.when',
         fields: [{
           type: SurveyFieldType.DATE,
@@ -239,7 +238,7 @@ export class SurveyService {
           labelTranslationKey: 'misc.datetime.date',
           isRequired: true
         }]
-      }, {
+      }}, () => { return {
         // truck stop
         isVisible: vals => location.type === OutreachLocationType.TRUCK_STOP,
         topTextTranslationKey: 'volunteer.forms.postOutreach.labels.whichAccomplishments',
@@ -266,7 +265,7 @@ export class SurveyService {
           name: 'otherAccomplishments',
           labelTranslationKey: 'misc.other'
         }]
-      }, {
+      }}, () => { return {
         // CDL school
         isVisible: vals => location.type === OutreachLocationType.CDL_SCHOOL,
         topTextTranslationKey: 'volunteer.forms.postOutreach.labels.whichAccomplishments',
@@ -287,7 +286,7 @@ export class SurveyService {
           name: 'otherAccomplishments',
           labelTranslationKey: 'misc.other'
         }]
-      }, {
+      }}, () => { return {
         // trucking company
         isVisible: vals => location.type === OutreachLocationType.TRUCKING_COMPANY,
         topTextTranslationKey: 'volunteer.forms.postOutreach.labels.whichAccomplishments',
@@ -305,7 +304,7 @@ export class SurveyService {
           name: 'otherAccomplishments',
           labelTranslationKey: 'misc.other'
         }]
-      }, {
+      }}, () => { return {
         topTextTranslationKey: 'volunteer.forms.postOutreach.labels.followUp',
         fields: [{
           type: SurveyFieldType.CHOICE,
@@ -313,7 +312,7 @@ export class SurveyService {
           isRequired: true,
           options: this._yesNoOptions
         }]
-      }, {
+      }}, () => { return {
         isVisible: vals => vals.willFollowUp === 'yes',
         topTextTranslationKey: 'volunteer.forms.postOutreach.labels.followUpWhen',
         fields: [{
@@ -322,7 +321,7 @@ export class SurveyService {
           labelTranslationKey: 'volunteer.forms.postOutreach.labels.followUpDate',
           isRequired: true
         }]
-      }, {
+      }}, () => { return {
         topTextTranslationKey: 'volunteer.forms.postOutreach.labels.hoursQuestion',
         fields: [{
           type: SurveyFieldType.NUMBER,
@@ -330,7 +329,7 @@ export class SurveyService {
           labelTranslationKey: 'volunteer.forms.postOutreach.labels.hours',
           isRequired: true
         }]
-      }],
+      }}],
       onSubmit: async vals => {
         // alter some values before sending to the proxy
         vals.firebaseIdToken = await this.userDataService.firebaseUser.getIdToken();
@@ -356,16 +355,16 @@ export class SurveyService {
 
   testimonialFeedbackSurvey(): ISurvey {
     return {
-      pages: [{
+      pages: [() => { return {
         topTextTranslationKey: 'volunteer.forms.feedback.labels.whatAdvice',
         fields: [{ type: SurveyFieldType.TEXTAREA, name: 'advice' }]
-      }, {
+      }}, () => { return {
         topTextTranslationKey: 'volunteer.forms.feedback.labels.bestPart',
         fields: [{ type: SurveyFieldType.TEXTAREA, name: 'bestPart' }]
-      }, {
+      }}, () => { return {
         topTextTranslationKey: 'volunteer.forms.feedback.labels.improvements',
         fields: [{ type: SurveyFieldType.TEXTAREA, name: 'improvements' }]
-      }, {
+      }}, () => { return {
         topTextTranslationKey: 'volunteer.forms.feedback.labels.giveAnonPermission',
         fields: [{
           type: SurveyFieldType.CHOICE,
@@ -373,7 +372,7 @@ export class SurveyService {
           isRequired: true,
           options: this._yesNoOptions
         }]
-      }, {
+      }}, () => { return {
         topTextTranslationKey: 'volunteer.forms.feedback.labels.giveNamePermission',
         fields: [{
           type: SurveyFieldType.CHOICE,
@@ -381,7 +380,7 @@ export class SurveyService {
           isRequired: true,
           options: this._yesNoOptions
         }]
-      }],
+      }}],
       onSubmit: async vals => {
         // modify some of the form values before submitting to the proxy
         vals.firebaseIdToken = await this.userDataService.firebaseUser.getIdToken();
@@ -397,7 +396,7 @@ export class SurveyService {
   // @@TODO delete this survey
   trainingVideoFeedbackSurvey(): ISurvey {
     return {
-      pages: [{
+      pages: [() => { return {
         // page 1
         topTextTranslationKey:
           this.userDataService.data.volunteerType === VolunteerType.VOLUNTEER_DISTRIBUTOR ?
@@ -409,7 +408,7 @@ export class SurveyService {
           options: this._yesNoOptions,
           isRequired: true
         }]
-      }],
+      }}],
       onSubmit: async vals => {
         // modify some of the form values before submitting to the proxy
         vals.firebaseIdToken = await this.userDataService.firebaseUser.getIdToken();
@@ -428,8 +427,9 @@ export class SurveyService {
       // options for volunteer distributors
       isIndividualDistributor: boolean,
       coordinatorOptions: { label: string, value: string }[];
+    
     return {
-      pages: [{
+      pages: [() => { return {
         // page 1
         fields: [{
           type: SurveyFieldType.TEXT,
@@ -464,7 +464,7 @@ export class SurveyService {
             throw this.miscService.showErrorPopup( errorKey );
           });
         }
-      }, {
+      }}, () => { return {
         // page 2
         topTextTranslationKey: 'volunteer.forms.signup.labels.intro',
         fields: [{
@@ -503,7 +503,7 @@ export class SurveyService {
             throw '';
           });
         }
-      }, {
+      }}, () => { return {
         // page 3: details for a new salesforce entry
         isVisible: vals => !salesforceId,
         fields: [{
@@ -517,7 +517,7 @@ export class SurveyService {
           labelTranslationKey: 'volunteer.forms.signup.labels.lastName',
           isRequired: true
         }]
-      }, {
+      }}, () => { return {
         // page 4
         isVisible: () => volunteerType === VolunteerType.VOLUNTEER_DISTRIBUTOR && !isIndividualDistributor,
         topTextTranslationKey: 'volunteer.forms.signup.labels.isCoordinator',
@@ -527,7 +527,7 @@ export class SurveyService {
           isRequired: true,
           options: this._yesNoOptions
         }]
-      }, {
+      }}, () => { return {
         // page 5
         isVisible: vals => vals.isCoordinator === 'no',
         topTextTranslationKey: !coordinatorOptions || coordinatorOptions.length === 0 ? 'volunteer.forms.signup.labels.noCoordinators' : 'volunteer.forms.signup.labels.whatName',
@@ -538,7 +538,7 @@ export class SurveyService {
           isRequired: true,
           options: coordinatorOptions
         }]
-      }],
+      }}],
       onSubmit: async vals => {
         // modify some of the form values before submitting to the proxy
         vals.firebaseIdToken = await this.userDataService.firebaseUser.getIdToken();
@@ -576,7 +576,7 @@ export class SurveyService {
     let udata = this.userDataService.data;
     return this.getTeamCoordinators( udata.accountId ).then( coordinatorOptions => {
       return {
-        pages: [{
+        pages: [() => { return {
           // page 1
           isVisible: vals => this.userDataService.data.volunteerType === VolunteerType.VOLUNTEER_DISTRIBUTOR && !this.userDataService.data.isTeamCoordinator,
           topTextTranslationKey: 'volunteer.forms.signup.labels.whatName',
@@ -588,7 +588,7 @@ export class SurveyService {
             defaultValue: this.userDataService.data.teamCoordinatorId,
             options: coordinatorOptions
           }]
-        }],
+        }}],
         onSubmit: async vals => {
           // modify some of the form values before submitting to the proxy
           vals.firebaseIdToken = await this.userDataService.firebaseUser.getIdToken();

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { TrxService, MiscService } from '../../services';
-import { ISurvey, ISurveyField, SurveyFieldType, ISurveyPage } from '../../models/survey';
+import { ISurvey, ISurveyField, SurveyFieldType, ISurveyPage, ISurveyPageFunc } from '../../models/survey';
 
 /**
  * This component is a modal that shows a survey.
@@ -40,6 +40,10 @@ export class SurveyComponent implements OnInit {
   firstPage = -1;
 
   pageHistory: number[] = [];
+  surveyPages: {
+    generate: ISurveyPageFunc,
+    rendered: ISurveyPage
+  }[] = [];
 
   constructor(
     public trx: TrxService,
@@ -50,26 +54,37 @@ export class SurveyComponent implements OnInit {
     if ( this.survey instanceof Promise ) {
       this.survey = await this.survey;
     }
-
-    // assign default values to optional functions
-    let noopTrue = () => true;
-    let noopTruePromise = () => {
-      return new Promise( (resolve,reject) => resolve() );
-    };
-    this.survey.pages.forEach( page => {
-      page.canContinue = page.canContinue || noopTrue;
-      page.onContinue = page.onContinue || noopTruePromise;
-      page.isVisible = page.isVisible || noopTrue;
-      page.fields = page.fields || [];
-      page.fields.forEach( field => field.labelTranslationKey = field.labelTranslationKey || '' );
+    
+    // run the page functions to build all the pages now.
+    // pages will be regenerated when the user advances to the next page
+    this.surveyPages = this.survey.pages.map( pageFunc => {
+      return {
+        generate: () => this.applyPageDefaults( pageFunc() ),
+        rendered: this.applyPageDefaults( pageFunc() )
+      };
     });
 
     this.goToNextVisiblePage();
     this.firstPage = this.activePage; // in case we skipped some pages right off the bat
   }
 
+  applyPageDefaults( page: ISurveyPage ): ISurveyPage {
+    // assign default values to optional functions
+    let noopTrue = () => true;
+    let noopTruePromise = () => {
+      return new Promise( (resolve,reject) => resolve() );
+    };
+
+    page.canContinue = page.canContinue || noopTrue;
+    page.onContinue = page.onContinue || noopTruePromise;
+    page.isVisible = page.isVisible || noopTrue;
+    page.fields = page.fields || [];
+    page.fields.forEach( field => field.labelTranslationKey = field.labelTranslationKey || '' );
+    return page;
+  }
+
   canContinue(): boolean {
-    let page = this.survey.pages[this.activePage];
+    let page = this.surveyPages[this.activePage].rendered;
 
     // find out if required elements are filled out
     let passesFirstTest = !page.fields ? true : page.fields.every( field => {
@@ -83,7 +98,7 @@ export class SurveyComponent implements OnInit {
 
   advance() {
     // if the page has an `onContinue` function, execute that first before advancing
-    this.survey.pages[this.activePage].onContinue( this.getAllVals() ).then( () => {
+    this.surveyPages[this.activePage].rendered.onContinue( this.getAllVals() ).then( () => {
       // add the current page to the 'undo' history
       this.pageHistory.push( this.activePage );
       this.goToNextVisiblePage();
@@ -95,8 +110,14 @@ export class SurveyComponent implements OnInit {
   goToNextVisiblePage() {
     // if any pages are not visible, skip over them
     do {
+      // render the next page
+      let newRendered = this.surveyPages[this.activePage + 1].generate();
+      // only replace the existing page if the newly rendered one is different. This retains input values where possible.
+      if ( JSON.stringify(newRendered) !== JSON.stringify(this.surveyPages[this.activePage+1].rendered) ) {
+        this.surveyPages[this.activePage + 1].rendered = newRendered;
+      }
       this.activePage++;
-    } while ( !this.survey.pages[this.activePage].isVisible(this.getAllVals()) );
+    } while ( !this.surveyPages[this.activePage].rendered.isVisible(this.getAllVals()) );
   }
 
   goBack() {
@@ -105,8 +126,8 @@ export class SurveyComponent implements OnInit {
 
   isLastPage() {
     // the active page is considered the "last" one if there are no visible pages after it
-    let subsequentPages = this.survey.pages.slice( this.activePage + 1 );
-    return !subsequentPages.some( page => page.isVisible(this.getAllVals()) );
+    let subsequentPages = this.surveyPages.slice( this.activePage + 1 );
+    return !subsequentPages.some( page => page.rendered.isVisible(this.getAllVals()) );
   }
 
   finish() {
@@ -176,8 +197,8 @@ export class SurveyComponent implements OnInit {
   // returns an object -- each property is the name of a field, and the value of the property is the value of the field
   getAllVals() {
     let vals = {};
-    this.survey.pages.forEach( page => {
-      page.fields.forEach( field => {
+    this.surveyPages.forEach( page => {
+      page.rendered.fields.forEach( field => {
         vals[field.name] = this.getFieldVal( field );
       });
     });

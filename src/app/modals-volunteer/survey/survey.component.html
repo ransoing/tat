@@ -8,16 +8,16 @@
     
     <form class="survey-wrapper" #form [style.margin-left]="getFormMarginLeft()">
 
-      <ng-container *ngFor="let page of survey.pages">
-        <div *ngIf="preDelay || page.isVisible(getAllVals())" class="page">
-          <h2 *ngIf="page.titleText">{{ page.titleText }}</h2>
-          <p *ngIf="page.topTextTranslationKey">{{ page.topTextTranslationKey | translate }}</p>
-          <p *ngIf="page.topText">{{ page.topText }}</p>
-          <p *ngIf="page.fields.length > 1 && pageHasRequiredFields(page)" class="required-warning"><span class="star">*</span> = {{ 'misc.required' | translate }}</p>
-          <ng-container *ngFor="let field of page.fields">
+      <ng-container *ngFor="let page of surveyPages">
+        <div *ngIf="preDelay || page.rendered.isVisible(getAllVals())" class="page">
+          <h2 *ngIf="page.rendered.titleText">{{ page.rendered.titleText }}</h2>
+          <p *ngIf="page.rendered.topTextTranslationKey">{{ page.rendered.topTextTranslationKey | translate }}</p>
+          <p *ngIf="page.rendered.topText">{{ page.rendered.topText }}</p>
+          <p *ngIf="page.rendered.fields.length > 1 && pageHasRequiredFields(page.rendered)" class="required-warning"><span class="star">*</span> = {{ 'misc.required' | translate }}</p>
+          <ng-container *ngFor="let field of page.rendered.fields">
             <p *ngIf="field.preFieldTextTranslationKey">{{ field.preFieldTextTranslationKey | translate }}</p>
             <div class="input-wrapper input-type-{{field.type}}">
-              <div *ngIf="page.fields.length > 1 && field.isRequired" class="required-star"><span class="star">*</span></div>
+              <div *ngIf="page.rendered.fields.length > 1 && field.isRequired" class="required-star"><span class="star">*</span></div>
               <!-- text field types -->
               <ion-item *ngIf="[SurveyFieldType.TEXT, SurveyFieldType.EMAIL, SurveyFieldType.TEL, SurveyFieldType.NUMBER].includes( field.type )">
                 <ion-label color="dark" position="floating">{{ field.label || (field.labelTranslationKey | translate) }}</ion-label>
@@ -90,7 +90,7 @@
     </form>
 
     <div class="progress-bar">
-      <div class="progress-bar-fill" [style.width.%]="100 * (activePage + 1) / survey.pages.length"></div>
+      <div class="progress-bar-fill" [style.width.%]="100 * (activePage + 1) / surveyPages.length"></div>
     </div>
 
     <div class="survey-nav">

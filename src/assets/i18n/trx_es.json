@@ -335,7 +335,7 @@
           "email": "Correo electrónico",
           "firstName": "Nombre",
           "intro": "¡Gracias por ser voluntario! antes de iniciar, por favor cuéntanos un poco acerca de usted.",
-          "isCoordinator": "¿Es usted el coordinador(a) del equipo?",
+          "isCoordinator": "¿Es usted un(a) coordinador(a) del equipo?",
           "lastName": "Apellido",
           "phone": "Número de teléfono",
           "registrationCode": "Código de registro",

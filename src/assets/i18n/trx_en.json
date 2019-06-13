@@ -351,7 +351,7 @@
           "email": "Email address",
           "firstName": "First name",
           "intro": "Thank you for volunteering! Before you begin, please tell us a bit about yourself.",
-          "isCoordinator": "Are you the team coordinator?",
+          "isCoordinator": "Are you a team coordinator?",
           "lastName": "Last name",
           "noCoordinators": "Notice: after your team coordinator signs up, you will need to edit your account and select your team coordinator.",
           "phone": "Phone number",

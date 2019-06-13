@@ -49,10 +49,14 @@ export interface ISurveyPage {
   isVisible?( formVals: any ): boolean,
   fields?: ISurveyField[],
 }
+
+export interface ISurveyPageFunc {
+  (): ISurveyPage
+}
   
 export interface ISurvey {
   // if onComplete resolves, then the modal closes. If it rejects, the modal does not close.
   onSubmit( formVals: any ): Promise<any>,
-  pages: ISurveyPage[],
+  pages?: ISurveyPageFunc[],
   submitButtonTranslationKey?: string
 }

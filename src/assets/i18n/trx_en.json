@@ -94,9 +94,10 @@
     },
     "error": "Error",
     "location": {
-      "address": "Address",
       "city": "City",
-      "state": "State",
+      "country": "Country",
+      "state": "State/Province",
+      "street": "Street",
       "zip": "Zip"
     },
     "messages": {

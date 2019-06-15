@@ -27,10 +27,11 @@ export interface IOutreachLocation {
   id: string, // ID of the object in salesforce
   name: string, // name of the location to be volunteered at
   type: OutreachLocationType,
-  address?: string, // street address of location
+  street?: string, // street address of location
   city?: string,
   state?: string,
   zip?: string,
+  country?: string,
   date?: Date, // the planned date of outreach
   contact?: { // the person to be contacted at the location
     name: string,
@@ -48,10 +49,11 @@ export interface IUserData {
   accountId?: string, // salesforce ID of the Account object associated with this user
   hasWatchedTrainingVideo?: boolean, // this property is the only one which isn't retrieved by salesforce. 
   hasCompletedTrainingFeedback?: boolean,
-  address?: string,
+  street?: string,
   city?: string,
   state?: string,
   zip?: string,
+  country?: string,
 
   // the next few apply to Distributor Volunteers only
   isOnVolunteerTeam?: boolean,

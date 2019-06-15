@@ -73,9 +73,14 @@ export class SurveyService {
           ],
           isRequired: true
         }, {
+          type: SurveyFieldType.COUNTRY,
+          labelTranslationKey: 'misc.location.country',
+          name: `locations[${locationNumber}].country`,
+          isRequired: true
+        }, {
           type: SurveyFieldType.TEXT,
-          labelTranslationKey: 'misc.location.address',
-          name: `locations[${locationNumber}].address`,
+          labelTranslationKey: 'misc.location.street',
+          name: `locations[${locationNumber}].street`,
           isRequired: true
         }, {
           type: SurveyFieldType.TEXT,
@@ -83,9 +88,10 @@ export class SurveyService {
           name: `locations[${locationNumber}].city`,
           isRequired: true
         }, {
-          type: SurveyFieldType.TEXT,
+          type: SurveyFieldType.STATE,
           labelTranslationKey: 'misc.location.state',
           name: `locations[${locationNumber}].state`,
+          countryDropdownName: `locations[${locationNumber}].country`,
           isRequired: true
         }, {
           type: SurveyFieldType.TEXT,
@@ -151,11 +157,17 @@ export class SurveyService {
       topTextTranslationKey: 'volunteer.forms.preOutreach.labels.whatAddress',
       isVisible: vals => vals.isReadyToReceive == 'yes',
       fields: [{
-        type: SurveyFieldType.TEXT,
-        labelTranslationKey: 'misc.location.address',
-        name: 'mailingAddress',
+        type: SurveyFieldType.COUNTRY,
+        labelTranslationKey: 'misc.location.country',
+        name: 'mailingCountry',
         isRequired: true,
-        defaultValue: udata.address
+        defaultValue: udata.country
+      }, {
+        type: SurveyFieldType.TEXT,
+        labelTranslationKey: 'misc.location.street',
+        name: 'mailingStreet',
+        isRequired: true,
+        defaultValue: udata.street
       }, {
         type: SurveyFieldType.TEXT,
         labelTranslationKey: 'misc.location.city',
@@ -163,9 +175,10 @@ export class SurveyService {
         isRequired: true,
         defaultValue: udata.city
       }, {
-        type: SurveyFieldType.TEXT,
+        type: SurveyFieldType.STATE,
         labelTranslationKey: 'misc.location.state',
         name: 'mailingState',
+        countryDropdownName: 'mailingCountry',
         isRequired: true,
         defaultValue: udata.state
       }, {

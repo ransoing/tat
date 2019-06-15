@@ -7,8 +7,10 @@ export enum SurveyFieldType {
   SELECT = 'select',// select
   CHOICE = 'choice',// single- or multi-select, displayed as large buttons to tap. Usually the only field on the page.
   TEXTAREA = 'textarea', // usually the only field on the page.
-  DATE = 'date',     // datepicker popup
-  TIME = 'time'      // timepicker popup
+  DATE = 'date',    // datepicker popup
+  TIME = 'time',    // timepicker popup
+  COUNTRY = 'country', // a 'select' dropdown with a list of countries
+  STATE = 'state'   // a 'select' dropdown with a list of states or provinces, depending on the country selected
 }
   
 export interface ISurveyField {
@@ -32,6 +34,9 @@ export interface ISurveyField {
     label?: string,
     labelTranslationKey?: string
   }[],
+
+  // for 'STATE' input type
+  countryDropdownName?: string,
 
   multi?: boolean // for 'CHOICE' input type. allows selecting multiple options.
 }

@@ -33,16 +33,25 @@
                 <ion-textarea [name]="field.name" color="dark" [placeholder]="field.label || (field.labelTranslationKey | translate)">{{field.defaultValue}}</ion-textarea>
                 <p *ngIf="field.helperTranslationKey" class="helper">{{ field.helperTranslationKey | translate }}</p>
               </ng-container>
-              <!-- select -->
-              <ion-item *ngIf="field.type === SurveyFieldType.SELECT">
+              <!-- select, country, state -->
+              <ion-item *ngIf="field.type === SurveyFieldType.SELECT || field.type === SurveyFieldType.COUNTRY || field.type === SurveyFieldType.STATE">
                 <ion-label color="dark" position="floating">{{ field.label || (field.labelTranslationKey | translate) }}</ion-label>
                 <ion-select
                   [attr.value]="field.defaultValue"
                   [name]="field.name"
                   [cancelText]="'misc.buttons.cancel' | translate"
                   [okText]="'misc.buttons.ok' | translate"
+                  [disabled]="field.type === SurveyFieldType.STATE && !getCountryFieldVal(field.countryDropdownName)"
                   [interfaceOptions]="{cssClass: 'select-options'}">
-                  <ion-select-option *ngFor="let option of field.options" [value]="option.value">{{ option.label || (option.labelTranslationKey | translate) }}</ion-select-option>
+                  <ng-container *ngIf="field.type === SurveyFieldType.SELECT">
+                    <ion-select-option *ngFor="let option of field.options" [value]="option.value">{{ option.label || (option.labelTranslationKey | translate) }}</ion-select-option>
+                  </ng-container>
+                  <ng-container *ngIf="field.type === SurveyFieldType.COUNTRY">
+                    <ion-select-option *ngFor="let option of locationOptions" [value]="option.country">{{ option.country }}</ion-select-option>
+                  </ng-container>
+                  <ng-container *ngIf="field.type === SurveyFieldType.STATE && getCountryFieldVal(field.countryDropdownName)">
+                      <ion-select-option *ngFor="let state of getStatesOfCountry(getCountryFieldVal(field.countryDropdownName))" [value]="state">{{ state }}</ion-select-option>
+                  </ng-container>
                 </ion-select>
               </ion-item>
               <!-- choice -->

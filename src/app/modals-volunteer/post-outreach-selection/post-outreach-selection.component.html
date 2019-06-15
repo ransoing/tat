@@ -15,7 +15,7 @@
           <ion-card-subtitle>{{ 'volunteer.forms.preOutreach.labels.locationTypes.' + target.type | translate }}</ion-card-subtitle>
         </ion-card-header>
         <ion-card-content>
-          {{target.address}}<br>
+          {{target.street}}<br>
           {{target.city}}, {{target.state}}
           <div *ngIf="target.date" class="outreach-date">{{ 'volunteer.forms.postOutreach.plannedDate' | translate }}: {{target.date.toLocaleDateString()}}</div>
         </ion-card-content>

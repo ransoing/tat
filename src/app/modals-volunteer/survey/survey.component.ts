@@ -45,6 +45,19 @@ export class SurveyComponent implements OnInit {
     rendered: ISurveyPage
   }[] = [];
 
+  locationOptions = [
+    {
+      country: 'United States',
+      states: ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'District of Columbia', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming']
+    }, {
+      country: 'Mexico',
+      states: ['Aguascalientes', 'Baja California', 'Baja California Sur', 'Campeche', 'Chiapas', 'Chihuahua', 'Coahuila', 'Colima', 'Durango', 'Federal District', 'Guanajuato', 'Guerrero', 'Hidalgo', 'Jalisco', 'Mexico State', 'Michoacán', 'Morelos', 'Nayarit', 'Nuevo León', 'Oaxaca', 'Puebla', 'Querétaro', 'Quintana Roo', 'San Luis Potosí', 'Sinaloa', 'Sonora', 'Tabasco', 'Tamaulipas', 'Tlaxcala', 'Veracruz', 'Yucatán', 'Zacatecas']
+    }, {
+      country: 'Canada',
+      states: ['Alberta', 'British Columbia', 'Manitoba', 'New Brunswick', 'Newfoundland and Labrador', 'Northwest Territories', 'Nova Scotia', 'Nunavut', 'Ontario', 'Prince Edward Island', 'Quebec', 'Saskatchewan', 'Yukon Territories']
+    }
+  ];
+
   constructor(
     public trx: TrxService,
     public miscService: MiscService
@@ -66,6 +79,10 @@ export class SurveyComponent implements OnInit {
 
     this.goToNextVisiblePage();
     this.firstPage = this.activePage; // in case we skipped some pages right off the bat
+  }
+
+  getStatesOfCountry( countryName ) {
+    return this.locationOptions.find( option => option.country === countryName ).states;
   }
 
   applyPageDefaults( page: ISurveyPage ): ISurveyPage {
@@ -192,6 +209,13 @@ export class SurveyComponent implements OnInit {
       }
     }
     return '';
+  }
+
+  getCountryFieldVal( fieldName: string ) {
+    return this.getFieldVal({
+      name: fieldName,
+      type: SurveyFieldType.COUNTRY
+    });
   }
 
   // returns an object -- each property is the name of a field, and the value of the property is the value of the field

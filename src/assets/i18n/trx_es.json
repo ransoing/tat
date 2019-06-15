@@ -93,9 +93,7 @@
     },
     "error": "Error",
     "location": {
-      "address": "Dirección",
       "city": "Ciudad",
-      "state": "Estado",
       "zip": "Código postal"
     },
     "messages": {

@@ -42,7 +42,7 @@ export class PostOutreachSelectionComponent implements AfterViewInit {
   }
 
   getMapsLink( target: IOutreachLocation ): string {
-    return 'http://maps.google.com?q=' + encodeURIComponent( `${target.address}, ${target.city}, ${target.state} ${target.zip}` );
+    return 'http://maps.google.com?q=' + encodeURIComponent( `${target.street}, ${target.city}, ${target.state} ${target.zip}` );
   }
 
   async deleteTarget( target: IOutreachLocation ) {

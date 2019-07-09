@@ -122,8 +122,13 @@ export class SurveyService {
         topTextTranslationKey: 'volunteer.forms.preOutreach.labels.contactInfo',
         fields: [{
           type: SurveyFieldType.TEXT,
-          labelTranslationKey: 'volunteer.forms.preOutreach.labels.contactName',
-          name: `locations[${locationNumber}].contactName`,
+          labelTranslationKey: 'volunteer.forms.signup.labels.firstName',
+          name: `locations[${locationNumber}].contactFirstName`,
+          isRequired: true
+        }, {
+          type: SurveyFieldType.TEXT,
+          labelTranslationKey: 'volunteer.forms.signup.labels.lastName',
+          name: `locations[${locationNumber}].contactLastName`,
           isRequired: true
         }, {
           type: SurveyFieldType.TEXT,

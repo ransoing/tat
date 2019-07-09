@@ -25,10 +25,11 @@ export class ReportPage {
 
   openEmailReportSurvey() {
     let survey: ISurvey = {
-      pages: [{
+      pages: [
+        () => { return {
         // page 1: intro
         topTextTranslationKey: 'emailReport.intro'
-      }, {
+      }}, () => { return {
         // page 2: have you seen a victim?
         topTextTranslationKey: 'emailReport.checkboxes.seenVictim',
         fields: [{
@@ -37,7 +38,7 @@ export class ReportPage {
           options: this._yesNoOptions,
           isRequired: true
         }]
-      }, {
+      }}, () => { return {
         // page 3: victim details
         isVisible: vals => vals.hasSeenVictim === 'yes',
         fields: [{
@@ -58,7 +59,7 @@ export class ReportPage {
           helperTranslationKey: 'emailReport.victim.appearance.placeholder',
           isRequired: true
         }]
-      }, {
+      }}, () => { return {
         // page 4: victim details, cont'd
         isVisible: vals => vals.hasSeenVictim === 'yes',
         topTextTranslationKey: 'emailReport.victim.flags.label',
@@ -82,7 +83,7 @@ export class ReportPage {
           name: 'victimFlagsOther',
           labelTranslationKey: 'emailReport.victim.otherNotes.label'
         }]
-      }, {
+      }}, () => { return {
         // page 5: Do you see other people?
         topTextTranslationKey: 'emailReport.checkboxes.otherPeople',
         fields: [{
@@ -91,7 +92,7 @@ export class ReportPage {
           options: this._yesNoOptions,
           isRequired: true
         }]
-      }, {
+      }}, () => { return {
         // page 6: Other people details
         isVisible: vals => vals.hasSeenOtherPeople === 'yes',
         topTextTranslationKey: 'emailReport.otherPeople.placeholder',
@@ -100,7 +101,7 @@ export class ReportPage {
           name: 'otherPeopleDetails',
           labelTranslationKey: 'emailReport.otherPeople.label'
         }]
-      }, {
+      }}, () => { return {
         // page 7: Are there vehicles?
         topTextTranslationKey: 'emailReport.checkboxes.cars',
         fields: [{
@@ -109,7 +110,7 @@ export class ReportPage {
           options: this._yesNoOptions,
           isRequired: true
         }]
-      }, {
+      }}, () => { return {
         // page 8: cars details
         isVisible: vals => vals.thereAreCars === 'yes',
         topTextTranslationKey: 'emailReport.cars.placeholder',
@@ -118,7 +119,7 @@ export class ReportPage {
           name: 'carDetails',
           labelTranslationKey: 'emailReport.otherPeople.label'
         }]
-      }, {
+      }}, () => { return {
         // page 9: when
         topTextTranslationKey: 'emailReport.when.label',
         fields: [{
@@ -132,7 +133,7 @@ export class ReportPage {
           labelTranslationKey: 'misc.datetime.time',
           isRequired: true
         }]
-      }, {
+      }}, () => { return {
         // page 10: where
         topTextTranslationKey: 'emailReport.where.label',
         fields: [{
@@ -140,14 +141,14 @@ export class ReportPage {
           name: 'location',
           isRequired: true
         }]
-      }, {
+      }}, () => { return {
         // page 11: other
         topTextTranslationKey: 'emailReport.additional.label',
         fields: [{
           type: SurveyFieldType.TEXTAREA,
           name: 'additional'
         }]
-      }, {
+      }}, () => { return {
         // page 12: phone
         topTextTranslationKey: 'emailReport.phone.label',
         fields: [{
@@ -155,10 +156,10 @@ export class ReportPage {
           name: 'phone',
           isRequired: true
         }]
-      }, {
+      }}, () => { return {
         // page 13: end
         topTextTranslationKey: 'emailReport.notes'
-      }],
+      }}],
       submitButtonTranslationKey: 'emailReport.emailButton',
       onSubmit: vals => {
         const subject = 'Trafficking tip';

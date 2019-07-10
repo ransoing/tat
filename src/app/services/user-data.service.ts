@@ -110,9 +110,6 @@ export class UserDataService {
       this.data.events = this.data.events.sort( (a, b) => a.date.getTime() - b.date.getTime() );
     }
     // save the data in local cache
-    if ( this.data.hasCompletedTrainingFeedback ) {
-      this.data.hasWatchedTrainingVideo = true;
-    }
     this.updateCache();
   }
 

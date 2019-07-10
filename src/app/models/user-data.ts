@@ -48,7 +48,6 @@ export interface IUserData {
   volunteerType?: VolunteerType,
   accountId?: string, // salesforce ID of the Account object associated with this user
   hasWatchedTrainingVideo?: boolean, // this property is the only one which isn't retrieved by salesforce. 
-  hasCompletedTrainingFeedback?: boolean,
   street?: string,
   city?: string,
   state?: string,

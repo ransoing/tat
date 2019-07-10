@@ -411,33 +411,6 @@ export class SurveyService {
     };
   }
 
-  // @@TODO delete this survey
-  trainingVideoFeedbackSurvey(): ISurvey {
-    return {
-      pages: [() => { return {
-        // page 1
-        topTextTranslationKey:
-          this.userDataService.data.volunteerType === VolunteerType.VOLUNTEER_DISTRIBUTOR ?
-          'volunteer.forms.trainingFeedback.labels.equippedForOutreach' :
-          'volunteer.forms.trainingFeedback.labels.confidentInPresenting',
-        fields: [{
-          type: SurveyFieldType.CHOICE,
-          name: 'feelsPrepared',
-          options: this._yesNoOptions,
-          isRequired: true
-        }]
-      }}],
-      onSubmit: async vals => {
-        // modify some of the form values before submitting to the proxy
-        vals.firebaseIdToken = await this.userDataService.firebaseUser.getIdToken();
-        vals.feelsPrepared = vals.feelsPrepared === 'yes';
-
-        // send to the proxy and show an error message if appropriate
-        return this.genericProxyPOST( 'createTrainingVideoFeedback', vals );
-      }
-    };
-  }
-
 
   signupSurvey(): ISurvey {
     let salesforceId: string,

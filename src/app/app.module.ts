@@ -55,7 +55,7 @@ const firebaseuiAuthConfig: firebaseui.auth.Config = {
     firebase.auth.TwitterAuthProvider.PROVIDER_ID
   ],
   tosUrl: '<@@your-tos-link>',
-  privacyPolicyUrl: '<@@your-privacyPolicyUrl-link>',
+  privacyPolicyUrl: 'https://truckersagainsttrafficking.org/wp-content/uploads/2019/06/TAT-Mobile-App-Privacy-Policy110405225_2-1-1.pdf',
   credentialHelper: firebaseui.auth.CredentialHelper.NONE
 };
 

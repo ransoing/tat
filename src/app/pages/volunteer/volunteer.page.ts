@@ -8,6 +8,7 @@ import {
 import { ModalService, UserDataService, MiscService, SurveyService, TrxService } from '../../services';
 import { UserDataRequestFlags, VolunteerType } from '../../models/user-data';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { ProxyAPIService } from '../../services/proxy-api.service';
 
 @Component({
   selector: 'app-volunteer',
@@ -33,7 +34,8 @@ export class VolunteerPage {
     public loadingCtrl: LoadingController,
     private miscService: MiscService,
     private surveys: SurveyService,
-    private trx: TrxService
+    private trx: TrxService,
+    private proxyAPI: ProxyAPIService
   ) {
     this.miscService.onRouteHere(() => {
       this.userDataService.fetchUserData();
@@ -103,17 +105,6 @@ export class VolunteerPage {
     // @@Also create and import PostEventSelectionComponent or make the other SelectionComponent able to handle both events and outreach targets
   }
 
-  showTrainingVideoFeedbackForm() {
-    this.modalService.open( SurveyComponent, {
-      titleTranslationKey: 'volunteer.forms.trainingFeedback.title',
-      successTranslationKey: 'volunteer.forms.trainingFeedback.submitSuccess',
-      survey: this.surveys.trainingVideoFeedbackSurvey(),
-      onSuccess: () => {
-        // update just the basic user data
-        this.userDataService.fetchUserData( true, UserDataRequestFlags.BASIC_USER_DATA );
-      }
-    });
-  }
 
   openTrainingVideo() {
     // training video varies by volunteer type
@@ -125,6 +116,18 @@ export class VolunteerPage {
     this.modalService.open( TrainingVideoComponent, {
       videoUrlKey: videoUrlKey,
       onFinishedWatching: () => {
+        // in the background, send a message to the proxy to mark this the video as watched in salesforce
+        // ...only if the user has just now watched it for the first time
+        if ( !this.userDataService.data.hasWatchedTrainingVideo ) {
+          this.userDataService.firebaseUser.getIdToken().then( token => {
+            const payload = {
+              firebaseIdToken: token,
+              hasWatchedTrainingVideo: true
+            };
+            this.proxyAPI.post( 'updateUser', payload );
+          });
+        }
+
         this.userDataService.data.hasWatchedTrainingVideo = true;
         // save the state to the cache
         this.userDataService.updateCache();

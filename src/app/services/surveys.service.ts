@@ -238,6 +238,7 @@ export class SurveyService {
         }
 
         vals.isReadyToReceive = vals.isReadyToReceive === 'yes';
+        vals.feelsPrepared = vals.feelsPrepared === 'yes';
 
         // send to the proxy and show an error message if appropriate
         return this.genericProxyPOST( 'createPreOutreachSurvey', vals );

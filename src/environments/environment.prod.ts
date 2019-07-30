@@ -8,5 +8,5 @@ export const environment = {
     storageBucket: "truckers-against-trafficking.appspot.com",
     messagingSenderId: "1062876332765"
   },
-  proxyServerURL: 'https://tatproxy.ransomchristofferson.com/api/' // @@ set a real URL for this
+  proxyServerURL: 'https://app-proxy.truckersagainsttrafficking.org/api/'
 };

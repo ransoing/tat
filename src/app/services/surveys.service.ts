@@ -103,7 +103,9 @@ export class SurveyService {
           type: SurveyFieldType.DATE,
           labelTranslationKey: 'misc.datetime.date',
           name: `locations[${locationNumber}].date`,
-          isRequired: true
+          isRequired: true,
+          min: new Date().getFullYear().toString(),
+          max: ( new Date().getFullYear() + 2 ).toString()
         }]
       }}, () => { return {
         titleText: titleTextCont,
@@ -255,7 +257,8 @@ export class SurveyService {
           type: SurveyFieldType.DATE,
           name: 'completionDate',
           labelTranslationKey: 'misc.datetime.date',
-          isRequired: true
+          isRequired: true,
+          min: ( new Date().getFullYear() - 2 ).toString()
         }]
       }}, () => { return {
         // truck stop
@@ -338,7 +341,9 @@ export class SurveyService {
           type: SurveyFieldType.DATE,
           name: 'followUpDate',
           labelTranslationKey: 'volunteer.forms.postOutreach.labels.followUpDate',
-          isRequired: true
+          isRequired: true,
+          min: ( new Date().getFullYear() ).toString(),
+          max: ( new Date().getFullYear() +2 ).toString()
         }]
       }}, () => { return {
         topTextTranslationKey: 'volunteer.forms.postOutreach.labels.hoursQuestion',

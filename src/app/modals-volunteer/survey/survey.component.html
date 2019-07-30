@@ -73,6 +73,9 @@
                 <ion-label color="dark" position="floating">{{ field.label || (field.labelTranslationKey | translate) }}</ion-label>
                 <ion-datetime
                   [attr.name]="field.name"
+                  [attr.min]="field.min"
+                  [attr.max]="field.max"
+                  [attr.value]="field.defaultValue"
                   [cancelText]="'misc.buttons.cancel' | translate"
                   [doneText]="'misc.buttons.ok' | translate"
                   [attr.month-names]="'misc.datetime.monthNames' | translate"

@@ -195,9 +195,13 @@ export class SurveyComponent implements OnInit {
     } else if ( field.type === SurveyFieldType.DATE ) {
       let el = this.formRef.nativeElement.querySelector( 'ion-datetime[name="'+field.name+'"]' );
       if ( el && el.value ) {
-        // with Date, months are 0-indexed. With ion-datetime component, they are 1-indexed
-        let date = new Date( el.value.year.value, el.value.month.value - 1, el.value.day.value );
-        return date.toISOString();
+        if ( typeof el.value === 'string' ) {
+          return el.value;
+        } else {
+          // with Date, months are 0-indexed. With ion-datetime component, they are 1-indexed
+          let date = new Date( el.value.year.value, el.value.month.value - 1, el.value.day.value );
+          return date.toISOString();
+        } 
       }
     } else if ( field.type === SurveyFieldType.TIME ) {
       let el = this.formRef.nativeElement.querySelector( 'ion-datetime[name="'+field.name+'"]' );

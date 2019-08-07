@@ -327,6 +327,40 @@ export class SurveyService {
           labelTranslationKey: 'misc.other'
         }]
       }}, () => { return {
+        topTextTranslationKey: 'volunteer.forms.postOutreach.labels.whoContact',
+        canContinue: vals => {
+          return !!( String( vals.contactPhone ).trim() || String( vals.contactEmail ).trim() );
+        },
+        fields: [{
+          type: SurveyFieldType.TEXT,
+          name: 'contactFirstName',
+          labelTranslationKey: 'volunteer.forms.signup.labels.firstName',
+          isRequired: true,
+          defaultValue: location.contact.firstName
+        }, {
+          type: SurveyFieldType.TEXT,
+          name: 'contactLastName',
+          labelTranslationKey: 'volunteer.forms.signup.labels.lastName',
+          isRequired: true,
+          defaultValue: location.contact.lastName
+        }, {
+          type: SurveyFieldType.TEXT,
+          name: 'contactTitle',
+          labelTranslationKey: 'volunteer.forms.preOutreach.labels.contactTitle',
+          isRequired: true,
+          defaultValue: location.contact.title
+        }, {
+          type: SurveyFieldType.EMAIL,
+          name: 'contactEmail',
+          labelTranslationKey: 'volunteer.forms.preOutreach.labels.contactEmail',
+          defaultValue: location.contact.email
+        }, {
+          type: SurveyFieldType.TEL,
+          name: 'contactPhone',
+          labelTranslationKey: 'volunteer.forms.preOutreach.labels.contactPhone',
+          defaultValue: location.contact.phone
+        }]
+      }}, () => { return {
         topTextTranslationKey: 'volunteer.forms.postOutreach.labels.followUp',
         fields: [{
           type: SurveyFieldType.CHOICE,

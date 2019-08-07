@@ -302,7 +302,8 @@
             "showDrivers": "Trucking company plans to show their drivers the TAT training video and hand out wallet cards."
           },
           "when": "When did you visit this location?",
-          "whichAccomplishments": "Which of the following were you able to accomplish? Please select all that apply:"
+          "whichAccomplishments": "Which of the following were you able to accomplish? Please select all that apply:",
+          "whoContact": "Who did you contact at this location? (you must provide either an email address or phone number)"
         },
         "plannedDate": "Planned outreach date",
         "select": "Which location did you visit?",

@@ -34,7 +34,8 @@ export interface IOutreachLocation {
   country?: string,
   date?: Date, // the planned date of outreach
   contact?: { // the person to be contacted at the location
-    name: string,
+    firstName: string,
+    lastName: string,
     title?: string,
     email?: string,
     phone?: string

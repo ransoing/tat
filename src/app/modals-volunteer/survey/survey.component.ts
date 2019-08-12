@@ -177,7 +177,7 @@ export class SurveyComponent implements OnInit {
     if ( this.formRef.nativeElement.elements[field.name] ) {
       let el = this.formRef.nativeElement.elements[field.name];
       if ( field.type === SurveyFieldType.CHOICE && field.multi ) {
-        // join the values of the checked boxes into a comma-separated list
+        // join the values of the checked boxes into a semicolon-separated list
         if ( el[0] ) {
           // there are multiple checkboxes, so this behaves like an array
           return Array.prototype.slice.call( el )

@@ -268,19 +268,12 @@ export class SurveyService {
           type: SurveyFieldType.CHOICE,
           name: 'accomplishments',
           multi: true,
-          // The form will submit the English versions of the text, but the user's language will be displayed
           options: [{
-            value: 'Truck stop is now distributing TAT materials at their location',
-            labelTranslationKey: 'volunteer.forms.postOutreach.labels.truckStop.distributing'
+            value: 'willDistributeMaterials',
+            labelTranslationKey: 'volunteer.forms.postOutreach.labels.truckStop.willDistributeMaterials'
           }, {
-            value: 'Truck stop will now train employees with TAT materials',
-            labelTranslationKey: 'volunteer.forms.postOutreach.labels.truckStop.training'
-          }, {
-            value: 'Truck stop has asked for an in-person training for all employees',
-            labelTranslationKey: 'volunteer.forms.postOutreach.labels.truckStop.inPersonTraining'
-          }, {
-            value: 'Truck stop is open to having an outreach at their location to speak with drivers in an appropriate format',
-            labelTranslationKey: 'volunteer.forms.postOutreach.labels.truckStop.hostOutreach'
+            value: 'willTrainEmployees',
+            labelTranslationKey: 'volunteer.forms.postOutreach.labels.truckStop.willTrainEmployees'
           }]
         }, {
           type: SurveyFieldType.TEXTAREA,
@@ -295,13 +288,12 @@ export class SurveyService {
           type: SurveyFieldType.CHOICE,
           name: 'accomplishments',
           multi: true,
-          // The form will submit the English versions of the text, but the user's language will be displayed
           options: [{
-            value: 'CDL instructor will begin using TAT training with students',
-            labelTranslationKey: 'volunteer.forms.postOutreach.labels.cdlSchool.using'
+            value: 'willUseTatTraining',
+            labelTranslationKey: 'volunteer.forms.postOutreach.labels.cdlSchool.willUseTatTraining'
           }, {
-            value: 'CDL instructor plans to pass on TAT information to other faculty',
-            labelTranslationKey: 'volunteer.forms.postOutreach.labels.cdlSchool.passInfo'
+            value: 'willPassOnInfo',
+            labelTranslationKey: 'volunteer.forms.postOutreach.labels.cdlSchool.willPassOnInfo'
           }]
         }, {
           type: SurveyFieldType.TEXTAREA,
@@ -316,10 +308,9 @@ export class SurveyService {
           type: SurveyFieldType.CHOICE,
           name: 'accomplishments',
           multi: true,
-          // The form will submit the English versions of the text, but the user's language will be displayed
           options: [{
-            value: 'Trucking company plans to show their drivers the TAT training video and hand out wallet cards.',
-            labelTranslationKey: 'volunteer.forms.postOutreach.labels.truckingCompany.showDrivers'
+            value: 'willTrainDrivers',
+            labelTranslationKey: 'volunteer.forms.postOutreach.labels.truckingCompany.willTrainDrivers'
           }]
         }, {
           type: SurveyFieldType.TEXTAREA,
@@ -395,8 +386,8 @@ export class SurveyService {
         vals.followUpDate = this.miscService.dateToLocalYYYYMMDD( vals.followUpDate );
         vals.completionDate = this.miscService.dateToLocalYYYYMMDD( vals.completionDate );
         vals.outreachLocationId = location.id;
-        // merge 'accomplishments' and 'other accomplishments'
-        vals.accomplishments += '; ' + vals.otherAccomplishments;
+        // turn 'accomplishments' into an array
+        vals.accomplishments = vals.accomplishments.split( '; ' );
 
         // send to the proxy and show an error message if appropriate
         return this.genericProxyPOST( 'createPostOutreachReport', vals );

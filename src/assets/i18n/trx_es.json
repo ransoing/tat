@@ -279,20 +279,18 @@
       "postOutreach": {
         "labels": {
           "cdlSchool": {
-            "using": "El instructor de choferes comerciales empezará a usar capacitación de TAT con sus alumnos"
+            "willUseTatTraining": "El instructor de choferes comerciales empezará a usar capacitación de TAT con sus alumnos"
           },
           "followUp": "¿Planea usted dar seguimiento con su contacto?",
           "followUpDate": "Fecha para darle seguimiento",
           "followUpWhen": "¿Cuando planea hacer ese seguimiento?",
           "hours": "Número de horas",
           "truckStop": {
-            "distributing": "La parada de camiones ya está distribuyendo materiales de TAT en su ubicación",
-            "hostOutreach": "La parada de camiones esta dispuesta a tener servir de enlance en su ubicacion para hablar con choferes en un formato apropiado",
-            "inPersonTraining": "La parada de caminones ha pedido capacitacion en persona para todos los empleados",
-            "training": "La parada de camiones ahora capacitara a sus empleados con los materiales de TAT"
+            "willDistributeMaterials": "La parada de camiones ya está distribuyendo materiales de TAT en su ubicación",
+            "willTrainEmployees": "La parada de camiones ahora capacitara a sus empleados con los materiales de TAT"
           },
           "truckingCompany": {
-            "showDrivers": "La compañía transportista planea mostrar a sus choferes el vídeo de capacitación de TAT y distribures tarjetas de información para llevar en sus carteras"
+            "willTrainDrivers": "La compañía transportista planea mostrar a sus choferes el vídeo de capacitación de TAT y distribures tarjetas de información para llevar en sus carteras"
           },
           "whichAccomplishments": "¿Cual de las siguientes actividades pudo realizar? Por favor seleccione todas las aplicables."
         },
@@ -310,7 +308,6 @@
       "preOutreach": {
         "labels": {
           "areYouReady": "¿Esta listo para recibir los materiales de TAT?",
-          "equippedForOutreach": "¿Se siente usted preparado para establecer un enlace con las organizaciones?",
           "haveYouContacted": "¿Se comunico usted con el gerente general (u otro contacto) para hacer la cita?",
           "location": "Lugar {{num}}",
           "locationName": "Nombre del lugar",
@@ -321,7 +318,6 @@
             "truckingCompany": "Compania camionera/transportista"
           },
           "whatAddress": "¿A que direccion de correo postal prefiere que se le envien materiales de TAT?",
-          "whatLocation": "¿Que lugar planea visitar?",
           "whatQuestions": "¿Que preguntas tiene para el personal de TAT?"
         },
         "submitSuccess": "@:volunteer.forms.successSurvey",

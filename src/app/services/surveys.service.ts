@@ -291,9 +291,6 @@ export class SurveyService {
           options: [{
             value: 'willUseTatTraining',
             labelTranslationKey: 'volunteer.forms.postOutreach.labels.cdlSchool.willUseTatTraining'
-          }, {
-            value: 'willPassOnInfo',
-            labelTranslationKey: 'volunteer.forms.postOutreach.labels.cdlSchool.willPassOnInfo'
           }]
         }, {
           type: SurveyFieldType.TEXTAREA,

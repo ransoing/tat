@@ -284,7 +284,6 @@
       "postOutreach": {
         "labels": {
           "cdlSchool": {
-            "willPassOnInfo": "CDL instructor plans to pass on TAT information to other faculty",
             "willUseTatTraining": "CDL instructor will begin using TAT training with students"
           },
           "followUp": "Do you plan to follow up with your contact?",
@@ -297,7 +296,7 @@
             "willTrainEmployees": "Truck stop will now train employees with TAT materials"
           },
           "truckingCompany": {
-            "willTrainDrivers": "Trucking company plans to show their drivers the TAT training video and hand out wallet cards."
+            "willTrainDrivers": "Trucking company plans to show their drivers the TAT training video and hand out wallet cards"
           },
           "when": "When did you visit this location?",
           "whichAccomplishments": "Which of the following were you able to accomplish? Please select all that apply:",

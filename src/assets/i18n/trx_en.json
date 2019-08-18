@@ -260,6 +260,7 @@
       "testimonial": "Testimonial/Feedback",
       "trainingVideo": "Training Video"
     },
+    "feedbackPrompt": "Would you like to fill out a short feedback survey about your volunteer experience?",
     "forms": {
       "editAccount": {
         "submitSuccess": "Your account has been updated.",
@@ -336,7 +337,7 @@
           "plannedDate": "When do you plan on visiting this location?",
           "whatAddress": "What is a good mailing address to send the materials to?",
           "whatCampaign": "What campaign is this for?",
-          "whatLocation": "What location do you plan on visiting? (If this is a chain, include a location-specific name whether that’s a store number, city name, etc.)",
+          "whatLocation": "What location do you plan on visiting? (If this is a chain, include a location-specific name such as a store number, city name, etc.)",
           "whatQuestions": "What questions do you have for TAT staff?"
         },
         "noCampaignsError": "You have no active campaigns. Please contact TAT staff for assistance.",

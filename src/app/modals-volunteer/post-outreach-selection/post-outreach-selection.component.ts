@@ -37,6 +37,28 @@ export class PostOutreachSelectionComponent implements AfterViewInit {
         if ( this.userDataService.data.outreachLocations.length == 0 ) {
           this.modal.dismiss();
         }
+
+        // prompt the user to fill out the testimonial/feedback survey
+        const alert = await this.alertController.create({
+          message: await this.trx.t( 'volunteer.feedbackPrompt' ),
+          buttons: [
+            {
+              text: await this.trx.t( 'misc.buttons.close' ),
+              role: 'cancel'
+            }, {
+              text: await this.trx.t( 'misc.buttons.ok' ),
+              handler: () => {
+                this.modalService.open( SurveyComponent, {
+                  titleTranslationKey: 'volunteer.forms.feedback.title',
+                  successTranslationKey: 'volunteer.forms.feedback.submitSuccess',
+                  survey: this.surveys.testimonialFeedbackSurvey(),
+                  onSuccess: () => {}
+                });
+              }
+            }
+          ]
+        });
+        alert.present();
       }
     });
   }

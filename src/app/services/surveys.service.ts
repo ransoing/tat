@@ -373,6 +373,7 @@ export class SurveyService {
           type: SurveyFieldType.NUMBER,
           name: 'totalHours',
           labelTranslationKey: 'volunteer.forms.postOutreach.labels.hours',
+          helperTranslationKey: 'volunteer.forms.postOutreach.labels.hoursHelper',
           isRequired: true
         }]
       }}],

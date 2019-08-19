@@ -25,7 +25,7 @@ export interface ISurveyField {
 
   defaultValue?: string,
   isRequired?: boolean,
-  helperTranslationKey?: string, // some helper text, for TEXTAREA
+  helperTranslationKey?: string, // some helper text, for TEXTAREA, TEXT, EMAIL, TEL, or NUMBER
 
   // for 'SELECT' or 'CHOICE' input types.
   options?: {

@@ -291,6 +291,7 @@
           "followUpDate": "Follow-up date",
           "followUpWhen": "When do you plan to do the follow-up?",
           "hours": "Number of hours",
+          "hoursHelper": "Take the total number of hours and multiply it by the number of people you’re reporting for. Total hours includes only the time spent on site talking with the company. EX: If four people spent half an hour at the truck stop talking with this truck stop manager, then you would log 2 hours.",
           "hoursQuestion": "How many man-hours did your team spend on this outreach effort?",
           "truckStop": {
             "willDistributeMaterials": "Truck stop is now distributing TAT materials at their location",

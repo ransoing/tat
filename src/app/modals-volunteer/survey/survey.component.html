@@ -19,15 +19,18 @@
             <div class="input-wrapper input-type-{{field.type}}">
               <div *ngIf="page.rendered.fields.length > 1 && field.isRequired" class="required-star"><span class="star">*</span></div>
               <!-- text field types -->
-              <ion-item *ngIf="[SurveyFieldType.TEXT, SurveyFieldType.EMAIL, SurveyFieldType.TEL, SurveyFieldType.NUMBER].includes( field.type )">
-                <ion-label color="dark" position="floating">{{ field.label || (field.labelTranslationKey | translate) }}</ion-label>
-                <ion-input
-                  [type]="field.type"
-                  color="dark"
-                  [attr.value]="field.defaultValue"
-                  [name]="field.name">
-                </ion-input>
-              </ion-item>
+              <ng-container *ngIf="[SurveyFieldType.TEXT, SurveyFieldType.EMAIL, SurveyFieldType.TEL, SurveyFieldType.NUMBER].includes( field.type )">
+                <ion-item>
+                  <ion-label color="dark" position="floating">{{ field.label || (field.labelTranslationKey | translate) }}</ion-label>
+                  <ion-input
+                    [type]="field.type"
+                    color="dark"
+                    [attr.value]="field.defaultValue"
+                    [name]="field.name">
+                  </ion-input>
+                </ion-item>
+                <p *ngIf="field.helperTranslationKey" class="helper">{{ field.helperTranslationKey | translate }}</p>
+              </ng-container>
               <!-- textarea -->
               <ng-container *ngIf="field.type === SurveyFieldType.TEXTAREA">
                 <ion-textarea [name]="field.name" color="dark" [placeholder]="field.label || (field.labelTranslationKey | translate)">{{field.defaultValue}}</ion-textarea>

@@ -26,7 +26,9 @@
                     [type]="field.type"
                     color="dark"
                     [attr.value]="field.defaultValue"
-                    [name]="field.name">
+                    [name]="field.name"
+                    [attr.min]="field.min"
+                    [attr.max]="field.max">
                   </ion-input>
                 </ion-item>
                 <p *ngIf="field.helperTranslationKey" class="helper">{{ field.helperTranslationKey | translate }}</p>

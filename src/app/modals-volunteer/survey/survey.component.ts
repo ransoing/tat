@@ -128,6 +128,11 @@ export class SurveyComponent implements OnInit {
     // if any pages are not visible, skip over them
     do {
       // render the next page
+      if ( this.surveyPages.length === this.activePage + 1 ) {
+        // No more pages! Submit the survey. If we're in this part of the code, we've already verified that we can continue from the existing page.
+        setTimeout( () => this.finish(), 500 );
+        return;
+      }
       let newRendered = this.surveyPages[this.activePage + 1].generate();
       // only replace the existing page if the newly rendered one is different. This retains input values where possible.
       if ( JSON.stringify(newRendered) !== JSON.stringify(this.surveyPages[this.activePage+1].rendered) ) {

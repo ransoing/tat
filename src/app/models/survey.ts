@@ -41,8 +41,9 @@ export interface ISurveyField {
   multi?: boolean // for 'CHOICE' input type. allows selecting multiple options.
 
   // for 'DATE' input type. both fields can be a year like '2016' or a date like '2020-10-31'
-  min?: string,
-  max?: string
+  // also for 'NUMBER' input type.
+  min?: string | number,
+  max?: string | number
 }
   
 export interface ISurveyPage {

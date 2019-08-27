@@ -291,8 +291,14 @@
           "followUpDate": "Follow-up date",
           "followUpWhen": "When do you plan to do the follow-up?",
           "hours": "Number of hours",
-          "hoursHelper": "Take the total number of hours and multiply it by the number of people you’re reporting for. Total hours includes only the time spent on site talking with the company. EX: If four people spent half an hour at the truck stop talking with this truck stop manager, then you would log 2 hours.",
-          "hoursQuestion": "How many man-hours did your team spend on this outreach effort?",
+          "hoursHelper": {
+            "group": "Take the total number of hours and multiply it by the number of people you’re reporting for. Total hours includes only the time spent on site talking with the company. EX: If four people spent half an hour at the truck stop talking with this truck stop manager, then you would log 2 hours.",
+            "individual": "Total hours includes only the time spent on site talking with the company."
+          },
+          "hoursQuestion": {
+            "group": "How many man-hours did your team spend on this outreach effort?",
+            "individual": "How many man-hours did you spend on this outreach effort?"
+          },
           "truckStop": {
             "willDistributeMaterials": "Truck stop is now distributing TAT materials at their location",
             "willTrainEmployees": "Truck stop will now train employees with TAT materials"
@@ -347,6 +353,7 @@
       },
       "signup": {
         "accountAlreadyExists": "It seems you already have a volunteer user account. For assistance, contact tat.truckers@gmail.com",
+        "cannotFindContact": "Unable to locate your info in our database. Please try an alternate email or phone number. For assistance, contact tat.truckers@gmail.com",
         "invalidCode": "Invalid registration code.",
         "labels": {
           "coordinatorName": "Team coordinator's name",

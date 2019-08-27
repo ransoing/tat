@@ -258,7 +258,8 @@ export class SurveyService {
           name: 'completionDate',
           labelTranslationKey: 'misc.datetime.date',
           isRequired: true,
-          min: ( new Date().getFullYear() - 2 ).toString()
+          min: ( new Date().getFullYear() - 2 ).toString(),
+          defaultValue: new Date( Date.now() - new Date().getTimezoneOffset() * 60 * 1000 ).toISOString()
         }]
       }}, () => { return {
         // truck stop
@@ -368,13 +369,14 @@ export class SurveyService {
           max: ( new Date().getFullYear() +2 ).toString()
         }]
       }}, () => { return {
-        topTextTranslationKey: 'volunteer.forms.postOutreach.labels.hoursQuestion',
+        topTextTranslationKey: this.userDataService.data.isOnVolunteerTeam ? 'volunteer.forms.postOutreach.labels.hoursQuestion.group' : 'volunteer.forms.postOutreach.labels.hoursQuestion.individual',
         fields: [{
           type: SurveyFieldType.NUMBER,
           name: 'totalHours',
           labelTranslationKey: 'volunteer.forms.postOutreach.labels.hours',
-          helperTranslationKey: 'volunteer.forms.postOutreach.labels.hoursHelper',
-          isRequired: true
+          helperTranslationKey: this.userDataService.data.isOnVolunteerTeam ? 'volunteer.forms.postOutreach.labels.hoursHelper.group' : 'volunteer.forms.postOutreach.labels.hoursHelper.individual',
+          isRequired: true,
+          min: 0
         }]
       }}],
       onSubmit: async vals => {
@@ -466,9 +468,11 @@ export class SurveyService {
             if ( volunteerType === VolunteerType.VOLUNTEER_DISTRIBUTOR ) {
               // save some info to use later in the survey
               isIndividualDistributor = response.isIndividualDistributor;
-              coordinatorOptions = response.teamCoordinators.map( coordinator => {
-                return { label: coordinator.name, value: coordinator.salesforceId };
-              });
+              if ( !isIndividualDistributor ) {
+                coordinatorOptions = response.teamCoordinators.map( coordinator => {
+                  return { label: coordinator.name, value: coordinator.salesforceId };
+                });
+              }
             } else if ( volunteerType === VolunteerType.AMBASSADOR_VOLUNTEER ) {
               // @@
             } else {
@@ -501,19 +505,29 @@ export class SurveyService {
         onContinue: vals => {
           salesforceId = undefined;
           // search for whether there is an existing salesforce Contact that matches the phone/email
+          // it's ok to continue if:
+          //   * for individual volunteer distributors and TAT ambassadors: there must be a matching Contact in SF
+          //   * for group volunteer distributors: there may either be a matching Contact in SF, or no matching Contact in SF
+          // in any case, it's not ok to continue if there is a matching Contact in SF that is already associated with an app user account.
           return this.proxyAPI.get( 'contactSearch?email=' + encodeURIComponent(vals.email) + '&phone=' + encodeURIComponent(vals.phone) )
           .then( response => {
             if ( response && response.salesforceId ) {
+              // found a matching Contact in SF, who does not yet have an associated app user account)
               salesforceId = response.salesforceId;
               return;
-            } else throw '';
+            } else throw ''; // unexpected error
           }).catch( e => {
-            // check error code and show an appropriate error message
+            // check error code and show an error message if appropriate
             let errorKey = 'misc.messages.requestError';
             if ( e.error && e.error.errorCode ) {
               if ( e.error.errorCode === 'NO_MATCHING_ENTRY' ) {
-                return; // it's ok to continue with the survey
+                if ( volunteerType === VolunteerType.VOLUNTEER_DISTRIBUTOR && !isIndividualDistributor ) {
+                  return; // it's ok to continue with the survey. A new SF Contact will be created
+                } else {
+                  errorKey = 'volunteer.forms.signup.cannotFindContact';
+                }
               } else if ( e.error.errorCode === 'ENTRY_ALREADY_HAS_ACCOUNT' ) {
+                // Contact already exists in SF, and is associated with an app user account
                 errorKey = 'volunteer.forms.signup.accountAlreadyExists';
               }
             }
@@ -549,7 +563,7 @@ export class SurveyService {
         }]
       }}, () => { return {
         // page 5
-        isVisible: vals => vals.isCoordinator === 'no',
+        isVisible: vals => volunteerType === VolunteerType.VOLUNTEER_DISTRIBUTOR && !isIndividualDistributor && vals.isCoordinator === 'no',
         topTextTranslationKey: !coordinatorOptions || coordinatorOptions.length === 0 ? 'volunteer.forms.signup.labels.noCoordinators' : 'volunteer.forms.signup.labels.whatName',
         fields: !coordinatorOptions || coordinatorOptions.length === 0 ? [] : [{
           type: SurveyFieldType.SELECT,

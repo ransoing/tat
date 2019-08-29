@@ -117,18 +117,20 @@ export class VolunteerPage {
       videoUrlKey: videoUrlKey,
       onFinishedWatching: () => {
         // in the background, send a message to the proxy to mark this the video as watched in salesforce
-        // ...only if the user has just now watched it for the first time
-        if ( !this.userDataService.data.hasWatchedTrainingVideo ) {
+        // ...only if the user was required to watch the video
+        if ( this.userDataService.mustWatchTrainingVideo() ) {
           this.userDataService.firebaseUser.getIdToken().then( token => {
             const payload = {
               firebaseIdToken: token,
-              hasWatchedTrainingVideo: true
+              hasWatchedTrainingVideo: true,
+              trainingVideoLastWatchedDate: this.miscService.dateToLocalYYYYMMDD( new Date() )
             };
             this.proxyAPI.post( 'updateUser', payload );
           });
         }
 
         this.userDataService.data.hasWatchedTrainingVideo = true;
+        this.userDataService.data.trainingVideoLastWatchedDate = new Date();
         // save the state to the cache
         this.userDataService.updateCache();
       }

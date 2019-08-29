@@ -48,7 +48,8 @@ export interface IUserData {
   lastName?: string,
   volunteerType?: VolunteerType,
   accountId?: string, // salesforce ID of the Account object associated with this user
-  hasWatchedTrainingVideo?: boolean, // this property is the only one which isn't retrieved by salesforce. 
+  hasWatchedTrainingVideo?: boolean, // this property is the only one which isn't retrieved by salesforce.
+  trainingVideoLastWatchedDate?: Date,
   street?: string,
   city?: string,
   state?: string,
@@ -59,6 +60,7 @@ export interface IUserData {
   isOnVolunteerTeam?: boolean,
   isTeamCoordinator?: boolean,
   teamCoordinatorId?: string,
+  trainingVideoRequiredForTeam?: boolean,
 
   outreachLocations?: IOutreachLocation[]
   events?: any[] // @@TODO define events object

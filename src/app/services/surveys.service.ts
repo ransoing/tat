@@ -572,12 +572,21 @@ export class SurveyService {
           isRequired: true,
           options: coordinatorOptions
         }]
+      }}, () => { return {
+        isVisible: vals => volunteerType === VolunteerType.VOLUNTEER_DISTRIBUTOR && !isIndividualDistributor && vals.isCoordinator === 'yes',
+        topTextTranslationKey: 'volunteer.forms.signup.labels.trainingVideo',
+        fields: [{
+          type: SurveyFieldType.CHOICE,
+          name: 'trainingVideoRequiredForTeam',
+          isRequired: true,
+          options: this._yesNoOptions
+        }]
       }}],
       onSubmit: async vals => {
         // modify some of the form values before submitting to the proxy
         vals.firebaseIdToken = await this.userDataService.firebaseUser.getIdToken();
-        // marking individual distributors as coordinators allows them to submit pre-outreach surveys
-        vals.isCoordinator = vals.isCoordinator === 'yes' || isIndividualDistributor;
+        vals.isCoordinator = vals.isCoordinator === 'yes';
+        vals.trainingVideoRequiredForTeam = vals.trainingVideoRequiredForTeam === 'yes';
         vals.coordinatorId = vals.coordinatorId || ''; // the value may be undefined because it's hidden in some cases
         if ( salesforceId ) {
           vals.salesforceId = salesforceId;
@@ -612,7 +621,7 @@ export class SurveyService {
       return {
         pages: [() => { return {
           // page 1
-          isVisible: vals => this.userDataService.data.volunteerType === VolunteerType.VOLUNTEER_DISTRIBUTOR && !this.userDataService.data.isTeamCoordinator,
+          isVisible: vals => this.userDataService.data.volunteerType === VolunteerType.VOLUNTEER_DISTRIBUTOR && !this.userDataService.data.isTeamCoordinator && this.userDataService.data.isOnVolunteerTeam,
           topTextTranslationKey: 'volunteer.forms.signup.labels.whatName',
           fields: [{
             type: SurveyFieldType.SELECT,
@@ -622,11 +631,25 @@ export class SurveyService {
             defaultValue: this.userDataService.data.teamCoordinatorId,
             options: coordinatorOptions
           }]
+        }}, () => { return {
+          // page 2
+          isVisible: vals => this.userDataService.data.volunteerType === VolunteerType.VOLUNTEER_DISTRIBUTOR && this.userDataService.data.isTeamCoordinator && !this.userDataService.data.isOnVolunteerTeam,
+          topTextTranslationKey: 'volunteer.forms.signup.labels.trainingVideo',
+          fields: [{
+            type: SurveyFieldType.CHOICE,
+            name: 'trainingVideoRequiredForTeam',
+            isRequired: true,
+            defaultValue: this.userDataService.data.trainingVideoRequiredForTeam ? 'yes' : 'no',
+            options: this._yesNoOptions
+          }]
         }}],
         onSubmit: async vals => {
           // modify some of the form values before submitting to the proxy
           vals.firebaseIdToken = await this.userDataService.firebaseUser.getIdToken();
-  
+          if ( vals.trainingVideoRequiredForTeam !== undefined ) {
+            vals.trainingVideoRequiredForTeam = vals.trainingVideoRequiredForTeam === 'yes';
+          }
+
           // send to the proxy and show an error message if appropriate
           return this.genericProxyPOST( 'updateUser', vals );
         }

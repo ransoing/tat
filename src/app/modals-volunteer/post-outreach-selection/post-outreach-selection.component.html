@@ -22,7 +22,7 @@
       </ion-card>
       <div class="card-actions">
         <ion-button fill="clear" color="light" (click)="miscService.openExternalLink(getMapsLink(target))"><ion-icon name="pin"></ion-icon></ion-button>
-        <ion-button *ngIf="userDataService.data.isTeamCoordinator" fill="clear" color="danger" (click)="deleteTarget(target)"><ion-icon name="trash"></ion-icon></ion-button>
+        <ion-button *ngIf="userDataService.data.isTeamCoordinator || !userDataService.data.isOnVolunteerTeam" fill="clear" color="danger" (click)="deleteTarget(target)"><ion-icon name="trash"></ion-icon></ion-button>
       </div>
     </ng-container>
   </div>

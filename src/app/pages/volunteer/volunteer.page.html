@@ -24,16 +24,16 @@
       image="volunteer.training-video.jpg"
       (click)="openTrainingVideo()"
       [required]="userDataService.data.volunteerType !== VolunteerType.AMBASSADOR_VOLUNTEER"
-      [completed]="userDataService.data.hasWatchedTrainingVideo">
+      [completed]="!userDataService.mustWatchTrainingVideo()">
         {{ 'volunteer.btns.trainingVideo' | translate }}
     </image-button>
 
     <image-button
-      *ngIf="userDataService.data.volunteerType === VolunteerType.VOLUNTEER_DISTRIBUTOR && userDataService.data.isTeamCoordinator"
+      *ngIf="userDataService.data.volunteerType === VolunteerType.VOLUNTEER_DISTRIBUTOR && (userDataService.data.isTeamCoordinator || userDataService.data.isOnVolunteerTeam)"
       image="volunteer.pre-outreach-survey.jpg"
       (click)="showPreOutreachForm()"
       [required]="true"
-      [disabled]="!userDataService.data.hasWatchedTrainingVideo">
+      [disabled]="userDataService.mustWatchTrainingVideo()">
         {{ 'volunteer.btns.preOutreachSurvey' | translate }}
     </image-button>
 
@@ -42,14 +42,14 @@
       image="volunteer.pre-outreach-survey.jpg"
       (click)="showPreEventForm()"
       [required]="true"
-      [disabled]="!userDataService.data.hasWatchedTrainingVideo">
+      [disabled]="userDataService.mustWatchTrainingVideo()">
         {{ 'volunteer.btns.preEventSurvey' | translate }}
     </image-button>
     
     <image-button
       image="volunteer.resources.jpg"
       (click)="modalService.open(VolunteerResourcesComponent)"
-      [disabled]="!userDataService.data.hasWatchedTrainingVideo">
+      [disabled]="userDataService.mustWatchTrainingVideo()">
         {{ 'volunteer.btns.resources' | translate }}
     </image-button>
     
@@ -58,7 +58,7 @@
       image="volunteer.post-outreach-report.jpg"
       (click)="modalService.open(PostOutreachSelectionComponent)"
       [required]="true"
-      [disabled]="!userDataService.data.hasWatchedTrainingVideo || userDataService.data.outreachLocations.length === 0">
+      [disabled]="userDataService.mustWatchTrainingVideo() || userDataService.data.outreachLocations.length === 0">
         {{ 'volunteer.btns.postOutreachReport' | translate }}
     </image-button>
     
@@ -67,14 +67,14 @@
       image="volunteer.post-outreach-report.jpg"
       (click)="modalService.open(PostEventSelectionComponent)"
       [required]="true"
-      [disabled]="!userDataService.data.hasWatchedTrainingVideo || userDataService.data.events.length === 0"> <!-- @@TODO make a userDataService.data.events object -->
+      [disabled]="userDataService.mustWatchTrainingVideo() || userDataService.data.events.length === 0"> <!-- @@TODO make a userDataService.data.events object -->
         {{ 'volunteer.btns.postEventReport' | translate }}
     </image-button>
     
     <image-button
       image="volunteer.testimonial.jpg"
       (click)="showFeedbackForm()"
-      [disabled]="!userDataService.data.hasWatchedTrainingVideo">
+      [disabled]="userDataService.mustWatchTrainingVideo()">
         {{ 'volunteer.btns.testimonial' | translate }}
     </image-button>
   </div>

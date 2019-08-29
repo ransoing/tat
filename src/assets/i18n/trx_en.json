@@ -365,6 +365,7 @@
           "noCoordinators": "Notice: after your team coordinator signs up, you will need to edit your account and select your team coordinator.",
           "phone": "Phone number",
           "registrationCode": "Registration code",
+          "trainingVideo": "Will your team members need to watch the training video when they create an account on the app?",
           "whatAddress": "What is your mailing address?",
           "whatName": "What is the name of your team coordinator?"
         },

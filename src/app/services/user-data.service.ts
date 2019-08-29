@@ -130,6 +130,11 @@ export class UserDataService {
     this.fetchingUserData = false;
   }
 
+  public mustWatchTrainingVideo(): boolean {
+    // the user must watch the training video if he has not yet, or if he last watched it over a year ago
+    const oneYearMs = new Date('2002-01-01').getTime() - new Date('2001-01-01').getTime();
+    return !this.data.hasWatchedTrainingVideo || ( new Date().getTime() - this.data.trainingVideoLastWatchedDate.getTime() > oneYearMs );
+  }
 
   /**
    * Updates the cache, saving the current state of user data in local storage

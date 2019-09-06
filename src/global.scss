@@ -14,17 +14,20 @@
         filter: hue-rotate(160deg) invert(100);
         box-shadow: none;
         background: none;
-    }
 
-    .firebaseui-button {
-        font-weight: normal;
-        letter-spacing: 0.05em;
-        &[type=submit] {
-            font-weight: bold;
-            color: black;
-            background: #596bc5;
+        h1, label { font-weight: bold }
+
+        .firebaseui-button {
+            font-weight: normal;
+            letter-spacing: 0.05em;
+            &[type=submit] {
+                font-weight: bold;
+                color: black;
+                background: #596bc5;
+            }
         }
     }
+
 
     * {
         box-shadow: none !important;

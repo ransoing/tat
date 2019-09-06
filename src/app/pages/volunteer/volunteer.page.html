@@ -7,13 +7,29 @@
   <ion-icon *ngIf="userDataService.data" name="md-menu" class="modal-close-btn" slot="fixed" (click)="modalService.open(VolunteerSettingsComponent)"></ion-icon>
 
   <div *ngIf="!userDataService.fetchingUserData && !alertIsVisible && !loadingIsVisible && (userDataService.loadError || !userDataService.data && !modalService.getActiveModal())">
-    <p>{{ 'misc.messages.dataLoadError' | translate }}</p>
-    <ion-button fill="solid" color="primary" size="default" (click)="userDataService.fetchUserData()">
-      {{ 'misc.buttons.retry' | translate }}
-    </ion-button>
-    <ion-button fill="solid" color="primary" size="default" (click)="angularFireAuth.auth.signOut()">
-      {{ 'volunteer.settings.logout' | translate }}
-    </ion-button>
+    <ng-container *ngIf="!userDataService.needsToVerifyEmail()">
+      <p>{{ 'misc.messages.dataLoadError' | translate }}</p>
+      <ion-button fill="solid" color="primary" size="default" (click)="userDataService.fetchUserData()">
+        {{ 'misc.buttons.retry' | translate }}
+      </ion-button>
+      <ion-button fill="solid" color="primary" size="default" (click)="angularFireAuth.auth.signOut()">
+        {{ 'volunteer.settings.logout' | translate }}
+      </ion-button>
+    </ng-container>
+    <ng-container *ngIf="userDataService.needsToVerifyEmail()">
+      <p style="float:right">
+        <ion-button fill="clear" color="medium" size="default" (click)="angularFireAuth.auth.signOut()">
+          {{ 'volunteer.settings.logout' | translate }}
+        </ion-button>
+      </p>
+      <p><ion-icon name="checkmark-circle" size="large" color="primary"></ion-icon></p>
+      <p>A verification email has been sent to {{ userDataService.firebaseUser.email }}. Please click the link in the email to activiate your account.</p>
+      <hr>
+      <p>Didn't get the email?</p>
+      <p>
+        <ion-button fill="solid" color="primary" size="default" (click)="a">Send another verification email</ion-button>
+      </p>
+    </ng-container>
   </div>
 
   <div *ngIf="userDataService.data">

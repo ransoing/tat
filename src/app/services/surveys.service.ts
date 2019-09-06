@@ -495,7 +495,8 @@ export class SurveyService {
           type: SurveyFieldType.EMAIL,
           name: 'email',
           labelTranslationKey: 'volunteer.forms.signup.labels.email',
-          isRequired: true
+          isRequired: true,
+          defaultValue: this.userDataService.firebaseUser.email
         }, {
           type: SurveyFieldType.TEL,
           name: 'phone',

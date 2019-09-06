@@ -42,6 +42,10 @@ export class UserDataService {
    */
   async fetchUserData( force?: boolean, dataRequestFlags: number = UserDataRequestFlags.ALL ): Promise<IUserData> {
     this.loadError = false;
+
+    if ( this.needsToVerifyEmail() ) {
+      throw new Error( 'MUST_VERIFY_EMAIL' );
+    }
     
     if ( this.fetchingUserData ) {
       return this.fetchingPromise;
@@ -128,6 +132,13 @@ export class UserDataService {
   private onFetchFinally() {
     this.miscService.hideLoadingPopup();
     this.fetchingUserData = false;
+  }
+
+  public needsToVerifyEmail() {
+    if ( !this.firebaseUser ) return false;
+    // Users who authenticated via a third party don't need to verify their email; they've already verified their email with the 3rd party.
+    const userHasLoggedInViaThirdParty = this.firebaseUser.providerData.some( provider => provider.providerId !== 'password' );
+    return !userHasLoggedInViaThirdParty && !this.firebaseUser.emailVerified;
   }
 
   public mustWatchTrainingVideo(): boolean {

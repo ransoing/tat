@@ -5,7 +5,7 @@ import {
   VolunteerResourcesComponent, VolunteerSettingsComponent, TrainingVideoComponent,
   SurveyComponent
 } from '../../modals-volunteer';
-import { ModalService, UserDataService, MiscService, SurveyService, TrxService } from '../../services';
+import { ModalService, UserDataService, MiscService, SurveyService, TrxService, SettingsService } from '../../services';
 import { UserDataRequestFlags, VolunteerType } from '../../models/user-data';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ProxyAPIService } from '../../services/proxy-api.service';
@@ -35,10 +35,19 @@ export class VolunteerPage {
     private miscService: MiscService,
     private surveys: SurveyService,
     private trx: TrxService,
-    private proxyAPI: ProxyAPIService
+    private proxyAPI: ProxyAPIService,
+    private settings: SettingsService
   ) {
     this.miscService.onRouteHere(() => {
+      // fetching the user data (from salesforce) will either give the user the contents of the volunteer page, or prompt him to set up a SF entry.
       this.userDataService.fetchUserData();
+      if ( this.userDataService.needsToVerifyEmail() ) {
+        // send verification email in the selected language
+        angularFireAuth.auth.languageCode = this.settings.language;
+        setTimeout( () => {
+          this.userDataService.firebaseUser.sendEmailVerification();
+        }, 1 );
+      }
     });
 
     setInterval( () => {

@@ -8,6 +8,22 @@
         background: transparent;
         color: white;
     }
+
+    /* change the style to be "dark mode" by inverting the colors */
+    .firebaseui-container.mdl-card {
+        filter: hue-rotate(160deg) invert(100);
+        box-shadow: none;
+        background: none;
+    }
+
+    .firebaseui-button {
+        font-weight: normal;
+        letter-spacing: 0.05em;
+    }
+
+    * {
+        box-shadow: none !important;
+    }
 }
 
 // http://ionicframework.com/docs/theming/

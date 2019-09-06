@@ -19,6 +19,11 @@
     .firebaseui-button {
         font-weight: normal;
         letter-spacing: 0.05em;
+        &[type=submit] {
+            font-weight: bold;
+            color: black;
+            background: #596bc5;
+        }
     }
 
     * {

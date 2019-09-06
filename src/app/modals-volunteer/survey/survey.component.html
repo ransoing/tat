@@ -63,7 +63,8 @@
               <ng-container *ngIf="field.type === SurveyFieldType.CHOICE">
                 <ng-container *ngIf="!field.multi">
                   <label *ngFor="let option of field.options" [class.selected]="getFieldVal(field) === option.value" (click)="noop()">{{ option.label || (option.labelTranslationKey | translate) }}
-                    <input type="radio" [name]="field.name" [value]="option.value">
+                    <input *ngIf="field.defaultValue === option.value" type="radio" [name]="field.name" [value]="option.value" checked>
+                    <input *ngIf="field.defaultValue !== option.value" type="radio" [name]="field.name" [value]="option.value">
                   </label>
                 </ng-container>
                 <ng-container *ngIf="field.multi">

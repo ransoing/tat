@@ -24,6 +24,9 @@ export class VolunteerPage {
 
   public alertIsVisible = false;
   public loadingIsVisible = false;
+  public verificationEmailInterval;
+  public verificationEmailTimeLeft = 0;
+  public checkVerificationInterval;
 
   constructor(
     public navCtrl: NavController,
@@ -39,14 +42,36 @@ export class VolunteerPage {
     private settings: SettingsService
   ) {
     this.miscService.onRouteHere(() => {
-      // fetching the user data (from salesforce) will either give the user the contents of the volunteer page, or prompt him to set up a SF entry.
+      // don't have two instances of intervals running
+      if ( this.checkVerificationInterval ) {
+        clearInterval( this.checkVerificationInterval );
+      }
+      if ( this.verificationEmailInterval ) {
+        clearInterval( this.verificationEmailInterval );
+      }
+
+      // fetching the user data (from salesforce) will either give the user the contents of the volunteer page,
+      // or prompt him to set up a SF entry.
       this.userDataService.fetchUserData();
       if ( this.userDataService.needsToVerifyEmail() ) {
         // send verification email in the selected language
         angularFireAuth.auth.languageCode = this.settings.language;
+        // setting the language above may take a small amount of time, so wait a bit before sending the email
         setTimeout( () => {
-          this.userDataService.firebaseUser.sendEmailVerification();
+          this.sendVerificationEmail();
         }, 1 );
+
+        // listen for when the email has been verified
+        const checkVerificationInterval = setInterval( async () => {
+          await this.userDataService.firebaseUser.reload();
+          if ( this.userDataService.firebaseUser.emailVerified ) {
+            // user verified his email address. Clear intervals and try fetching salesforce data again --
+            // this will trigger the signup survey
+            clearInterval( checkVerificationInterval );
+            clearInterval( this.verificationEmailInterval );
+            this.userDataService.fetchUserData();
+          }
+        }, 2000 );
       }
     });
 
@@ -54,6 +79,18 @@ export class VolunteerPage {
       this.alertCtrl.getTop().then( alert => this.alertIsVisible = !!alert );
       this.loadingCtrl.getTop().then( loading => this.loadingIsVisible = !! loading );
     }, 200 );
+  }
+
+  sendVerificationEmail() {
+    this.userDataService.firebaseUser.sendEmailVerification();
+    // set a timer to disable the re-send button for a minute
+    this.verificationEmailTimeLeft = 60;
+    this.verificationEmailInterval = setInterval( () => {
+      this.verificationEmailTimeLeft--;
+      if ( this.verificationEmailTimeLeft <= 0 ) {
+        clearInterval( this.verificationEmailInterval );
+      }
+    }, 1000 );
   }
 
   showFeedbackForm() {

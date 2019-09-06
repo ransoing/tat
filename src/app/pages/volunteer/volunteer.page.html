@@ -12,22 +12,25 @@
       <ion-button fill="solid" color="primary" size="default" (click)="userDataService.fetchUserData()">
         {{ 'misc.buttons.retry' | translate }}
       </ion-button>
-      <ion-button fill="solid" color="primary" size="default" (click)="angularFireAuth.auth.signOut()">
+      <ion-button fill="clear" color="medium" size="default" (click)="angularFireAuth.auth.signOut()">
         {{ 'volunteer.settings.logout' | translate }}
       </ion-button>
     </ng-container>
     <ng-container *ngIf="userDataService.needsToVerifyEmail()">
-      <p style="float:right">
+      <p><ion-icon name="checkmark-circle" size="large" color="primary"></ion-icon></p>
+      <p>{{ 'volunteer.verification.message' | translate:{email: userDataService.firebaseUser.email} }}</p>
+      <hr>
+      <p>{{ 'volunteer.verification.didntGetEmail' | translate }}</p>
+      <p>
+        <ion-button fill="solid" color="primary" size="default" (click)="sendVerificationEmail()" [disabled]="verificationEmailTimeLeft > 0">
+          {{ 'volunteer.verification.reSendButton' | translate }}
+          <span *ngIf="verificationEmailTimeLeft > 0" class="verification-timer" >
+            &nbsp;0:{{ verificationEmailTimeLeft < 10 ? '0' : '' }}{{ verificationEmailTimeLeft }}
+          </span>
+        </ion-button>
         <ion-button fill="clear" color="medium" size="default" (click)="angularFireAuth.auth.signOut()">
           {{ 'volunteer.settings.logout' | translate }}
         </ion-button>
-      </p>
-      <p><ion-icon name="checkmark-circle" size="large" color="primary"></ion-icon></p>
-      <p>A verification email has been sent to {{ userDataService.firebaseUser.email }}. Please click the link in the email to activiate your account.</p>
-      <hr>
-      <p>Didn't get the email?</p>
-      <p>
-        <ion-button fill="solid" color="primary" size="default" (click)="a">Send another verification email</ion-button>
       </p>
     </ng-container>
   </div>

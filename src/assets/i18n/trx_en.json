@@ -403,6 +403,11 @@
     },
     "title": "@:nav.volunteer",
     "trainingVideoError": "There was an error loading the video. Please try again later.",
+    "verification": {
+      "didntGetEmail": "Didn't get the verification email?",
+      "message": "A verification email has been sent to {{email}}. Please click the link in the email to activiate your account.",
+      "reSendButton": "Re-send email"
+    },
     "welcome": "Welcome"
   },
   "whatToReport": {

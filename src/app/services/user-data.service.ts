@@ -5,7 +5,7 @@ import { Storage } from '@ionic/storage';
 import { StorageKeys, MiscService } from './misc.service';
 import { ProxyAPIService } from './proxy-api.service';
 import { IUserData, UserDataRequestFlags } from '../models/user-data';
-
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -135,7 +135,9 @@ export class UserDataService {
   }
 
   public needsToVerifyEmail() {
-    if ( !this.firebaseUser ) return false;
+    if ( !environment.emailVerificationRequired || !this.firebaseUser ) {
+      return false;
+    }
     // Users who authenticated via a third party don't need to verify their email; they've already verified their email with the 3rd party.
     const userHasLoggedInViaThirdParty = this.firebaseUser.providerData.some( provider => provider.providerId !== 'password' );
     return !userHasLoggedInViaThirdParty && !this.firebaseUser.emailVerified;
@@ -144,7 +146,7 @@ export class UserDataService {
   public mustWatchTrainingVideo(): boolean {
     // the user must watch the training video if he has not yet, or if he last watched it over a year ago
     const oneYearMs = new Date('2002-01-01').getTime() - new Date('2001-01-01').getTime();
-    return !this.data.hasWatchedTrainingVideo || ( new Date().getTime() - this.data.trainingVideoLastWatchedDate.getTime() > oneYearMs );
+    return !this.data.hasWatchedTrainingVideo || !this.data.trainingVideoLastWatchedDate || ( new Date().getTime() - this.data.trainingVideoLastWatchedDate.getTime() > oneYearMs );
   }
 
   /**

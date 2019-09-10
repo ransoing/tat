@@ -87,10 +87,23 @@
 
 
 
-
 // ionic doesn't seem to import the variables scss file in the proper order (after ionic base styles).
 // include it here to properly override the base styles.
 @import "./theme/variables.scss";
+
+
+// sometimes on Andoid, after logging into the volunteer section and the virtual keyboard disappears,
+// the nav tabs along the bottom align themselves with where the top of the keyboard was, halfway up
+// the screen... setting some stuff to 100vh fixes that
+body,
+ion-app,
+ion-app > ion-router-outlet,
+ion-app > ion-router-outlet > app-tabs,
+ion-app > ion-router-outlet > app-tabs > ion-tabs {
+    height: 100vh;
+}
+
+
 
 body {
     font-size: 15px;

@@ -6,11 +6,12 @@ import { StorageKeys, MiscService } from './misc.service';
 import { ProxyAPIService } from './proxy-api.service';
 import { IUserData, UserDataRequestFlags } from '../models/user-data';
 import { environment } from '../../environments/environment';
+import { IUserDataService } from '../models/services';
 
 @Injectable({
   providedIn: 'root',
 })
-export class UserDataService {
+export class UserDataService implements IUserDataService {
 
   public data: IUserData = null; // the data that comes from salesforce
   public firebaseUser: User;

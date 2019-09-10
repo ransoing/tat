@@ -22,12 +22,12 @@ export class PostOutreachSelectionComponent implements AfterViewInit {
     private proxyAPI: ProxyAPIService
   ) {}
 
-  openPostOutreachReport( outreachTarget: IOutreachLocation ) {
+  async openPostOutreachReport( outreachTarget: IOutreachLocation ) {
     // open the post outreach survey, passing in data from the selected target
     this.modalService.open( SurveyComponent, {
       titleTranslationKey: 'volunteer.forms.postOutreach.title',
       successTranslationKey: 'volunteer.forms.postOutreach.submitSuccess',
-      survey: this.surveys.postOutreachSurvey( outreachTarget ),
+      survey: await this.surveys.postOutreachSurvey( outreachTarget ),
       onSuccess: async () => {
         // update just the outreach locations in the user data
         await this.userDataService.fetchUserData( true, UserDataRequestFlags.UNFINISHED_ACTIVITIES );

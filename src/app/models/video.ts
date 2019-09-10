@@ -5,6 +5,6 @@ export enum VideoType {
 }
 
 export interface IEmbeddableVideo {
-  url: string,
-  type: VideoType
+  url: string;
+  type: VideoType;
 }

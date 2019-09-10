@@ -5,6 +5,7 @@ import { TrxService } from './trx.service';
 import { ModalService } from './modal.service';
 import { IEmbeddableVideo, VideoType } from '../models/video';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+import { IMiscService } from '../models/services';
 
 export enum StorageKeys {
   USER_DATA = 'user_data'
@@ -13,7 +14,7 @@ export enum StorageKeys {
 @Injectable({
   providedIn: 'root',
 })
-export class MiscService {
+export class MiscService implements IMiscService {
 
   isLoggedIn: boolean = false;
   loginRedirectUrl: string;

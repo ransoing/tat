@@ -1,0 +1,16 @@
+{
+  "files": [
+    "./src/surveys.external.service.ts"
+  ],
+  "compilerOptions": {
+    "outDir": "../build",
+    "experimentalDecorators": true,
+    "target": "es5",
+    "lib": [
+      "es2018",
+      "dom",
+      "es5",
+      "scripthost"
+    ]
+  }
+}

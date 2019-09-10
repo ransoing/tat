@@ -5,17 +5,21 @@
 export const environment = {
   production: false,
   firebaseConfig: {
-    apiKey: "AIzaSyDtBAXnyEvQgbdRHS4fyDvkxtyKQvV4c1c",
-    authDomain: "truckers-against-trafficking.firebaseapp.com",
-    databaseURL: "https://truckers-against-trafficking.firebaseio.com",
-    projectId: "truckers-against-trafficking",
-    storageBucket: "truckers-against-trafficking.appspot.com",
-    messagingSenderId: "1062876332765"
+    apiKey: 'AIzaSyDtBAXnyEvQgbdRHS4fyDvkxtyKQvV4c1c',
+    authDomain: 'truckers-against-trafficking.firebaseapp.com',
+    databaseURL: 'https://truckers-against-trafficking.firebaseio.com',
+    projectId: 'truckers-against-trafficking',
+    storageBucket: 'truckers-against-trafficking.appspot.com',
+    messagingSenderId: '1062876332765'
   },
-  proxyServerURL: 'https://localhost/tatproxy/api/',
+  // proxyServerURL: 'https://localhost/tatproxy/api/',
+  proxyServerURL: 'https://macl4185.lasp.colorado.edu/~christof/tatproxy/api/',
   // proxyServerURL: 'https://app-proxy.truckersagainsttrafficking.org/api/'
-  // proxyServerURL: 'https://macd3070.lasp.colorado.edu/~christof/tatproxy/api/'
-  // proxyServerURL: 'https://tatproxy.ransomchristofferson.com/api/',
+
+  // surveysURL: 'https://localhost/tatproxy/exported-surveys/surveys.js',
+  surveysURL: 'https://macl4185.lasp.colorado.edu/~christof/tatproxy/exported-surveys/surveys.js',
+  // surveysURL: 'https://app-proxy.truckersagainsttrafficking.com/exported-surveys/surveys.js',
+
   emailVerificationRequired: false
 };
 

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MiscService } from './misc.service';
+import { IProxyAPIService } from '../models/services';
 
 /**
  * This service doesn't communicate directly with Salesforce (SF), but communicates with a
@@ -23,7 +24,7 @@ import { MiscService } from './misc.service';
 @Injectable({
   providedIn: 'root',
 })
-export class ProxyAPIService {
+export class ProxyAPIService implements IProxyAPIService {
 
   constructor(
     private http: HttpClient,
@@ -68,7 +69,7 @@ export class ProxyAPIService {
     // convert ISO time strings to Date objects
     return this.convertJSONDates( response );
   }
-  
+
 
   /**
    * Takes an object and recursively looks for ISO-8601 date strings or YYYY-MM-DD strings, and converts

@@ -4,6 +4,6 @@ export enum NotificationType {
 }
 
 export interface INotificationData {
-    type: NotificationType,
-    salesforceId: string
+    type: NotificationType;
+    salesforceId: string;
 }

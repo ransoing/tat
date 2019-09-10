@@ -28,26 +28,25 @@ export class ScriptService {
         return Promise.all(promises);
     }
 
-    public loadScript( name: string ) {
+    public loadScript( name: string, useCache = true ) {
         return new Promise((resolve, reject) => {
-            //resolve if already loaded
-            if (this.scripts[name].loaded) {
+            // resolve if already loaded
+            if ( useCache && this.scripts[name].loaded ) {
                 resolve({script: name, loaded: true, status: 'Already Loaded'});
-            }
-            else {
-                //load script
+            } else {
+                // load script
                 let script = document.createElement('script');
                 script.type = 'text/javascript';
                 script.src = this.scripts[name].src;
-                if (script.readyState) {  //IE
+                if (script.readyState) {  // IE
                     script.onreadystatechange = () => {
-                        if (script.readyState === "loaded" || script.readyState === "complete") {
+                        if (script.readyState === 'loaded' || script.readyState === 'complete') {
                             script.onreadystatechange = null;
                             this.scripts[name].loaded = true;
                             resolve({script: name, loaded: true, status: 'Loaded'});
                         }
                     };
-                } else {  //Others
+                } else {  // Others
                     script.onload = () => {
                         this.scripts[name].loaded = true;
                         resolve({script: name, loaded: true, status: 'Loaded'});

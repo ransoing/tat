@@ -93,11 +93,11 @@ export class VolunteerPage {
     }, 1000 );
   }
 
-  showFeedbackForm() {
+  async showFeedbackForm() {
     this.modalService.open( SurveyComponent, {
       titleTranslationKey: 'volunteer.forms.feedback.title',
       successTranslationKey: 'volunteer.forms.feedback.submitSuccess',
-      survey: this.surveys.testimonialFeedbackSurvey(),
+      survey: await this.surveys.testimonialFeedbackSurvey(),
       onSuccess: () => {}
     });
   }

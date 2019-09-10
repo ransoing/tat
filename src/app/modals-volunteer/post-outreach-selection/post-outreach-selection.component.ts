@@ -47,11 +47,11 @@ export class PostOutreachSelectionComponent implements AfterViewInit {
               role: 'cancel'
             }, {
               text: await this.trx.t( 'misc.buttons.ok' ),
-              handler: () => {
+              handler: async () => {
                 this.modalService.open( SurveyComponent, {
                   titleTranslationKey: 'volunteer.forms.feedback.title',
                   successTranslationKey: 'volunteer.forms.feedback.submitSuccess',
-                  survey: this.surveys.testimonialFeedbackSurvey(),
+                  survey: await this.surveys.testimonialFeedbackSurvey( outreachTarget.campaignId ),
                   onSuccess: () => {}
                 });
               }

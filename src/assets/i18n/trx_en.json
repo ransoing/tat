@@ -109,6 +109,7 @@
       "pleaseWait": "Please wait...",
       "requestError": "There was an error making the request. @:misc.messages.connectionTip"
     },
+    "none": "None",
     "other": "Other (please specify)",
     "required": "Required",
     "setLanguage": "Set language",

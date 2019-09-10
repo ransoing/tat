@@ -27,6 +27,7 @@ export interface IOutreachLocation {
   id: string, // ID of the object in salesforce
   name: string, // name of the location to be volunteered at
   type: OutreachLocationType,
+  campaignId: string, // ID of the related campaign in salesforce
   street?: string, // street address of location
   city?: string,
   state?: string,

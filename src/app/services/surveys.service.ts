@@ -402,42 +402,75 @@ export class SurveyService {
   // postEventSurvey
 
 
-  testimonialFeedbackSurvey(): ISurvey {
+  // a feedback survey may be associated with a campaign. If the campaign isn't defined by the parameter, the user will be prompted to select one from a list.
+  async testimonialFeedbackSurvey( campaignId?: string ): Promise<ISurvey> {
+    let feedbackSurveyPages: ISurveyPageFunc[] = [];
+
+    if ( !campaignId ) {
+      // retrieve a list of the user's campaigns, and ask the user which campaign this pre-outreach survey is for.
+      let campaigns = await this.proxyAPI.post( 'getCampaigns', {firebaseIdToken: await this.userDataService.firebaseUser.getIdToken()} );
+      campaigns.sort( (a,b) => a.daysSinceCreated - b.daysSinceCreated );
+
+      // add a campaign selection page
+      if ( campaigns.length > 0 ) {
+        const options = campaigns.map( campaign => {
+          return { value: campaign.salesforceId, label: campaign.name }
+        });
+        options.push({ value: 'a', labelTranslationKey: 'misc.none' });
+
+        feedbackSurveyPages.push( () => { return {
+          topTextTranslationKey: 'volunteer.forms.preOutreach.labels.whatCampaign',
+          fields: [{
+            type: SurveyFieldType.CHOICE,
+            name: 'campaignId',
+            isRequired: true,
+            multi: false,
+            options: options
+          }]
+        }});
+      }
+    }
+    
+    feedbackSurveyPages.push( () => { return {
+      topTextTranslationKey: 'volunteer.forms.feedback.labels.whatAdvice',
+      fields: [{ type: SurveyFieldType.TEXTAREA, name: 'advice' }]
+    }}, () => { return {
+      topTextTranslationKey: 'volunteer.forms.feedback.labels.bestPart',
+      fields: [{ type: SurveyFieldType.TEXTAREA, name: 'bestPart' }]
+    }}, () => { return {
+      topTextTranslationKey: 'volunteer.forms.feedback.labels.improvements',
+      fields: [{ type: SurveyFieldType.TEXTAREA, name: 'improvements' }]
+    }}, () => { return {
+      topTextTranslationKey: 'volunteer.forms.feedback.labels.giveAnonPermission',
+      fields: [{
+        type: SurveyFieldType.CHOICE,
+        name: 'givesAnonPermission',
+        isRequired: true,
+        options: this._yesNoOptions
+      }]
+    }}, () => { return {
+      topTextTranslationKey: 'volunteer.forms.feedback.labels.giveNamePermission',
+      fields: [{
+        type: SurveyFieldType.CHOICE,
+        name: 'givesNamePermission',
+        isRequired: true,
+        options: this._yesNoOptions
+      }]
+    }});
+    
     return {
-      pages: [() => { return {
-        topTextTranslationKey: 'volunteer.forms.feedback.labels.whatAdvice',
-        fields: [{ type: SurveyFieldType.TEXTAREA, name: 'advice' }]
-      }}, () => { return {
-        topTextTranslationKey: 'volunteer.forms.feedback.labels.bestPart',
-        fields: [{ type: SurveyFieldType.TEXTAREA, name: 'bestPart' }]
-      }}, () => { return {
-        topTextTranslationKey: 'volunteer.forms.feedback.labels.improvements',
-        fields: [{ type: SurveyFieldType.TEXTAREA, name: 'improvements' }]
-      }}, () => { return {
-        topTextTranslationKey: 'volunteer.forms.feedback.labels.giveAnonPermission',
-        fields: [{
-          type: SurveyFieldType.CHOICE,
-          name: 'givesAnonPermission',
-          isRequired: true,
-          options: this._yesNoOptions
-        }]
-      }}, () => { return {
-        topTextTranslationKey: 'volunteer.forms.feedback.labels.giveNamePermission',
-        fields: [{
-          type: SurveyFieldType.CHOICE,
-          name: 'givesNamePermission',
-          isRequired: true,
-          options: this._yesNoOptions
-        }]
-      }}],
+      pages: feedbackSurveyPages,
       onSubmit: async vals => {
         // modify some of the form values before submitting to the proxy
         vals.firebaseIdToken = await this.userDataService.firebaseUser.getIdToken();
         vals.givesAnonPermission = vals.givesAnonPermission === 'yes';
         vals.givesNamePermission = vals.givesNamePermission === 'yes';
 
+        // include the campaign ID if it was passed as a parameter
+        vals.campaignId = campaignId;
+
         // send to the proxy and show an error message if appropriate
-        return this.genericProxyPOST( 'createTestimonial', vals );
+        return this.genericProxyPOST( 'createFeedback', vals );
       }
     };
   }

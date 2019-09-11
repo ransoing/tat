@@ -1,8 +1,30 @@
+import { TranslateCompiler, TranslateLoader } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+
+/** Attempts to load a language file from an external source, but falls back to a local source if it's not available */
+export class FallbackTranslateHttpLoader implements TranslateLoader {
+
+    constructor(
+        private http: HttpClient,
+        public externalPrefix: string,
+        public localPrefix = '/assets/i18n/',
+        public suffix = '.json'
+    ) {}
+
+    /** Gets translations file from somewhere, or from the local source */
+    getTranslation( lang: string ): Observable<Object> {
+        return this.http.get( `${this.externalPrefix}${lang}${this.suffix}` )
+        .pipe(
+            catchError( () => this.http.get(`${this.localPrefix}${lang}${this.suffix}`) )
+        );
+    }
+}
+
+
 // from https://github.com/ngx-translate/core/issues/469
 // this allows self-referential links within i18n json files
-
-import { TranslateCompiler } from '@ngx-translate/core';
-
 export class SelfReferentialCompiler extends TranslateCompiler {
     /*
     * Needed by ngx-translate

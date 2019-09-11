@@ -9,5 +9,5 @@ interface Scripts {
 export const ScriptStore: Scripts[] = [
     { name: 'vimeo-player', src: 'https://player.vimeo.com/api/player.js' },
     { name: 'youtube-api', src: 'https://www.youtube.com/iframe_api' },
-    { name: 'surveys', src: environment.surveysURL }
+    { name: 'surveys', src: environment.externalResourcesURL + 'scripts/surveys.js' }
 ];

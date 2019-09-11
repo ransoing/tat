@@ -12,13 +12,14 @@ export const environment = {
     storageBucket: 'truckers-against-trafficking.appspot.com',
     messagingSenderId: '1062876332765'
   },
-  // proxyServerURL: 'https://localhost/tatproxy/api/',
-  proxyServerURL: 'https://macl4185.lasp.colorado.edu/~christof/tatproxy/api/',
+  proxyServerURL: 'https://localhost/tatproxy/api/',
+  // proxyServerURL: 'https://macl4185.lasp.colorado.edu/~christof/tatproxy/api/',
   // proxyServerURL: 'https://app-proxy.truckersagainsttrafficking.org/api/'
 
-  // surveysURL: 'https://localhost/tatproxy/exported-surveys/surveys.js',
-  surveysURL: 'https://macl4185.lasp.colorado.edu/~christof/tatproxy/exported-surveys/surveys.js',
-  // surveysURL: 'https://app-proxy.truckersagainsttrafficking.com/exported-surveys/surveys.js',
+  // a URL which should contain the contents of `external/dist/`, after running `npm run build-external`
+  externalResourcesURL: 'https://localhost/tatproxy/external-resources/',
+  // externalResourcesURL: 'https://macl4185.lasp.colorado.edu/~christof/tatproxy/external-resources/',
+  // externalResourcesURL: 'https://app-proxy.truckersagainsttrafficking.com/external-resources/',
 
   emailVerificationRequired: false
 };

@@ -1,3 +1,5 @@
+import { environment } from '../environments/environment';
+
 // angular
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -7,12 +9,11 @@ import { FormsModule } from '@angular/forms';
 
 // NG Translate
 import { TranslateModule, TranslateLoader, TranslateCompiler } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { SelfReferentialCompiler, FallbackTranslateHttpLoader } from './translate-tools';
 // AoT requires an exported function for factories
 export function HttpLoaderFactory( http: HttpClient ) {
-  return new TranslateHttpLoader( http, './assets/i18n/trx_', '.json' );
+  return new FallbackTranslateHttpLoader( http, `${environment.externalResourcesURL}i18n/trx_`, './assets/i18n/trx_', '.json' );
 }
-import { SelfReferentialCompiler } from './translate-compiler';
 
 // ionic
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -29,7 +30,6 @@ import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 // firebase and firebase auth
 import * as firebaseuiNamespace from 'firebaseui-en-es/dist'; // just for the namespace
 import { FirebaseUIModule, firebaseui, firebase } from 'firebaseui-angular-en-es';
-//import { FirebaseUIModule as FirebaseUIModuleEs, firebaseui as firebaseuiEs } from 'firebaseui-angular-es';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
@@ -60,7 +60,6 @@ const firebaseuiAuthConfig: firebaseui.auth.Config = {
 };
 
 // app
-import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ModalGuard, AuthGuard } from './guards';

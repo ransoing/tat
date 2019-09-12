@@ -46,8 +46,8 @@
     <preference name="phonegap-version" value="cli-8.0.0" />
     <preference name="fullscreen" value="false" />
     <preference name="StatusBarBackgroundColor" value="#000000" />
-	<preference name="StatusBarStyle" value="blackopaque" />
-	<preference name="StatusBarOverlaysWebView" value="false" />
+    <preference name="StatusBarStyle" value="blackopaque" />
+    <preference name="StatusBarOverlaysWebView" value="false" />
     <platform name="android">
         <allow-intent href="market:*" />
         <comment>The below edit-config tag edits the manifest file to get adaptive icons in Android 8 to work correctly</comment>

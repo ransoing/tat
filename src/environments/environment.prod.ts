@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
+  version: '3.0.0',
   firebaseConfig: {
     apiKey: 'AIzaSyDtBAXnyEvQgbdRHS4fyDvkxtyKQvV4c1c',
     authDomain: 'truckers-against-trafficking.firebaseapp.com',

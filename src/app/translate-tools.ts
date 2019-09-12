@@ -1,7 +1,13 @@
 import { TranslateCompiler, TranslateLoader } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { Observable, Subscriber } from 'rxjs';
+import { environment } from '../environments/environment';
+import { parseVersionString, IVersion, maxVersion, versionCmp } from './models/version';
+
+interface ITranslationCache {
+    version: IVersion;
+    translation: any;
+}
 
 /** Attempts to load a language file from an external source, but falls back to a local source if it's not available */
 export class FallbackTranslateHttpLoader implements TranslateLoader {
@@ -13,12 +19,102 @@ export class FallbackTranslateHttpLoader implements TranslateLoader {
         public suffix = '.json'
     ) {}
 
+    private _indexedDbName = 'tat-i18n';
+
+    /**
+     * get translation file cached in indexedDB. In case of error, return a "null" translation file with a version of 0.0.0
+     */
+    private async _getCachedTranslation( key: string ): Promise<ITranslationCache> {
+        return new Promise( async (resolve,reject) => {
+            try {
+                const db = await this._openDb();
+                const request = db.transaction( [this._indexedDbName], 'readwrite' ).objectStore( this._indexedDbName ).get( key );
+                request.onerror = () => { throw '' };
+                request.onsuccess = (e:any) => resolve( e.target.result );
+            } catch( e ) {
+                return {
+                    version: '0.0.0',
+                    translation: {}
+                };
+            }
+        });
+    }
+
+    private async _setCachedTranslation( key: string, data: any ) {
+        try {
+            const db = await this._openDb();
+            db.transaction( [this._indexedDbName], 'readwrite' ).objectStore( this._indexedDbName ).put( data, key );
+        } catch( e ) {
+            // silently fail.
+        }
+    }
+
+    private _openDb(): Promise<any> {
+        return new Promise( (resolve,reject) => {
+            let request = window.indexedDB.open( this._indexedDbName, 1 );
+            request.onerror = e => reject( e );
+            request.onupgradeneeded = (e:any) => {
+                const db = e.target.result;
+                db.createObjectStore( this._indexedDbName ).onsuccess = () => resolve( db );
+            };
+            request.onsuccess = (e:any) => resolve( e.target.result );
+        });
+    }
+
     /** Gets translations file from somewhere, or from the local source */
     getTranslation( lang: string ): Observable<Object> {
-        return this.http.get( `${this.externalPrefix}${lang}${this.suffix}` )
-        .pipe(
-            catchError( () => this.http.get(`${this.localPrefix}${lang}${this.suffix}`) )
-        );
+
+        return new Observable( subscriber => {
+            this._updateSubscriberWithTranslation( subscriber, lang );
+        });
+    }
+
+    private async _updateSubscriberWithTranslation( subscriber: Subscriber<any>, lang: string ) {
+        // set up an identifier for local storage
+        const storageKey = `i18n_${lang}`;
+
+        const loadLocalTranslations = async () => {
+            // load the cached translations, or the ones packaged with the app; whichever is newer
+            if ( versionCmp(cacheVer, appVer) > 0 ) {
+                // use the cache
+                subscriber.next( cache.translation );
+            } else {
+                // use the local files
+                const result = await this.http.get( `${this.localPrefix}${lang}${this.suffix}` ).toPromise();
+                subscriber.next( result );
+            }
+            subscriber.complete();
+        }
+
+        // find local versions
+        const appVer = parseVersionString( environment.version ); // version of the resources that the app shipped with
+        const cache = await this._getCachedTranslation( storageKey ) as ITranslationCache;
+        const cacheVer = cache ? cache.version : parseVersionString('0.0.0');
+        const maxLocalVer = maxVersion( cacheVer, appVer ); // version of the latest resources, saved locally
+
+        // read the remote version
+        let versionString;
+        try {
+            versionString = await this.http.get( `${environment.externalResourcesURL}version` ).toPromise();
+        } catch (e) {
+            loadLocalTranslations();
+            return;
+        }
+
+        const remoteVer = parseVersionString( versionString as string ); // version of remote resources
+        
+        if ( remoteVer.major === appVer.major && remoteVer.minor === appVer.minor && remoteVer.patch > maxLocalVer.patch ) {
+            // the remote resources are compatible with this version of the app, and are newer. Use the remote version and cache it.
+            const remoteTranslation = await this.http.get( `${this.externalPrefix}${lang}${this.suffix}` ).toPromise();
+            this._setCachedTranslation( storageKey, {
+                version: remoteVer,
+                translation: remoteTranslation
+            });
+            subscriber.next( remoteTranslation );
+            subscriber.complete();
+        } else {
+            loadLocalTranslations();
+        }
     }
 }
 

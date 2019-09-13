@@ -52,7 +52,7 @@ export class VolunteerPage {
 
       // fetching the user data (from salesforce) will either give the user the contents of the volunteer page,
       // or prompt him to set up a SF entry.
-      this.userDataService.fetchUserData();
+      this.userDataService.fetchUserData( true );
       if ( this.userDataService.needsToVerifyEmail() ) {
         // send verification email in the selected language
         angularFireAuth.auth.languageCode = this.settings.language;
@@ -69,7 +69,7 @@ export class VolunteerPage {
             // this will trigger the signup survey
             clearInterval( checkVerificationInterval );
             clearInterval( this.verificationEmailInterval );
-            this.userDataService.fetchUserData();
+            this.userDataService.fetchUserData( true );
           }
         }, 2000 );
       }

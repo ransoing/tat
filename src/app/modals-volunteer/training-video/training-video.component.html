@@ -4,7 +4,12 @@
 <ion-content fullscreen padding>
   <h1>&nbsp;<!-- empty h1 to give the 'close' icon some space --></h1>
   <ion-icon name="md-close" class="modal-close-btn" slot="fixed" (click)="modal.dismiss()"></ion-icon>
-    
+  
+  <div *ngIf="!error">
+    <p>{{ 'volunteer.trainingVideoMessage' | translate }}</p>
+    <p>&nbsp;</p>
+  </div>
+  
   <div *ngIf="!error" style="padding:56.25% 0 0 0;position:relative;">
     <iframe
       id="video-iframe"

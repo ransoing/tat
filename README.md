@@ -40,3 +40,6 @@ an update to the major version or minor version means that an old version of the
 
 update the version number both in config.xml and package.json? and the environments files. Update the version number when updating either the app or the externals.
 publish the app whenever there's an update to the major or minor version, or a patch change other than just the 18n or surveys files
+
+
+when testing updates to i18n files, you may not see any changes... because the app is using the remote version of the files, or the cached version!

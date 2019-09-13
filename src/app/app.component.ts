@@ -132,7 +132,7 @@ export class AppComponent {
   private async handleNotificationTapped( notification: ILocalNotification ) {
     if ( notification.data && notification.data.type === NotificationType.OUTREACH_LOCATION ) {
       // get user data before handling this notification
-      await this.userDataService.fetchUserData();
+      await this.userDataService.fetchUserData( true );
       // the notification contains the salesforce ID of the location.
       // Verify that this ID corresponds with a location
       const outreachLocation = this.userDataService.data.outreachLocations.find( location => notification.data.salesforceId === location.id );

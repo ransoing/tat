@@ -9,7 +9,7 @@
   <div *ngIf="!userDataService.fetchingUserData && !alertIsVisible && !loadingIsVisible && (userDataService.loadError || !userDataService.data && !modalService.getActiveModal())">
     <ng-container *ngIf="!userDataService.needsToVerifyEmail()">
       <p>{{ 'misc.messages.dataLoadError' | translate }}</p>
-      <ion-button fill="solid" color="primary" size="default" (click)="userDataService.fetchUserData()">
+      <ion-button fill="solid" color="primary" size="default" (click)="userDataService.fetchUserData( true )">
         {{ 'misc.buttons.retry' | translate }}
       </ion-button>
       <ion-button fill="clear" color="medium" size="default" (click)="angularFireAuth.auth.signOut()">
@@ -90,6 +90,7 @@
         {{ 'volunteer.btns.postEventReport' | translate }}
     </image-button>
     
+    <!-- feedback is expected to only be submitted after an outreach, but only one user will submit the post-outreach report, whereas multiple will submit the feedback -->
     <image-button
       image="volunteer.testimonial.jpg"
       (click)="showFeedbackForm()"

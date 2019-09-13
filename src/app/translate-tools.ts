@@ -25,7 +25,7 @@ export class FallbackTranslateHttpLoader implements TranslateLoader {
      * get translation file cached in indexedDB. In case of error, return a "null" translation file with a version of 0.0.0
      */
     private async _getCachedTranslation( key: string ): Promise<ITranslationCache> {
-        return new Promise( async (resolve,reject) => {
+        return new Promise<ITranslationCache>( async (resolve,reject) => {
             try {
                 const db = await this._openDb();
                 const request = db.transaction( [this._indexedDbName], 'readwrite' ).objectStore( this._indexedDbName ).get( key );

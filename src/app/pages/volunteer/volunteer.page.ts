@@ -104,8 +104,11 @@ export class VolunteerPage {
 
   async showPreOutreachForm() {
     // before opening the form, ask how many locations the user is going to visit.
+    const trxKey = this.userDataService.data.isOnVolunteerTeam ?
+      'volunteer.forms.preOutreach.labels.howManyTeam' :
+      'volunteer.forms.preOutreach.labels.howManyIndividual';
     const alert = await this.alertCtrl.create({
-      message: await this.trx.t( 'volunteer.forms.preOutreach.labels.howMany' ),
+      message: await this.trx.t( trxKey ),
       inputs: [{
         name: 'numLocations',
         type: 'number',

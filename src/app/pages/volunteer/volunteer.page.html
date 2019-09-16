@@ -48,7 +48,7 @@
     </image-button>
 
     <image-button
-      *ngIf="userDataService.data.volunteerType === VolunteerType.VOLUNTEER_DISTRIBUTOR && (userDataService.data.isTeamCoordinator || userDataService.data.isOnVolunteerTeam)"
+      *ngIf="userDataService.data.volunteerType === VolunteerType.VOLUNTEER_DISTRIBUTOR && (userDataService.data.isTeamCoordinator || !userDataService.data.isOnVolunteerTeam)"
       image="volunteer.pre-outreach-survey.jpg"
       (click)="showPreOutreachForm()"
       [required]="true"

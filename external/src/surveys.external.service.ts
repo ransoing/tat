@@ -695,7 +695,7 @@ class SurveyService {
           }]
         }}, () => { return {
           // page 2
-          isVisible: vals => this.userDataService.data.volunteerType === VolunteerType.VOLUNTEER_DISTRIBUTOR && this.userDataService.data.isTeamCoordinator && !this.userDataService.data.isOnVolunteerTeam,
+          isVisible: vals => this.userDataService.data.volunteerType === VolunteerType.VOLUNTEER_DISTRIBUTOR && this.userDataService.data.isTeamCoordinator && this.userDataService.data.isOnVolunteerTeam,
           topTextTranslationKey: 'volunteer.forms.signup.labels.trainingVideo',
           fields: [{
             type: SurveyFieldType.CHOICE,

@@ -126,7 +126,7 @@ export class UserDataService implements IUserDataService {
       console.error( e );
       // show an error message.
       this.loadError = true;
-      this.miscService.showErrorPopup( 'misc.messages.dataLoadErrorWithTip' );
+      this.miscService.showErrorPopup( e.status === 0 ? 'misc.messages.dataLoadErrorNetwork' : 'misc.messages.dataLoadErrorUnknown' );
     }
   }
 

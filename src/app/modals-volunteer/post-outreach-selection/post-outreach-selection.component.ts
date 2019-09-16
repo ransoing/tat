@@ -86,7 +86,7 @@ export class PostOutreachSelectionComponent implements AfterViewInit {
           try {
             await this.proxyAPI.post( 'deleteOutreachLocation', payload );
           } catch ( e ) {
-            this.miscService.showErrorPopup()
+            this.miscService.showErrorPopup( e.status === 0 ? 'misc.messages.requestErrorNetwork' : 'misc.messages.requestErrorUnknown' );
           }
           // reload the outreach locations
           await this.userDataService.fetchUserData( true, UserDataRequestFlags.UNFINISHED_ACTIVITIES );

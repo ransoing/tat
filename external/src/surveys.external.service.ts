@@ -523,9 +523,14 @@ class SurveyService {
             }
           }).catch( e => {
             // check the error code to show an appropriate message
-            const errorKey = ( e.error && e.error.errorCode && e.error.errorCode === 'INCORRECT_REGISTRATION_CODE' ) ?
-              'volunteer.forms.signup.invalidCode' :
-              'misc.messages.requestError';
+            let errorKey;
+            if ( e.status === 0 ) {
+              errorKey = 'misc.messages.requestErrorNetwork';
+            } else if ( e.error && e.error.errorCode && e.error.errorCode === 'INCORRECT_REGISTRATION_CODE' ) {
+              errorKey = 'volunteer.forms.signup.invalidCode';
+            } else {
+              errorKey = 'misc.messages.requestErrorUnknown';
+            }
             // show an error message.
             throw this.miscService.showErrorPopup( errorKey );
           });
@@ -563,8 +568,10 @@ class SurveyService {
             }
           }).catch( e => {
             // check error code and show an error message if appropriate
-            let errorKey = 'misc.messages.requestError';
-            if ( e.error && e.error.errorCode ) {
+            let errorKey = 'misc.messages.requestErrorUnknown';
+            if ( e.status === 0 ) {
+              errorKey = 'misc.messages.requestErrorNetwork';
+            } else if ( e.error && e.error.errorCode ) {
               if ( e.error.errorCode === 'NO_MATCHING_ENTRY' ) {
                 if ( volunteerType === VolunteerType.VOLUNTEER_DISTRIBUTOR && !isIndividualDistributor ) {
                   return; // it's ok to continue with the survey. A new SF Contact will be created
@@ -650,9 +657,14 @@ class SurveyService {
               throw '';
           }
         }).catch( e => {
-          const errorKey = e.error && e.errorCode === 'INCORRECT_REGISTRATION_CODE' ?
-            'volunteer.forms.signup.invalidCode' :
-            'misc.messages.requestError';
+          let errorKey;
+          if ( e.status === 0 ) {
+            errorKey = 'misc.messages.requestErrorNetwork';
+          } else if ( e.error && e.errorCode === 'INCORRECT_REGISTRATION_CODE' ) {
+            errorKey = 'volunteer.forms.signup.invalidCode';
+          } else {
+            errorKey = 'misc.messages.requestErrorUnknown';
+          }
           // show an error message.
           this.miscService.showErrorPopup( errorKey );
           throw '';
@@ -717,7 +729,7 @@ class SurveyService {
           throw '';
       }
     }).catch( e => {
-      this.miscService.showErrorPopup();
+      this.miscService.showErrorPopup( e.status === 0 ? 'misc.messages.requestErrorNetwork' : 'misc.messages.requestErrorUnknown' );
       throw '';
     });
   }
@@ -730,7 +742,7 @@ class SurveyService {
       });
     })
     .catch( e => {
-      this.miscService.showErrorPopup();
+      this.miscService.showErrorPopup( e.status === 0 ? 'misc.messages.requestErrorNetwork' : 'misc.messages.requestErrorUnknown' );
       throw '';
     });
   }

@@ -102,12 +102,16 @@
     },
     "messages": {
       "connectionTip": "Make sure you have an internet connection and try again.",
+      "contactStaff": "Please contact TAT staff for assistance.",
       "dataLoadError": "There was a problem while loading your volunteer account data.",
-      "dataLoadErrorWithTip": "@:misc.messages.dataLoadError @:misc.messages.connectionTip",
+      "dataLoadErrorNetwork": "@:misc.messages.dataLoadError @:misc.messages.connectionTip",
+      "dataLoadErrorUnknown": "@:misc.messages.dataLoadError @:misc.messages.contactStaff",
       "deleteConfirm": "Are you sure you want to delete this?",
       "logoutMessage": "You have been logged out.",
       "pleaseWait": "Please wait...",
-      "requestError": "There was an error making the request. @:misc.messages.connectionTip",
+      "requestError": "There was an error making the request.",
+      "requestErrorNetwork": "@:misc.messages.requestError @:misc.messages.connectionTip",
+      "requestErrorUnknown": "@:misc.messages.requestError @:misc.messages.contactStaff",
       "updateRequired": "You must update the app to use this feature."
     },
     "none": "None",

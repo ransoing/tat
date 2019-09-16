@@ -99,10 +99,13 @@
     "messages": {
       "connectionTip": "Asegúrate de tener conexión a Internet y trata de nuevo.",
       "dataLoadError": "Hubo un problema al cargar tu cuenta de voluntario.",
-      "dataLoadErrorWithTip": "@:misc.messages.dataLoadError @:misc.messages.connectionTip",
+      "dataLoadErrorNetwork": "@:misc.messages.dataLoadError @:misc.messages.connectionTip",
+      "dataLoadErrorUnknown": "@:misc.messages.dataLoadError @:misc.messages.contactStaff",
       "logoutMessage": "Se cerró tu sesión.",
       "pleaseWait": "Espera por favor...",
-      "requestError": "Hubo un error al hacer la solicitud. @:misc.messages.connectionTip"
+      "requestError": "Hubo un error al hacer la solicitud.",
+      "requestErrorNetwork": "@:misc.messages.requestError @:misc.messages.connectionTip",
+      "requestErrorUnknown": "@:misc.messages.requestError @:misc.messages.contactStaff"
     },
     "other": "Otro (favor de especificar)",
     "required": "Requerido",

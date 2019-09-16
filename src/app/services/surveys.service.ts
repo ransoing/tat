@@ -80,7 +80,7 @@ export class SurveyService implements ISurveyService {
       }
     } catch ( e ) {
       await this.miscService.hideLoadingPopup();
-      this.miscService.showErrorPopup();
+      this.miscService.showErrorPopup( e.status === 0 ? 'misc.messages.requestErrorNetwork' : 'misc.messages.requestErrorUnknown' );
       return;
     }
     

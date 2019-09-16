@@ -10,6 +10,6 @@ export const environment = {
     messagingSenderId: '1062876332765'
   },
   proxyServerURL: 'https://app-proxy.truckersagainsttrafficking.org/api/',
-  externalResourcesURL: 'https://app-proxy.truckersagainsttrafficking.com/external-resources/',
+  externalResourcesURL: 'https://app-proxy.truckersagainsttrafficking.org/external-resources/',
   emailVerificationRequired: true
 };

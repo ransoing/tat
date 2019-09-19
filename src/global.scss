@@ -241,6 +241,13 @@ ion-picker-column .picker-opts .picker-opt {
     text-overflow: clip;
 }
 
+ion-grid {
+    padding: 0;
+    margin: -5px; // undo the padding around the outside of columns and rows
+}
+
+
+
 @media only screen and (min-height: 768px) and (min-width: 768px) {
     .modal-large .modal-wrapper {
         width: 100%;

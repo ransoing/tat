@@ -1,20 +1,3 @@
 .short-text {
     font-size: 75%;
 }
-
-.alt-hotlines {
-    
-    &:after {
-        display: block;
-        clear: both;
-        content: '';
-    }
-
-    > ion-button {
-        text-transform: none;
-        font-size: 94%;
-
-        &:nth-child(1) { float: left;  margin-left: -16px }
-        &:nth-child(2) { float: right; margin-right: -16px }
-    }
-}

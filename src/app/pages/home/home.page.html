@@ -5,12 +5,24 @@
 <ion-content padding>
   <img src="assets/images/tat-logo.png" class="logo">
 
-  <image-button image="home.report-activity.jpg" (click)="navCtrl.navigateRoot('/tabs/(report:report)')">{{ 'home.reportActivity' | translate }}</image-button>
-  <image-button image="home.red-flags.jpg" (click)="navCtrl.navigateRoot('/tabs/(red-flags:red-flags)')">{{ 'home.redFlags' | translate }}</image-button>
-  <image-button image="home.resources.jpg" (click)="navCtrl.navigateRoot('/tabs/(resources:resources)')">{{ 'home.resources' | translate }}</image-button>
-  <image-button image="home.volunteer-login.jpg" (click)="navCtrl.navigateRoot('/tabs/(volunteer:volunteer)')">
-    {{ (miscService.isLoggedIn ? 'volunteer.title' : 'volunteer.loginTitle') | translate }}
-  </image-button>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-xs="12" size-sm="6">
+        <image-button image="home.report-activity.jpg" (click)="navCtrl.navigateRoot('/tabs/(report:report)')">{{ 'home.reportActivity' | translate }}</image-button>
+      </ion-col>
+      <ion-col size-xs="12" size-sm="6">
+        <image-button image="home.red-flags.jpg" (click)="navCtrl.navigateRoot('/tabs/(red-flags:red-flags)')">{{ 'home.redFlags' | translate }}</image-button>
+      </ion-col>
+      <ion-col size-xs="12" size-sm="6">
+        <image-button image="home.resources.jpg" (click)="navCtrl.navigateRoot('/tabs/(resources:resources)')">{{ 'home.resources' | translate }}</image-button>
+      </ion-col>
+      <ion-col size-xs="12" size-sm="6">
+        <image-button image="home.volunteer-login.jpg" (click)="navCtrl.navigateRoot('/tabs/(volunteer:volunteer)')">
+          {{ (miscService.isLoggedIn ? 'volunteer.title' : 'volunteer.loginTitle') | translate }}
+        </image-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
   <ion-item class="language-select">
     <ion-label><ion-icon name="globe"></ion-icon> {{ 'misc.setLanguage' | translate }}</ion-label>

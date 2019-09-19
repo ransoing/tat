@@ -1,14 +1,12 @@
 .book-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 30px;
-    justify-items: center;
-    align-items: start;
+    display: flex;
+    flex-wrap: wrap;
 
-    width: 100%;
-
-    > * {
+    > div {
         width: 140px;
+
+        margin: 0 32px 32px 0;
+
         img { width: 100% }
         .book-title {
             font-weight: bold;

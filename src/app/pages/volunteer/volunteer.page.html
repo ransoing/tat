@@ -39,63 +39,78 @@
     <p *ngIf="userDataService.data.firstName" class="first-name">{{ 'volunteer.welcome' | translate }}, {{userDataService.data.firstName}}</p>
     <p>{{ 'volunteer.intro' | translate }}</p>
 
-    <image-button
-      image="volunteer.training-video.jpg"
-      (click)="openTrainingVideo()"
-      [required]="userDataService.data.volunteerType !== VolunteerType.AMBASSADOR_VOLUNTEER"
-      [completed]="!userDataService.mustWatchTrainingVideo()">
-        {{ 'volunteer.btns.trainingVideo' | translate }}
-    </image-button>
+    <ion-grid>
+      <ion-row>
+        <ion-col size-xs="12" size-md="6" size-lg="4">
+          <image-button
+            image="volunteer.training-video.jpg"
+            (click)="openTrainingVideo()"
+            [required]="userDataService.data.volunteerType !== VolunteerType.AMBASSADOR_VOLUNTEER"
+            [completed]="!userDataService.mustWatchTrainingVideo()">
+              {{ 'volunteer.btns.trainingVideo' | translate }}
+          </image-button>
+        </ion-col>
 
-    <image-button
-      *ngIf="userDataService.data.volunteerType === VolunteerType.VOLUNTEER_DISTRIBUTOR && (userDataService.data.isTeamCoordinator || !userDataService.data.isOnVolunteerTeam)"
-      image="volunteer.pre-outreach-survey.jpg"
-      (click)="showPreOutreachForm()"
-      [required]="true"
-      [disabled]="userDataService.mustWatchTrainingVideo()">
-        {{ 'volunteer.btns.preOutreachSurvey' | translate }}
-    </image-button>
+        <ion-col size-xs="12" size-md="6" size-lg="4" *ngIf="userDataService.data.volunteerType === VolunteerType.VOLUNTEER_DISTRIBUTOR && (userDataService.data.isTeamCoordinator || !userDataService.data.isOnVolunteerTeam)">
+          <image-button
+            image="volunteer.pre-outreach-survey.jpg"
+            (click)="showPreOutreachForm()"
+            [required]="true"
+            [disabled]="userDataService.mustWatchTrainingVideo()">
+              {{ 'volunteer.btns.preOutreachSurvey' | translate }}
+          </image-button>
+        </ion-col>
 
-    <image-button
-      *ngIf="userDataService.data.volunteerType !== VolunteerType.VOLUNTEER_DISTRIBUTOR"
-      image="volunteer.pre-outreach-survey.jpg"
-      (click)="showPreEventForm()"
-      [required]="true"
-      [disabled]="userDataService.mustWatchTrainingVideo()">
-        {{ 'volunteer.btns.preEventSurvey' | translate }}
-    </image-button>
+        <ion-col size-xs="12" size-md="6" size-lg="4" *ngIf="userDataService.data.volunteerType !== VolunteerType.VOLUNTEER_DISTRIBUTOR">
+          <image-button
+            image="volunteer.pre-outreach-survey.jpg"
+            (click)="showPreEventForm()"
+            [required]="true"
+            [disabled]="userDataService.mustWatchTrainingVideo()">
+              {{ 'volunteer.btns.preEventSurvey' | translate }}
+          </image-button>
+        </ion-col>
+
+        <ion-col size-xs="12" size-md="6" size-lg="4">
+          <image-button
+            image="volunteer.resources.jpg"
+            (click)="modalService.open(VolunteerResourcesComponent)"
+            [disabled]="userDataService.mustWatchTrainingVideo()">
+              {{ 'volunteer.btns.resources' | translate }}
+          </image-button>
+        </ion-col>
+
+        <ion-col size-xs="12" size-md="6" size-lg="4" *ngIf="userDataService.data.volunteerType === VolunteerType.VOLUNTEER_DISTRIBUTOR">
+          <image-button
+            image="volunteer.post-outreach-report.jpg"
+            (click)="modalService.open(PostOutreachSelectionComponent)"
+            [required]="true"
+            [disabled]="userDataService.mustWatchTrainingVideo() || userDataService.data.outreachLocations.length === 0">
+              {{ 'volunteer.btns.postOutreachReport' | translate }}
+          </image-button>
+        </ion-col>
+
+        <ion-col size-xs="12" size-md="6" size-lg="4" *ngIf="userDataService.data.volunteerType !== VolunteerType.VOLUNTEER_DISTRIBUTOR">
+          <image-button
+            image="volunteer.post-outreach-report.jpg"
+            (click)="modalService.open(PostEventSelectionComponent)"
+            [required]="true"
+            [disabled]="userDataService.mustWatchTrainingVideo() || userDataService.data.events.length === 0"> <!-- @@TODO make a userDataService.data.events object -->
+              {{ 'volunteer.btns.postEventReport' | translate }}
+          </image-button>
+        </ion-col>
+
+        <ion-col size-xs="12" size-md="6" size-lg="4">
+          <!-- feedback is expected to only be submitted after an outreach, but only one user will submit the post-outreach report, whereas multiple will submit the feedback -->
+          <image-button
+            image="volunteer.testimonial.jpg"
+            (click)="showFeedbackForm()"
+            [disabled]="userDataService.mustWatchTrainingVideo()">
+              {{ 'volunteer.btns.testimonial' | translate }}
+          </image-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
     
-    <image-button
-      image="volunteer.resources.jpg"
-      (click)="modalService.open(VolunteerResourcesComponent)"
-      [disabled]="userDataService.mustWatchTrainingVideo()">
-        {{ 'volunteer.btns.resources' | translate }}
-    </image-button>
-    
-    <image-button
-      *ngIf="userDataService.data.volunteerType === VolunteerType.VOLUNTEER_DISTRIBUTOR"
-      image="volunteer.post-outreach-report.jpg"
-      (click)="modalService.open(PostOutreachSelectionComponent)"
-      [required]="true"
-      [disabled]="userDataService.mustWatchTrainingVideo() || userDataService.data.outreachLocations.length === 0">
-        {{ 'volunteer.btns.postOutreachReport' | translate }}
-    </image-button>
-    
-    <image-button
-      *ngIf="userDataService.data.volunteerType !== VolunteerType.VOLUNTEER_DISTRIBUTOR"
-      image="volunteer.post-outreach-report.jpg"
-      (click)="modalService.open(PostEventSelectionComponent)"
-      [required]="true"
-      [disabled]="userDataService.mustWatchTrainingVideo() || userDataService.data.events.length === 0"> <!-- @@TODO make a userDataService.data.events object -->
-        {{ 'volunteer.btns.postEventReport' | translate }}
-    </image-button>
-    
-    <!-- feedback is expected to only be submitted after an outreach, but only one user will submit the post-outreach report, whereas multiple will submit the feedback -->
-    <image-button
-      image="volunteer.testimonial.jpg"
-      (click)="showFeedbackForm()"
-      [disabled]="userDataService.mustWatchTrainingVideo()">
-        {{ 'volunteer.btns.testimonial' | translate }}
-    </image-button>
   </div>
 </ion-content>

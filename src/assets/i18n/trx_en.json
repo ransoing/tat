@@ -405,7 +405,8 @@
         "title": "Notifications",
         "upcomingEvents": "Notify me of upcoming events"
       },
-      "title": "Settings"
+      "title": "Settings",
+      "userId": "User ID"
     },
     "title": "@:nav.volunteer",
     "trainingVideoError": "There was an error loading the video. Please try again later.",

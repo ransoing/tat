@@ -33,11 +33,11 @@ export class SurveyService implements ISurveyService {
   ) {}
 
   async preOutreachSurvey( numLocations: number ): Promise<ISurvey> {
-    return ( await this._loadExternalScript() ).preOutreachSurvey( numLocations );
+    return this._loadSurvey( externalScript => externalScript.preOutreachSurvey(numLocations) );
   }
 
   async postOutreachSurvey( location: IOutreachLocation ): Promise<ISurvey> {
-    return ( await this._loadExternalScript() ).postOutreachSurvey( location );
+    return this._loadSurvey( externalScript => externalScript.postOutreachSurvey(location) );
   }
 
   // preEventSurvey
@@ -45,15 +45,23 @@ export class SurveyService implements ISurveyService {
   // postEventSurvey
 
   async testimonialFeedbackSurvey( campaignId?: string ): Promise<ISurvey> {
-    return ( await this._loadExternalScript() ).testimonialFeedbackSurvey( campaignId );
+    return this._loadSurvey( externalScript => externalScript.testimonialFeedbackSurvey(campaignId) );
   }
 
   async signupSurvey(): Promise<ISurvey> {
-    return ( await this._loadExternalScript() ).signupSurvey();
+    return this._loadSurvey( externalScript => externalScript.signupSurvey() );
   }
 
   async editAccountSurvey(): Promise<ISurvey> {
-    return ( await this._loadExternalScript() ).editAccountSurvey();
+    return this._loadSurvey( externalScript => externalScript.editAccountSurvey() );
+  }
+
+  /** a helper function to coordinate the timing of loading the external survey service, generating the survey, and hiding a loading popup */
+  private async _loadSurvey( scriptCallback: (s: ISurveyService) => Promise<ISurvey> ): Promise<ISurvey> {
+    const externalScript = await this._loadExternalScript();
+    const survey = await scriptCallback( externalScript );
+    this.miscService.hideLoadingPopup();
+    return survey;
   }
 
   /** a helper function to load the external script and construct the service */

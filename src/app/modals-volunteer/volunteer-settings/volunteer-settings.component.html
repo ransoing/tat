@@ -25,9 +25,15 @@
   </ion-list>
 
   <hr>
-  <p *ngIf="userDataService.data.firstName" style="opacity: 0.5">
-    {{ 'volunteer.settings.loggedInAs' | translate }} <b>{{userDataService.data.firstName}} {{userDataService.data.lastName}}</b>
-  </p>
+  <div style="opacity: 0.5">
+    <p *ngIf="userDataService.data.firstName">
+      {{ 'volunteer.settings.loggedInAs' | translate }} <b>{{userDataService.data.firstName}} {{userDataService.data.lastName}}</b>
+    </p>
+    <p>
+      {{ 'volunteer.settings.userId' | translate }}: <code>{{userDataService.firebaseUser.uid}}</code>
+    </p>
+  </div>
+
   <p></p>
   <!-- If more options are added to the 'edit account' survey, then potentially show this to other volunteers -->
   <p *ngIf="(userDataService.data.volunteerType === VolunteerType.VOLUNTEER_DISTRIBUTOR && userDataService.data.isOnVolunteerTeam) || userDataService.data.isTeamCoordinator">

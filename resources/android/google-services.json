@@ -1,0 +1,117 @@
+{
+  "project_info": {
+    "project_number": "1062876332765",
+    "firebase_url": "https://truckers-against-trafficking.firebaseio.com",
+    "project_id": "truckers-against-trafficking",
+    "storage_bucket": "truckers-against-trafficking.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1062876332765:android:2785c8c6bbb9c295",
+        "android_client_info": {
+          "package_name": "org.truckersagainsttrafficking.walletcard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1062876332765-qqdleev3neefqltp4at1alnp31vc9jc5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.truckersagainsttrafficking.walletcard",
+            "certificate_hash": "23ac33abda95f9434e8c3ff582bc6e88a3b83d9e"
+          }
+        },
+        {
+          "client_id": "1062876332765-ke8vsk5kb71md5nkknrj23bv3m1gs168.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.truckersagainsttrafficking.walletcard",
+            "certificate_hash": "541927c438ea0795ed405355fbe6097f433bc0ef"
+          }
+        },
+        {
+          "client_id": "1062876332765-6oijenoqa206ronvs2pkg1of8ips2fp6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBshsZzYM51Kqe8PPB11fLtUJ6akIJhRQ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1062876332765-6oijenoqa206ronvs2pkg1of8ips2fp6.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1062876332765-rh8217ejtph3a76te0unhiebtgkm0i4n.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.truckersagainsttrafficking.walletcard",
+                "app_store_id": "1208271857"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1062876332765:android:483e7e197efa7817111134",
+        "android_client_info": {
+          "package_name": "sherprog.walletcards.tat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1062876332765-31utklf388ha4n9davd1iffqqlhdho14.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "sherprog.walletcards.tat",
+            "certificate_hash": "541927c438ea0795ed405355fbe6097f433bc0ef"
+          }
+        },
+        {
+          "client_id": "1062876332765-bkcq1o4p81diguenami7ek8np58d3d5o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "sherprog.walletcards.tat",
+            "certificate_hash": "23ac33abda95f9434e8c3ff582bc6e88a3b83d9e"
+          }
+        },
+        {
+          "client_id": "1062876332765-6oijenoqa206ronvs2pkg1of8ips2fp6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBshsZzYM51Kqe8PPB11fLtUJ6akIJhRQ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1062876332765-6oijenoqa206ronvs2pkg1of8ips2fp6.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1062876332765-rh8217ejtph3a76te0unhiebtgkm0i4n.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.truckersagainsttrafficking.walletcard",
+                "app_store_id": "1208271857"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -45,11 +45,11 @@ The Salesforce proxy provides a secure way for the app's users to fetch data fro
 
 The proxy also stores i18n data and the code for the volunteer surveys; these are fetched by the mobile app, and can be updated without pushing an app update.
 
-See more about the proxy at the (live instance)[https://app-proxy.truckersagainsttrafficking.org/] or the (repo)[https://github.com/ransoing/tatproxy]
+See more about the proxy at the [live instance](https://app-proxy.truckersagainsttrafficking.org/) or the [repo](https://github.com/ransoing/tatproxy)
 
 ## Helpful tools
 
-(i18n-editor)[https://github.com/jcbvm/i18n-editor] - Use this to manage translations
+[i18n-editor](https://github.com/jcbvm/i18n-editor) - Use this to manage translations
 
 ## Building and deploying
 

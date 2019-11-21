@@ -1,45 +1,56 @@
+# Truckers Against Trafficking (TAT) mobile app
 
-Parts:
-    Angular app
-        main
-        externals
-            loaded dynamically (i18n files also loaded dynamically)
-    Firebase
-        what is stored here?
-    Proxy
-        what does this do?
-    firebaseui-en-es, firebaseui-angular-en-es
-        why I have this, and how to build it
+This mobile app helps to combat human trafficking in the trucking industry.
 
-Tools:
-    i18n-editor
+Features:
+* A reference of how to recognize signs of trafficking
+* Quick links to call or email the national human trafficking hotline, to report instances of trafficking
+* Educational resources: videos, news stories, books, documentaries, etc
+* A volunteer portal, for TAT volunteers to report their activity
+* Dual language: English and Spanish
 
-How to update various things:
-    The app itself
-    Salesforce junk
-    Registration codes
-    How to help users with login issues or delete users
-    Surveys
-    Images and videos (URLs in firebase)
+This app is built with Ionic (which uses Angular) and packaged as a native app using Cordova.
 
-What in salesforce mustn't you touch?
+## Quickstart
 
+`npm install` and `npm start` to run the app in the browser. Some features will not work in the browser.
 
-how to run in browser for dev? how to set env file?
-how to run on device for testing?
-how to build for production? (and where are the keys, how to sign them)
+To develop new volunteer features without touching the live Salesforce database, you'll need to run a local copy of the Salesforce proxy (see the "Salesforce proxy" section below). Edit `environment.ts` and change `proxyServerURL` and `externalResourcesURL`.
 
+## Updating external resources
 
-when updating, update the version number ...
-  update the major version when the app is completely overhauled
-  update the minor version whenever translation keys are added, removed, or changed (translation keys used only in surveys don't count). Or if interactions with surveys change (what is passed to them, or what is rec'd by them)
-  update the patch version whenever translation text is merely changed, and/or translation keys and text are added/removed/changed only in surveys
-...THEN build. build externals, or the app, or whatever.
+The app fetches a few things from a server during runtime, such as translation files and volunteer survey code. These are kept in the `external/`. After making updates and incrementing the app's version number, run `npm run build-external` and copy the resources from `external/dist/` to the proxy server.
 
-an update to the major version or minor version means that an old version of the app won't work properly with the latest external stuff -- the external stuff is always at the latest version.
+## Services
 
-update the version number both in config.xml and package.json? and the environments files. Update the version number when updating either the app or the externals.
-publish the app whenever there's an update to the major or minor version, or a patch change other than just the 18n or surveys files
+### Firebase
 
+The app uses Firebase for:
 
-when testing updates to i18n files, you may not see any changes... because the app is using the remote version of the files, or the cached version!
+* volunteer user authentication
+* storing URLs of videos and some images, so these can be updated without pushing an app update
+* storing some volunteer registration codes
+* push notifications
+
+### Salesforce
+
+Salesforce stores:
+
+* the data from all volunteer reports
+* volunteers' personal user data
+
+### Salesforce proxy
+
+The Salesforce proxy provides a secure way for the app's users to fetch data from and insert data into Salesforce.
+
+The proxy also stores i18n data and the code for the volunteer surveys; these are fetched by the mobile app, and can be updated without pushing an app update.
+
+See more about the proxy at the (live instance)[https://app-proxy.truckersagainsttrafficking.org/] or the (repo)[https://github.com/ransoing/tatproxy]
+
+## Helpful tools
+
+(i18n-editor)[https://github.com/jcbvm/i18n-editor] - Use this to manage translations
+
+## Building and deploying
+
+The app cannot be built with PhoneGap, as it uses plugins that PhoneGap does not support. So, you must install the relevant SDKs and run cordova commands to build the app.

@@ -32,7 +32,7 @@ export class PostOutreachSelectionComponent implements AfterViewInit {
         // update just the outreach locations in the user data
         await this.userDataService.fetchUserData( true, UserDataRequestFlags.UNFINISHED_ACTIVITIES );
         // check if there is a scheduled notification for this outreach location, and cancel it
-        this.miscService.cancelNotificationIf( notification => notification.data.salesforceId === outreachTarget.id );
+        // this.miscService.cancelNotificationIf( notification => notification.data.salesforceId === outreachTarget.id );
         // close the modal if there are no more outreach locations
         if ( this.userDataService.data.outreachLocations.length == 0 ) {
           this.modal.dismiss();

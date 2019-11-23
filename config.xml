@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-packageName="sherprog.walletcards.tat" android-versionCode="30100" ios-CFBundleIdentifier="org.truckersagainsttrafficking.walletcard" ios-CFBundleVersion="310" version="3.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:android="schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-packageName="sherprog.walletcards.tat" android-versionCode="30100" ios-CFBundleIdentifier="org.truckersagainsttrafficking.walletcard" ios-CFBundleVersion="310" version="3.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Truckers Against Trafficking</name>
     <description>Make the call, save lives. Use this simple app to help you identify and report instances of human trafficking.</description>
     <author email="appdev@truckersagainsttrafficking.org" href="http://www.truckersagainsttrafficking.org/">Truckers Against Trafficking</author>
@@ -33,7 +33,7 @@
     </comment>
     <preference name="OverrideUserAgent" value="Mozilla/5.0 (Linux; Android 8.0.0; moto g(6)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.99 Mobile Safari/537.36" />
     <preference name="ScrollEnabled" value="false" />
-    <preference name="android-minSdkVersion" value="16" />
+    <preference name="android-minSdkVersion" value="19" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="ShowSplashScreen" value="true" />
     <preference name="AutoHideSplashScreen" value="false" />
@@ -50,10 +50,10 @@
     <preference name="StatusBarOverlaysWebView" value="false" />
     <platform name="android">
         <allow-intent href="market:*" />
-        <resource-file src="resources/android/google-services.json" target="app/google-services.json" />
         <comment>The below edit-config tag edits the manifest file to get adaptive icons in Android 8 to work correctly</comment>
         <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
             <application android:icon="@mipmap/ic_launcher" android:roundIcon="@mipmap/ic_launcher_round" />
+            <application android:usesCleartextTraffic="true" />
         </edit-config>
         <resource-file src="resources/android/notification-icon.png" target="app/src/main/res/mipmap-hdpi/n_icon.png" />
         <resource-file src="resources/android/adaptiveicon/values/ic_launcher_background.xml" target="app/src/main/res/values/ic_launcher_background.xml" />
@@ -87,16 +87,13 @@
         <splash density="port-xhdpi" src="resources/android/splash/drawable-port-xhdpi-screen.png" />
         <splash density="port-xxhdpi" src="resources/android/splash/drawable-port-xxhdpi-screen.png" />
         <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
-        <preference name="android-minSdkVersion" value="16" />
+        <preference name="android-minSdkVersion" value="19" />
         <comment>singleTask is needed for the OAuth process, to prevent multiple instances of the app from potentially being spawned</comment>
         <preference name="AndroidLaunchMode" value="singleTask" />
-        <comment>When updating to cordova android 8.0+, delete the preference below. Otherwise this is needed because of a 'fontVariationSettings' bug.</comment>
-        <preference name="ANDROID_SUPPORT_VERSION" value="27.+" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
-        <resource-file src="resources/ios/GoogleService-Info.plist" target="GoogleService-Info.plist" />
         <icon height="57" src="resources/ios/icon/icon.png" width="57" />
         <icon height="114" src="resources/ios/icon/icon@2x.png" width="114" />
         <icon height="40" src="resources/ios/icon/icon-40.png" width="40" />
@@ -143,7 +140,6 @@
     <plugin name="cordova-plugin-browsertab" spec="^0.2.0" />
     <plugin name="cordova-plugin-inappbrowser" spec="^3.0.0" />
     <plugin name="cordova-sqlite-storage" spec="^3.0.0" />
-    <plugin name="cordova-plugin-firebase-messaging" spec="^1.4.0" />
     <plugin name="cordova-universal-links-plugin" spec="git+https://github.com/walteram/cordova-universal-links-plugin.git" />
     <plugin name="cordova-plugin-customurlscheme" spec="^4.3.0">
         <variable name="URL_SCHEME" value="org.truckersagainsttrafficking.walletcard" />
@@ -159,7 +155,7 @@
             <path url="/__/auth/callback" />
         </host>
     </universal-links>
-    <engine name="ios" spec="4.5.5" />
-    <engine name="android" spec="7.0.0" />
+    <engine name="ios" spec="5.0.0" />
+    <engine name="android" spec="8.1.0" />
     <engine name="browser" spec="5.0.4" />
 </widget>

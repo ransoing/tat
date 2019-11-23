@@ -23,9 +23,9 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Dialogs } from '@ionic-native/dialogs/ngx';
 import { Network } from '@ionic-native/network/ngx';
+import { FirebaseX } from '@ionic-native/firebase-x/ngx';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { IonicStorageModule } from '@ionic/storage';
-import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 // firebase and firebase auth
 import * as firebaseuiNamespace from 'firebaseui-en-es/dist'; // just for the namespace
@@ -114,7 +114,7 @@ import {
     CommonComponentsModule
   ],
   providers: [
-    StatusBar, SplashScreen, Dialogs, Network, AndroidPermissions, LocalNotifications,
+    StatusBar, SplashScreen, Dialogs, Network, AndroidPermissions, FirebaseX,
     ModalGuard, AuthGuard,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

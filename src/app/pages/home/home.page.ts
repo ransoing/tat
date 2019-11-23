@@ -3,7 +3,6 @@ import { NavController, AlertController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { SettingsService, MiscService, TrxService } from '../../services';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { NotificationType, INotificationData } from '../../models/notification';
 import { Storage } from '@ionic/storage';
 
@@ -22,7 +21,6 @@ export class HomePage implements AfterViewInit {
     public settings: SettingsService,
     public miscService: MiscService,
     public splashScreen: SplashScreen,
-    public notifications: LocalNotifications,
     private trx: TrxService,
     private alertController: AlertController,
     private storage: Storage

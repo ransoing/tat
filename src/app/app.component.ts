@@ -1,14 +1,15 @@
 import { Component, ViewChild } from '@angular/core';
 import { Platform, IonRouterOutlet, AlertController, NavController } from '@ionic/angular';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { FirebaseX } from '@ionic-native/firebase-x/ngx';
 import { TranslateService } from '@ngx-translate/core';
 import { SettingsService, ModalService, MiscService, UserDataService, TrxService } from './services';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { LoginComponent, SurveyComponent } from './modals-volunteer';
 import { SurveyService } from './services/surveys.service';
-import { LocalNotifications, ILocalNotification } from '@ionic-native/local-notifications/ngx';
 import { VolunteerType, UserDataRequestFlags } from './models/user-data';
 import { NotificationType } from './models/notification';
+
 
 @Component({
   selector: 'app-root',
@@ -31,7 +32,7 @@ export class AppComponent {
     private trx: TrxService,
     private surveys: SurveyService,
     private navCtrl: NavController,
-    private notifications: LocalNotifications
+    private firebase: FirebaseX
   ) {
     this.statusBar.styleBlackOpaque();
     this.statusBar.show();
@@ -42,34 +43,41 @@ export class AppComponent {
   async initializeApp() {
     await this.platform.ready();
 
-    // configure notification defaults
-    this.notifications.setDefaults({
-      color: '#000000',
-      smallIcon: 'res://n_icon.png', // only applies to android
-      foreground: true
+    this.firebase.getToken().then( token => console.log(`FCM message The token is ${token}`) );
+    this.firebase.onMessageReceived().subscribe( data => {
+      console.log( `FCM message: ` + JSON.stringify(data) );
+      // tap: 'background'   or  tap: 'foreground'
     });
+    // this.firebase.clearAllNotifications()
 
-    // clear all notifications and cancel the ones that are scheduled for a date in the past
-    this.notifications.clearAll();
-    this.miscService.cancelNotificationIf( notification => {
-      return notification.trigger && notification.trigger.at && new Date(notification.trigger.at) < new Date()
-    });
+    // // configure notification defaults
+    // this.notifications.setDefaults({
+    //   color: '#000000',
+    //   smallIcon: 'res://n_icon.png', // only applies to android
+    //   foreground: true
+    // });
 
-    // listen for when a notification is tapped on
-    this.notifications.on( 'click' ).subscribe( async notification => {
-      // this will fire when the app starts up because of a clicked notification, and it will fire when the app is
-      // switched to because of a clicked notification, or even when the app is already active and a notification is clicked.
-      if ( this.miscService.isLoggedIn ) {
-        this.handleNotificationTapped( notification );
-      } else {
-        // wait up to 10 seconds for a login to happen before handling the notification
-        const subscription = this.angularFireAuth.authState.subscribe( async response => {
-          // user is logged in if `response` evaluates to true
-          if ( response ) this.handleNotificationTapped( notification );
-        });
-        setTimeout( () => subscription.unsubscribe(), 10000 );
-      }
-    });
+    // // clear all notifications and cancel the ones that are scheduled for a date in the past
+    // this.notifications.clearAll();
+    // this.miscService.cancelNotificationIf( notification => {
+    //   return notification.trigger && notification.trigger.at && new Date(notification.trigger.at) < new Date()
+    // });
+
+    // // listen for when a notification is tapped on
+    // this.notifications.on( 'click' ).subscribe( async notification => {
+    //   // this will fire when the app starts up because of a clicked notification, and it will fire when the app is
+    //   // switched to because of a clicked notification, or even when the app is already active and a notification is clicked.
+    //   if ( this.miscService.isLoggedIn ) {
+    //     this.handleNotificationTapped( notification );
+    //   } else {
+    //     // wait up to 10 seconds for a login to happen before handling the notification
+    //     const subscription = this.angularFireAuth.authState.subscribe( async response => {
+    //       // user is logged in if `response` evaluates to true
+    //       if ( response ) this.handleNotificationTapped( notification );
+    //     });
+    //     setTimeout( () => subscription.unsubscribe(), 10000 );
+    //   }
+    // });
     
     // configure translations
     this.settings.waitForReady().then( () => {
@@ -129,31 +137,33 @@ export class AppComponent {
     alert.present();
   }
 
-  private async handleNotificationTapped( notification: ILocalNotification ) {
-    if ( notification.data && notification.data.type === NotificationType.OUTREACH_LOCATION ) {
-      // get user data before handling this notification
-      await this.userDataService.fetchUserData( true );
-      // the notification contains the salesforce ID of the location.
-      // Verify that this ID corresponds with a location
-      const outreachLocation = this.userDataService.data.outreachLocations.find( location => notification.data.salesforceId === location.id );
-      if ( outreachLocation ) {
-        // open a modal to fill out the report
-        if ( this.userDataService.data.volunteerType === VolunteerType.VOLUNTEER_DISTRIBUTOR ) {
-          // for truck stop volunteers
-          this.modalService.open( SurveyComponent, {
-            titleTranslationKey: 'volunteer.forms.postOutreach.title',
-            successTranslationKey: 'volunteer.forms.postOutreach.submitSuccess',
-            survey: await this.surveys.postOutreachSurvey( outreachLocation ),
-            onSuccess: () => {
-              // update just the unfinished activities in the user data
-              this.userDataService.fetchUserData( true, UserDataRequestFlags.UNFINISHED_ACTIVITIES );
-            }
-          });
-        }
-      }
-    } else {
-      // for other volunteers @@ . check to see if it's the notification type for events
-    }
-  };
+
+
+  // private async handleNotificationTapped( notification: ILocalNotification ) {
+  //   if ( notification.data && notification.data.type === NotificationType.OUTREACH_LOCATION ) {
+  //     // get user data before handling this notification
+  //     await this.userDataService.fetchUserData( true );
+  //     // the notification contains the salesforce ID of the location.
+  //     // Verify that this ID corresponds with a location
+  //     const outreachLocation = this.userDataService.data.outreachLocations.find( location => notification.data.salesforceId === location.id );
+  //     if ( outreachLocation ) {
+  //       // open a modal to fill out the report
+  //       if ( this.userDataService.data.volunteerType === VolunteerType.VOLUNTEER_DISTRIBUTOR ) {
+  //         // for truck stop volunteers
+  //         this.modalService.open( SurveyComponent, {
+  //           titleTranslationKey: 'volunteer.forms.postOutreach.title',
+  //           successTranslationKey: 'volunteer.forms.postOutreach.submitSuccess',
+  //           survey: await this.surveys.postOutreachSurvey( outreachLocation ),
+  //           onSuccess: () => {
+  //             // update just the unfinished activities in the user data
+  //             this.userDataService.fetchUserData( true, UserDataRequestFlags.UNFINISHED_ACTIVITIES );
+  //           }
+  //         });
+  //       }
+  //     }
+  //   } else {
+  //     // for other volunteers @@ . check to see if it's the notification type for events
+  //   }
+  // };
 
 }

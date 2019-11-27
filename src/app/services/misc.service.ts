@@ -185,17 +185,4 @@ export class MiscService implements IMiscService {
     return 'https://player.vimeo.com/video/' + videoId + '?title=0&portrait=0';
   }
 
-  // public cancelNotificationIf( whetherToCancelCallbackFn ) {
-  //   this.notifications.getScheduledIds().then( scheduledIds => {
-  //     scheduledIds.forEach( async id => {
-  //       const notification = await this.notifications.get( id );
-  //       // convert notification data into an object if needed
-  //       notification.data = typeof notification.data === 'string' ? JSON.parse( notification.data ) : notification.data;
-  //       if ( whetherToCancelCallbackFn(notification) ) {
-  //         this.notifications.cancel( id );
-  //       }
-  //     });
-  //   });
-  // }
-
 }

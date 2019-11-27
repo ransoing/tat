@@ -1,14 +1,14 @@
 import { Component, ViewChild } from '@angular/core';
 import { Platform, IonRouterOutlet, AlertController, NavController } from '@ionic/angular';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { FirebaseX } from '@ionic-native/firebase-x/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { TranslateService } from '@ngx-translate/core';
-import { SettingsService, ModalService, MiscService, UserDataService, TrxService } from './services';
+import { SettingsService, ModalService, MiscService, UserDataService, TrxService, ProxyAPIService } from './services';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { LoginComponent, SurveyComponent } from './modals-volunteer';
 import { SurveyService } from './services/surveys.service';
 import { VolunteerType, UserDataRequestFlags } from './models/user-data';
-import { NotificationType } from './models/notification';
+import { NotificationType, INotificationData } from './models/notification';
 
 
 @Component({
@@ -32,7 +32,8 @@ export class AppComponent {
     private trx: TrxService,
     private surveys: SurveyService,
     private navCtrl: NavController,
-    private firebase: FirebaseX
+    private firebase: FirebaseX,
+    private proxyApiService: ProxyAPIService
   ) {
     this.statusBar.styleBlackOpaque();
     this.statusBar.show();
@@ -43,42 +44,44 @@ export class AppComponent {
   async initializeApp() {
     await this.platform.ready();
 
-    this.firebase.getToken().then( token => console.log(`FCM message The token is ${token}`) );
-    this.firebase.onMessageReceived().subscribe( data => {
-      console.log( `FCM message: ` + JSON.stringify(data) );
-      // tap: 'background'   or  tap: 'foreground'
+    // if cordova is not available, this is a dev machine. Overload some functions that don't work in a dev environment
+    if ( !window.cordova ) {
+      this.firebase.getToken = () => Promise.resolve( 'Computer dev user' );
+    }
+
+    // clear all notifications
+    this.firebase.clearAllNotifications();
+
+    // listen for when a notification is received
+    this.firebase.onMessageReceived().subscribe( message => {
+      // do something only when the notification is tapped on.
+      // (this observable also triggers when the notification is simply received.)
+      if ( !message.tap ) {
+        return;
+      }
+      // there are 3 possibilities of the current state when the notification was tapped:
+      // 1. The app was in the foreground (it was the active app)
+      // 2. The app was running in the background, and was just brought to the foreground
+      // 3. The app was launched as a result of the notification tap
+      // Thus, the user may or may not be logged in.
+      if ( this.miscService.isLoggedIn ) {
+        this.handleNotificationTapped( message.data );
+      } else {
+        // wait up to 10 seconds for a login to happen before handling the notification
+        let subTimeout;
+        const subscription = this.angularFireAuth.authState.subscribe( async response => {
+          // user is logged in if `response` evaluates to true
+          if ( response ) {
+            this.handleNotificationTapped( message.data );
+            subscription.unsubscribe();
+            clearTimeout( subTimeout );
+          }
+        });
+        subTimeout = setTimeout( () => subscription.unsubscribe(), 10000 );
+      }
     });
-    // this.firebase.clearAllNotifications()
 
-    // // configure notification defaults
-    // this.notifications.setDefaults({
-    //   color: '#000000',
-    //   smallIcon: 'res://n_icon.png', // only applies to android
-    //   foreground: true
-    // });
 
-    // // clear all notifications and cancel the ones that are scheduled for a date in the past
-    // this.notifications.clearAll();
-    // this.miscService.cancelNotificationIf( notification => {
-    //   return notification.trigger && notification.trigger.at && new Date(notification.trigger.at) < new Date()
-    // });
-
-    // // listen for when a notification is tapped on
-    // this.notifications.on( 'click' ).subscribe( async notification => {
-    //   // this will fire when the app starts up because of a clicked notification, and it will fire when the app is
-    //   // switched to because of a clicked notification, or even when the app is already active and a notification is clicked.
-    //   if ( this.miscService.isLoggedIn ) {
-    //     this.handleNotificationTapped( notification );
-    //   } else {
-    //     // wait up to 10 seconds for a login to happen before handling the notification
-    //     const subscription = this.angularFireAuth.authState.subscribe( async response => {
-    //       // user is logged in if `response` evaluates to true
-    //       if ( response ) this.handleNotificationTapped( notification );
-    //     });
-    //     setTimeout( () => subscription.unsubscribe(), 10000 );
-    //   }
-    // });
-    
     // configure translations
     this.settings.waitForReady().then( () => {
       this.translate.setDefaultLang( this.settings.language );
@@ -87,7 +90,7 @@ export class AppComponent {
 
     // configure behavior for when the user logs in/out
     // this observable will fire when the app starts up, so it's not just when the user has actively logged in or out
-    var firstAuthCallback = true;
+    let firstAuthCallback = true;
     this.angularFireAuth.authState.subscribe( async response => {
       this.miscService.isLoggedIn = !!response;
       if ( response ) {
@@ -95,6 +98,20 @@ export class AppComponent {
         // save the firebase user object and fetch the user's data from the proxy
         this.userDataService.firebaseUser = response;
         this.userDataService.fetchUserData( true ); // always load fresh from salesforce on first login
+        // for firebase cloud messaging, register this device as belonging to this user
+        this.proxyApiService.post(
+          'registerFcmToken',
+          {
+            firebaseIdToken: await this.userDataService.firebaseUser.getIdToken(),
+            fcmToken: await this.firebase.getToken()
+          },
+          false
+        );
+
+        // ask for permission to receive notifications, if we don't have permissions
+        if ( (!await this.firebase.hasPermission()) ) {
+          this.firebase.grantPermission();
+        }
       } else {
         // logged out.
         this.userDataService.clearData();
@@ -130,40 +147,38 @@ export class AppComponent {
   }
 
   async showLogoutNotice() {
-    let alert = await this.alertCtrl.create({
+    const alert = await this.alertCtrl.create({
       message: await this.trx.t( 'misc.messages.logoutMessage' ),
       buttons: [await this.trx.t( 'misc.buttons.close' )]
     });
     alert.present();
   }
 
-
-
-  // private async handleNotificationTapped( notification: ILocalNotification ) {
-  //   if ( notification.data && notification.data.type === NotificationType.OUTREACH_LOCATION ) {
-  //     // get user data before handling this notification
-  //     await this.userDataService.fetchUserData( true );
-  //     // the notification contains the salesforce ID of the location.
-  //     // Verify that this ID corresponds with a location
-  //     const outreachLocation = this.userDataService.data.outreachLocations.find( location => notification.data.salesforceId === location.id );
-  //     if ( outreachLocation ) {
-  //       // open a modal to fill out the report
-  //       if ( this.userDataService.data.volunteerType === VolunteerType.VOLUNTEER_DISTRIBUTOR ) {
-  //         // for truck stop volunteers
-  //         this.modalService.open( SurveyComponent, {
-  //           titleTranslationKey: 'volunteer.forms.postOutreach.title',
-  //           successTranslationKey: 'volunteer.forms.postOutreach.submitSuccess',
-  //           survey: await this.surveys.postOutreachSurvey( outreachLocation ),
-  //           onSuccess: () => {
-  //             // update just the unfinished activities in the user data
-  //             this.userDataService.fetchUserData( true, UserDataRequestFlags.UNFINISHED_ACTIVITIES );
-  //           }
-  //         });
-  //       }
-  //     }
-  //   } else {
-  //     // for other volunteers @@ . check to see if it's the notification type for events
-  //   }
-  // };
+  private async handleNotificationTapped( messageData: INotificationData ) {
+    if ( messageData && messageData.type === NotificationType.OUTREACH_LOCATION ) {
+      // get user data before handling this notification
+      await this.userDataService.fetchUserData( true );
+      // the notification contains the salesforce ID of the location.
+      // Verify that this ID corresponds with a location
+      const outreachLocation = this.userDataService.data.outreachLocations.find( location => messageData.salesforceId === location.id );
+      if ( outreachLocation ) {
+        // open a modal to fill out the report
+        if ( this.userDataService.data.volunteerType === VolunteerType.VOLUNTEER_DISTRIBUTOR ) {
+          // for truck stop volunteers
+          this.modalService.open( SurveyComponent, {
+            titleTranslationKey: 'volunteer.forms.postOutreach.title',
+            successTranslationKey: 'volunteer.forms.postOutreach.submitSuccess',
+            survey: await this.surveys.postOutreachSurvey( outreachLocation ),
+            onSuccess: () => {
+              // update just the unfinished activities in the user data
+              this.userDataService.fetchUserData( true, UserDataRequestFlags.UNFINISHED_ACTIVITIES );
+            }
+          });
+        }
+      }
+    } else {
+      // for other volunteers @@ . check to see if it's the notification type for events
+    }
+  }
 
 }

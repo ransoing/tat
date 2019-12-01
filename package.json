@@ -121,7 +121,9 @@
       },
       "cordova-universal-links-plugin": {},
       "cordova-sqlite-storage": {},
-      "cordova-plugin-firebasex": {}
+      "cordova-plugin-firebasex": {
+        "ANDROID_ICON_ACCENT": "#FF060606"
+      }
     },
     "platforms": [
       "browser",

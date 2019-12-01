@@ -1,9 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { Platform, IonRouterOutlet, AlertController, NavController } from '@ionic/angular';
 import { FirebaseX } from '@ionic-native/firebase-x/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { TranslateService } from '@ngx-translate/core';
-import { SettingsService, ModalService, MiscService, UserDataService, TrxService, ProxyAPIService } from './services';
+import { SettingsService, ModalService, MiscService, UserDataService, TrxService } from './services';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { LoginComponent, SurveyComponent } from './modals-volunteer';
 import { SurveyService } from './services/surveys.service';
@@ -33,7 +34,7 @@ export class AppComponent {
     private surveys: SurveyService,
     private navCtrl: NavController,
     private firebase: FirebaseX,
-    private proxyApiService: ProxyAPIService
+    private router: Router
   ) {
     this.statusBar.styleBlackOpaque();
     this.statusBar.show();
@@ -49,15 +50,16 @@ export class AppComponent {
       this.firebase.getToken = () => Promise.resolve( 'Computer dev user' );
     }
 
-    // clear all notifications
-    this.firebase.clearAllNotifications();
-
     // listen for when a notification is received
     this.firebase.onMessageReceived().subscribe( message => {
       // do something only when the notification is tapped on.
       // (this observable also triggers when the notification is simply received.)
       if ( !message.tap ) {
         return;
+      }
+      // the message data may be stringified JSON
+      if ( typeof message.data === 'string' ) {
+        message.data = JSON.parse( message.data );
       }
       // there are 3 possibilities of the current state when the notification was tapped:
       // 1. The app was in the foreground (it was the active app)
@@ -97,16 +99,10 @@ export class AppComponent {
         // logged in.
         // save the firebase user object and fetch the user's data from the proxy
         this.userDataService.firebaseUser = response;
-        this.userDataService.fetchUserData( true ); // always load fresh from salesforce on first login
-        // for firebase cloud messaging, register this device as belonging to this user
-        this.proxyApiService.post(
-          'registerFcmToken',
-          {
-            firebaseIdToken: await this.userDataService.firebaseUser.getIdToken(),
-            fcmToken: await this.firebase.getToken()
-          },
-          false
-        );
+        // don't show a 'please wait' popup if the user is on the home screen, because this stalls the user
+        // right when the app is launched, if the user is already logged in
+        const showLoading = this.router.url !== '/tabs/(home:home)';
+        this.userDataService.fetchUserData( true, UserDataRequestFlags.ALL, showLoading );
 
         // ask for permission to receive notifications, if we don't have permissions
         if ( (!await this.firebase.hasPermission()) ) {
@@ -132,7 +128,7 @@ export class AppComponent {
       this.modalService.open( SurveyComponent, {
         titleTranslationKey: 'volunteer.forms.signup.title',
         survey: await this.surveys.signupSurvey(),
-        onSuccess: () => {
+        onSuccess: async() => {
           // new user successfully registered. Get the user data and redirect to the volunteer page.
           this.userDataService.fetchUserData( true );
           this.navCtrl.navigateRoot( '/tabs/(volunteer:volunteer)' );

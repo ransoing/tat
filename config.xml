@@ -53,6 +53,12 @@
         <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
             <application android:usesCleartextTraffic="true" />
         </edit-config>
+        <comment>Notification icons</comment>
+        <resource-file src="resources/android/notification-icon/mdpi.png" target="app/src/main/res/drawable-mdpi/notification_icon.png" />
+        <resource-file src="resources/android/notification-icon/hdpi.png" target="app/src/main/res/drawable-hdpi/notification_icon.png" />
+        <resource-file src="resources/android/notification-icon/xhdpi.png" target="app/src/main/res/drawable-xhdpi/notification_icon.png" />
+        <resource-file src="resources/android/notification-icon/xxhdpi.png" target="app/src/main/res/drawable-xxhdpi/notification_icon.png" />
+        <resource-file src="resources/android/notification-icon/xxxhdpi.png" target="app/src/main/res/drawable-xxxhdpi/notification_icon.png" />
         <comment>Colors and misc xml</comment>
         <source-file src="resources/android/colors/drawable/" target="app/src/main/res" />
         <source-file src="resources/android/colors/drawable-v24/" target="app/src/main/res" />

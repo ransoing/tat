@@ -1,7 +1,7 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { NavController, AlertController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
-import { SettingsService, MiscService, TrxService } from '../../services';
+import { SettingsService, MiscService, TrxService, UserDataService } from '../../services';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { Storage } from '@ionic/storage';
 
@@ -22,7 +22,8 @@ export class HomePage implements AfterViewInit {
     public splashScreen: SplashScreen,
     private trx: TrxService,
     private alertController: AlertController,
-    private storage: Storage
+    private storage: Storage,
+    private userDataService: UserDataService
   ) {
     // wait one second before triggering the warning
     setTimeout( () => this.triggerContentWarning(), 1000 );
@@ -52,6 +53,10 @@ export class HomePage implements AfterViewInit {
   onSetLanguage() {
     this.translate.use( this.settings.language );
     this.settings.saveSettings();
+    // update the user's notification language preference
+    if ( this.miscService.isLoggedIn ) {
+      this.userDataService.updateNotificationPreferences( { language: this.settings.language }, false );
+    }
   }
 
   ngAfterViewInit() {

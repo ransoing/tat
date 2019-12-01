@@ -255,6 +255,14 @@
     },
     "videosTitle": "@:resources.btns.videos"
   },
+  "server": {
+    "notifications": {
+      "postOutreach": {
+        "body": "Tell us about your visit to {{location}} by filling out a quick post-outeach report.",
+        "title": "How did your outreach go?"
+      }
+    }
+  },
   "volunteer": {
     "btns": {
       "postEventReport": "Post-Event Report",

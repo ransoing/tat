@@ -97,7 +97,7 @@
       "city": "City",
       "country": "Country",
       "state": "State/Province",
-      "street": "Street",
+      "street": "Street address",
       "zip": "Zip"
     },
     "messages": {

@@ -35,11 +35,17 @@ export class ProxyAPIService implements IProxyAPIService {
    * Takes a part of the API url, like 'contactSearch'. Makes a GET request and returns a promise.
    * Automatically shows and hides a loading popup.
    */
-  public async get( urlSegment: string ) {
-    await this.miscService.showLoadingPopup();
+  public async get( urlSegment: string, showLoadingPopup = true ) {
+    if ( showLoadingPopup ) {
+      await this.miscService.showLoadingPopup();
+    }
     return this.http.get( environment.proxyServerURL + urlSegment ).toPromise()
     .then( response => this.onSuccess(response) )
-    .finally( () => this.miscService.hideLoadingPopup() );
+    .finally( () => {
+      if ( showLoadingPopup ) {
+        this.miscService.hideLoadingPopup();
+      }
+    });
   }
 
   /**
@@ -47,15 +53,21 @@ export class ProxyAPIService implements IProxyAPIService {
    * Makes a POST request to the API and returns a promise.
    * Automatically shows and hides a loading popup.
    */
-  public async post( urlSegment: string, payload: any ) {
-    await this.miscService.showLoadingPopup();
+  public async post( urlSegment: string, payload: any, showLoadingPopup = true ) {
+    if ( showLoadingPopup ) {
+      await this.miscService.showLoadingPopup();
+    }
     return this.http.post(
       environment.proxyServerURL + urlSegment,
       payload,
       { headers: new HttpHeaders({'Content-Type': 'application/json'}) }
     ).toPromise()
     .then( response => this.onSuccess(response) )
-    .finally( () => this.miscService.hideLoadingPopup() );
+    .finally( () => {
+      if ( showLoadingPopup ) {
+        this.miscService.hideLoadingPopup();
+      }
+    });
   }
 
   /**

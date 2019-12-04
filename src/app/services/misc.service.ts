@@ -4,7 +4,6 @@ import { AlertController, NavController, LoadingController } from '@ionic/angula
 import { TrxService } from './trx.service';
 import { ModalService } from './modal.service';
 import { IEmbeddableVideo, VideoType } from '../models/video';
-import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { IMiscService } from '../models/services';
 
 export enum StorageKeys {
@@ -27,8 +26,7 @@ export class MiscService implements IMiscService {
     private trx: TrxService,
     private navCtrl: NavController,
     private modalService: ModalService,
-    private loadingController :LoadingController,
-    private notifications: LocalNotifications
+    private loadingController: LoadingController
   ) {
     // listen for route changes. This subscriber is used for onRouteHere
     this.router.events.subscribe( event => {
@@ -185,19 +183,6 @@ export class MiscService implements IMiscService {
   }
   private makeVimeoEmbedURL( videoId: string ): string {
     return 'https://player.vimeo.com/video/' + videoId + '?title=0&portrait=0';
-  }
-
-  public cancelNotificationIf( whetherToCancelCallbackFn ) {
-    this.notifications.getScheduledIds().then( scheduledIds => {
-      scheduledIds.forEach( async id => {
-        const notification = await this.notifications.get( id );
-        // convert notification data into an object if needed
-        notification.data = typeof notification.data === 'string' ? JSON.parse( notification.data ) : notification.data;
-        if ( whetherToCancelCallbackFn(notification) ) {
-          this.notifications.cancel( id );
-        }
-      });
-    });
   }
 
 }

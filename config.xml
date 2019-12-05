@@ -53,6 +53,9 @@
         <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
             <application android:usesCleartextTraffic="true" />
         </edit-config>
+        <config-file parent="/manifest/application" target="AndroidManifest.xml">
+            <meta-data android:name="com.google.firebase.messaging.default_notification_icon" android:resource="@drawable/notification_icon" />
+        </config-file>
         <comment>Notification icons</comment>
         <resource-file src="resources/android/notification-icon/mdpi.png" target="app/src/main/res/drawable-mdpi/notification_icon.png" />
         <resource-file src="resources/android/notification-icon/hdpi.png" target="app/src/main/res/drawable-hdpi/notification_icon.png" />
@@ -162,4 +165,5 @@
     <engine name="ios" spec="5.0.0" />
     <engine name="android" spec="8.1.0" />
     <engine name="browser" spec="5.0.4" />
+    <allow-navigation href="http://192.168.86.231:8100" sessionid="1a0e6fe8" />
 </widget>

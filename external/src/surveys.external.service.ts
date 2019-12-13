@@ -474,7 +474,9 @@ class SurveyService {
         vals.givesNamePermission = vals.givesNamePermission === 'yes';
 
         // include the campaign ID if it was passed as a parameter
-        vals.campaignId = campaignId;
+        if ( campaignId ) {
+          vals.campaignId = campaignId;
+        }
 
         // send to the proxy and show an error message if appropriate
         return this.genericProxyPOST( 'createFeedback', vals );

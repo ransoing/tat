@@ -5,5 +5,5 @@ export enum NotificationType {
 
 export interface INotificationData {
     type: NotificationType;
-    salesforceId: string;
+    salesforceId: string; // the ID of an entity in salesforce, i.e. an outreach location
 }

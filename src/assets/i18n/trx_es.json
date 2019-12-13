@@ -247,6 +247,11 @@
     },
     "videosTitle": "@:resources.btns.videos"
   },
+  "server": {
+    "notifications": {
+      "postOutreach": {}
+    }
+  },
   "volunteer": {
     "btns": {
       "postEventReport": "Reporte después del evento",

@@ -97,7 +97,7 @@
       "city": "City",
       "country": "Country",
       "state": "State/Province",
-      "street": "Street",
+      "street": "Street address",
       "zip": "Zip"
     },
     "messages": {
@@ -254,6 +254,14 @@
       }
     },
     "videosTitle": "@:resources.btns.videos"
+  },
+  "server": {
+    "notifications": {
+      "postOutreach": {
+        "body": "Tell us about your visit to {{location}} by filling out a quick post-outeach report.",
+        "title": "How did your outreach go?"
+      }
+    }
   },
   "volunteer": {
     "btns": {

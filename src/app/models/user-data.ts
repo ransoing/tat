@@ -1,3 +1,4 @@
+import { IUserSettings } from "../services";
 
 export enum VolunteerType {
   VOLUNTEER_DISTRIBUTOR = 'volunteerDistributor',
@@ -40,7 +41,7 @@ export interface IOutreachLocation {
     title?: string,
     email?: string,
     phone?: string
-  }
+  };
 }
 
 export interface IUserData {
@@ -65,4 +66,14 @@ export interface IUserData {
 
   outreachLocations?: IOutreachLocation[];
   events?: any[]; // @@TODO define events object
+
+  notificationPreferences?: {
+    language?: IUserSettings['language'];
+    // reminds user to fill out the pre-event survey, before an event (doesn't apply to Truck Stop volunteers)
+    preEventSurveyReminderEnabled?: boolean;
+    // reminds user to fill out either post-outreach reports or post-event reports (depends on the volunteer type)
+    reportReminderEnabled?: boolean;
+    // reminds user about upcoming TAT outreach events (doesn't apply to Truck Stop volunteers)
+    upcomingEventsReminderEnabled?: boolean;
+  };
 }

@@ -3,8 +3,6 @@
 // Interfaces are not included in the compiled js -- importing them only helps with code hinting and
 // compile-time error checking.
 
-// @@ to make this work well, I need to dynamically load translations as well...
-
 import { ISurvey, ISurveyPageFunc, SurveyFieldType } from '../../src/app/models/survey';
 import { IOutreachLocation, OutreachLocationType, VolunteerType } from '../../src/app/models/user-data';
 import { IUserDataService, IProxyAPIService, IMiscService, ITrxService } from '../../src/app/models/services';

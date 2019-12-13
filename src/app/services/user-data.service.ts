@@ -7,6 +7,8 @@ import { ProxyAPIService } from './proxy-api.service';
 import { IUserData, UserDataRequestFlags } from '../models/user-data';
 import { environment } from '../../environments/environment';
 import { IUserDataService } from '../models/services';
+import { FirebaseX } from '@ionic-native/firebase-x/ngx';
+import { SettingsService } from './settings.service';
 
 @Injectable({
   providedIn: 'root',
@@ -32,7 +34,10 @@ export class UserDataService implements IUserDataService {
   constructor(
     private storage: Storage,
     private miscService: MiscService,
-    private proxyAPI: ProxyAPIService
+    private proxyAPI: ProxyAPIService,
+    private firebase: FirebaseX,
+    private settings: SettingsService,
+    private proxyApiService: ProxyAPIService
   ) {}
 
   /**
@@ -41,7 +46,7 @@ export class UserDataService implements IUserDataService {
    * @param [force] Forces a refresh of the data from the proxy. Otherwise, the app will use the data cache from local storage.
    * @param [dataRequestFlags] Values of UserDataRequestFlags that are OR'd together.
    */
-  async fetchUserData( force?: boolean, dataRequestFlags: number = UserDataRequestFlags.ALL ): Promise<IUserData> {
+  async fetchUserData( force?: boolean, dataRequestFlags: number = UserDataRequestFlags.ALL, showLoading = true ): Promise<IUserData> {
     this.loadError = false;
 
     if ( this.needsToVerifyEmail() ) {
@@ -66,9 +71,11 @@ export class UserDataService implements IUserDataService {
             return;
           }
         }
-  
+
         // the loading popup might not have been triggered. We need it now.
-        await this.miscService.showLoadingPopup();
+        if ( showLoading ) {
+          await this.miscService.showLoadingPopup();
+        }
         // get the idToken before a request to the proxy
         var token = await this.firebaseUser.getIdToken();
         
@@ -78,15 +85,15 @@ export class UserDataService implements IUserDataService {
         reject( e );
         return;
       }
-  
+
       // parse bitmask flags to determine what to append to the URL
       let parts = [];
       if ( dataRequestFlags & UserDataRequestFlags.BASIC_USER_DATA )        parts.push( 'basic' );
       if ( dataRequestFlags & UserDataRequestFlags.UNFINISHED_ACTIVITIES )  parts.push( 'unfinishedActivities' );
       let url = 'getUserData?parts=' + parts.join( ',' );
-      this.proxyAPI.post( url, {firebaseIdToken: token} )
-      .then( response => {
-        this.onFetchSuccess( response );
+      this.proxyAPI.post( url, {firebaseIdToken: token}, showLoading )
+      .then( async response => {
+        await this.onFetchSuccess( response );
         resolve( this.data );
       })
       .catch( e => {
@@ -99,10 +106,26 @@ export class UserDataService implements IUserDataService {
     return this.fetchingPromise;
   }
 
-  private onFetchSuccess( response ) {
+  private async onFetchSuccess( response ) {
     // save the data. For each key in each response, overwrite the existing key in the saved data.
     if ( !this.data ) {
       this.data = {};
+    }
+    // notificationPreferences given by the proxy include an object whose keys are FCM tokens, and the
+    // values are preferences. Select only the preferences for the appropriate FCM token.
+    const prefs = response.notificationPreferences;
+    const fcmToken = await this.firebase.getToken();
+    if ( prefs && typeof prefs === 'object' && typeof prefs[fcmToken] === 'object' ) {
+      response.notificationPreferences = response.notificationPreferences[fcmToken];
+    } else {
+      // If this device's FCM token isn't in the list, create some defaults and send to the proxy.
+      response.notificationPreferences = {
+        language: this.settings.language,
+        preEventSurveyReminderEnabled: true,
+        reportReminderEnabled: true,
+        upcomingEventsReminderEnabled: true
+      } as IUserData['notificationPreferences'];
+      this.updateNotificationPreferences( response.notificationPreferences, false );
     }
     Object.keys( response ).filter( key => response.hasOwnProperty(key) ).forEach( key => {
       this.data[key] = response[key];
@@ -148,6 +171,19 @@ export class UserDataService implements IUserDataService {
     // the user must watch the training video if he has not yet, or if he last watched it over a year ago
     const oneYearMs = new Date('2002-01-01').getTime() - new Date('2001-01-01').getTime();
     return !this.data.hasWatchedTrainingVideo || !this.data.trainingVideoLastWatchedDate || ( new Date().getTime() - this.data.trainingVideoLastWatchedDate.getTime() > oneYearMs );
+  }
+
+  /**
+   * Takes an object that has any of the properties of the `notificationPreferences` property of IUserData,
+   * and saves it to salesforce, associating the preferences with this device's FCM token
+   */
+  public async updateNotificationPreferences( preferences: IUserData['notificationPreferences'], showLoadingPopup: boolean ) {
+    // merge some tokens with the preferences data
+    const postData = Object.assign({
+      firebaseIdToken: await this.firebaseUser.getIdToken(),
+      fcmToken: await this.firebase.getToken()
+    }, preferences );
+    return this.proxyApiService.post( 'updateNotificationPreferences', postData, showLoadingPopup );
   }
 
   /**

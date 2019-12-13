@@ -6,12 +6,7 @@ import { Storage } from '@ionic/storage';
  */
 
 export interface IUserSettings {
-  language: 'en' | 'es',
-  notifications: {
-    preEventSurveyReminder: boolean, // reminds user to fill out the pre-event survey, before an event (doesn't apply to Truck Stop volunteers)
-    reportReminder: boolean, // reminds user to fill out either post-outreach reports or post-event reports (depends on the volunteer type)
-    upcomingEvents: boolean // reminds user about upcoming TAT outreach events (doesn't apply to Truck Stop volunteers)
-  }
+  language: 'en' | 'es'
 }
 
 @Injectable({
@@ -20,7 +15,6 @@ export interface IUserSettings {
 export class SettingsService implements IUserSettings {
 
   public language: IUserSettings['language'];
-  public notifications: IUserSettings['notifications'];
 
   private isReady: boolean = false;
   
@@ -38,11 +32,6 @@ export class SettingsService implements IUserSettings {
       if ( defaultLang !== 'en' && defaultLang !== 'es' ) defaultLang = 'es';
 
       this.language = defaultLang,
-      this.notifications = {
-        preEventSurveyReminder: true,
-        reportReminder: true,
-        upcomingEvents: true
-      };
 
       this.saveSettings();
     }
@@ -65,8 +54,7 @@ export class SettingsService implements IUserSettings {
   async saveSettings() {
     // save to storage
     return this.storage.set( this.settingsStorageKey, {
-      language: this.language,
-      notifications: this.notifications
+      language: this.language
     });
   }
 
@@ -76,7 +64,6 @@ export class SettingsService implements IUserSettings {
     if ( settings ) {
       // apply settings
       this.language = settings.language;
-      this.notifications = settings.notifications;
     }
     return !!settings;
   }

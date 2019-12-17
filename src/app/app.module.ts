@@ -22,6 +22,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Dialogs } from '@ionic-native/dialogs/ngx';
+import { Sim } from '@ionic-native/sim/ngx';
 import { Network } from '@ionic-native/network/ngx';
 import { FirebaseX } from '@ionic-native/firebase-x/ngx';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
@@ -114,7 +115,7 @@ import {
     CommonComponentsModule
   ],
   providers: [
-    StatusBar, SplashScreen, Dialogs, Network, AndroidPermissions, FirebaseX,
+    StatusBar, SplashScreen, Dialogs, Network, AndroidPermissions, FirebaseX, Sim,
     ModalGuard, AuthGuard,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

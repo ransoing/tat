@@ -3,6 +3,7 @@ import { NavController, AlertController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { SettingsService, MiscService, TrxService, UserDataService } from '../../services';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { Sim } from '@ionic-native/sim/ngx';
 import { Storage } from '@ionic/storage';
 
 @Component({
@@ -13,6 +14,7 @@ import { Storage } from '@ionic/storage';
 export class HomePage implements AfterViewInit {
 
   private readonly doNotShowContentWarningStorageKey = 'doNotShowContentWarning';
+  simdata;
 
   constructor(
     public navCtrl: NavController,
@@ -23,10 +25,14 @@ export class HomePage implements AfterViewInit {
     private trx: TrxService,
     private alertController: AlertController,
     private storage: Storage,
-    private userDataService: UserDataService
+    private userDataService: UserDataService,
+    private sim: Sim
   ) {
     // wait one second before triggering the warning
     setTimeout( () => this.triggerContentWarning(), 1000 );
+    sim.getSimInfo().then( simData => {
+      this.simdata = JSON.stringify(simData, undefined, 2 );
+    });
   }
 
   async triggerContentWarning() {

@@ -10,13 +10,14 @@ export class ImageButtonComponent implements OnInit {
   @Input() image: string;
   // 'hint' is shown below the main button text
   @Input() hint: string;
+  @Input() hasLargeHint = false;
 
-  @Input() tall: boolean = false;
-  @Input() required: boolean = false;
-  @Input() completed: boolean = true;
-  @Input() disabled: boolean = false;
+  @Input() tall = false;
+  @Input() required = false;
+  @Input() completed = true;
+  @Input() disabled = false;
   @Output() click: EventEmitter<MouseEvent> = new EventEmitter();
-  
+
   bgCss: string;
 
   constructor() { }

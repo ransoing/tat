@@ -1,9 +1,12 @@
 $primary-color: #2e90d0;
 
+$topPadding: 0.3em;
+$sidePadding: 0.5em;
+
 .wrap {
     display: block;
     align-items: center;
-    padding: 0.3em 0.5em;
+    padding: $topPadding $sidePadding;
     position: relative;
 
     background-color: #333;
@@ -22,6 +25,10 @@ $primary-color: #2e90d0;
         display: none;
         font-size: 35%;
         font-family: var( --ion-font-family );
+    }
+
+    &.has-large-hint .hint {
+        font-size: 60%;
     }
 
     .alert-dot {
@@ -43,13 +50,17 @@ $primary-color: #2e90d0;
     }
 
     &.tall {
-        padding-top: 1.3em;
-        padding-bottom: 1.3em;
+        padding-top: #{ $topPadding + 1em };
+        padding-bottom: #{ $topPadding + 1em };
     }
 
     &.has-hint {
-        padding-top: 0.08em;
-        padding-bottom: 0.158em;
+        padding-top: #{ $topPadding - 0.22em };
+        padding-bottom: #{ topPadding - 0.142em };
+        &.tall {
+            padding-top: #{ $topPadding + 1em - 0.22em };
+            padding-bottom: #{ topPadding + 1em - 0.142em };
+        }
         .hint { display: block }
     }
 

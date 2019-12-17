@@ -168,6 +168,7 @@
     "emailBtnHint": "Es mucho más recomendable que usted haga una llamada",
     "intro": "<p><b>Inmediatamente:</b> Si usted ve que se está cometiendo un delito, llame al 911 y luego llame a la línea de ayuda. Si usted está en una parada de camiones o lugar de descanso para viajeros o en cualquier otro lugar de negocios, por favor avísele al gerente en turno sobre la actividad sospechosa, esa persona debe enterarse de lo que está sucediendo en la propiedad y ayudar a ponerle fin.</p><p>Los operadores de la línea de ayuda contra la trata de personas están disponibles las 24 horas del día, los 7 días de la semana, para tomar reportes de posibles casos de trata de personas. Todos los reportes son confidenciales y usted puede permanecer anónimo. Se cuenta con intérpretes de idiomas. La información que usted proporcione será revisada por la línea de ayuda nacional y se enviará a autorizadas policíacas especializadas y/o a proveedores de servicios cuando sea adecuado.</p>",
     "textBtn": "Envíe un texto que diga INFO o HELP (Información o ayuda)",
+    "textTo": "a {{phoneNumber}}",
     "title": "@:home.reportActivity",
     "whatToReportBtn": "Qué reportar"
   },
@@ -246,11 +247,6 @@
       }
     },
     "videosTitle": "@:resources.btns.videos"
-  },
-  "server": {
-    "notifications": {
-      "postOutreach": {}
-    }
   },
   "volunteer": {
     "btns": {

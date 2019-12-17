@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Sim } from '@ionic-native/sim/ngx';
 import { WhatToReportComponent } from '../../modals';
 import { ModalService, MiscService } from '../../services';
 import { SurveyComponent } from '../../modals-volunteer';
@@ -12,11 +13,17 @@ import { ISurvey, SurveyFieldType } from '../../models/survey';
 export class ReportPage {
 
   WhatToReportComponent = WhatToReportComponent;
+  hasSim = false;
 
   constructor(
     public modalService: ModalService,
-    public miscService: MiscService
-  ) {}
+    public miscService: MiscService,
+    private sim: Sim
+  ) {
+    this.sim.getSimInfo()
+    .then( simData => this.hasSim = simData != null && !!simData.carrierName )
+    .catch( e => this.hasSim = false );
+  }
 
   private _yesNoOptions = [
     { value: 'yes', labelTranslationKey: 'misc.buttons.yes' },

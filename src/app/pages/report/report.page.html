@@ -10,14 +10,25 @@
   <ion-grid>
     <ion-row>
       <ion-col size="12">
-          <image-button image="report.hotline.jpg" [tall]="true" (click)="miscService.openExternalLink('tel:+18883737888')">
+          <image-button
+            image="report.hotline.jpg"
+            [tall]="true"
+            [hint]="hasSim ? null : '1-888-373-7888'"
+            [hasLargeHint]="true"
+            (click)="miscService.openExternalLink('tel:+18883737888')">
             {{ 'report.callHotline' | translate }} <span class="short-text">({{ 'report.USA' | translate }})</span>
           </image-button>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col size-xs="12" size-sm="6">
-        <image-button image="report.text.jpg" (click)="miscService.openExternalLink('sms:233733')">{{ 'report.textBtn' | translate }}</image-button>
+        <image-button
+          image="report.text.jpg"
+          [hint]="hasSim ? null : 'report.textTo' | translate:{phoneNumber: '233733'}"
+          [hasLargeHint]="true"
+          (click)="miscService.openExternalLink('sms:233733')">
+          {{ 'report.textBtn' | translate }}
+        </image-button>
       </ion-col>
       <ion-col>
         <image-button
@@ -32,8 +43,14 @@
 
 
   <div class="alt-hotlines" margin-top>
-    <ion-button fill="clear" color="light" (click)="miscService.openExternalLink('tel:+18339001010')">{{ 'report.callCanadaHotline' | translate }}</ion-button>
-    <ion-button fill="clear" color="light" (click)="miscService.openExternalLink('tel:+018005533000')">{{ 'report.callMexicoHotline' | translate }}</ion-button>
+    <ion-button fill="clear" color="light" (click)="miscService.openExternalLink('tel:+18339001010')">
+      {{ 'report.callCanadaHotline' | translate }}
+      <span *ngIf="!hasSim">&nbsp;(1-833-900-1010)</span>
+    </ion-button>
+    <ion-button fill="clear" color="light" (click)="miscService.openExternalLink('tel:+018005533000')">
+      {{ 'report.callMexicoHotline' | translate }}
+      <span *ngIf="!hasSim">&nbsp;(1-800-553-3000)</span>
+    </ion-button>
   </div>
   <hr>
 

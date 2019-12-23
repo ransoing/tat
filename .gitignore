@@ -36,3 +36,5 @@ UserInterfaceState.xcuserstate
 /www/
 
 *.keystore
+GoogleService-Info.plist
+google-services.json

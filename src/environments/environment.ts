@@ -1,4 +1,5 @@
 import pack from '../../package.json';
+import apiKeys from '../../google-api-keys.json';
 
 // The file contents for the current environment will overwrite these during build.
 // The build system defaults to the dev environment which uses `environment.ts`, but if you do
@@ -8,7 +9,7 @@ export const environment = {
   production: false,
   version: pack.version,
   firebaseConfig: {
-    apiKey: 'AIzaSyDtBAXnyEvQgbdRHS4fyDvkxtyKQvV4c1c',
+    apiKey: apiKeys.dev,
     authDomain: 'truckers-against-trafficking.firebaseapp.com',
     databaseURL: 'https://truckers-against-trafficking.firebaseio.com',
     projectId: 'truckers-against-trafficking',

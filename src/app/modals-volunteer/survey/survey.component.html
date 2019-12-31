@@ -4,7 +4,6 @@
 <ion-content class="survey-modal" fullscreen padding>
   <div>
     <h1 style="flex: 0 0 auto">{{ titleTranslationKey | translate }}</h1>
-    <ion-icon name="md-close" class="modal-close-btn" slot="fixed" (click)="modal.dismiss()"></ion-icon>
     
     <form class="survey-wrapper" #form [style.margin-left]="getFormMarginLeft()">
 
@@ -123,4 +122,6 @@
       </div>
     </div>
   </div>
+
+  <ion-icon name="md-close" class="modal-close-btn" slot="fixed" (click)="modal.dismiss()"></ion-icon>
 </ion-content>

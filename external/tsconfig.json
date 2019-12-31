@@ -5,6 +5,10 @@
   "compilerOptions": {
     "outDir": "../build",
     "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "target": "es5",
     "lib": [
       "es2018",

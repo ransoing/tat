@@ -47,6 +47,7 @@
       {{ 'report.callCanadaHotline' | translate }}
       <span *ngIf="!hasSim">&nbsp;(1-833-900-1010)</span>
     </ion-button>
+    <hr>
     <ion-button fill="clear" color="light" (click)="miscService.openExternalLink('tel:+018005533000')">
       {{ 'report.callMexicoHotline' | translate }}
       <span *ngIf="!hasSim">&nbsp;(1-800-553-3000)</span>

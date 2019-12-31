@@ -166,6 +166,10 @@ ion-alert .alert-title {
     color: black !important;
 }
 
+.sc-ion-alert-ios {
+    input { background: white !important }
+}
+
 ion-input, ion-textarea {
     margin-top: 0.5em;
     border: var( --input-border-width ) solid var( --input-border-color );

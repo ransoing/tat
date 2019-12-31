@@ -106,7 +106,7 @@
       "dataLoadError": "There was a problem while loading your volunteer account data.",
       "dataLoadErrorNetwork": "@:misc.messages.dataLoadError @:misc.messages.connectionTip",
       "dataLoadErrorUnknown": "@:misc.messages.dataLoadError @:misc.messages.contactStaff",
-      "deleteConfirm": "Are you sure you want to delete this?",
+      "deleteConfirm": "Are you sure you want to delete this? None of your team members will be able to fill out a report for this locaion.",
       "logoutMessage": "You have been logged out.",
       "pleaseWait": "Please wait...",
       "requestError": "There was an error making the request.",
@@ -271,7 +271,7 @@
       "preEventSurvey": "Pre-Event Survey",
       "preOutreachSurvey": "Pre-Outreach Survey",
       "resources": "Resources",
-      "testimonial": "Testimonial/Feedback",
+      "testimonial": "Testimonial & Feedback",
       "trainingVideo": "Training Video"
     },
     "feedbackPrompt": "Please fill out a short feedback survey about your volunteer experience.",
@@ -305,13 +305,9 @@
           "followUpDate": "Follow-up date",
           "followUpWhen": "When do you plan to do the follow-up?",
           "hours": "Number of hours",
-          "hoursHelper": {
-            "group": "Take the total number of hours and multiply it by the number of people you’re reporting for. Total hours includes only the time spent on site talking with the company. EX: If four people spent half an hour at the truck stop talking with this truck stop manager, then you would log 2 hours.",
-            "individual": "Total hours includes only the time spent on site talking with the company."
-          },
           "hoursQuestion": {
-            "group": "How many man-hours did your team spend on this outreach effort?",
-            "individual": "How many man-hours did you spend on this outreach effort?"
+            "group": "How many man-hours did your team spend on this outreach effort?<p><small>Take the total number of hours and multiply it by the number of people you’re reporting for. Total hours includes only the time spent on site talking with the company. EX: If four people spent half an hour at the truck stop talking with this truck stop manager, then you would log 2 hours.</small></p>",
+            "individual": "How many man-hours did you spend on this outreach effort? <p><small>Total hours includes only the time spent on site talking with the company.</small></p>"
           },
           "truckStop": {
             "willDistributeMaterials": "Truck stop is now distributing TAT materials at their location",

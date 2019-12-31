@@ -10,8 +10,8 @@
       <ng-container *ngFor="let page of surveyPages">
         <div *ngIf="preDelay || page.rendered.isVisible(getAllVals())" class="page">
           <h2 *ngIf="page.rendered.titleText">{{ page.rendered.titleText }}</h2>
-          <p *ngIf="page.rendered.topTextTranslationKey">{{ page.rendered.topTextTranslationKey | translate }}</p>
-          <p *ngIf="page.rendered.topText">{{ page.rendered.topText }}</p>
+          <p *ngIf="page.rendered.topTextTranslationKey" [innerHTML]="page.rendered.topTextTranslationKey | translate"></p>
+          <p *ngIf="page.rendered.topText" [innerHTML]="page.rendered.topText"></p>
           <p *ngIf="page.rendered.fields.length > 1 && pageHasRequiredFields(page.rendered)" class="required-warning"><span class="star">*</span> = {{ 'misc.required' | translate }}</p>
           <ng-container *ngFor="let field of page.rendered.fields">
             <p *ngIf="field.preFieldTextTranslationKey">{{ field.preFieldTextTranslationKey | translate }}</p>

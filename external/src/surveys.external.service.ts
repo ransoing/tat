@@ -373,10 +373,6 @@ class SurveyService {
           type: SurveyFieldType.NUMBER,
           name: 'totalHours',
           labelTranslationKey: 'volunteer.forms.postOutreach.labels.hours',
-          helperTranslationKey:
-            this.userDataService.data.isOnVolunteerTeam ?
-            'volunteer.forms.postOutreach.labels.hoursHelper.group' :
-            'volunteer.forms.postOutreach.labels.hoursHelper.individual',
           isRequired: true,
           min: 0
         }]

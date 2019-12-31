@@ -1,3 +1,12 @@
 .short-text {
     font-size: 75%;
 }
+
+.alt-hotlines hr { display: none }
+
+@media only screen and (max-width: 400px) {
+    .alt-hotlines {
+        ion-button { white-space: pre-wrap }
+        hr { display: block }
+    }
+}

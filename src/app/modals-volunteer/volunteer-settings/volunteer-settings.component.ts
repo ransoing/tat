@@ -6,7 +6,8 @@ import { UserDataRequestFlags, VolunteerType, IUserData } from '../../models/use
 import { FirebaseX } from '@ionic-native/firebase-x/ngx';
 
 @Component({
-  templateUrl: './volunteer-settings.component.html'
+  templateUrl: './volunteer-settings.component.html',
+  styleUrls: [ './volunteer-settings.component.scss' ]
 })
 export class VolunteerSettingsComponent {
 

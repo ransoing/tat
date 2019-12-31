@@ -51,7 +51,7 @@
     "cordova-plugin-firebasex": "^7.0.1",
     "cordova-plugin-inappbrowser": "^3.0.0",
     "cordova-plugin-ionic-keyboard": "^2.1.3",
-    "cordova-plugin-ionic-webview": "^2.3.1",
+    "cordova-plugin-ionic-webview": "^2.5.1",
     "cordova-plugin-network-information": "^2.0.1",
     "cordova-plugin-sim": "1.3.3",
     "cordova-plugin-splashscreen": "^5.0.2",
@@ -124,7 +124,10 @@
       "cordova-universal-links-plugin": {},
       "cordova-sqlite-storage": {},
       "cordova-plugin-firebasex": {
-        "ANDROID_ICON_ACCENT": "#FF060606"
+        "ANDROID_ICON_ACCENT": "#FF060606",
+        "FIREBASE_ANALYTICS_COLLECTION_ENABLED": "true",
+        "FIREBASE_PERFORMANCE_COLLECTION_ENABLED": "true",
+        "FIREBASE_CRASHLYTICS_COLLECTION_ENABLED": "true"
       },
       "cordova-plugin-sim": {}
     },

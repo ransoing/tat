@@ -8,4 +8,3 @@ export { HumanTraffickingLawsComponent } from './human-trafficking-laws/human-tr
 export { RecommendedBooksComponent } from './recommended-books/recommended-books.component';
 export { VideosComponent } from './videos/videos.component';
 export { WhatToReportComponent } from './what-to-report/what-to-report.component';
-export { PlacesComponent } from './places/places.component';

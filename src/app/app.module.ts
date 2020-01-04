@@ -34,13 +34,7 @@ import { FirebaseUIModule, firebaseui, firebase } from 'firebaseui-angular-en-es
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
-/*
-@@
-AngularFireFunctionsModule
-AngularFirestoreModule
-AngularFireStorageModule
-AngularFireMessagingModule
-*/
+
 const firebaseuiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'redirect',
   signInOptions: [
@@ -66,7 +60,7 @@ import { AppComponent } from './app.component';
 import { ModalGuard, AuthGuard } from './guards';
 import { CommonComponentsModule } from './components/common-components.module';
 import {
-  PlacesComponent, WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
+  WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
   AboutTatComponent, HumanTraffickingLawsComponent,
   CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent,
 } from './modals';
@@ -78,14 +72,14 @@ import {
 @NgModule({
   declarations: [
     AppComponent,
-    PlacesComponent, WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
+    WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
     AboutTatComponent, HumanTraffickingLawsComponent,
     CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent,
     VolunteerSettingsComponent, VolunteerResourcesComponent, SurveyComponent,
     TrainingVideoComponent, LoginComponent, PostOutreachSelectionComponent
   ],
   entryComponents: [
-    PlacesComponent, WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
+    WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
     AboutTatComponent, HumanTraffickingLawsComponent,
     CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent,
     VolunteerSettingsComponent, VolunteerResourcesComponent, SurveyComponent,

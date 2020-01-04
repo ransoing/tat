@@ -132,12 +132,12 @@
     },
     "example": "Ejemplo",
     "flags": {
-      "1": "Falta de conocimiento de su paradero; no está en control de su identificación o pasaporte",
-      "2": "Comunicación restringida o controlada-no se le permite hablar por sí misma",
-      "3": "En la radio de banda civil hay charla sobre “compañía comercial” o se emiten luces intermitentes para indicar la ubicación de un “comprador”",
-      "4": "Admite que tiene un padrote o cumple con una cuota",
-      "5": "Señas de marcaje o tatuaje con el nombre del tratante (con frecuencia en el cuello)",
-      "6": "Una camioneta o casa rodante que está fuera de lugar junto a los camiones; un vehículo de donde baja una persona junto un camión y es recogida dentro de 15 a 20 minutos más tarde",
+      "1": "Desconoce dónde se encuentra; no tiene posesión de su identificación o su pasaporte",
+      "2": "Comunicación restringida o controlada, no tiene permitido hablar por sí misma",
+      "3": "Hay plática en el radio de banda ciudadana (CB) acerca de “compañía con pago” o luces intermitentes de un vehículo señalando la ubicación del “comprador”",
+      "4": "La víctima reconoce que tiene un proxeneta y cumple con una cuota",
+      "5": "Señales en el cuerpo que indican a quién le pertenece la víctima o un tatuaje con el nombre del tratante (con frecuencia en el cuello)",
+      "6": "Una furgoneta o casa rodante que se ve fuera de lugar entre los camiones; un vehículo de donde bajan personas y después las recoge de 15 a 20 minutos después",
       "subtitle": "Señales de advertencia que indican trata de personas:"
     },
     "intro": {
@@ -149,11 +149,13 @@
     "post1": "Si no ha visto el DVD de capacitación de TAT puede visitar nuestro",
     "post1Link": "portal de educación para realizar su capacitación de TAT",
     "questions": {
-      "1": "¿Te quedas con el dinero? Si no es así, ¿quién se lo queda?",
+      "1": "¿Te quedas con tu propio dinero? Si no es así ¿quién se lo queda?",
       "2": "¿Tus padres, hermanos o parientes saben dónde estás? Si no, ¿por qué no lo saben?",
       "3": "¿Cuándo fue la última vez que viste a tu familia?",
-      "4": "¿Has sido física o sexualmente abusada?",
-      "5": "¿Te han amenazado a ti o a tu familia?",
+      "4": "¿Te han amenazado a ti o a tu familia?",
+      "5": "¿De qué naturaleza son esas amenazas?",
+      "6": "¿Puedes enviar textos o hacer llamadas a quien quieras?",
+      "7": "¿Alguien más comparte tu teléfono o controla tus comunicaciones?",
       "subtitle": "Si usted sospecha que alguien es víctima de trata de personas, éstas son algunas preguntas que usted le puede hacer.",
       "title": "Preguntas"
     },

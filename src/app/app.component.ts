@@ -21,13 +21,13 @@ export class AppComponent {
   @ViewChild( IonRouterOutlet ) routerOutlet: IonRouterOutlet;
 
   constructor(
+    public miscService: MiscService,
     private platform: Platform,
     private statusBar: StatusBar,
     private translate: TranslateService,
     private settings: SettingsService,
     private angularFireAuth: AngularFireAuth,
     private modalService: ModalService,
-    private miscService: MiscService,
     private userDataService: UserDataService,
     private alertCtrl: AlertController,
     private trx: TrxService,
@@ -87,7 +87,9 @@ export class AppComponent {
     // configure translations
     this.settings.waitForReady().then( () => {
       this.translate.setDefaultLang( this.settings.language );
-      this.translate.use( this.settings.language );
+      // wait until the most recent translations have loaded (or timed out) before we show the app content.
+      // Otherwise, the user will see the translation keys, like `home.buttonLabels.redFlags`
+      this.translate.use( this.settings.language ).toPromise().then( () => this.miscService.languageLoaded = true );
     });
 
     // configure behavior for when the user logs in/out

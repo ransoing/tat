@@ -16,7 +16,8 @@ export class FallbackTranslateHttpLoader implements TranslateLoader {
         private http: HttpClient,
         public externalPrefix: string,
         public localPrefix = '/assets/i18n/',
-        public suffix = '.json'
+        public suffix = '.json',
+        public timeoutMs = 2000
     ) {}
 
     private _indexedDbName = 'tat-i18n';
@@ -84,7 +85,7 @@ export class FallbackTranslateHttpLoader implements TranslateLoader {
                 subscriber.next( result );
             }
             subscriber.complete();
-        }
+        };
 
         // find local versions
         const appVer = parseVersionString( environment.version ); // version of the resources that the app shipped with
@@ -95,26 +96,41 @@ export class FallbackTranslateHttpLoader implements TranslateLoader {
         // read the remote version
         let versionString;
         try {
-            versionString = await this.http.get( `${environment.externalResourcesURL}version` ).toPromise();
+            // versionString = await this.http.get( `${environment.externalResourcesURL}version` ).toPromise();
+            versionString = await this._httpGetWithTimeout( `${environment.externalResourcesURL}version`, this.timeoutMs );
         } catch (e) {
             loadLocalTranslations();
             return;
         }
 
         const remoteVer = parseVersionString( versionString as string ); // version of remote resources
-        
+
         if ( remoteVer.major === appVer.major && remoteVer.minor === appVer.minor && remoteVer.patch > maxLocalVer.patch ) {
-            // the remote resources are compatible with this version of the app, and are newer. Use the remote version and cache it.
-            const remoteTranslation = await this.http.get( `${this.externalPrefix}${lang}${this.suffix}` ).toPromise();
-            this._setCachedTranslation( storageKey, {
-                version: remoteVer,
-                translation: remoteTranslation
-            });
-            subscriber.next( remoteTranslation );
-            subscriber.complete();
+            try {
+                // the remote resources are compatible with this version of the app, and are newer. Use the remote version and cache it.
+                const remoteTranslation = await this._httpGetWithTimeout( `${this.externalPrefix}${lang}${this.suffix}`, this.timeoutMs );
+                this._setCachedTranslation( storageKey, {
+                    version: remoteVer,
+                    translation: remoteTranslation
+                });
+                subscriber.next( remoteTranslation );
+                subscriber.complete();
+            } catch (e) {
+                loadLocalTranslations();
+                return;
+            }
         } else {
             loadLocalTranslations();
         }
+    }
+
+    private _httpGetWithTimeout( url: string, timeoutMs: number ): Promise<any> {
+        return new Promise( (resolve, reject) => {
+            // resolve or reject when the http promise finishes
+            this.http.get( url ).toPromise().then( val => resolve(val) ).catch( e => reject(e) );
+            // reject when the timeout finishes
+            setTimeout( () => reject(new Error('Timeout while loading remote language files')), timeoutMs );
+        });
     }
 }
 

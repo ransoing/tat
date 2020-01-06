@@ -13,7 +13,7 @@ export class LoginComponent implements AfterViewInit, OnDestroy {
 
   public modal: HTMLIonModalElement;
   private authSubscriber: Subscription;
-  
+
   constructor(
     private navCtrl: NavController,
     private miscService: MiscService,

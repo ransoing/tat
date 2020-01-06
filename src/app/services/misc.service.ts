@@ -19,6 +19,7 @@ export class MiscService implements IMiscService {
   loginRedirectUrl: string;
   routeHereCallbacks = [];
   callbackToSave: Boolean | Function = false;
+  languageLoaded = false;
 
   constructor(
     private router: Router,
@@ -145,6 +146,21 @@ export class MiscService implements IMiscService {
       // invalid date.
       return '';
     }
+  }
+
+  public waitForLanguageLoaded(): Promise<any> {
+    return new Promise( resolve => {
+      if ( this.languageLoaded ) {
+        resolve();
+      } else {
+        const interval = setInterval( () => {
+          if ( this.languageLoaded ) {
+            clearInterval( interval );
+            resolve();
+          }
+        }, 200 );
+      }
+    });
   }
 
   /**

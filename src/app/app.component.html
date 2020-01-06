@@ -1,3 +1,4 @@
-<ion-app>
+<div *ngIf="!miscService || !miscService.languageLoaded" class="lds-ring lds-ring-index"><div></div><div></div><div></div><div></div></div>
+<ion-app [style.visibility]="miscService && miscService.languageLoaded ? 'visible' : 'hidden'">
   <ion-router-outlet></ion-router-outlet>
 </ion-app>

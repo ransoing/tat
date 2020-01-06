@@ -12,7 +12,7 @@ import { TranslateModule, TranslateLoader, TranslateCompiler } from '@ngx-transl
 import { SelfReferentialCompiler, FallbackTranslateHttpLoader } from './translate-tools';
 // AoT requires an exported function for factories
 export function HttpLoaderFactory( http: HttpClient ) {
-  return new FallbackTranslateHttpLoader( http, `${environment.externalResourcesURL}i18n/trx_`, './assets/i18n/trx_', '.json' );
+  return new FallbackTranslateHttpLoader( http, `${environment.externalResourcesURL}i18n/trx_`, './assets/i18n/trx_', '.json', 2000 );
 }
 
 // ionic

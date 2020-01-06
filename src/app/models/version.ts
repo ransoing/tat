@@ -5,7 +5,7 @@ export interface IVersion {
 }
 
 /** turns a string into an object with major, minor, and patch */
-function parseVersionString( versionString: string ): IVersion {            
+function parseVersionString( versionString: string ): IVersion {
     const intParts = versionString.split( '.' ).map( part => parseInt(part) );
     return {
         major: intParts[0],

@@ -31,6 +31,7 @@ export class HomePage implements AfterViewInit {
   }
 
   async triggerContentWarning() {
+    await this.miscService.waitForLanguageLoaded();
     // show a content warning, unless the user has chosen not to see the warning
     const avoidWarning = await this.storage.get( this.doNotShowContentWarningStorageKey );
     if ( !avoidWarning ) {

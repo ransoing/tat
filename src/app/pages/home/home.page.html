@@ -8,16 +8,26 @@
   <ion-grid>
     <ion-row>
       <ion-col size-xs="12" size-sm="6">
-        <image-button image="home.report-activity.jpg" (click)="navCtrl.navigateRoot('/tabs/(report:report)')">{{ 'home.reportActivity' | translate }}</image-button>
+        <image-button image="home.report-activity.jpg" (click)="navCtrl.navigateRoot('/tabs/(report:report)')">
+          <ion-icon name="triangle"></ion-icon>
+          {{ 'home.reportActivity' | translate }}
+        </image-button>
       </ion-col>
       <ion-col size-xs="12" size-sm="6">
-        <image-button image="home.red-flags.jpg" (click)="navCtrl.navigateRoot('/tabs/(red-flags:red-flags)')">{{ 'home.redFlags' | translate }}</image-button>
+        <image-button image="home.red-flags.jpg" (click)="navCtrl.navigateRoot('/tabs/(red-flags:red-flags)')">
+          <ion-icon name="redflag"></ion-icon>
+          {{ 'home.redFlags' | translate }}
+        </image-button>
       </ion-col>
       <ion-col size-xs="12" size-sm="6">
-        <image-button image="home.resources.jpg" (click)="navCtrl.navigateRoot('/tabs/(resources:resources)')">{{ 'home.resources' | translate }}</image-button>
+        <image-button image="home.resources.jpg" (click)="navCtrl.navigateRoot('/tabs/(resources:resources)')">
+          <ion-icon name="magnifier"></ion-icon>
+          {{ 'home.resources' | translate }}
+        </image-button>
       </ion-col>
       <ion-col size-xs="12" size-sm="6">
         <image-button image="home.volunteer-login.jpg" (click)="navCtrl.navigateRoot('/tabs/(volunteer:volunteer)')">
+          <ion-icon name="volunteer"></ion-icon>
           {{ (miscService.isLoggedIn ? 'volunteer.title' : 'volunteer.loginTitle') | translate }}
         </image-button>
       </ion-col>

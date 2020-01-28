@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot }    from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { ModalService, MiscService } from '../services';
 import { LoginComponent } from '../modals-volunteer';
 

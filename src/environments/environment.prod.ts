@@ -1,11 +1,11 @@
-import pack from '../../package.json';
-import apiKeys from '../../google-api-keys.json';
+import { version } from '../../package.json';
+import { prod as prodKey } from '../../google-api-keys.json';
 
 export const environment = {
   production: true,
-  version: pack.version,
+  version: version,
   firebaseConfig: {
-    apiKey: apiKeys.prod,
+    apiKey: prodKey,
     authDomain: 'truckers-against-trafficking.firebaseapp.com',
     databaseURL: 'https://truckers-against-trafficking.firebaseio.com',
     projectId: 'truckers-against-trafficking',

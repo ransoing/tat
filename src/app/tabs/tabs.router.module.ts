@@ -13,32 +13,27 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: '/tabs/(home:home)',
+        redirectTo: '/tabs/home',
         pathMatch: 'full',
         canDeactivate: [ModalGuard]
       }, {
         path: 'home',
-        outlet: 'home',
         component: HomePage,
         canDeactivate: [ModalGuard]
       }, {
         path: 'report',
-        outlet: 'report',
         component: ReportPage,
         canDeactivate: [ModalGuard]
       }, {
         path: 'red-flags',
-        outlet: 'red-flags',
         component: RedFlagsPage,
         canDeactivate: [ModalGuard]
       }, {
         path: 'resources',
-        outlet: 'resources',
         component: ResourcesPage,
         canDeactivate: [ModalGuard]
       }, {
         path: 'volunteer',
-        outlet: 'volunteer',
         component: VolunteerPage,
         canDeactivate: [ModalGuard],
         canActivate: [AuthGuard]
@@ -46,7 +41,7 @@ const routes: Routes = [
     ]
   }, {
     path: '',
-    redirectTo: '/tabs/(home:home)',
+    redirectTo: '/tabs/home',
     pathMatch: 'full'
   }
 ];

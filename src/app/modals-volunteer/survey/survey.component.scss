@@ -90,6 +90,9 @@
             }
 
             ion-item {
+                --background: transparent;
+                --color: black;
+
                 ion-label.label-floating {
                     margin: 0 16px;
                     position: absolute;

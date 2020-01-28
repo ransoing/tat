@@ -1,5 +1,5 @@
-import pack from '../../package.json';
-import apiKeys from '../../google-api-keys.json';
+import { version } from '../../package.json';
+import { dev as devKey } from '../../google-api-keys.json';
 
 // The file contents for the current environment will overwrite these during build.
 // The build system defaults to the dev environment which uses `environment.ts`, but if you do
@@ -7,9 +7,9 @@ import apiKeys from '../../google-api-keys.json';
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 export const environment = {
   production: false,
-  version: pack.version,
+  version: version,
   firebaseConfig: {
-    apiKey: apiKeys.dev,
+    apiKey: devKey,
     authDomain: 'truckers-against-trafficking.firebaseapp.com',
     databaseURL: 'https://truckers-against-trafficking.firebaseio.com',
     projectId: 'truckers-against-trafficking',
@@ -17,14 +17,14 @@ export const environment = {
     messagingSenderId: '1062876332765'
   },
   // proxyServerURL: 'https://localhost/tatproxy/api/',
-  proxyServerURL: 'http://192.168.86.231/tatproxy/api/',
-  // proxyServerURL: 'https://tatproxy.ransomchristofferson.com/api/',
+  // proxyServerURL: 'http://192.168.86.231/tatproxy/api/',
+  proxyServerURL: 'https://tatproxy.ransomchristofferson.com/api/',
   // proxyServerURL: 'https://macl4185.lasp.colorado.edu/~christof/tatproxy/api/',
   // proxyServerURL: 'https://app-proxy.truckersagainsttrafficking.org/api/'
 
   // a URL which should contain the contents of `external/dist/`, after running `npm run build-external`
-  externalResourcesURL: 'http://192.168.86.231/tatproxy/external-resources/',
-  // externalResourcesURL: 'https://tatproxy.ransomchristofferson.com/external-resources/',
+  // externalResourcesURL: 'http://192.168.86.231/tatproxy/external-resources/',
+  externalResourcesURL: 'https://tatproxy.ransomchristofferson.com/external-resources/',
   // externalResourcesURL: 'https://localhost/tatproxy/external-resources/',
   // externalResourcesURL: 'https://macl4185.lasp.colorado.edu/~christof/tatproxy/external-resources/',
   // externalResourcesURL: 'https://app-proxy.truckersagainsttrafficking.com/external-resources/',

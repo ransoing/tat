@@ -11,14 +11,13 @@ import { SurveyService } from './services/surveys.service';
 import { VolunteerType, UserDataRequestFlags } from './models/user-data';
 import { NotificationType, INotificationData } from './models/notification';
 
-
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
   // get a reference to the IonRouterOutlet element
-  @ViewChild( IonRouterOutlet ) routerOutlet: IonRouterOutlet;
+  @ViewChild( IonRouterOutlet, {static: false} ) routerOutlet: IonRouterOutlet;
 
   constructor(
     public miscService: MiscService,
@@ -103,7 +102,7 @@ export class AppComponent {
         this.userDataService.firebaseUser = response;
         // don't show a 'please wait' popup if the user is on the home screen, because this stalls the user
         // right when the app is launched, if the user is already logged in
-        const showLoading = this.router.url !== '/tabs/(home:home)';
+        const showLoading = this.router.url !== '/tabs/home';
         this.userDataService.fetchUserData( true, UserDataRequestFlags.ALL, showLoading );
 
         // ask for permission to receive notifications, if we don't have permissions
@@ -133,7 +132,7 @@ export class AppComponent {
         onSuccess: async() => {
           // new user successfully registered. Get the user data and redirect to the volunteer page.
           this.userDataService.fetchUserData( true );
-          this.navCtrl.navigateRoot( '/tabs/(volunteer:volunteer)' );
+          this.navCtrl.navigateRoot( '/tabs/volunteer' );
         }
       });
     });

@@ -31,7 +31,7 @@ export class SurveyComponent implements OnInit {
   // if the survey is submitted and the response indicates success, this function runs after the modal closes
   @Input('onSuccess') onSuccess: Function;
 
-  @ViewChild('form') formRef: ElementRef;
+  @ViewChild('form', {static: true}) formRef: ElementRef;
 
   modal: HTMLIonModalElement;
   SurveyFieldType = SurveyFieldType;

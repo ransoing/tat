@@ -67,7 +67,7 @@ export class MiscService implements IMiscService {
    * Navigate to the home page and close the active modal.
    */
   public goBackHome() {
-    this.navCtrl.navigateRoot( '/tabs/(home:home)' );
+    this.navCtrl.navigateRoot( '/tabs/home' );
     let activeModal = this.modalService.getActiveModal();
     if ( activeModal ) {
       activeModal.dismiss();

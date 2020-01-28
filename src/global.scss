@@ -103,6 +103,20 @@ ion-app > ion-router-outlet > app-tabs > ion-tabs {
     height: 100vh;
 }
 
+// fix some tab nav styles
+$numTabs: 5;
+ion-tabs > ion-tab-bar > ion-tab-button {
+    max-width: calc( 100vw / $numTabs );
+    > ion-label { white-space: nowrap !important }
+    > ion-label, > ion-icon { color: #eee }
+    &.tab-selected {
+        > ion-label, > ion-icon { color: $color-primary }
+    }
+}
+// Set a media query to hide text for tab buttons when the screen is too narrow.
+@media only screen and (max-width: 430px) {
+    ion-tabs > ion-tab-bar > ion-tab-button > ion-label { display: none }
+}
 
 
 body {
@@ -151,6 +165,7 @@ ion-header > ion-toolbar {
     cursor: pointer;
     background: rgba(0,0,0,0.7);
     border-radius: 50%;
+    fill: white;
     // ios has issues with z-indexing for fixed items unless we do this
     -webkit-transform: translate3d(0,0,0);
 }
@@ -162,8 +177,13 @@ ion-content.like-modal {
     }
 }
 
-ion-alert .alert-title {
-    color: black !important;
+ion-alert {
+    .alert-wrapper {
+        --background: white;
+    }
+    .alert-title {
+        color: black !important;
+    }
 }
 
 .sc-ion-alert-ios {

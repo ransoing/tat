@@ -1,9 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ModalGuard, AuthGuard } from './guards';
+import { TabsPage } from './tabs/tabs.page';
 
 const routes: Routes = [
-  { path: '', loadChildren: './tabs/tabs.module#TabsPageModule' },
+  {
+    path: '',
+    loadChildren: () => import( './tabs/tabs.module' ).then( m => m.TabsPageModule )
+  }
 ];
 @NgModule({
   // using hash in the URL makes it easy for references to images to work, despite whether the root

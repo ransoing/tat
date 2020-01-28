@@ -1,17 +1,24 @@
 <ion-tabs>
-  <ion-tab label="{{ 'nav.home' | translate }}" icon="wheel" href="/tabs/(home:home)">
-    <ion-router-outlet name="home"></ion-router-outlet>
-  </ion-tab>
-  <ion-tab label="{{ 'nav.report' | translate }}" icon="triangle" href="/tabs/(report:report)">
-    <ion-router-outlet name="report"></ion-router-outlet>
-  </ion-tab>
-  <ion-tab label="{{ 'nav.redFlags' | translate }}" icon="redflag" href="/tabs/(red-flags:red-flags)">
-    <ion-router-outlet name="red-flags"></ion-router-outlet>
-  </ion-tab>
-  <ion-tab label="{{ 'nav.resources' | translate }}" icon="magnifier" href="/tabs/(resources:resources)">
-    <ion-router-outlet name="resources"></ion-router-outlet>
-  </ion-tab>
-  <ion-tab label="{{ 'nav.volunteer' | translate }}" icon="volunteer" href="/tabs/(volunteer:volunteer)">
-    <ion-router-outlet name="volunteer"></ion-router-outlet>
-  </ion-tab>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="home">
+      <ion-icon name="wheel"></ion-icon>
+      <ion-label>{{ 'nav.home' | translate }}</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="report">
+      <ion-icon name="triangle"></ion-icon>
+      <ion-label>{{ 'nav.report' | translate }}</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="red-flags">
+      <ion-icon name="redflag"></ion-icon>
+      <ion-label>{{ 'nav.redFlags' | translate }}</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="resources">
+      <ion-icon name="magnifier"></ion-icon>
+      <ion-label>{{ 'nav.resources' | translate }}</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="volunteer">
+      <ion-icon name="volunteer"></ion-icon>
+      <ion-label>{{ 'nav.volunteer' | translate }}</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
 </ion-tabs>

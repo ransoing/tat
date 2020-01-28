@@ -68,6 +68,7 @@ import {
   VolunteerSettingsComponent, VolunteerResourcesComponent, SurveyComponent,
   TrainingVideoComponent, LoginComponent, PostOutreachSelectionComponent
 } from './modals-volunteer';
+import { TabsPageModule } from './tabs/tabs.module';
 
 @NgModule({
   declarations: [
@@ -106,7 +107,8 @@ import {
     AngularFireModule.initializeApp( environment.firebaseConfig ),
     AngularFireAuthModule, AngularFireDatabaseModule,
     FirebaseUIModule.forRoot( firebaseuiAuthConfig ),
-    CommonComponentsModule
+    CommonComponentsModule,
+    TabsPageModule
   ],
   providers: [
     StatusBar, SplashScreen, Dialogs, Network, AndroidPermissions, FirebaseX, Sim,

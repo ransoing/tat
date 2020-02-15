@@ -6,7 +6,7 @@
     },
     "cars": {
       "label": "Descripcion de vehiculos",
-      "placeholder": "De todos los vehiculos, anote de que forma estan involucrados y la marca, modelo, color numero de registro de vehiculo de la secretaria de comunicaciones y transportes, placas, etc."
+      "placeholder": "De todos los vehiculos, anote de que forma estan involucrados y la marca, modelo, color, numero de registro de vehiculo de la secretaria de comunicaciones y transportes, placas, etc."
     },
     "checkboxes": {
       "cars": "¿Hay vehículos involucrados en la actividad sospechosa?",
@@ -152,7 +152,7 @@
       "1": "¿Te quedas con tu propio dinero? Si no es así ¿quién se lo queda?",
       "2": "¿Tus padres, hermanos o parientes saben dónde estás? Si no, ¿por qué no lo saben?",
       "3": "¿Cuándo fue la última vez que viste a tu familia?",
-      "4": "¿Te han amenazado a ti o a tu familia?",
+      "4": "¿Te han amenazado a ti o tu familia?",
       "5": "¿De qué naturaleza son esas amenazas?",
       "6": "¿Puedes enviar textos o hacer llamadas a quien quieras?",
       "7": "¿Alguien más comparte tu teléfono o controla tus comunicaciones?",
@@ -381,7 +381,7 @@
   },
   "whatToReport": {
     "cars": "Vehículos",
-    "carsText": "¿Hay vehículos involucrados en la actividad de los sospechosos? Anote la marca, el modelo, el color, el número de placas, etc.",
+    "carsText": "¿Hay vehículos involucrados en la actividad de los sospechosos? Anote la marca, el modelo, el color, el número de registro de vehiculo de la secretaria de comunicaciones y transportes, el número de placas, etc.",
     "dateTime": "Fecha y hora",
     "dateTimeText": "¿Cuándo sucedió la actividad sospechosa? ¿Qué día y a qué hora?",
     "intro": "Para que las autoridades policiacas abran una investigación en relación con su reporte, necesitan información con base en la cual puedan actuar. Esta información incluiría:",

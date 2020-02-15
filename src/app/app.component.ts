@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Platform, IonRouterOutlet, AlertController, NavController } from '@ionic/angular';
 import { FirebaseX } from '@ionic-native/firebase-x/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { TranslateService } from '@ngx-translate/core';
 import { SettingsService, ModalService, MiscService, UserDataService, TrxService } from './services';
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -34,6 +35,7 @@ export class AppComponent {
     private surveys: SurveyService,
     private navCtrl: NavController,
     private firebase: FirebaseX,
+    private splash: SplashScreen,
     private router: Router
   ) {
     this.statusBar.styleBlackOpaque();
@@ -44,6 +46,8 @@ export class AppComponent {
 
   async initializeApp() {
     await this.platform.ready();
+
+    setTimeout( () => this.splash.hide(), 5000 ); // in case the home.page fails to hide the splash
 
     // if cordova is not available, this is a dev machine. Overload some functions that don't work in a dev environment
     if ( !window.cordova ) {
@@ -69,7 +73,9 @@ export class AppComponent {
       if ( this.miscService.isLoggedIn ) {
         this.handleNotificationTapped( message.data );
       } else {
-        // wait up to 10 seconds for a login to happen before handling the notification
+        // go to the volunteer page to trigger the login modal,
+        // then wait up to 10 seconds for a login to happen before handling the notification
+        this.navCtrl.navigateRoot( '/tabs/(volunteer:volunteer)' );
         let subTimeout;
         const subscription = this.angularFireAuth.authState.subscribe( async response => {
           // user is logged in if `response` evaluates to true
@@ -92,29 +98,16 @@ export class AppComponent {
       this.translate.use( this.settings.language ).toPromise().then( () => this.miscService.languageLoaded = true );
     });
 
-    // configure behavior for when the user logs in/out
+    // configure behavior for when the user logs out
+    // Behavior for logging in is defined in login.component
     // this observable will fire when the app starts up, so it's not just when the user has actively logged in or out
-    let firstAuthCallback = true;
     this.angularFireAuth.authState.subscribe( async response => {
-      this.miscService.isLoggedIn = !!response;
-      if ( response ) {
-        // logged in.
-        // save the firebase user object and fetch the user's data from the proxy
-        this.userDataService.firebaseUser = response;
-        // don't show a 'please wait' popup if the user is on the home screen, because this stalls the user
-        // right when the app is launched, if the user is already logged in
-        const showLoading = this.router.url !== '/tabs/(home:home)';
-        this.userDataService.fetchUserData( true, UserDataRequestFlags.ALL, showLoading );
-
-        // ask for permission to receive notifications, if we don't have permissions
-        if ( (!await this.firebase.hasPermission()) ) {
-          this.firebase.grantPermission();
-        }
-      } else {
+      if ( !response ) {
         // logged out.
+        this.miscService.isLoggedIn = false;
         this.userDataService.clearData();
-        // only redirect the user and notify that he has logged out if this isn't executed on application launch
-        if ( !firstAuthCallback ) {
+        // only redirect the user and notify that he has logged out if he isn't already on the home page
+        if ( ['/tabs/(home:home)', '/', ''].indexOf(this.router.url) === -1 ) {
           // kick the user to the homepage and close the current modal
           // (it would be better to first check if the user is on a restricted page)
           this.miscService.goBackHome();
@@ -122,7 +115,6 @@ export class AppComponent {
           this.showLogoutNotice();
         }
       }
-      firstAuthCallback = false;
     });
 
     // when a user has logged into firebase but has no salesforce entry, pop up the new user signup form

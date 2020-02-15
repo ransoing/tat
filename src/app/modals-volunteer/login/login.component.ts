@@ -1,8 +1,10 @@
 import { Component, AfterViewInit, OnDestroy } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { MiscService, SettingsService } from '../../services';
+import { MiscService, SettingsService, UserDataService } from '../../services';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Subscription } from 'rxjs';
+import { FirebaseX } from '@ionic-native/firebase-x/ngx';
+import { UserDataRequestFlags } from '../../models/user-data';
 
 @Component({
   templateUrl: './login.component.html'
@@ -18,6 +20,8 @@ export class LoginComponent implements AfterViewInit, OnDestroy {
     private navCtrl: NavController,
     private miscService: MiscService,
     private angularFireAuth: AngularFireAuth,
+    private userDataService: UserDataService,
+    private firebase: FirebaseX,
     public settings: SettingsService
   ) {}
 
@@ -36,17 +40,36 @@ export class LoginComponent implements AfterViewInit, OnDestroy {
    */
 
   ngAfterViewInit() {
+    const modalHasPresented = new Promise( resolve => {
+      this.modal.addEventListener( 'ionModalDidPresent', () => resolve() );
+    });
+
     // if the redirect URL isn't set, set it now
     if ( !localStorage.getItem(LoginComponent.LOGIN_REDIRECT_URL_KEY) ) {
       localStorage.setItem( LoginComponent.LOGIN_REDIRECT_URL_KEY, this.miscService.loginRedirectUrl );
     }
-    this.authSubscriber = this.angularFireAuth.authState.subscribe( response => {
+    this.authSubscriber = this.angularFireAuth.authState.subscribe( async( response ) => {
       if ( !!response ) {
         // even though this flag is set elsewhere, make sure this flag is set to true before we try to navigate
         this.miscService.isLoggedIn = true;
+
+        // save the firebase user object and fetch the user's data from the proxy
+        this.userDataService.firebaseUser = response;
+        this.userDataService.fetchUserData( true, UserDataRequestFlags.ALL );
+
+        // ask for permission to receive notifications, if we don't have permissions
+        this.firebase.hasPermission().then( hasPermission => {
+          if ( !hasPermission ) {
+            this.firebase.grantPermission();
+          }
+        });
+
         // go to the restricted page which the user initially tried to go to before logging in
         this.navCtrl.navigateRoot( localStorage.getItem(LoginComponent.LOGIN_REDIRECT_URL_KEY) )
-        .then( () => this.modal.dismiss() );
+        .then( async() => {
+          await modalHasPresented;
+          this.modal.dismiss();
+        });
       }
     });
   }

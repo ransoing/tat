@@ -17,9 +17,10 @@ export class TabsPage implements OnInit {
         let styleEl = tabbar.shadowRoot.querySelector('style');
         // get rid of some goofy styling for active tab label text and for active icon
         styleEl.innerHTML = styleEl.innerHTML.replace( '--label-transform:scale3d(1.16667, 1.16667, 1);', '' ).replace( /--icon-transform-selected:translate3d\(.*?\)/g, '--icon-transform-selected:none' );
-
         // set a new max width for tab buttons to prevent them from overflowing over the sides of the screen
         styleEl.innerHTML += `.tab-btn { max-width: calc( 100vw / ${this.numTabs} ) }`;
+        // prevent the previously active tab from having the "active" style when the user uses the android hardware back button
+        styleEl.innerHTML += `.tab-btn:not(.tab-btn-selected):hover { color: inherit !important }`;
         // Set a media query to hide text for tab buttons when the screen is too narrow.
         // Without text, the icons need to be nudged down (different amounts for ios vs md)
         const tabBtnPaddingTop = document.documentElement.getAttribute('mode') === 'md' ? 16 : 6;

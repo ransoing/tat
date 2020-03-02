@@ -52,7 +52,7 @@ export class UserDataService implements IUserDataService {
     if ( this.needsToVerifyEmail() ) {
       throw new Error( 'MUST_VERIFY_EMAIL' );
     }
-    
+
     if ( this.fetchingUserData ) {
       return this.fetchingPromise;
     }
@@ -61,8 +61,12 @@ export class UserDataService implements IUserDataService {
       try {
         if ( !force ) {
           // try to get cached user data from local storage
-          if ( !this.data || Object.keys(this.data).length == 0 ) {
+          if ( !this.data || Object.keys(this.data).length === 0 ) {
             this.data = await this.storage.get( StorageKeys.USER_DATA );
+            // storage on mobile devices converts Dates to strings. Ensure that they are converted back to Date objects
+            if ( this.data ) {
+              this.data = this.proxyAPI.convertJSONDates( this.data );
+            }
           }
           // if we have data locally, just use that
           if ( this.data ) {
@@ -77,8 +81,9 @@ export class UserDataService implements IUserDataService {
           await this.miscService.showLoadingPopup();
         }
         // get the idToken before a request to the proxy
+        // tslint:disable-next-line
         var token = await this.firebaseUser.getIdToken();
-        
+
       } catch ( e ) {
         this.onFetchError( e );
         this.onFetchFinally();

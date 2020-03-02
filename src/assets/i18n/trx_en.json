@@ -362,7 +362,8 @@
         },
         "noCampaignsError": "You have no active campaigns. Please contact TAT staff for assistance.",
         "submitSuccess": "@:volunteer.forms.successSurvey",
-        "title": "@:volunteer.btns.preOutreachSurvey"
+        "title": "@:volunteer.btns.preOutreachSurvey",
+        "tooManyCampaignsError": "You have too many active campaigns. Please contact TAT staff for assistance."
       },
       "signup": {
         "accountAlreadyExists": "It seems you already have a volunteer user account. For assistance, contact tat.truckers@gmail.com",

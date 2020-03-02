@@ -30,6 +30,8 @@ class SurveyService {
     campaigns.sort( (a, b) => a.daysSinceCreated - b.daysSinceCreated );
     if ( campaigns.length === 0 ) {
       throw 'volunteer.forms.preOutreach.noCampaignsError';
+    } else if ( campaigns.length > 1 ) {
+      throw 'volunteer.forms.preOutreach.tooManyCampaignsError';
     }
 
     // add a campaign selection page

@@ -18,10 +18,6 @@ export enum UserDataRequestFlags {
   ALL = 3                     // 2^0 + 2^1
 }
 
-export interface IPostActivityReport {
-  followUpDate: Date | null;
-}
-
 // If the user filled out a pre-outreach or pre-event survey, there will be an "incomplete post-report"
 // until they submit the post-report
 export interface IOutreachLocation {

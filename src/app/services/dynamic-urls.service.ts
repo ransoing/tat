@@ -33,6 +33,10 @@ export class DynamicURLsService {
      * }
      */
     let cache = await this.storage.get( this.storageKey );
+    // cache.expires might be a Date or a ISO string. Convert to a Date for easy comparison
+    if ( cache && typeof cache.expires === 'string' ) {
+      cache.expires = new Date( cache.expires );
+    }
     if ( !cache || cache.expires < new Date() ) {
       // get new images.
       let data;

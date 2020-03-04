@@ -87,7 +87,7 @@ export class ProxyAPIService implements IProxyAPIService {
    * Takes an object and recursively looks for ISO-8601 date strings or YYYY-MM-DD strings, and converts
    * them to Date objects. Modifies the original object.
    */
-  private convertJSONDates( object: any ): any {
+  public convertJSONDates( object: any ): any {
     Object.keys( object )
     .filter( key => {
       return object.hasOwnProperty( key );

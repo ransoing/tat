@@ -199,7 +199,7 @@
         "3": "Marshal the resources of our partners to combat this crime",
         "header": "Our three goals are:"
       },
-      "intro": "We exist to educate, equip, empower, and mobilize members of the trucking and busing industries to combat human trafficking as a regular part of their jobs.",
+      "intro": "Truckers Against Trafficking (TAT) is a 501(c)3 that exists to educate, equip, empower and mobilize members of the trucking, bus and energy industries to combat human trafficking.",
       "supportLink": {
         "1": "For support, contact:"
       },
@@ -362,7 +362,8 @@
         },
         "noCampaignsError": "You have no active campaigns. Please contact TAT staff for assistance.",
         "submitSuccess": "@:volunteer.forms.successSurvey",
-        "title": "@:volunteer.btns.preOutreachSurvey"
+        "title": "@:volunteer.btns.preOutreachSurvey",
+        "tooManyCampaignsError": "You have too many active campaigns. Please contact TAT staff for assistance."
       },
       "signup": {
         "accountAlreadyExists": "It seems you already have a volunteer user account. For assistance, contact tat.truckers@gmail.com",
@@ -427,7 +428,7 @@
   },
   "whatToReport": {
     "cars": "Cars",
-    "carsText": "Are there any vehicles involved in the suspect's activity? Record the make, model, color, license plate number, etc.",
+    "carsText": "Are there any vehicles involved in the suspect's activity? Record the make, model, color, DOT number, license plate number, etc.",
     "dateTime": "Date & Time",
     "dateTimeText": "When did the suspicious activity happen? What day and what time?",
     "intro": "For law enforcement to open an investigation on your tip, they need “actionable information.” This would include:",

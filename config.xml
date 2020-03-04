@@ -32,6 +32,7 @@
         the user agent to get it to work.
     </comment>
     <preference name="OverrideUserAgent" value="Mozilla/5.0 (Linux; Android 8.0.0; moto g(6)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.99 Mobile Safari/537.36" />
+    <preference name="loadUrlTimeoutValue" value="40000" />
     <preference name="ScrollEnabled" value="false" />
     <preference name="android-minSdkVersion" value="19" />
     <preference name="BackupWebStorage" value="none" />

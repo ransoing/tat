@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ModalGuard, AuthGuard } from './guards';
-import { TabsPage } from './tabs/tabs.page';
 
 const routes: Routes = [
   {

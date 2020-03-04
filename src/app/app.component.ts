@@ -44,6 +44,15 @@ export class AppComponent {
   async initializeApp() {
     await this.platform.ready();
 
+    // @@ fix back button behavior on android
+    try {
+      document.addEventListener( 'backbutton', () => {} );
+      this.platform.backButton.subscribe(() => {} );
+      this.platform.backButton.subscribeWithPriority( 0, () => {
+        this.navCtrl.back();
+      });
+    } catch (error) {}
+
     // if cordova is not available, this is a dev machine. Overload some functions that don't work in a dev environment
     if ( !window.cordova ) {
       this.firebase.getToken = () => Promise.resolve( 'Computer dev user' );

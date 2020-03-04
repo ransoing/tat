@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ModalGuard, AuthGuard } from '../guards';
+import { AuthGuard } from '../guards';
 
 import { TabsPage } from './tabs.page';
 import { HomePage, RedFlagsPage, ReportPage, ResourcesPage, VolunteerPage } from '../pages';
@@ -9,33 +9,26 @@ const routes: Routes = [
   {
     path: 'tabs',
     component: TabsPage,
-    canDeactivate: [ModalGuard],
     children: [
       {
         path: '',
         redirectTo: '/tabs/home',
-        pathMatch: 'full',
-        canDeactivate: [ModalGuard]
+        pathMatch: 'full'
       }, {
         path: 'home',
-        component: HomePage,
-        canDeactivate: [ModalGuard]
+        component: HomePage
       }, {
         path: 'report',
-        component: ReportPage,
-        canDeactivate: [ModalGuard]
+        component: ReportPage
       }, {
         path: 'red-flags',
-        component: RedFlagsPage,
-        canDeactivate: [ModalGuard]
+        component: RedFlagsPage
       }, {
         path: 'resources',
-        component: ResourcesPage,
-        canDeactivate: [ModalGuard]
+        component: ResourcesPage
       }, {
         path: 'volunteer',
         component: VolunteerPage,
-        canDeactivate: [ModalGuard],
         canActivate: [AuthGuard]
       }
     ]

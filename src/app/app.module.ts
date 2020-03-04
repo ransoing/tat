@@ -57,7 +57,7 @@ const firebaseuiAuthConfig: firebaseui.auth.Config = {
 // app
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ModalGuard, AuthGuard } from './guards';
+import { AuthGuard } from './guards';
 import { CommonComponentsModule } from './components/common-components.module';
 import {
   WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
@@ -112,7 +112,7 @@ import { TabsPageModule } from './tabs/tabs.module';
   ],
   providers: [
     StatusBar, SplashScreen, Dialogs, Network, AndroidPermissions, FirebaseX, Sim,
-    ModalGuard, AuthGuard,
+    AuthGuard,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

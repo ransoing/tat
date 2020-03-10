@@ -100,7 +100,7 @@ export class AppComponent {
 
     // configure translations
     this.settings.waitForReady().then( () => {
-      this.translate.setDefaultLang( this.settings.language );
+      this.translate.setDefaultLang( 'en' );
       // wait until the most recent translations have loaded (or timed out) before we show the app content.
       // Otherwise, the user will see the translation keys, like `home.buttonLabels.redFlags`
       this.translate.use( this.settings.language ).toPromise().then( () => this.miscService.languageLoaded = true );

@@ -270,6 +270,11 @@ ion-grid {
     margin: -5px; // undo the padding around the outside of columns and rows
 }
 
+.lds-ring--video {
+    position: absolute;
+    top: calc( 50% - 32px );
+    left: calc( 50% - 32px );
+}
 
 
 @media only screen and (min-height: 768px) and (min-width: 768px) {

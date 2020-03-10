@@ -55,10 +55,6 @@
         <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
             <application android:usesCleartextTraffic="true" />
         </edit-config>
-        <comment>This is needed for notifications to work right</comment>
-        <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application/service[@android:name='org.apache.cordova.firebase.FirebasePluginMessagingService']">
-            <service android:enabled="true" android:exported="true" />
-        </edit-config>
         <config-file parent="/manifest/application" target="AndroidManifest.xml">
             <meta-data android:name="com.google.firebase.messaging.default_notification_icon" android:resource="@drawable/notification_icon" />
         </config-file>

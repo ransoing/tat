@@ -1,19 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { ModalService, MiscService } from '../../services';
-import { CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent } from '../../modals';
+import {
+  CaseStudyBComponent,
+  CaseStudyDComponent,
+  GenericModalComponent
+} from '../../modals';
 
 @Component({
-  selector: 'app-red-flags',
-  templateUrl: './red-flags.page.html',
-  styleUrls: ['./red-flags.page.scss'],
+  selector: 'app-red-flags-labor',
+  templateUrl: './red-flags-labor.page.html',
+  styleUrls: ['./red-flags-labor.page.scss'],
 })
-export class RedFlagsPage implements OnInit {
+export class RedFlagsLaborPage implements OnInit {
 
-  CaseStudyAComponent = CaseStudyAComponent;
   CaseStudyBComponent = CaseStudyBComponent;
-  CaseStudyCComponent = CaseStudyCComponent;
   CaseStudyDComponent = CaseStudyDComponent;
+  GenericModalComponent = GenericModalComponent;
 
   constructor( public navCtrl: NavController, public modalService: ModalService, public miscService: MiscService ) { }
 

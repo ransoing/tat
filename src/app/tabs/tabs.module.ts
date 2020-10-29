@@ -6,7 +6,14 @@ import { FormsModule } from '@angular/forms';
 
 import { TabsPageRoutingModule } from './tabs.router.module';
 import { TabsPage } from './tabs.page';
-import { HomePageModule, RedFlagsPageModule, ReportPageModule, ResourcesPageModule, VolunteerPageModule } from '../pages';
+import {
+  HomePageModule,
+  RedFlagsLaborPageModule,
+  RedFlagsSexPageModule,
+  ReportPageModule,
+  ResourcesPageModule,
+  VolunteerPageModule
+} from '../pages';
 
 @NgModule({
   imports: [
@@ -15,7 +22,7 @@ import { HomePageModule, RedFlagsPageModule, ReportPageModule, ResourcesPageModu
     FormsModule,
     TabsPageRoutingModule,
     CommonComponentsModule,
-    HomePageModule, RedFlagsPageModule, ReportPageModule, ResourcesPageModule, VolunteerPageModule
+    HomePageModule, RedFlagsLaborPageModule, RedFlagsSexPageModule, ReportPageModule, ResourcesPageModule, VolunteerPageModule
   ],
   declarations: [TabsPage]
 })

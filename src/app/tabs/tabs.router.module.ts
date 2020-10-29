@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../guards';
 
 import { TabsPage } from './tabs.page';
-import { HomePage, RedFlagsPage, ReportPage, ResourcesPage, VolunteerPage } from '../pages';
+import { HomePage, RedFlagsLaborPage, RedFlagsSexPage, ReportPage, ResourcesPage, VolunteerPage } from '../pages';
 
 const routes: Routes = [
   {
@@ -21,8 +21,11 @@ const routes: Routes = [
         path: 'report',
         component: ReportPage
       }, {
-        path: 'red-flags',
-        component: RedFlagsPage
+        path: 'red-flags/sex',
+        component: RedFlagsSexPage
+      }, {
+        path: 'red-flags/labor',
+        component: RedFlagsLaborPage
       }, {
         path: 'resources',
         component: ResourcesPage

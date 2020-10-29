@@ -61,30 +61,33 @@ import { AuthGuard } from './guards';
 import { CommonComponentsModule } from './components/common-components.module';
 import {
   WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
-  AboutTatComponent, HumanTraffickingLawsComponent,
-  CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent,
+  AboutTatComponent, HumanTraffickingLawsComponent, PodcastsComponent,
+  CaseStudyBComponent, CaseStudyDComponent, GenericModalComponent,
 } from './modals';
 import {
   VolunteerSettingsComponent, VolunteerResourcesComponent, SurveyComponent,
   TrainingVideoComponent, LoginComponent, PostOutreachSelectionComponent
 } from './modals-volunteer';
 import { TabsPageModule } from './tabs/tabs.module';
+import { RedFlagsPopover } from './tabs/popovers/red-flags/red-flags.popover';
 
 @NgModule({
   declarations: [
     AppComponent,
     WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
-    AboutTatComponent, HumanTraffickingLawsComponent,
-    CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent,
+    AboutTatComponent, HumanTraffickingLawsComponent, PodcastsComponent,
+    CaseStudyBComponent, CaseStudyDComponent, GenericModalComponent,
     VolunteerSettingsComponent, VolunteerResourcesComponent, SurveyComponent,
-    TrainingVideoComponent, LoginComponent, PostOutreachSelectionComponent
+    TrainingVideoComponent, LoginComponent, PostOutreachSelectionComponent,
+    RedFlagsPopover
   ],
   entryComponents: [
     WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
-    AboutTatComponent, HumanTraffickingLawsComponent,
-    CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent,
+    AboutTatComponent, HumanTraffickingLawsComponent, PodcastsComponent,
+    CaseStudyBComponent, CaseStudyDComponent, GenericModalComponent,
     VolunteerSettingsComponent, VolunteerResourcesComponent, SurveyComponent,
-    TrainingVideoComponent, LoginComponent, PostOutreachSelectionComponent
+    TrainingVideoComponent, LoginComponent, PostOutreachSelectionComponent,
+    RedFlagsPopover
   ],
   imports: [
     BrowserModule,

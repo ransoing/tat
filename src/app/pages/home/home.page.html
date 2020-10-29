@@ -5,18 +5,20 @@
 <ion-content padding>
   <img src="assets/images/tat-logo.png" class="logo">
 
-  <ion-grid>
+  <ion-grid class="button-grid">
     <ion-row>
       <ion-col size-xs="12" size-sm="6">
         <image-button image="home.report-activity.jpg" (click)="navCtrl.navigateRoot('/tabs/report')">
           <ion-icon name="triangle"></ion-icon>
           {{ 'home.reportActivity' | translate }}
         </image-button>
-      </ion-col>
-      <ion-col size-xs="12" size-sm="6">
-        <image-button image="home.red-flags.jpg" (click)="navCtrl.navigateRoot('/tabs/red-flags')">
+        <image-button image="home.red-flags.jpg" (click)="navCtrl.navigateRoot('/tabs/red-flags/sex')">
           <ion-icon name="redflag"></ion-icon>
-          {{ 'home.redFlags' | translate }}
+          {{ 'home.redFlagsSex' | translate }}
+        </image-button>
+        <image-button image="home.labor-red-flags.jpg" (click)="navCtrl.navigateRoot('/tabs/red-flags/labor')">
+          <ion-icon name="redflag"></ion-icon>
+          {{ 'home.redFlagsLabor' | translate }}
         </image-button>
       </ion-col>
       <ion-col size-xs="12" size-sm="6">
@@ -24,8 +26,6 @@
           <ion-icon name="magnifier"></ion-icon>
           {{ 'home.resources' | translate }}
         </image-button>
-      </ion-col>
-      <ion-col size-xs="12" size-sm="6">
         <image-button image="home.volunteer-login.jpg" (click)="navCtrl.navigateRoot('/tabs/volunteer')">
           <ion-icon name="volunteer"></ion-icon>
           {{ (miscService.isLoggedIn ? 'volunteer.title' : 'volunteer.loginTitle') | translate }}

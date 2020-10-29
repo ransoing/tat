@@ -66,8 +66,9 @@
   },
   "home": {
     "contentWarning": "Esta aplicación contiene información sobre la trata de personas y podría ser inapropiada para algunas personas.",
-    "redFlags": "Señales de advertencia",
-    "reportActivity": "Reporte la Actividad",
+    "redFlagsLabor": "@:nav.redFlagsLabor",
+    "redFlagsSex": "@:nav.redFlagsSex",
+    "reportActivity": "@:report.title",
     "resources": "@:nav.resources"
   },
   "misc": {
@@ -115,17 +116,36 @@
   "nav": {
     "home": "Inicio",
     "redFlags": "Señales",
+    "redFlagsLabor": "Indicadores de la Trata Laboral",
+    "redFlagsSex": "Señales de advertencia",
     "report": "Reporte",
     "resources": "Recursos",
     "volunteer": "Voluntarios"
   },
-  "redFlags": {
+  "redFlagsLabor": {
+    "caseStudy": {
+      "a": "<p>Según el San Antonio Express-News, Juan Jiménez Luna cruzó el Río Grande en una cámara de aire, atraído por la promesa de un trabajo por $ 600 a la semana conduciendo un tractor. Pero en cambio, se encontró recogiendo verduras por menos de $ 30 al día y trabajado hasta los límites.</p>\n<p>Su jefe, Salvador Hernandez, supervisaba un grupo de trabajadores migrantes. Los contrató en México y el Valle del Río Grande y los condujaba por todo el país, llevándolos de una granja a otra y de un estado a otro: Mississippi, Florida y por la costa este. Viajaban en autobuses escolares tan abarrotados que algunos de los trabajadores se sentaban en el piso.</p>\n<p>Las pausas para el almuerzo eran raras, al igual que los días libres. Los que desafiaron a Hernandez a veces fueron golpeados y a los heridos se dejaba sufrir. Sin embargo, nadie huyó. Por la noche, los trabajadores compartían el piso en cuartos pequeños infestados de ratas y cucarachas. Durante el día, Hernandez los empujaba sin piedad bajo el sol de verano, blandiendo una pistola a quienes reducían la velocidad, según las cuentas de los trabajadores y los registros judiciales. Hernandez tenía un arma en su regazo cuando los trabajadores venían a cobrar su paga, según el caso judicial y las entrevistas con los trabajadores. A menudo retenía sus salarios y les amenazaba con llamar a las autoridades de inmigración si alguno se atrevía a quejarse.</p>\n<p>Jiménez Luna tardó tres años para ganar el valor de escapar. Para entonces, estaba recogiendo maíz dulce en Nueva York. Con la ayuda de una organización de base, huyó a San Antonio, donde tenía familiares.</p>\n<p>Él y otros tres trabajadores presentaron una demanda civil en un tribunal federal y, en 2013, ganaron una sentencia de $ 2.45 millones por salarios atrasados contra Hernandez, su esposa, y su hermano.</p>"
+    },
+    "indicators": "<h2>Indicadores de trata laboral</h2>\n<p>Las víctimas de la trata laboral pueden ser de cualquier género, niños o adultos. Las víctimas pueden ser ciudadanos estadounidenses o extranjeros. Debido a que usted está en las carreteras y en varias comunidades todos los días, puede tomar un papel vital en la identificación de casos potenciales de trata laboral y en alertar a las autoridades. Esto es lo que debe buscar cuando visite lugares de entrega / recogida o mientras está en la carretera:</p>\n<ul>\n<li>Un lugar de trabajo altamente controlado y / o peligroso e inseguro</li>\n<li>Un lugar de trabajo que tiene medidas de seguridad pesadas o excesivas que parecen fuera de lugar</li>\n<li>Un lugar de trabajo donde se proporciona alojamiento para los trabajadores en el lugar y parece deficiente, inseguro y monitoreado de cerca</li>\n<li>Trabajadores en lugares de entrega / recogida que evitan o se les impide hablar con usted.</li>\n<li>\n    Si los trabajadores hablan con usted, muestran un comportamiento abnormal o preocupante que incluye, entre otros:\n    <ul>\n    <li>Estar temerosos, ansiosos, sumisos, nerviosos o tensos</li>\n    <li>Evitar el contacto visual, hablar en voz baja</li>\n    <li>Darle respuestas que parecen escritas o ensayardo</li>\n    <li>Expresar miedo a la policia</li>\n    </ul>\n</li>\n<li>Las personas con las que se encuentra tienen mala salud física, parecen desnutridas y muestran signos de abuso o falta de atención médica</li>\n<li>Las personas con las que se encuentra tienen poco conocimiento de dónde están trabajando y / o no tienen sentido del tiempo</li>\n<li>\n    Si una persona habla para ti y menciona:\n    <ul>\n    <li>Trabajan horas excesivamente largas y se les proporcionan pocas o ninguna pausa</li>\n    <li>Se hacen tarifas o deducciones de sus cheques de pago por vivienda, comida, equipo relacionado con el trabajo, etc.</li>\n    <li>Retención de documentos de identificación (por ejemplo, pasaporte, licencia de conducir, etc.)</li>\n    <li>Amenazas de abuso verbal, físico o sexual real por parte de un empleador</li>\n    </ul>\n</li>\n</ul>",
+    "intro": "<h2>¿Qué es la trata laboral?</h2>\n<p>Un delito que involucra la explotación de alguien con el propósito de realizar un trabajo haciendo uso de la fuerza, el fraude o la coerción. Incluye la negación del derecho de una persona a la libertad y la dignidad básica. La trata laboral es un delito según las leyes federales e internacionales; también es un delito en todos los estados de los Estados Unidos y en todo de Canadá.</p>",
+    "note": "Tenga en cuenta que las personas que son introducidas de contrabando a otro país son muy vulnerables a la trata y hay situaciones en las que un caso de contrabando podría convertirse en trata de personas. Por ejemplo, el contrabandista puede aumentar la tarifa de contrabando después de que la persona llega al país ilegalmente y luego requerir alguna forma de trabajo forzado para pagarla.",
+    "places": "<h2>Sectores / lugares donde puede encontrar la trata laboral</h2>\n<ul>\n<li>Agricultura, silvicultura, tala</li>\n<li>Turismo / hotelería</li>\n<li>Labores doméstica</li>\n<li>Manufactura</li>\n<li>Construcción</li>\n<li>Servicios de limpieza</li>\n<li>Equipos de ventas ambulantes / mendicidad forzada</li>\n<li>Paisajismo</li>\n<li>Tráfico ilegal de drogas</li>\n</ul>",
+    "title": "@:nav.redFlagsLabor",
+    "versus": {
+      "smuggling": "<h3>Contrabando de personas</h3>\n<ul>\n<li>Un crimen contra una frontera</li>\n<li>Basado en el transporte</li>\n<li>Las personas que son objeto de contrabando son libres de irse, cambiar de trabajo, etc.</li>\n<li>Requiere cruzar una frontera internacional</li>\n<li>Facilita la entrada ilegal de una(s) persona(s) de un país a otro</li>\n</ul>",
+      "title": "Trata de personas vs. Contrabando de personas",
+      "trafficking": "<h3>Trata de personas</h3>\n<ul>\n<li>Un crimen contra una persona</li>\n<li>Basado en explotación</li>\n<li>Requiere los elements de fuerza, fruade, o coerción</li>\n<li>No requiere movimiento de la víctima</li>\n<li>Requiere que la persona se involucre en alguna forma de \"trabajo\" obligado (forzado)</li>\n<li>No requiere cruzar una frontera international</li>\n<li>La víctima no es libre de salir</li>\n</ul>"
+    }
+  },
+  "redFlagsSex": {
     "caseStudy": {
       "a": "<p>El 9 de enero del 2018, el chofer profesional Arian Taylor entró al estacionamiento de un negocio en Compton para hacer una entrega cerca de las 3:30 a.m.  Poco tiempo después, alguien tocó a la puerta de su taxi, se trataba de una joven de 19 años que estaba parada afuera del camión. Al hablar con ella se enteró que el novio de su amiga, quien era un hombre mayor, trató de forzarla a prostituirse. Al negarse ella a acceder a sus deseos y discutir con él, fue abandonada en el estacionamiento por el sujeto, quien se fue a toda velocidad.</p><p>Ella tenía frio, estaba agotada, no tenía dinero ni identificación, todo lo que tenía era lo que traía en sus manos y estaba desesperada por regresar a su casa en Las Vegas. En ese momento, Arian le dijo: “Encontraré una forma de regresarte a casa.” Después de conseguir quitarle el frío y darle agua para que bebiera, Arian vio una de las dos calcomanías de TAT que tenía pegadas de forma visible en su ventana (la cual la chica había visto cuando tocó en su puerta} y él llamó a la Línea de ayuda en casos de trata de personas.</p><p>La línea de ayuda colaboró con él para conseguirle un refugio a la joven para pasar la noche, un taxi pre-pagado para que la llevará al refugio y un viaje en tren con un acompañante para regresar a Las Vegas al día siguiente, donde se reunió con un miembro de su familia. Arian estuvo al cuidado de la joven hasta que ella abordó el taxi y hasta le dio su número de teléfono personal por si acaso ella necesitaba cualquier otra cosa.</p>",
       "b": "Laura Sorensen y Aldair Hodza fueron noticia nacional al ser arrestados en su casa rodante el 6 de enero del 2015 en una parada de camiones en el estado de Virginia. Según el reporte del incidente, la policía recibió una llamada a las 3:20 p.m.  y los ocupantes de la casa rodante les permitieron pasar a los oficiales al interior, los ocupantes dijeron que estaban vacacionando en el área y visitando a la hija de Sorensen. Los oficiales, sin embargo, observaron que la supuesta víctima parecía estar aterrada y mostraba signos de desnutrición. Un policía estatal condujo a la joven afuera de la casa rodante, y ahí ella empezó a sollozar y le suplicó al oficial que no permitiera que ella regresara a la casa rodante. Le dijo al oficial que la tenían retenida contra su voluntad y que los sospechosos la habían abusado sexual y físicamente. Dijo que tenía infecciones en todo el cuerpo y que no podía recordar cuando era la última vez que había comido o bebido algo, y agregó que ya habían pasado varios días.",
       "bFull": "<p>Kevin Kimmel había terminado sus entregas y encontró una parada de camiones para tomar su descanso. Estaba llenando su papeleo cuando notó que un hombre entraba y salía de una casa rodante a una tienda de conveniencia. También observó a varios hombres que tocaban en la puerta de la casa rodante, pero fue cuando vio a una joven tratar de sacar la cabeza por la ventana sólo para que violentamente la hicieran meter adentro la cabeza y cerraran una cortina negra y luego se iniciara una conmoción, que Kevin hizo una llamada que resultó en que acudiera al lugar la policía estatal.</p><p>Según el parte policial, los oficiales fueron llamados al lugar a las 3:20 p.m. y se les permitió la entrada a la casa rodante por parte de los ocupantes Laura Sorensen y Aldair Hodza, quienes dijeron estar en el área vacacionando y visitando a la hija de Sorensen. Los oficiales, sin embargo, observaron que la supuesta víctima parecía estar aterrada y mostraba señales de desnutrición. Un policía estatal condujo a la joven afuera de la casa rodante, y ahí ella empezó a sollozar y le suplicó al oficial que no permitiera que ella regresara a la casa rodante. Le dijo al oficial que la tenían retenida contra su voluntad y que los sospechosos la habían abusado sexual y físicamente. Dijo que tenía infecciones en todo el cuerpo y que no podía recordar cuando era la última vez que había comido o bebido algo, y agregó que ya habían pasado varios días.</p><p>Después de que la subieron a una ambulancia, ella le dijo a otro investigador que los sospechosos la habían “marcado” en la espalda y le habían infligido quemaduras en otras partes del cuerpo y también le laceraron los pies. También dijo que nadie en su hogar en Iowa la consideraba desaparecida porque los sospechosos la habían obligado a comunicarse con miembros de su familia y a decir que nada fuera de lo común estaba sucediendo. Según el reporte, ella después le dijo a un investigador estatal que había sido forzada a hacerle sexo oral a Hodza, a quien ella llamaba “John,” y a otro sujeto desconocido el mismo día dentro de la casa rodante en el estacionamiento de los camiones.</p><p>Hoy, gracias a la llamada de Kevin, la joven está en casa con su familia en Clive, Iowa y Laura Sorensen y Aldair Hodza fueron condenados a 40 y 41 años de prisión, respectivamente.</p>",
       "c": "<p>William se había estacionado en una parada de camiones para pasar la noche cuando una menor de edad tocó a la puerta de su camión y le ofreció sexo. Después de que William le dijo a la joven que no estaba interesado, él observó que ella tocaba en las puertas de otros camiones hasta que se subió a uno de ellos. Durante este tiempo, William también vio a un hombre adulto que caminaba alrededor del estacionamiento y se dio cuenta que parecía estar vigilando de cerca a la joven.</p><p>Gracias a que William había recibido capacitación de Truckers Against Trafficking, él reconoció las señales de una posible situación de trata de personas y sabía que tenía que llamar al 911 antes de hacer la llamada a la línea nacional de ayuda para casos de Trata de Personas y reportó la situación. El operador de la línea de ayuda también hizo un reporte a las autoridades policíacas del área, quienes pudieron coordinarse con la policía local en su investigación.</p>",
       "d": "El poner marcas se usa para indicar que le pertenece a un tratante. Estos son algunos ejemplos de cómo es el marcaje y en qué parte del cuerpo puede estar.",
+      "localA": "<p>Ivan, un cartero, estaba en su ruta en un vecindario de Oak Park, <i>cuando oyó a una niña llorando</i>. Se acercó a la víctima asustada y le preguntó si podía ayudarla. Él no lo sabía pero la joven de 16 años había sido llevada a Sacramento por alguien en quien consideraba su amiga, y luego se encontró atrapada en un mundo de drogas y tráfico sexual.</p><p>Ese mismo día, ella había saltado del vehículo de sus tratantes para escapar. Ivan la calmó, le aseguró que la mantendría segura, la ayudó a llamar a su madre y la dejó sentarse en su camión postal hasta que llegara la policía.</p><p>\"El área donde fue encontrada es un área de criminalidad alta - hay muchas drogas, prostitución, y pandillas en esa área. Por eso Ivan, quien se quedó al lado de ella, realmente le daba consúelo y seguridad hasta que los oficiales pudieran llegar,” dijo Latoya Buford del Departamento del Sherif de Sacramento. “Lo que hizo Iván fue maravilloso. Intervino donde mucha gente habría continuado conduciendo por la carretera y tuvo un gran impacto positivo en la vida de esta joven,\" dijo el diputado David Cuneo.</p>",
+      "localB": "<p>Según el New York Times, una mujer de 49 años, quien había inmigrado recientemente y estaba profundamente endeudado con un usurero en China, respondió a un anuncio de empleo que prometía miles de dólares al mes, pero que no ofrecía una descripción de trabajo. La mujer se dio cuenta demasiado tarde de que la habían engañado para que trabajara en un salón de masajes en Flushing, Queens, donde además de amasar la espalda, se esperaba que sirviera sexualmente a una docena de hombres cada día.</p>\n<p><i>Algunos de los clientes eran violentos y el jefe le cobraba a la mujer 10 dólares al día para dormir en un sofá en un cuarto del salón donde las ratas mordisqueaban su comida.</i> “Los clientes eran horribles,” dijo la mujer quien, avergonzada del estigma de su pasado, pidió que no se usara su nombre. \"Después de completar un servicio, encontrarían una excusa para quitar el dinero.” Dijo que ellos \"harían cosas aún peores.”</p>",
       "readFullStory": "Enlace a la historia completa",
       "title": "Caso práctico",
       "watchVideo": "Enlace a video"
@@ -146,6 +166,22 @@
       "p3": "Permita a las autoridades encargarse de los tratantes y recuperar a las víctimas. El acercarse a los tratantes no solamente es peligroso para usted y las víctimas, sino que podría acarrear dificultades para procesar penalmente a los tratantes.",
       "warning": "Advertencia: Por favor no se acerque a los tratantes."
     },
+    "local": {
+      "flags": {
+        "1": "Signos de prostitución",
+        "2": "Mujeres o niños que parecen asustados, molestados o que necesitan ayuda",
+        "3": "Un carro que se deja a unas niñas o mujeres (el conductor se queda para observar o regresa después de un rato para recogerlas)",
+        "4": "Medidas de seguridad extraordinarias en un hogar o negocio (en particular, una sala de masajes o un spa)",
+        "4a": "Ventanas enrejadas o cubiertas",
+        "4b": "Alambre de espino",
+        "4c": "Puertas principales cerradas con otra entrada en el callejón",
+        "5": "Trabajadores que parecen vivir en el lugar de trabajo",
+        "6": "Casas que siempre tienen carros diferentes estacionados en frente, y en su mayoría hombres que van y vienen del lugar"
+      },
+      "flagsTitle": "Indicadores de la trata de persona puede ser:",
+      "intro": "Como proveedores de servicios de paquetería, enlace, o entrega, los conductores locales a menudo tienen una ruta dedicada en unos vecindarios y podrían encontrarse con la prostitución y / o la trata de personas; burdeles en casas, apartamentos o negocios ilícitos de masajes; y / o víctimas que necesitan asistencia.",
+      "title": "Conductores Locales"
+    },
     "post1": "Si no ha visto el DVD de capacitación de TAT puede visitar nuestro",
     "post1Link": "portal de educación para realizar su capacitación de TAT",
     "questions": {
@@ -159,7 +195,7 @@
       "subtitle": "Si usted sospecha que alguien es víctima de trata de personas, éstas son algunas preguntas que usted le puede hacer.",
       "title": "Preguntas"
     },
-    "title": "@:home.redFlags"
+    "title": "@:nav.redFlagsSex"
   },
   "report": {
     "USA": "EE.UU.",
@@ -171,7 +207,7 @@
     "intro": "<p><b>Inmediatamente:</b> Si usted ve que se está cometiendo un delito, llame al 911 y luego llame a la línea de ayuda. Si usted está en una parada de camiones o lugar de descanso para viajeros o en cualquier otro lugar de negocios, por favor avísele al gerente en turno sobre la actividad sospechosa, esa persona debe enterarse de lo que está sucediendo en la propiedad y ayudar a ponerle fin.</p><p>Los operadores de la línea de ayuda contra la trata de personas están disponibles las 24 horas del día, los 7 días de la semana, para tomar reportes de posibles casos de trata de personas. Todos los reportes son confidenciales y usted puede permanecer anónimo. Se cuenta con intérpretes de idiomas. La información que usted proporcione será revisada por la línea de ayuda nacional y se enviará a autorizadas policíacas especializadas y/o a proveedores de servicios cuando sea adecuado.</p>",
     "textBtn": "Envíe un texto que diga INFO o HELP (Información o ayuda)",
     "textTo": "a {{phoneNumber}}",
-    "title": "@:home.reportActivity",
+    "title": "Reporte la Actividad",
     "whatToReportBtn": "Qué reportar"
   },
   "resources": {
@@ -211,6 +247,7 @@
     "btns": {
       "aboutTAT": "Acerca de TAT",
       "humanTraffickingLaws": "Leyes Sobre la Trata de Personas ",
+      "podcasts": "Podcasts",
       "recommendedBooks": "Libros Recomendados",
       "videos": "Videos"
     },
@@ -227,6 +264,12 @@
       "intro2": "La trata de personas es el reclutamiento, transporte, transferencia, alojamiento u obtención de personas por medio de la fuerza, el fraude y la coerción con fines de explotación.",
       "linkText": "¿Desea saber más acerca de las leyes contra la trata de personas en los Estados Unidos?",
       "title": "@:resources.btns.humanTraffickingLaws"
+    },
+    "podcasts": {
+      "apps": {},
+      "drivingFreedom": {},
+      "listen": "Escucha ahora",
+      "title": "@:resources.btns.podcasts"
     },
     "title": "@:nav.resources",
     "videos": {
@@ -247,8 +290,7 @@
         "description": "Una breve capacitación sobre los elementos que integran la tarjeta de cartera de TAT.",
         "title": "Webinar de la Tarjeta de Cartera TAT"
       }
-    },
-    "videosTitle": "@:resources.btns.videos"
+    }
   },
   "volunteer": {
     "btns": {

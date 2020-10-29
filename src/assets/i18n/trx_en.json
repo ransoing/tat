@@ -66,8 +66,9 @@
   },
   "home": {
     "contentWarning": "This app contains information about human trafficking and may not be suitable for all audiences.",
-    "redFlags": "@:nav.redFlags",
-    "reportActivity": "Report Activity",
+    "redFlagsLabor": "@:nav.redFlagsLabor",
+    "redFlagsSex": "@:nav.redFlagsSex",
+    "reportActivity": "@:report.title",
     "resources": "@:nav.resources"
   },
   "misc": {
@@ -123,17 +124,37 @@
   "nav": {
     "home": "Home",
     "redFlags": "Red Flags",
+    "redFlagsLabor": "Labor Trafficking Red Flags",
+    "redFlagsSex": "Sex Trafficking Red Flags",
     "report": "Report",
     "resources": "Resources",
     "volunteer": "Volunteer"
   },
-  "redFlags": {
+  "redFlagsLabor": {
+    "caseStudy": {
+      "a": "<p>According to the San Antonio Express-News, Juan Jimenez Luna crossed the Rio Grande on an inner tube, drawn by the promise of a $600-a-week job driving a tractor. Instead, he found himself picking vegetables for less than $30 a day and worked to the limits of endurance.</p>\n<p>His boss, a man named Salvador Hernandez, oversaw a crew of migrant workers. He hired them in Mexico and the Rio Grande Valley. Then he drove them across the country and shuffled them from farm to farm and state to state: Mississippi, Florida and up the Eastern Seaboard. They traveled in old school buses so crowded that some of the workers sat on the floor.</p>\n<p>Lunch breaks were rare, as were days off. Those who defied Hernandez were sometimes beaten. The injured were often left to suffer. Yet no one fled. At night, the crew shared floor space in cramped quarters infested with rats and cockroaches. By day, Hernandez pushed them ruthlessly beneath the summer sun, brandishing a pistol at those who slowed down, according to workers' accounts and court records. Hernandez kept a gun in plain view in his lap when workers came to collect their pay, according to the court case and worker interviews. He often withheld their wages, and he threatened to call immigration authorities if any dared to complain.</p>\n<p>It took Jimenez Luna three years to muster the courage to escape. By then, he was picking sweet corn in central New York. With help from a grassroots labor organization, he fled to San Antonio, where he had relatives.</p>\n<p>He and three other laborers filed a civil complaint in federal court and, in 2013, won a $2.45 million judgment for back wages against Hernandez, the labor boss’ wife and his brother.</p>"
+    },
+    "howToHelp": "<h2>How You Can Help</h2>\n<ol>\n<li><b>Educate yourself and others</b> about labor trafficking. Share this information about labor trafficking with your colleagues and others in the transportation industry.</li>\n<li><b>See it, report it.</b> If you believe you have encountered a situation of labor trafficking, report the information to the National Human Trafficking Hotline (1-888-3737-888). Trust your gut; you don’t have to be 100 percent certain – leave that to the experts.</li>\n<li>\n    <b>Start by believing.</b> <i>If in doubt of yours or the potential victim’s safety, call the hotline or law enforcement. Do not put anyone in harm’s way.</i> If you find yourself able to safely engage in conversation with a potential trafficking victim, you may want to ask a few questions to gauge the situation. For example,\n    <ul>\n    <li>Do you feel safe at your workplace?</li>\n    <li>Is the job different from what you expected or were promised?</li>\n    <li>Do you owe a debt to your employer?</li>\n    <li>Do you feel you can leave your job if you wanted to?</li>\n    <li>Are you in possession of your own legal documents or identification?</li>\n    </ul>\n</li>\n</ol>",
+    "indicators": "<h2>Labor Trafficking Indicators</h2>\n<p>Victims of labor trafficking can be of any gender, children, or adults. Victims can be U.S. citizens or foreign nationals. Because you are out on the road and in a number of communities every day, you can play a vital role in identifying potential cases of labor trafficking and alerting authorities. Here is what to look for when you are visiting drop-off/ pick-up locations or while on the road:</p>\n<ul>\n<li>A highly controlled and/or hazardous, unsafe work setting</li>\n<li>A work site that has heavy or excessive security measures that seem out of place</li>\n<li>A work site where worker housing is provided on-site and appears sub-standard, unsafe and closely monitored</li>\n<li>Workers at drop-off/pick up locations that avoid or are prevented from speaking to you</li>\n<li>\n    If workers speak with you, they exhibit abnormal or concerning behavior including, but not limited to:\n    <ul>\n    <li>Being fearful, anxious, submissive, nervous or tense</li>\n    <li>Avoiding eye contact, speaking softly</li>\n    <li>Giving you responses that seem scripted or rehearsed</li>\n    <li>Expressing a fear of law enforcement</li>\n    </ul>\n</li>\n<li>Individuals you encounter are in poor physical health, appear malnourished, and show signs of abuse or lack of medical care</li>\n<li>Individuals you encounter have little knowledge of where they are working and/or do not have a sense of time</li>\n<li>\n    If an individual speaks to you and mentions:\n    <ul>\n    <li>They work excessively long hours and are provided few or no breaks</li>\n    <li>Fees or deductions are made from their paychecks for housing, food, work-related equipment, etc.</li>\n    <li>Withholding of identification documents (e.g. passport, driver’s license, etc.)</li>\n    <li>Threats of, or actual verbal, physical or sexual abuse by an employer</li>\n    </ul>\n</li>\n</ul>",
+    "intro": "<h2>What is labor trafficking?</h2>\n<p>A crime involving the exploitation of someone for the purpose of compelled labor through force, fraud or coercion. It involves the denial of a person’s right to freedom and basic dignity. Labor trafficking is a crime under federal and international law; it is also a crime in every state in the United States and throughout Canada.</p>",
+    "note": "Please note, individuals who are smuggled into a country are very vulnerable to human trafficking, and there are situations in which a human smuggling case could become human trafficking. For example, the smuggler raises the smuggling fee after the individual arrives in the country illegally and then requires some form of compelled labor to pay it.",
+    "places": "<h2>Sectors/Places Where You May Encounter Labor Trafficking</h2>\n<ul>\n<li>Agriculture, forestry, logging</li>\n<li>Leisure/hospitality</li>\n<li>Personal/domestic care</li>\n<li>Manufacturing</li>\n<li>Construction</li>\n<li>Janitorial services</li>\n<li>Traveling sales crews/forced panhandling</li>\n<li>Landscaping</li>\n<li>Illicit drug production/sales</li>\n</ul>",
+    "title": "@:nav.redFlagsLabor",
+    "versus": {
+      "smuggling": "<h3>Human Smuggling</h3>\n<ul>\n<li>A crime against a border</li>\n<li>Transportation-based</li>\n<li>People who are smuggled are free to leave, change jobs, etc.</li>\n<li>Requires the crossing of an international border</li>\n<li>Facilitates illegal entry of a person(s) from one country to another</li>\n</ul>",
+      "title": "Human Trafficking vs. Human Smuggling",
+      "trafficking": "<h3>Human Trafficking</h3>\n<ul>\n<li>A crime against a person</li>\n<li>Exploitation-based</li>\n<li>Requires the elements of force, fraud or coercion</li>\n<li>Does not require movement of the victim</li>\n<li>Requires the person to be engaged in some form of compelled (forced) “work”</li>\n<li>Does not require crossing an international border</li>\n<li>Not free to leave</li>\n</ul>"
+    }
+  },
+  "redFlagsSex": {
     "caseStudy": {
       "a": "<p>On Jan. 9, 2018, professional driver Arian Taylor pulled into a Compton, California business to make a delivery at 3:30 a.m. Shortly thereafter, he received a knock on his cab door, only to find a 19-year-old young woman standing outside his truck. As he spoke with her, he learned that her friend’s older boyfriend was trying to force her into prostitution. After she had refused and argued with him, he dumped her in the parking lot and sped off.</p><p>She was cold, exhausted, had no money, no identification, was carrying everything she owned in her arms and was desperate to get back home to Las Vegas. At that point, Arian told her, “I will find a way to get you home.” After getting her warm and giving her water to drink, Arian looked at one of the two TAT stickers prominently displayed on his window (which the victim had been eye-level with when she knocked on his door) and called the National Human Trafficking Hotline.</p><p>They worked with him to secure the woman shelter for the night, a pre-paid cab ride to get her to that shelter and a chaperoned train ride back to Las Vegas the next day, where she was reunited with a family member. Arian took care of the young women until she was placed in the cab, and even gave her his personal cell phone number in case she needed anything else.</p>",
       "b": "Laura Sorensen and Aldair Hodza made national news when arrested on Jan. 6, 2015 in VA at a truck stop. According to the incident report, officers were called to the scene at 3:20 p.m. and were allowed inside the RV by the occupants, who said they were in the area on vacation and to visit Sorenson’s daughter. The officers, however, observed that the alleged victim appeared frightened and exhibited signs of malnutrition. A State Police trooper took the young woman outside, where she began to weep and beg the trooper not to let her return to the RV. She told the trooper she was being held against her will and had been abused sexually and physically by the suspects. She also said the suspects threatened to kill or injure her family. She said she had infections all over her body and couldn’t remember the last time she had anything to eat or drink, adding that several days had passed.",
       "bFull": "<p>Kevin Kimmel had finished his deliveries, and found a truck stop to take his break. He was filling out his paper work, when he noticed a man going back and forth from the RV to the convenience store. He also noticed different men knocking on the door of the RV, but it was when he saw a young woman try to stick her head out the window only to have it violently snapped back, a black curtain pulled in its place and a commotion ensue inside that Kevin made a phone call that resulted in the state trooper coming out.</p><p>According to the incident report, officers were called to the scene at 3:20 p.m. and were allowed inside the RV by the occupants, Laura Sorensen and Aldair Hodza, who said they were in the area on vacation and to visit Sorensen’s daughter. The officers, however, observed that the alleged victim appeared frightened and exhibited signs of malnutrition. A State Police trooper took the young woman outside, where she began to weep and beg the trooper not to let her return to the RV. She told the trooper she was being held against her will and had been abused sexually and physically by the suspects. She also said the suspects threatened to kill or injure her family. She said she had infections all over her body and couldn’t remember the last time she had anything to eat or drink, adding that several days had passed.</p><p>After being placed in an ambulance, she told another investigator that the suspects had “branded” her on her back and had inflicted burns on other parts of her body, along with lacerating her feet. She also said no one back home in Iowa considered her missing, since the suspects forced her to communicate with family members, telling them that nothing out of the ordinary was taking place. According to the report, she later told a State Police investigator she was forced to perform oral sex on Hodza, whom she called “John,” and another unknown male that same day inside the RV at the truck stop parking lot.</p><p>Today, thanks to Kevin’s call, that young woman is at home with her family in Clive, IA … and Laura Sorensen and Aldair Hodza were sentenced to 40 and 41 years in prison, respectively.</p>",
       "c": "<p>William had parked in a truck stop for the evening when an underage girl knocked on his truck door and solicited him for sex. After William told the girl he was not interested, he observed her knocking on the doors of several other trucks before getting into one. During this time, William also saw an adult man walking around the lot and noticed that he appeared to be watching the girl closely.</p><p>Since William had received training from Truckers Against Trafficking, he recognized the signs of a potential trafficking situation and knew to call 911 first before making a call to the National Human Trafficking Hotline to report the situation. After collecting information from William about the situation he observed, the Hotline Advocate also made a report to the Hotline’s trusted law enforcement contacts in the area, who were able to coordinate with the local police in their investigation.</p>",
       "d": "Branding is used to indicate ownership by a trafficker. These are some examples of what branding can look like, and where it can be on the body.",
+      "localA": "<p>Postal carrier Ivan was on his route in an Oak Park neighborhood, <i>when he heard a young girl crying</i>. He approached the terrified victim and asked if he could help her. Unbeknownst to him, the 16-year old had been lured to Sacramento by someone she thought was a friend, and then found herself trapped in a world of drugs and sex trafficking.</p><p>That same day, she had leapt from the vehicle of her traffickers in order to escape. Ivan calmed her down, reassured her he would keep her safe, assisted her in calling her mother and let her sit in his postal truck until law enforcement arrived.</p><p>“The area where she was found is a notoriously high crime area&mdash;lots of drugs, prostitution, gangs in that area&mdash;so Ivan standing by her really provided that comfort, that safety and security until officers could arrive,” Latoya Buford of the Sacramento Sheriff’s Department said. “What Ivan did was wonderful. He stepped in where a lot of people would have continued driving down the road, and he made a huge positive impact in this young girl’s life,” Deputy David Cuneo said.</p>",
+      "localB": "<p>According to the New York Times, a 49-year old, recent immigrant, who was deeply in debt to a loan shark back home in China, answered an employment ad that promised thousands of dollars a month, but offered no job description. The woman realized too late that she had been tricked into working at a massage parlor in Flushing, Queens, where besides kneading backs, she was expected to sexually service up to a dozen men a day.</p>\n<p><i>Some of the clients were violent, and the boss charged $10 a day for her to sleep on a sofa in a room at the parlor where rats nibbled on her food.</i> “The customers were very terrible,” said the woman, who, ashamed of the stigma of her former profession, asked that her name not be used. “After you perform a service, they would find an excuse to take the money away.” They would, she said, “do even worse things.”</p>",
       "readFullStory": "Read Full Story",
       "title": "Case Study",
       "watchVideo": "Watch Video"
@@ -154,6 +175,22 @@
       "p3": "Allow law enforcement to deal with traffickers and recover victims. Approaching traffickers is not only dangerous for you and their victims but could lead to problems in the eventual prosecution of traffickers.",
       "warning": "Warning: Please do not approach traffickers."
     },
+    "local": {
+      "flags": {
+        "1": "Signs of prostitution taking place",
+        "2": "Women or children looking afraid, upset, or in need of assistance",
+        "3": "Girls or women being dropped off from a particular vehicle (driver stays to observe or returns after a bit to pick them up)",
+        "4": "Extraordinary security measures on a home or business (particularly a massage parlor or health spa)",
+        "4a": "Barred or covered windows",
+        "4b": "Barbed wire",
+        "4c": "Locked front doors with entrances in the alley",
+        "5": "Workers who appear to live in the place of business",
+        "6": "Homes that always have a variety of different cars parked in front, and mostly men coming and going from the location"
+      },
+      "flagsTitle": "Trafficking Red Flags to look for:",
+      "intro": "As small package, feeder or delivery service providers, local drivers often have dedicated routes in neighborhoods and could come across street-based prostitution and/or trafficking; brothels being run out of homes, apartment buildings or within an illicit massage business; and/or victims in need of assistance.",
+      "title": "Local Drivers"
+    },
     "post1": "If you haven't seen the TAT Training DVD you can go to our",
     "post1Link": "education portal to complete your TAT Training",
     "questions": {
@@ -167,7 +204,7 @@
       "subtitle": "If you suspect someone is a victim of human trafficking, here are some questions to ask him/her.",
       "title": "Questions"
     },
-    "title": "@:home.redFlags"
+    "title": "@:nav.redFlagsSex"
   },
   "report": {
     "USA": "USA",
@@ -179,7 +216,7 @@
     "intro": "<p><b>Immediately:</b> If you’re watching a crime in progress, call 911 and then call the hotline. If you’re at a truck stop/travel plaza or any other place of business, please notify the manager-on-duty of the suspicious activity; she/he needs to be aware of what is taking place on their property and assist in ending it.</p><p>Anti-Trafficking Hotline Advocates are available 24/7 to take reports of potential human trafficking. All reports are confidential and you may remain anonymous. Interpreters are available. The information you provide will be reviewed by the National Hotline and forwarded to specialized law enforcement and/or service providers where appropriate.</p>",
     "textBtn": "Text INFO or HELP",
     "textTo": "to {{phoneNumber}}",
-    "title": "@:home.reportActivity",
+    "title": "Report Activity",
     "whatToReportBtn": "What to Report"
   },
   "resources": {
@@ -219,6 +256,7 @@
     "btns": {
       "aboutTAT": "About TAT",
       "humanTraffickingLaws": "Human Trafficking Laws",
+      "podcasts": "Podcasts",
       "recommendedBooks": "Recommended Books",
       "videos": "Videos"
     },
@@ -235,6 +273,23 @@
       "intro2": "Human trafficking is the recruitment, transportation, transfer, harboring or obtaining of persons through force, fraud and coercion for the purpose of exploitation.",
       "linkText": "Learn more about the human trafficking laws in the US.",
       "title": "@:resources.btns.humanTraffickingLaws"
+    },
+    "podcasts": {
+      "apps": {
+        "addict": "Podcast Addict",
+        "apple": "Apple Podcasts",
+        "deezer": "deezer",
+        "listenNotes": "Listen Notes",
+        "playerFm": "PlayerFM",
+        "podchaser": "Podchaser",
+        "spotify": "Spotify"
+      },
+      "drivingFreedom": {
+        "description": "Welcome to Driving Freedom, a TAT Podcast! As TAT works to educate, equip, empower and mobilize members of the truck, bus and energy industries to combat human trafficking as part of their regular jobs, we wanted to create a podcast that would serve as a helpful training tool to one of the largest mobile armies of eyes and ears out there on the roads seeking to recognize and report this heinous crime. Each short episode is designed to refresh critical issues learned and keep this life-saving information\ntop of mind.",
+        "title": "Driving Freedom"
+      },
+      "listen": "Listen now",
+      "title": "@:resources.btns.podcasts"
     },
     "title": "@:nav.resources",
     "videos": {
@@ -255,8 +310,7 @@
         "description": "<p>A brief training on the elements of the TAT wallet card.</p>",
         "title": "TAT Wallet Card Webinar"
       }
-    },
-    "videosTitle": "@:resources.btns.videos"
+    }
   },
   "server": {
     "notifications": {
@@ -392,7 +446,6 @@
     },
     "intro": "Thank you for volunteering with TAT! Your time in preparation, volunteering and follow up not only helps further our mission, but further exemplifies how passionate this industry is about fighting this heinous crime. Below are the items you will need throughout the volunteer process. We are thrilled to have you as part of the team.",
     "loginTitle": "Volunteer Login",
-    "loginDescription": "",
     "resources": {
       "imgAlt": "You must be connected to the internet to load this image.",
       "infographicTitle": "TAT by the Numbers",

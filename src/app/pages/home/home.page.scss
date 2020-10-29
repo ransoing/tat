@@ -17,3 +17,11 @@ img.logo {
 image-button ion-icon {
     height: 1.4ex;
 }
+
+.button-grid {
+    image-button {
+        display: block;
+        margin-bottom: calc( 2 * var(--ion-grid-column-padding-sm,var(--ion-grid-column-padding,5px)) );
+        &:last-child { margin-bottom: 0 }
+    }
+}

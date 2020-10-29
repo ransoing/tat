@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { AboutTatComponent, RecommendedBooksComponent, HumanTraffickingLawsComponent, VideosComponent } from '../../modals/';
+import {
+  AboutTatComponent,
+  RecommendedBooksComponent,
+  HumanTraffickingLawsComponent,
+  PodcastsComponent,
+  VideosComponent
+} from '../../modals/';
 import { ModalService } from '../../services';
 
 @Component({
@@ -16,6 +22,7 @@ export class ResourcesPage implements OnInit {
   RecommendedBooksComponent = RecommendedBooksComponent;
   HumanTraffickingLawsComponent = HumanTraffickingLawsComponent;
   VideosComponent = VideosComponent;
+  PodcastsComponent = PodcastsComponent;
 
   ngOnInit() {
   }

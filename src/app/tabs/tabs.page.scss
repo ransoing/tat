@@ -1,3 +1,25 @@
 ion-tab-button, ion-tab-bar {
     background: black;
 }
+
+::ng-deep  {
+    .red-flags-popover {
+        --width: calc( 100% - 24px );
+        --background: black;
+        margin-top: -20px;
+
+        .popover-content {
+            transform-origin: bottom !important;
+        }
+
+        ion-list { background: black }
+        ion-item { --background: black }
+        ion-label { padding: 0 24px }
+    }
+
+    .red-flags-popover.ios {
+        --width: calc( 100% - 10px );
+        margin-top: -8px;
+        ion-list { margin-bottom: 0 }
+    }
+}

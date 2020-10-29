@@ -148,6 +148,13 @@ ion-content {
     p {
         line-height: 1.2;
     }
+
+    ul li ul,
+    ul li ol,
+    ol li ul,
+    ol li ol {
+        margin-top: calc( var(--ion-margin) / 2 );
+    }
 }
 
 ion-header > ion-toolbar {

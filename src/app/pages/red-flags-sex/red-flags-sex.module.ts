@@ -3,13 +3,13 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
-import { RedFlagsPage } from './red-flags.page';
+import { RedFlagsSexPage } from './red-flags-sex.page';
 import { CommonComponentsModule } from '../../components/common-components.module';
 
 const routes: Routes = [
   {
     path: '',
-    component: RedFlagsPage
+    component: RedFlagsSexPage
   }
 ];
 
@@ -21,6 +21,6 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     CommonComponentsModule
   ],
-  declarations: [RedFlagsPage]
+  declarations: [RedFlagsSexPage]
 })
-export class RedFlagsPageModule {}
+export class RedFlagsSexPageModule {}

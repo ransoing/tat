@@ -1,0 +1,116 @@
+<ion-header>
+  <ion-toolbar></ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <h1>{{ 'redFlagsSex.title' | translate }}</h1>
+
+  <p>{{ 'redFlagsSex.intro.p1' | translate }}</p>
+  <p>{{ 'redFlagsSex.intro.p2' | translate }}</p>
+  <p><b>{{ 'redFlagsSex.intro.warning' | translate }}</b> {{ 'redFlagsSex.intro.p3' | translate }}</p>
+
+  <hr>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size-xs="12" size-lg="5.75">
+        <h2>{{ 'redFlagsSex.flags.subtitle' | translate }}</h2>
+
+        <ul>
+          <li>{{ 'redFlagsSex.flags.1' | translate }}</li>
+          <li>{{ 'redFlagsSex.flags.2' | translate }}</li>
+          <li>{{ 'redFlagsSex.flags.3' | translate }}</li>
+          <li>{{ 'redFlagsSex.flags.4' | translate }}</li>
+        </ul>
+      
+        <image-button image="red-flags.example-3.jpg" (click)="modalService.open(GenericModalComponent, {title: 'redFlagsSex.caseStudy.title', bodyHtml: 'redFlagsSex.caseStudy.c'})">
+          {{ 'redFlagsSex.example' | translate }}
+        </image-button>
+      
+        <ul>
+          <li>{{ 'redFlagsSex.flags.5' | translate }}</li>
+        </ul>
+      
+        <image-button image="red-flags.example-4.jpg" (click)="modalService.open(CaseStudyDComponent)">{{ 'redFlagsSex.example' | translate }}</image-button>
+      
+        <ul>
+          <li>{{ 'redFlagsSex.flags.6' | translate }}</li>
+        </ul>
+      </ion-col>
+
+      <ion-col size-xs="0" size-lg="0.5"></ion-col>
+
+
+      <ion-col size-xs="12" size-lg="5.75">
+        <h2>{{ 'redFlagsSex.local.title' | translate }}</h2>
+        <p>{{ 'redFlagsSex.local.intro' | translate }}</p>
+        <p>
+          <b>{{ 'redFlagsSex.local.flagsTitle' | translate }}</b>
+        </p>
+        <ul>
+          <li>{{ 'redFlagsSex.local.flags.1' | translate }}</li>
+          <li>{{ 'redFlagsSex.local.flags.2' | translate }}</li>
+        </ul>
+
+        <image-button image="red-flags.example-5.jpg" (click)="modalService.open(GenericModalComponent, {title: 'redFlagsSex.caseStudy.title', bodyHtml: 'redFlagsSex.caseStudy.localA'})">
+          {{ 'redFlagsSex.example' | translate }}
+        </image-button>
+
+        <ul>
+          <li>{{ 'redFlagsSex.local.flags.3' | translate }}</li>
+          <li>
+            {{ 'redFlagsSex.local.flags.4' | translate }}
+            <ul>
+              <li>{{ 'redFlagsSex.local.flags.4a' | translate }}</li>
+              <li>{{ 'redFlagsSex.local.flags.4b' | translate }}</li>
+              <li>{{ 'redFlagsSex.local.flags.4c' | translate }}</li>
+            </ul>
+          </li>
+          <li>{{ 'redFlagsSex.local.flags.5' | translate }}</li>
+        </ul>
+
+        <image-button image="red-flags.example-6.jpg" (click)="modalService.open(GenericModalComponent, {title: 'redFlagsSex.caseStudy.title', bodyHtml: 'redFlagsSex.caseStudy.localB'})">
+          {{ 'redFlagsSex.example' | translate }}
+        </image-button>
+
+        <ul>
+          <li>{{ 'redFlagsSex.local.flags.6' | translate }}</li>
+        </ul>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <hr>
+
+  <h2>{{ 'redFlagsSex.questions.title' | translate }}</h2>
+  <p>
+    <b>{{ 'redFlagsSex.questions.subtitle' | translate }}</b>
+  </p>
+  <ul>
+    <li>{{ 'redFlagsSex.questions.1' | translate }}</li>
+    <li>{{ 'redFlagsSex.questions.2' | translate }}</li>
+  </ul>
+
+  <image-button image="red-flags.example-1.jpg" (click)="modalService.open(GenericModalComponent, {title: 'redFlagsSex.caseStudy.title', bodyHtml: 'redFlagsSex.caseStudy.a'})">
+    {{ 'redFlagsSex.example' | translate }}
+  </image-button>
+
+  <ul>
+    <li>{{ 'redFlagsSex.questions.3' | translate }}</li>
+    <li>{{ 'redFlagsSex.questions.4' | translate }}</li>
+  </ul>
+
+  <image-button image="red-flags.example-2.jpg" (click)="modalService.open(CaseStudyBComponent)">{{ 'redFlagsSex.example' | translate }}</image-button>
+
+  <ul>
+    <li>{{ 'redFlagsSex.questions.5' | translate }}</li>
+    <li>{{ 'redFlagsSex.questions.6' | translate }}</li>
+    <li>{{ 'redFlagsSex.questions.7' | translate }}</li>
+  </ul>
+
+
+  <hr>
+
+  <p>{{ 'redFlagsSex.post1' | translate }} <a (click)="miscService.openExternalLink('https://education.truckersagainsttrafficking.org/lesson/the-tat-training-video/')">{{ 'redFlagsSex.post1Link' | translate }}</a>.</p>
+
+</ion-content>

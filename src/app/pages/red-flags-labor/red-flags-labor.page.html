@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar></ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <h1>{{ 'redFlagsLabor.title' | translate }}</h1>
+
+  <div [innerHTML]="'redFlagsLabor.intro' | translate "></div>
+
+  <hr>
+
+  <h2>{{ 'redFlagsLabor.versus.title' | translate }}</h2>
+  <ion-grid class-xs="has-compact-ul">
+    <ion-row>
+      <ion-col size-xs="12" size-sm="5.75" [innerHTML]="'redFlagsLabor.versus.trafficking' | translate"></ion-col>
+      <ion-col size-xs="0" size-sm="0.5"></ion-col>
+      <ion-col size-xs="12" size-sm="5.75" [innerHTML]="'redFlagsLabor.versus.smuggling' | translate"></ion-col>
+    </ion-row>
+  </ion-grid>
+  
+  <p>
+    <i>{{ 'redFlagsLabor.note' | translate }}</i>
+  </p>
+
+  <hr>
+
+  <div [innerHTML]="'redFlagsLabor.places' | translate"></div>
+
+  <hr>
+
+  <ion-grid class-xs="has-compact-ul">
+    <ion-row>
+      <ion-col size-xs="12" size-lg="5.75">
+        <div [innerHTML]="'redFlagsLabor.indicators' | translate"></div>
+        <image-button image="red-flags.example-2.jpg" (click)="modalService.open(GenericModalComponent, {title: 'redFlagsSex.caseStudy.title', bodyHtml: 'redFlagsLabor.caseStudy.a'})">{{ 'redFlagsSex.example' | translate }}</image-button>
+      </ion-col>
+      <ion-col size-xs="0" size-lg="0.5"></ion-col>
+      <ion-col size-xs="12" size-lg="5.75" [innerHTML]="'redFlagsLabor.howToHelp' | translate"></ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

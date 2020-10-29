@@ -2,8 +2,8 @@
   <ion-toolbar></ion-toolbar>
 </ion-header>
 <ion-content fullscreen padding>
-  <h1>{{ 'redFlags.caseStudy.title' | translate }}</h1>
+  <h1>{{ title | translate }}</h1>
   <ion-icon name="md-close" class="modal-close-btn" slot="fixed" (click)="modal.dismiss()"></ion-icon>
 
-  <div [innerHTML]="'redFlags.caseStudy.a' | translate"></div>
+  <div [innerHTML]="bodyHtml | translate"></div>
 </ion-content>

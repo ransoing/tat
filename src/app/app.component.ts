@@ -127,15 +127,19 @@ export class AppComponent {
 
     // when a user has logged into firebase but has no salesforce entry, pop up the new user signup form
     this.userDataService.newUserDetected.subscribe( async () => {
-      this.modalService.open( SurveyComponent, {
-        titleTranslationKey: 'volunteer.forms.signup.title',
-        survey: await this.surveys.signupSurvey(),
-        onSuccess: async() => {
-          // new user successfully registered. Get the user data and redirect to the volunteer page.
-          this.userDataService.fetchUserData( true );
-          this.navCtrl.navigateRoot( '/tabs/volunteer' );
-        }
-      });
+      // don't open the signup form when the user is on the home page... this shouldn't happen anyway, but some users report
+      // that it does happen.
+      if ( ['/tabs/home', '/', ''].indexOf(this.router.url) === -1 ) {
+        this.modalService.open( SurveyComponent, {
+          titleTranslationKey: 'volunteer.forms.signup.title',
+          survey: await this.surveys.signupSurvey(),
+          onSuccess: async() => {
+            // new user successfully registered. Get the user data and redirect to the volunteer page.
+            this.userDataService.fetchUserData( true );
+            this.navCtrl.navigateRoot( '/tabs/volunteer' );
+          }
+        });
+      }
     });
 
     // if the app was on the login modal when it was last closed, open that modal now
@@ -180,3 +184,5 @@ export class AppComponent {
   }
 
 }
+
+// @@ feature/labor-trafficking

@@ -162,7 +162,7 @@
     "example": "Example",
     "flags": {
       "1": "Lack of knowledge of their whereabouts; not in control of ID/passport",
-      "2": "Restricted or controlled communication-not allowed to speak for self",
+      "2": "Restricted or controlled communication — not allowed to speak for self",
       "3": "CB chatter about “commercial company” or flashing lights signaling “buyer” location",
       "4": "Acknowledgement of a pimp and making a quota",
       "5": "Signs of branding or tattooing of trafficker’s name (often on the neck)",
@@ -171,7 +171,7 @@
     },
     "intro": {
       "p1": "Human trafficking is modern-day slavery. Traffickers use force, fraud and coercion to control their victims. Any minor engaged in commercial sex is a victim of human trafficking. While the initial purchase of victims may occur online, the real-time sale of victims can happen in many locations, including truck stops, restaurants, rest areas, hotels/motels, strip clubs, private homes, etc.",
-      "p2": "Truckers are the eyes and the ears of our nation’s highways. If you see a minor working any of those areas or suspect that the person selling sex is under someone else’s control in order to make a quota, call the National Hotline and report your tip.",
+      "p2": "Truckers are the eyes and the ears of our nation’s highways. If you see a minor working any of those areas or suspect that the person selling sex is under someone else’s control in order to make a quota, call the National Human Trafficking Hotline and report your tip.",
       "p3": "Allow law enforcement to deal with traffickers and recover victims. Approaching traffickers is not only dangerous for you and their victims but could lead to problems in the eventual prosecution of traffickers.",
       "warning": "Warning: Please do not approach traffickers."
     },
@@ -191,8 +191,8 @@
       "intro": "As small package, feeder or delivery service providers, local drivers often have dedicated routes in neighborhoods and could come across street-based prostitution and/or trafficking; brothels being run out of homes, apartment buildings or within an illicit massage business; and/or victims in need of assistance.",
       "title": "Local Drivers"
     },
-    "post1": "If you haven't seen the TAT Training DVD you can go to our",
-    "post1Link": "education portal to complete your TAT Training",
+    "post1": "If you haven't seen the TAT Training DVD, you can go to our",
+    "post1Link": "education portal to complete your TAT Training.",
     "questions": {
       "1": "Do you keep your own money? If not, who does?",
       "2": "Do your parents/siblings/relatives know where you are? If not, why not?",
@@ -213,7 +213,7 @@
     "callMexicoHotline": "Call Mexico Hotline",
     "emailBtn": "Email Report",
     "emailBtnHint": "A phone call is strongly preferred",
-    "intro": "<p><b>Immediately:</b> If you’re watching a crime in progress, call 911 and then call the hotline. If you’re at a truck stop/travel plaza or any other place of business, please notify the manager-on-duty of the suspicious activity; she/he needs to be aware of what is taking place on their property and assist in ending it.</p><p>Anti-Trafficking Hotline Advocates are available 24/7 to take reports of potential human trafficking. All reports are confidential and you may remain anonymous. Interpreters are available. The information you provide will be reviewed by the National Hotline and forwarded to specialized law enforcement and/or service providers where appropriate.</p>",
+    "intro": "<p><b>Immediately:</b> If you’re watching a crime in progress, call 911 and then call the hotline. If you’re at a truck stop/travel plaza or any other place of business, please notify the manager-on-duty of the suspicious activity; she/he needs to be aware of what is taking place on the property and assist in ending it.</p><p>Anti-trafficking hotline advocates are available 24/7 to take reports of potential human trafficking. All reports are confidential, and you may remain anonymous. Interpreters are available. The information you provide will be reviewed by the National Hotline and forwarded to specialized law enforcement and/or service providers where appropriate.</p>",
     "textBtn": "Text INFO or HELP",
     "textTo": "to {{phoneNumber}}",
     "title": "Report Activity",
@@ -299,11 +299,11 @@
         "title": "TAT Training Video"
       },
       "video2": {
-        "description": "<p>Hear the story of Kevin Kimmel the 2015 Harriet Tubman Award winner and change maker of the highway.</p>",
+        "description": "<p>Hear the story of Kevin Kimmel, the 2015 Harriet Tubman Award winner and change maker of the highway.</p>",
         "title": "Be a Changemaker!"
       },
       "video3": {
-        "description": "<p>Truckers Against Trafficking presents this training on human trafficking and information on how law enforcement can investigate and prosecute this crime.</p><p>Thank you to our sponsors Help Inc. and Vigilant Solutions and our partners at iEmpathize for helping to make this training video possible.</p>",
+        "description": "<p>Truckers Against Trafficking presents this training on human trafficking and information on how law enforcement can investigate and prosecute this crime.</p><p>Thank you to our sponsors — Help Inc. and Vigilant Solutions — and our partners at iEmpathize for helping to make this training video possible.</p>",
         "title": "TAT Law Enforcement Training"
       },
       "video4": {
@@ -446,6 +446,7 @@
     },
     "intro": "Thank you for volunteering with TAT! Your time in preparation, volunteering and follow up not only helps further our mission, but further exemplifies how passionate this industry is about fighting this heinous crime. Below are the items you will need throughout the volunteer process. We are thrilled to have you as part of the team.",
     "loginTitle": "Volunteer Login",
+    "notice": "If you haven't gone through the volunteer training yet, contact tat.truckers@gmail.com about your interest first. Please note the volunteer training is different than becoming TAT Trained.",
     "resources": {
       "imgAlt": "You must be connected to the internet to load this image.",
       "infographicTitle": "TAT by the Numbers",
@@ -489,7 +490,7 @@
     "location": "Location",
     "locationText": "Where did the suspicious activity take place? Do you have an address? Be as specific as you can.",
     "people": "People",
-    "peopleText": "Who is involved in the activity? Make note of height, weight, hair color, eye color, age, etc. Take photos if possible to show to the authorities when they arrive.",
+    "peopleText": "Who is involved in the activity? Make note of height, weight, hair color, eye color, age, etc. Take photos, if possible, to show to the authorities when they arrive.",
     "title": "@:report.whatToReportBtn"
   }
 }

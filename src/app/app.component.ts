@@ -142,9 +142,13 @@ export class AppComponent {
       }
     });
 
-    // if the app was on the login modal when it was last closed, open that modal now
-    if ( localStorage.getItem(LoginComponent.LOGIN_REDIRECT_URL_KEY) ) {
-      this.modalService.open( LoginComponent );
+    // if the user was signing into a federated identity provider when the app was last closed,
+    // attempt to go to the restricted page that the user initially tried to navigate to, which will open the login modal
+    // and complete the sign-in process
+    const redirectUrl = localStorage.getItem( LoginComponent.LOGIN_REDIRECT_URL_KEY );
+    if ( redirectUrl ) {
+      localStorage.removeItem( LoginComponent.LOGIN_REDIRECT_URL_KEY );
+      this.navCtrl.navigateRoot( redirectUrl );
     }
   }
 

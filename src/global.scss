@@ -191,6 +191,11 @@ ion-alert {
     .alert-title {
         color: black !important;
     }
+
+    &.volunteer-notice {
+        --max-width: 400px;
+        --width: calc( 100% - 25px );
+    }
 }
 
 .sc-ion-alert-ios {

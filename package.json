@@ -10,7 +10,10 @@
     "build-external": "node build-external.js",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "start-android": "ionic cordova run android",
+    "start-android-live": "ionic cordova run android -l",
+    "build-apk": "ionic cordova build android --release --prod"
   },
   "private": true,
   "dependencies": {

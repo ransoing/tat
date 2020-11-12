@@ -4,7 +4,7 @@
 // compile-time error checking.
 
 import { ISurvey, ISurveyPageFunc, SurveyFieldType } from '../../src/app/models/survey';
-import { IOutreachLocation, OutreachLocationType, VolunteerType } from '../../src/app/models/user-data';
+import { IOutreachLocation, OutreachLocationType, VolunteerType, IAmbassadorEvent } from '../../src/app/models/user-data';
 import { IUserDataService, IProxyAPIService, IMiscService, ITrxService } from '../../src/app/models/services';
 
 class SurveyService {
@@ -396,10 +396,136 @@ class SurveyService {
   }
 
 
-  // preEventSurvey
+  // @@ preEventSurvey
 
 
-  // postEventSurvey
+  async postEventSurvey( event: IAmbassadorEvent ): Promise<ISurvey> {
+    return {
+      pages: [() => { return {
+        topTextTranslationKey: 'volunteer.forms.postEvent.labels.howEngaged',
+        fields: [{
+          type: SurveyFieldType.CHOICE,
+          name: 'howEngaged',
+          multi: true,
+          options: [{
+            value: 'gaveSpeech',
+            labelTranslationKey: 'volunteer.forms.postEvent.labels.engaged.gaveSpeech'
+          }, {
+            value: 'hostedTable',
+            labelTranslationKey: 'volunteer.forms.postEvent.labels.engaged.hostedTable'
+          }, {
+            value: 'interviewedByMedia',
+            labelTranslationKey: 'volunteer.forms.postEvent.labels.engaged.interviewedByMedia'
+          }]
+        }, {
+          type: SurveyFieldType.TEXTAREA,
+          name: 'howEngagedOther',
+          labelTranslationKey: 'misc.other'
+        }]
+      }}, () => { return {
+        isVisible: vals => vals.howEngaged.includes( 'hostedTable' ),
+        topTextTranslationKey: 'volunteer.forms.postEvent.labels.numAttendedEvent',
+        fields: [{
+          type: SurveyFieldType.NUMBER,
+          name: 'numAttendedEvent',
+          helperTranslationKey: 'volunteer.forms.postEvent.labels.numAttendedEventHint',
+          isRequired: true
+        }]
+      }}, () => { return {
+        isVisible: vals => vals.howEngaged.includes( 'gaveSpeech' ),
+        topTextTranslationKey: 'volunteer.forms.postEvent.labels.numAttendedPresentation',
+        fields: [{
+          type: SurveyFieldType.NUMBER,
+          name: 'numAttendedPresentation',
+          isRequired: true
+        }]
+      }}, () => { return {
+        topTextTranslationKey: 'volunteer.forms.postEvent.labels.movedAudience',
+        fields: [{
+          type: SurveyFieldType.TEXTAREA,
+          name: 'movedAudience'
+        }]
+      }}, () => { return {
+        isVisible: vals => vals.howEngaged.includes( 'gaveSpeech' ),
+        topTextTranslationKey: 'volunteer.forms.postEvent.labels.attendeeQuotes',
+        fields: [{
+          type: SurveyFieldType.TEXTAREA,
+          name: 'attendeeQuotes'
+        }]
+      }}, () => { return {
+        isVisible: vals => vals.howEngaged.includes( 'gaveSpeech' ) || vals.howEngaged.includes( 'hostedTable' ),
+        topTextTranslationKey: 'volunteer.forms.postEvent.labels.confidence',
+        fields: [{
+          type: SurveyFieldType.CHOICE,
+          name: 'confidence',
+          options: [{
+            value: 'high',
+            labelTranslationKey: 'volunteer.forms.postEvent.labels.confidenceLevels.high'
+          }, {
+            value: 'medium',
+            labelTranslationKey: 'volunteer.forms.postEvent.labels.confidenceLevels.medium'
+          }, {
+            value: 'low',
+            labelTranslationKey: 'volunteer.forms.postEvent.labels.confidenceLevels.low'
+          }]
+        }]
+      }}, () => { return {
+        isVisible: vals => ( vals.howEngaged.includes('gaveSpeech') || vals.howEngaged.includes('hostedTable') ) && vals.confidence !== 'high',
+        fields: [{
+          preFieldTextTranslationKey: 'volunteer.forms.postEvent.labels.confidenceHelp',
+          type: SurveyFieldType.TEXTAREA,
+          name: 'confidenceHelp'
+        }]
+      }}, () => { return {
+        isVisible: vals => ( vals.howEngaged.includes('gaveSpeech') || vals.howEngaged.includes('hostedTable') ) && vals.confidence === 'high',
+        fields: [{
+          preFieldTextTranslationKey: 'volunteer.forms.postEvent.labels.confidencePrepared',
+          type: SurveyFieldType.TEXTAREA,
+          name: 'confidencePrepared'
+        }]
+      }}, () => { return {
+        topTextTranslationKey: 'volunteer.forms.postEvent.labels.whatWentWell',
+        fields: [{
+          type: SurveyFieldType.TEXTAREA,
+          name: 'whatWentWell'
+        }]
+      }}, () => { return {
+        topTextTranslationKey: 'volunteer.forms.postEvent.labels.whatDidntGoWell',
+        fields: [{
+          type: SurveyFieldType.TEXTAREA,
+          name: 'whatDidntGoWell'
+        }]
+      }}, () => { return {
+        topTextTranslationKey: 'volunteer.forms.postEvent.labels.pressMembers',
+        fields: [{
+          type: SurveyFieldType.TEXTAREA,
+          name: 'pressMembers'
+        }]
+      }}, () => { return {
+        topTextTranslationKey: 'volunteer.forms.postEvent.labels.other',
+        fields: [{
+          type: SurveyFieldType.TEXTAREA,
+          name: 'other'
+        }]
+      }}, () => { return {
+        topTextTranslationKey: 'volunteer.forms.postEvent.labels.volunteerQuote',
+        fields: [{
+          type: SurveyFieldType.TEXTAREA,
+          name: 'volunteerQuote'
+        }]
+      }}],
+      onSubmit: async vals => {
+        // alter some values before sending to the proxy
+        vals.firebaseIdToken = await this.userDataService.firebaseUser.getIdToken();
+        // turn 'howEngaged' into an array
+        vals.howEngaged = vals.howEngaged.split( '; ' );
+        vals.eventId = event.id;
+
+        // send to the proxy and show an error message if appropriate
+        return this.genericProxyPOST( 'createPostEventReport', vals );
+      }
+    };
+  }
 
 
   // a feedback survey may be associated with a campaign. If the campaign isn't defined by the parameter,

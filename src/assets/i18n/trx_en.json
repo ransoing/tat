@@ -294,8 +294,34 @@
         "title": "@:volunteer.btns.testimonial"
       },
       "postEvent": {
+        "labels": {
+          "attendeeQuotes": "Were you able to collect any quotes from the attendees about the presentation or topic that demonstrate impact? Please share those here, if applicable.",
+          "confidence": "How confident were you in delivering the presentation and/or hosting the table?",
+          "confidenceHelp": "Is there anything we could do to increase your confidence?",
+          "confidenceLevels": {
+            "high": "Very confident",
+            "low": "Not confident",
+            "medium": "Somewhat confident"
+          },
+          "confidencePrepared": "What made you prepared for this event?",
+          "engaged": {
+            "gaveSpeech": "Gave a speech in front of a group of people in any form (including a panel or press conference) with or without the TAT ppt",
+            "hostedTable": "Hosted a table",
+            "interviewedByMedia": "Interviewed by the media"
+          },
+          "howEngaged": "Select the ways you engaged at this event:",
+          "movedAudience": "Was there anybody you spoke to that was moved (emotionally or moved to take action)? If so, list specific examples. List the contact information for those that plan to take action if follow up is needed.",
+          "numAttendedEvent": "How many people attended the event?",
+          "numAttendedEventHint": "Give a rough estimate of this number, if necessary.",
+          "numAttendedPresentation": "How many people were in the audience for your presentation/speech?",
+          "other": "Is there anything additional you would like us to know?",
+          "pressMembers": "Were there any members of the press at the event? If so, do you know what station they were from?",
+          "volunteerQuote": "We would love a quote from you about how you feel about being a TAT Ambassador and/or how you feel about this event to use in impact reports and our website. Please provide a statement here.",
+          "whatDidntGoWell": "What could have gone more smoothly for you at this event?",
+          "whatWentWell": "What went well for you at this event?"
+        },
         "select": "Which event did you volunteer at?",
-        "submitSuccess": "@:volunteer.forms.successReport",
+        "submitSuccess": "@:volunteer.forms.successReport Please text or email any photos of the event to Laura.",
         "title": "@:volunteer.btns.postEventReport"
       },
       "postOutreach": {
@@ -392,7 +418,6 @@
     },
     "intro": "Thank you for volunteering with TAT! Your time in preparation, volunteering and follow up not only helps further our mission, but further exemplifies how passionate this industry is about fighting this heinous crime. Below are the items you will need throughout the volunteer process. We are thrilled to have you as part of the team.",
     "loginTitle": "Volunteer Login",
-    "loginDescription": "",
     "resources": {
       "imgAlt": "You must be connected to the internet to load this image.",
       "infographicTitle": "TAT by the Numbers",

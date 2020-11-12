@@ -140,7 +140,7 @@ export class UserDataService implements IUserDataService {
       this.data.outreachLocations = this.data.outreachLocations.sort( (a, b) => a.date.getTime() - b.date.getTime() );
     }
     if ( this.data.events ) {
-      this.data.events = this.data.events.sort( (a, b) => a.date.getTime() - b.date.getTime() );
+      this.data.events = this.data.events.sort( (a, b) => a.endDate.getTime() - b.endDate.getTime() );
     }
     // save the data in local cache
     this.updateCache();

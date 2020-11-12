@@ -1,4 +1,4 @@
-import { IUserData } from './user-data';
+import { IUserData, IAmbassadorEvent } from './user-data';
 import { User } from 'firebase';
 import { ISurvey } from './survey';
 import { IOutreachLocation } from './user-data';
@@ -29,7 +29,7 @@ export interface ISurveyService {
     preOutreachSurvey( numLocations: number ): Promise<ISurvey>;
     postOutreachSurvey( location: IOutreachLocation ): Promise<ISurvey>;
     // preEventSurvey
-    // postEventSurvey
+    postEventSurvey( event: IAmbassadorEvent ): Promise<ISurvey>;
     testimonialFeedbackSurvey( campaignId?: string ): Promise<ISurvey>;
     signupSurvey(): Promise<ISurvey>;
     editAccountSurvey(): Promise<ISurvey>;

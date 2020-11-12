@@ -66,7 +66,7 @@ import {
 } from './modals';
 import {
   VolunteerSettingsComponent, VolunteerResourcesComponent, SurveyComponent,
-  TrainingVideoComponent, LoginComponent, PostOutreachSelectionComponent
+  TrainingVideoComponent, LoginComponent, PostActivitySelectionComponent
 } from './modals-volunteer';
 import { TabsPageModule } from './tabs/tabs.module';
 
@@ -77,14 +77,14 @@ import { TabsPageModule } from './tabs/tabs.module';
     AboutTatComponent, HumanTraffickingLawsComponent,
     CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent,
     VolunteerSettingsComponent, VolunteerResourcesComponent, SurveyComponent,
-    TrainingVideoComponent, LoginComponent, PostOutreachSelectionComponent
+    TrainingVideoComponent, LoginComponent, PostActivitySelectionComponent
   ],
   entryComponents: [
     WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
     AboutTatComponent, HumanTraffickingLawsComponent,
     CaseStudyAComponent, CaseStudyBComponent, CaseStudyCComponent, CaseStudyDComponent,
     VolunteerSettingsComponent, VolunteerResourcesComponent, SurveyComponent,
-    TrainingVideoComponent, LoginComponent, PostOutreachSelectionComponent
+    TrainingVideoComponent, LoginComponent, PostActivitySelectionComponent
   ],
   imports: [
     BrowserModule,

@@ -40,6 +40,17 @@ export interface IOutreachLocation {
   };
 }
 
+// Ambassador volunteers are shown events for which they can fill out post-event reports. The object
+// below describes each event
+export interface IAmbassadorEvent {
+  id: string; // ID of the object in salesforce
+  name: string; // the name of the event
+  startDate?: Date;
+  endDate?: Date;
+  location?: string; // a generic description of the event's location
+  state?: string;
+}
+
 export interface IUserData {
   salesforceId?: string; // ID of the Contact object in salesforce which represents this user
   firstName?: string;
@@ -61,7 +72,7 @@ export interface IUserData {
   trainingVideoRequiredForTeam?: boolean;
 
   outreachLocations?: IOutreachLocation[];
-  events?: any[]; // @@TODO define events object
+  events?: IAmbassadorEvent[];
 
   notificationPreferences?: {
     language?: IUserSettings['language'];

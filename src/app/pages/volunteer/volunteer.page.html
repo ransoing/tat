@@ -83,7 +83,7 @@
         <ion-col size-xs="12" size-md="6" size-lg="4" *ngIf="userDataService.data.volunteerType === VolunteerType.VOLUNTEER_DISTRIBUTOR">
           <image-button
             image="volunteer.post-outreach-report.jpg"
-            (click)="modalService.open(PostOutreachSelectionComponent)"
+            (click)="modalService.open(PostActivitySelectionComponent)"
             [required]="true"
             [disabled]="userDataService.mustWatchTrainingVideo() || userDataService.data.outreachLocations.length === 0">
               {{ 'volunteer.btns.postOutreachReport' | translate }}
@@ -93,9 +93,9 @@
         <ion-col size-xs="12" size-md="6" size-lg="4" *ngIf="userDataService.data.volunteerType !== VolunteerType.VOLUNTEER_DISTRIBUTOR">
           <image-button
             image="volunteer.post-outreach-report.jpg"
-            (click)="modalService.open(PostEventSelectionComponent)"
+            (click)="modalService.open(PostActivitySelectionComponent)"
             [required]="true"
-            [disabled]="userDataService.mustWatchTrainingVideo() || userDataService.data.events.length === 0"> <!-- @@TODO make a userDataService.data.events object -->
+            [disabled]="userDataService.mustWatchTrainingVideo() || userDataService.data.events.length === 0">
               {{ 'volunteer.btns.postEventReport' | translate }}
           </image-button>
         </ion-col>

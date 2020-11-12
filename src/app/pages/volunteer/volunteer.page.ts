@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController, LoadingController } from '@ionic/angular';
 import {
-  PostOutreachSelectionComponent, 
+  PostActivitySelectionComponent,
   VolunteerResourcesComponent, VolunteerSettingsComponent, TrainingVideoComponent,
   SurveyComponent
 } from '../../modals-volunteer';
@@ -18,7 +18,7 @@ import { ProxyAPIService } from '../../services/proxy-api.service';
 export class VolunteerPage {
 
   public VolunteerResourcesComponent = VolunteerResourcesComponent;
-  public PostOutreachSelectionComponent = PostOutreachSelectionComponent;
+  public PostActivitySelectionComponent = PostActivitySelectionComponent;
   public VolunteerSettingsComponent = VolunteerSettingsComponent;
   public VolunteerType = VolunteerType;
 
@@ -151,7 +151,6 @@ export class VolunteerPage {
 
   showPreEventForm() {
     // @@TODO
-    // @@Also create and import PostEventSelectionComponent or make the other SelectionComponent able to handle both events and outreach targets
   }
 
 

@@ -4,7 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { ISurvey } from '../models/survey';
 import { ISurveyService } from '../models/services';
-import { IOutreachLocation } from '../models/user-data';
+import { IOutreachLocation, IAmbassadorEvent } from '../models/user-data';
 import { UserDataService } from './user-data.service';
 import { ProxyAPIService } from './proxy-api.service';
 import { MiscService } from './misc.service';
@@ -42,7 +42,9 @@ export class SurveyService implements ISurveyService {
 
   // preEventSurvey
 
-  // postEventSurvey
+  async postEventSurvey( event: IAmbassadorEvent ): Promise<ISurvey> {
+    return this._loadSurvey( externalScript => externalScript.postEventSurvey(event) );
+  }
 
   async testimonialFeedbackSurvey( campaignId?: string ): Promise<ISurvey> {
     return this._loadSurvey( externalScript => externalScript.testimonialFeedbackSurvey(campaignId) );

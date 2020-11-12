@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar></ion-toolbar>
+</ion-header>
+<ion-content fullscreen padding>
+  <div *ngIf="userDataService.data">
+    <ng-container *ngIf="userDataService.data.volunteerType === VolunteerType.VOLUNTEER_DISTRIBUTOR">
+      <h1>{{ 'volunteer.forms.postOutreach.title' | translate }}</h1>
+      <ion-icon name="md-close" class="modal-close-btn" slot="fixed" (click)="modal.dismiss()"></ion-icon>
+      <p>{{ 'volunteer.forms.postOutreach.select' | translate }}</p>
+    </ng-container>
+    <ng-container *ngIf="userDataService.data.volunteerType === VolunteerType.AMBASSADOR_VOLUNTEER">
+      <h1>{{ 'volunteer.forms.postEvent.title' | translate }}</h1>
+      <ion-icon name="md-close" class="modal-close-btn" slot="fixed" (click)="modal.dismiss()"></ion-icon>
+      <p>{{ 'volunteer.forms.postEvent.select' | translate }}</p>
+    </ng-container>
+    
+    <ng-container *ngFor="let target of userDataService.data.outreachLocations">
+      <ion-card (click)="openPostOutreachReport(target)" color="primary">
+        <ion-card-header>
+          <ion-card-title>{{target.name}}</ion-card-title>
+          <ion-card-subtitle>{{ 'volunteer.forms.preOutreach.labels.locationTypes.' + target.type | translate }}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          {{target.street}}<br>
+          {{target.city}}, {{target.state}}
+          <div *ngIf="target.date" class="outreach-date">{{ 'volunteer.forms.postOutreach.plannedDate' | translate }}: {{target.date.toLocaleDateString()}}</div>
+        </ion-card-content>
+      </ion-card>
+      <div class="card-actions">
+        <ion-button fill="clear" color="light" (click)="miscService.openExternalLink(getMapsLink(target))"><ion-icon name="pin"></ion-icon></ion-button>
+        <ion-button *ngIf="userDataService.data.isTeamCoordinator || !userDataService.data.isOnVolunteerTeam" fill="clear" color="danger" (click)="deleteTarget(target)"><ion-icon name="trash"></ion-icon></ion-button>
+      </div>
+    </ng-container>
+
+    <ng-container *ngFor="let event of userDataService.data.events">
+      <ion-card (click)="openPostEventReport(event)" color="primary">
+        <ion-card-header>
+          <ion-card-title>{{event.name}}</ion-card-title>
+          <ion-card-subtitle *ngIf="event.startDate && event.endDate">
+            {{ event.startDate.toLocaleDateString() }}
+            <ng-container *ngIf="event.startDate.getTime() !== event.endDate.getTime()"> &ndash; {{ event.endDate.toLocaleDateString() }}</ng-container>
+          </ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          {{event.location}}<br>
+          {{event.state}}
+        </ion-card-content>
+      </ion-card>
+    </ng-container>
+  </div>
+
+</ion-content>

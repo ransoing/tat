@@ -1,17 +1,19 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { UserDataService, ModalService, SurveyService, MiscService, TrxService } from '../../services';
 import { SurveyComponent } from '../survey/survey.component';
-import { IOutreachLocation, UserDataRequestFlags } from '../../models/user-data';
+import { IOutreachLocation, UserDataRequestFlags, VolunteerType, IAmbassadorEvent } from '../../models/user-data';
 import { AlertController } from '@ionic/angular';
 import { ProxyAPIService } from '../../services/proxy-api.service';
 
 @Component({
-  templateUrl: './post-outreach-selection.component.html',
-  styleUrls: ['./post-outreach-selection.component.scss']
+  templateUrl: './post-activity-selection.component.html',
+  styleUrls: ['./post-activity-selection.component.scss']
 })
-export class PostOutreachSelectionComponent implements AfterViewInit {
+export class PostActivitySelectionComponent implements AfterViewInit {
+  VolunteerType = VolunteerType;
+
   public modal: HTMLIonModalElement;
-  
+
   constructor(
     public userDataService: UserDataService,
     public modalService: ModalService,
@@ -36,27 +38,26 @@ export class PostOutreachSelectionComponent implements AfterViewInit {
           this.modal.dismiss();
         }
 
-        // prompt the user to fill out the testimonial/feedback survey
-        const alert = await this.alertController.create({
-          message: await this.trx.t( 'volunteer.feedbackPrompt' ),
-          buttons: [
-            {
-              text: await this.trx.t( 'misc.buttons.close' ),
-              role: 'cancel'
-            }, {
-              text: await this.trx.t( 'misc.buttons.ok' ),
-              handler: async () => {
-                this.modalService.open( SurveyComponent, {
-                  titleTranslationKey: 'volunteer.forms.feedback.title',
-                  successTranslationKey: 'volunteer.forms.feedback.submitSuccess',
-                  survey: await this.surveys.testimonialFeedbackSurvey( outreachTarget.campaignId ),
-                  onSuccess: () => {}
-                });
-              }
-            }
-          ]
-        });
-        alert.present();
+        this.promptForFeedbackSurvey( outreachTarget.campaignId );
+      }
+    });
+  }
+
+  async openPostEventReport( event: IAmbassadorEvent ) {
+    // open the post event survey, passing in data from the selected event
+    this.modalService.open( SurveyComponent, {
+      titleTranslationKey: 'volunteer.forms.postEvent.title',
+      successTranslationKey: 'volunteer.forms.postEvent.submitSuccess',
+      survey: await this.surveys.postEventSurvey( event ),
+      onSuccess: async () => {
+        // update just the events in the user data
+        await this.userDataService.fetchUserData( true, UserDataRequestFlags.UNFINISHED_ACTIVITIES );
+        // close the modal if there are no more events
+        if ( this.userDataService.data.events.length === 0 ) {
+          this.modal.dismiss();
+        }
+
+        this.promptForFeedbackSurvey( event.id );
       }
     });
   }
@@ -94,6 +95,30 @@ export class PostOutreachSelectionComponent implements AfterViewInit {
           }
         }
       }]
+    });
+    alert.present();
+  }
+
+  async promptForFeedbackSurvey( campaignId: string ) {
+    // prompt the user to fill out the testimonial/feedback survey
+    const alert = await this.alertController.create({
+      message: await this.trx.t( 'volunteer.feedbackPrompt' ),
+      buttons: [
+        {
+          text: await this.trx.t( 'misc.buttons.close' ),
+          role: 'cancel'
+        }, {
+          text: await this.trx.t( 'misc.buttons.ok' ),
+          handler: async () => {
+            this.modalService.open( SurveyComponent, {
+              titleTranslationKey: 'volunteer.forms.feedback.title',
+              successTranslationKey: 'volunteer.forms.feedback.submitSuccess',
+              survey: await this.surveys.testimonialFeedbackSurvey( campaignId ),
+              onSuccess: () => {}
+            });
+          }
+        }
+      ]
     });
     alert.present();
   }

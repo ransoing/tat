@@ -277,8 +277,11 @@
         "title": "@:volunteer.btns.testimonial"
       },
       "postEvent": {
+        "labels": {
+          "confidenceLevels": {},
+          "engaged": {}
+        },
         "select": "¿En que evento fue usted voluntario?",
-        "submitSuccess": "@:volunteer.forms.successReport",
         "title": "@:volunteer.btns.postEventReport"
       },
       "postOutreach": {

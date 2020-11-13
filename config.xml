@@ -97,6 +97,7 @@
         <splash density="port-xxhdpi" src="resources/android/splash/drawable-port-xxhdpi-screen.png" />
         <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
         <preference name="android-minSdkVersion" value="19" />
+        <preference name="android-targetSdkVersion" value="29" />
         <comment>singleTask is needed for the OAuth process, to prevent multiple instances of the app from potentially being spawned</comment>
         <preference name="AndroidLaunchMode" value="singleTask" />
     </platform>

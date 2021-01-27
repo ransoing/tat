@@ -3,6 +3,7 @@
   "version": "3.3.0",
   "author": "Ransom Christofferson and TAT",
   "homepage": "https://truckersagainsttrafficking.org/",
+  "license": "MIT",
   "scripts": {
     "ng": "ng",
     "start": "ionic serve -l",

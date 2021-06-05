@@ -6,7 +6,8 @@ import { Storage } from '@ionic/storage';
  */
 
 export interface IUserSettings {
-  language: 'en' | 'es'
+  language: 'en' | 'es',
+  industry: 'local' | 'mover' | 'other'
 }
 
 @Injectable({
@@ -15,6 +16,7 @@ export interface IUserSettings {
 export class SettingsService implements IUserSettings {
 
   public language: IUserSettings['language'];
+  public industry: IUserSettings['industry'];
 
   private isReady: boolean = false;
   

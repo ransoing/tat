@@ -1,3 +1,35 @@
+<!-- TITLE
+
+Three paragraphs
+________________________________________
+
+[select your industry]
+
+[Other] ->
+	Generic flags
+	Questions
+
+[Local driver] ->
+  Generic flags
+  "On the Road"
+  "In the neightborhood"
+  "Rideshare drivers"
+  Questions
+  Takeaways
+
+[Mover] ->
+  Generic flags
+  "On the road"
+  "Residential brothel"
+  "Home occupied by..."
+  Questions
+  Takeaways
+
+
+
+
+Same thing on Labor Trafficking page -->
+
 <ion-header>
   <ion-toolbar></ion-toolbar>
 </ion-header>
@@ -10,7 +42,29 @@
   <p><b>{{ 'redFlagsSex.intro.warning' | translate }}</b> {{ 'redFlagsSex.intro.p3' | translate }}</p>
 
   <hr>
+<!-- @@ -->
+  <ion-item>
+    <ion-label>Your industry</ion-label>
+    <ion-select
+      class="industry-select"
+      interface="alert"
+      placeholder="Select your industry"
+      [(ngModel)]="settings.industry"
+      (ionChange)="onSetIndustry()"
+      cancelText="{{ 'misc.buttons.cancel' | translate }}"
+      okText="{{ 'misc.buttons.ok' | translate }}">
+      <ion-select-option value="local">Local driver</ion-select-option>
+      <ion-select-option value="mover">Mover</ion-select-option>
+      <ion-select-option value="other">Other</ion-select-option>
+    </ion-select>
+  </ion-item>
 
+  <ng-container *ngIf="settings.industry === 'local'">Local.</ng-container>
+
+  <ng-container *ngIf="settings.industry === 'mover'">Other.</ng-container>
+
+  <ng-container *ngIf="settings.industry === 'other'">Mover.</ng-container>
+<!-- -->
   <ion-grid>
     <ion-row>
       <ion-col size-xs="12" size-lg="5.75">

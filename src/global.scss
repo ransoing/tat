@@ -302,6 +302,13 @@ ion-grid {
         height: 100%;
     }
 }
+// @@
+.industry-select {
+    border: 1px solid #333;
+    width: 220px;
+    padding-right: 1em;
+}
+// @@
 
 // @@ disable the TOS link until we have a terms of service document
 .firebaseui-link.firebaseui-tos-link {

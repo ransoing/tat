@@ -78,3 +78,10 @@ $sidePadding: 0.5em;
         cursor: default;
     }
 }
+
+// make it smaller when the button is embedded in a list item
+::ng-deep li image-button .wrap {
+    font-size: 200% !important;
+    margin-top: 0.3em;
+    margin-bottom: 0.4em;
+}

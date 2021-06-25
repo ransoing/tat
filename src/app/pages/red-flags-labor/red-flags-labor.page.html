@@ -9,34 +9,40 @@
 
   <hr>
 
-  <h2>{{ 'redFlagsLabor.versus.title' | translate }}</h2>
-  <ion-grid class-xs="has-compact-ul">
-    <ion-row>
-      <ion-col size-xs="12" size-sm="5.75" [innerHTML]="'redFlagsLabor.versus.trafficking' | translate"></ion-col>
-      <ion-col size-xs="0" size-sm="0.5"></ion-col>
-      <ion-col size-xs="12" size-sm="5.75" [innerHTML]="'redFlagsLabor.versus.smuggling' | translate"></ion-col>
-    </ion-row>
-  </ion-grid>
-  
-  <p>
-    <i>{{ 'redFlagsLabor.note' | translate }}</i>
-  </p>
+  <app-industry-selector></app-industry-selector>
 
-  <hr>
+  <h3 *ngIf="settings.industry === undefined">{{ 'redFlagsMisc.selectIndustry.noneSelected' | translate }}</h3>
 
-  <div [innerHTML]="'redFlagsLabor.places' | translate"></div>
+  <ng-container *ngIf="settings.industry !== undefined">
+    <h2>{{ 'redFlagsLabor.versus.title' | translate }}</h2>
+    <ion-grid>
+      <ion-row>
+        <ion-col size-xs="12" size-sm="5.75" [innerHTML]="'redFlagsLabor.versus.trafficking' | translate"></ion-col>
+        <ion-col size-xs="0" size-sm="0.5"></ion-col>
+        <ion-col size-xs="12" size-sm="5.75" [innerHTML]="'redFlagsLabor.versus.smuggling' | translate"></ion-col>
+      </ion-row>
+    </ion-grid>
+    
+    <p>
+      <i>{{ 'redFlagsLabor.note' | translate }}</i>
+    </p>
 
-  <hr>
+    <hr>
 
-  <ion-grid class-xs="has-compact-ul">
-    <ion-row>
-      <ion-col size-xs="12" size-lg="5.75">
-        <div [innerHTML]="'redFlagsLabor.indicators' | translate"></div>
-        <image-button image="red-flags.example-2.jpg" (click)="modalService.open(GenericModalComponent, {title: 'redFlagsSex.caseStudy.title', bodyHtml: 'redFlagsLabor.caseStudy.a'})">{{ 'redFlagsSex.example' | translate }}</image-button>
-      </ion-col>
-      <ion-col size-xs="0" size-lg="0.5"></ion-col>
-      <ion-col size-xs="12" size-lg="5.75" [innerHTML]="'redFlagsLabor.howToHelp' | translate"></ion-col>
-    </ion-row>
-  </ion-grid>
+    <collapsible-panel [title]="'redFlagsLabor.places.title' | translate">
+      <div [innerHTML]="'redFlagsLabor.places.part1' | translate"></div>
+    </collapsible-panel>
+
+    <collapsible-panel [title]="'redFlagsLabor.flags.title' | translate">
+      <div [innerHTML]="'redFlagsLabor.flags.generic' | translate"></div>
+      <image-button image="red-flags.example-2.jpg" (click)="modalService.open(GenericModalComponent, {title: 'redFlagsSex.caseStudy.title', bodyHtml: 'redFlagsLabor.caseStudy.a'})">{{ 'redFlagsSex.example' | translate }}</image-button>
+      <div *ngIf="settings.industry === 'mover'" [innerHTML]="'redFlagsLabor.flags.mover' | translate"></div>
+    </collapsible-panel>
+
+    <collapsible-panel [title]="'redFlagsLabor.howToHelpTitle' | translate">
+      <div [innerHTML]="'redFlagsLabor.howToHelp' | translate"></div>
+    </collapsible-panel>
+
+  </ng-container>
 
 </ion-content>

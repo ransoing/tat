@@ -1,0 +1,99 @@
+<ng-container *ngIf="section === 'generic'">
+    <ul>
+        <li>{{ 'redFlagsSex.flags.generic.1' | translate }}</li>
+        <li>{{ 'redFlagsSex.flags.generic.2' | translate }}</li>
+        <li>{{ 'redFlagsSex.flags.generic.3' | translate }}</li>
+        <li>
+            {{ 'redFlagsSex.flags.generic.4' | translate }}
+            <image-button image="red-flags.example-3.jpg" (click)="modalService.open(GenericModalComponent, {title: 'redFlagsSex.caseStudy.title', bodyHtml: 'redFlagsSex.caseStudy.c'})">
+                {{ 'redFlagsSex.example' | translate }}
+            </image-button>
+        </li>
+        <li>
+            {{ 'redFlagsSex.flags.generic.5' | translate }}
+            <image-button image="red-flags.example-4.jpg" (click)="modalService.open(CaseStudyDComponent)">{{ 'redFlagsSex.example' | translate }}</image-button>
+        </li>
+        <li>{{ 'redFlagsSex.flags.generic.6' | translate }}</li>
+    </ul>
+</ng-container>
+
+
+<ng-container *ngIf="section === 'on-the-road'">
+    <div [innerHTML]="'redFlagsSex.flags.otr.part1' | translate"></div>
+</ng-container>
+
+
+<ng-container *ngIf="section === 'in-the-neighborhood'">
+    <ul [innerHTML]="'redFlagsSex.flags.neighborhood.part1' | translate"></ul>
+    <ul>
+        <li>
+            {{ 'redFlagsSex.flags.neighborhood.part2' | translate }}
+            <image-button image="red-flags.example-5.jpg" (click)="modalService.open(GenericModalComponent, {title: 'redFlagsSex.caseStudy.title', bodyHtml: 'redFlagsSex.caseStudy.localA'})">
+                {{ 'redFlagsSex.example' | translate }}
+            </image-button>
+        </li>
+    </ul>
+</ng-container>
+
+
+<ng-container *ngIf="section === 'rideshare'">
+    <ul [innerHTML]="'redFlagsSex.flags.rideshare.part1' | translate"></ul>
+    <ul>
+        <li>
+            {{ 'redFlagsSex.flags.rideshare.part2' | translate }}
+            <!-- @@ need a new image here -->
+            <image-button image="red-flags.example-3.jpg" (click)="modalService.open(GenericModalComponent, {title: 'redFlagsSex.caseStudy.title', bodyHtml: 'redFlagsSex.caseStudy.rideshareA'})">
+                {{ 'redFlagsSex.example' | translate }}
+            </image-button>
+        </li>
+    </ul>
+    <ul [innerHTML]="'redFlagsSex.flags.rideshare.part3' | translate"></ul>
+</ng-container>
+
+
+<ng-container *ngIf="section === 'residential-brothel'">
+    <p>{{ 'redFlagsSex.flags.brothel.home.intro' | translate }}</p>
+    <ul [innerHTML]="'redFlagsSex.flags.brothel.home.part1' | translate"></ul>
+    <ul>
+        <li>
+            {{ 'redFlagsSex.flags.brothel.home.part2' | translate }}
+            <!-- @@ need a new image here -->
+            <image-button image="red-flags.example-6.jpg" (click)="modalService.open(GenericModalComponent, {title: 'redFlagsSex.caseStudy.title', bodyHtml: 'redFlagsSex.caseStudy.moversA'})">
+                {{ 'redFlagsSex.example' | translate }}
+            </image-button>
+        </li>
+    </ul>
+    <ul [innerHTML]="'redFlagsSex.flags.brothel.home.part3' | translate"></ul>
+
+    <p>{{ 'redFlagsSex.flags.brothel.neighborhood.intro' | translate }}</p>
+    <ul [innerHTML]="'redFlagsSex.flags.brothel.neighborhood.part1' | translate"></ul>
+</ng-container>
+
+
+<ng-container *ngIf="section === 'traffickers-home'">
+    <div [innerHTML]="'redFlagsSex.flags.traffickersHome.part1' | translate"></div>
+</ng-container>
+
+
+<ng-container *ngIf="section === 'questions'">
+    <p>
+        <b>{{ 'redFlagsSex.questions.subtitle' | translate }}</b>
+    </p>
+    <ul>
+        <li>{{ 'redFlagsSex.questions.1' | translate }}</li>
+        <li>
+            {{ 'redFlagsSex.questions.2' | translate }}
+            <image-button image="red-flags.example-1.jpg" (click)="modalService.open(GenericModalComponent, {title: 'redFlagsSex.caseStudy.title', bodyHtml: 'redFlagsSex.caseStudy.a'})">
+                {{ 'redFlagsSex.example' | translate }}
+            </image-button>
+        </li>
+        <li>{{ 'redFlagsSex.questions.3' | translate }}</li>
+        <li>
+            {{ 'redFlagsSex.questions.4' | translate }}
+            <image-button image="red-flags.example-2.jpg" (click)="modalService.open(CaseStudyBComponent)">{{ 'redFlagsSex.example' | translate }}</image-button>
+        </li>
+        <li>{{ 'redFlagsSex.questions.5' | translate }}</li>
+        <li>{{ 'redFlagsSex.questions.6' | translate }}</li>
+        <li>{{ 'redFlagsSex.questions.7' | translate }}</li>
+    </ul>
+</ng-container>

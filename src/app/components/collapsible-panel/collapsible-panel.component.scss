@@ -1,0 +1,46 @@
+$animationSpeed: 0.3s;
+
+:host {
+    display: block;
+    border: 1px solid #333;
+    margin-bottom: -1px;
+}
+
+.arrow {
+    font-family: arial;
+    position: absolute;
+    top: calc(50% - 14px);
+    right: 24px;
+    width: 28px;
+    height: 28px;
+    text-align: center;
+    line-height: 24px;
+    transform: rotate( 90deg );
+    transition: transform 0.2s ease-out;
+    font-weight: bold;
+    padding-left: 2px;
+
+    &.expanded {
+        transform: rotate( -90deg );
+    }
+}
+
+h2 {
+    cursor: pointer;
+    position: relative;
+    padding: 16px 64px 16px 24px;
+    margin: 0;
+    margin-bottom: -24px;
+    transition: margin-bottom $animationSpeed ease-out;
+
+    &.expanded {
+        margin-bottom: 0;
+    }
+}
+
+.panel-content {
+    margin: 0 24px 24px 24px;
+    transition: height $animationSpeed ease-out;
+    height: 0;
+    overflow: hidden;
+}

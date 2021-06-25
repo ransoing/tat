@@ -1,17 +1,24 @@
 import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { ImageButtonComponent } from './image-button/image-button.component';
 import { ResponsiveImageComponent } from './responsive-image/responsive-image.component';
 import { ChevronSVG } from './chevron-svg/chevron-svg.component';
+import { IndustrySelectorComponent } from './industry-selector/industry-selector.component';
+import { CollapsiblePanelComponent } from './collapsible-panel/collapsible-panel.component';
 
 @NgModule({
-  imports: [IonicModule, CommonModule, TranslateModule],
+  imports: [IonicModule, CommonModule, TranslateModule, FormsModule],
   exports: [
     TranslateModule,
-    ImageButtonComponent, ResponsiveImageComponent, ChevronSVG
+    ImageButtonComponent, ResponsiveImageComponent, ChevronSVG, IndustrySelectorComponent,
+    CollapsiblePanelComponent
   ],
-  declarations: [ImageButtonComponent, ResponsiveImageComponent, ChevronSVG]
+  declarations: [
+    ImageButtonComponent, ResponsiveImageComponent, ChevronSVG, IndustrySelectorComponent,
+    CollapsiblePanelComponent
+  ]
 })
 export class CommonComponentsModule {}

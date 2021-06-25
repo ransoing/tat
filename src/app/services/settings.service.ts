@@ -41,7 +41,7 @@ export class SettingsService implements IUserSettings {
     this.isReady = true;
   }
 
-  async waitForReady(): Promise<any> {
+  async waitForReady(): Promise<void> {
     let interval;
     return new Promise( (resolve, reject) => {
       interval = setInterval( () => {
@@ -56,7 +56,8 @@ export class SettingsService implements IUserSettings {
   async saveSettings() {
     // save to storage
     return this.storage.set( this.settingsStorageKey, {
-      language: this.language
+      language: this.language,
+      industry: this.industry
     });
   }
 
@@ -66,6 +67,7 @@ export class SettingsService implements IUserSettings {
     if ( settings ) {
       // apply settings
       this.language = settings.language;
+      this.industry = settings.industry;
     }
     return !!settings;
   }

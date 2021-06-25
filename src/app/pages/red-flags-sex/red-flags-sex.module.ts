@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { RedFlagsSexPage } from './red-flags-sex.page';
 import { CommonComponentsModule } from '../../components/common-components.module';
+import { RedFlagsSexSectionComponent } from './components/red-flags-sex-section.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,9 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     CommonComponentsModule
   ],
-  declarations: [RedFlagsSexPage]
+  declarations: [
+    RedFlagsSexPage,
+    RedFlagsSexSectionComponent
+  ]
 })
 export class RedFlagsSexPageModule {}

@@ -1,0 +1,10 @@
+<h2 (click)="toggleExpanded()" class="ion-activatable ripple-parent" [class.expanded]="expanded">
+  {{ title }}
+  <span class="arrow" [class.expanded]="expanded">&rang;</span>
+  <ion-ripple-effect></ion-ripple-effect>
+</h2>
+<div class="panel-content" [class.expanded]="expanded" #panelContent>
+  <div class="measuring-wrapper" #measuringWrapper>
+    <ng-content></ng-content>
+  </div>
+</div>

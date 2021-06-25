@@ -302,13 +302,26 @@ ion-grid {
         height: 100%;
     }
 }
-// @@
-.industry-select {
-    border: 1px solid #333;
-    width: 220px;
-    padding-right: 1em;
+
+
+.flags-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
 }
-// @@
+
+@media (min-width: 992px) {
+    .flags-grid {
+        grid-template-columns: 1fr 1fr;
+        > :last-child:nth-child(odd) {
+            grid-column: 1 / span 2;
+        }
+    }
+
+    .span-all {
+        grid-column: 1 / span 2;
+    }
+}
 
 // @@ disable the TOS link until we have a terms of service document
 .firebaseui-link.firebaseui-tos-link {

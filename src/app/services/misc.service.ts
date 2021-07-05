@@ -80,7 +80,7 @@ export class MiscService implements IMiscService {
    * @param messageTranslationKey The translation key of the text to show in the body of the alert
    * @returns A Promise which resolves when the alert has been dismissed.
    */
-  public showSimpleAlert( titleTranslationKey: string, messageTranslationKey: string ): Promise<null> {
+  public showSimpleAlert( titleTranslationKey: string, messageTranslationKey: string ): Promise<void> {
     return new Promise( async (resolve, reject) => {
       const alert = await this.alertController.create({
         header: await this.trx.t( titleTranslationKey ),
@@ -148,7 +148,7 @@ export class MiscService implements IMiscService {
     }
   }
 
-  public waitForLanguageLoaded(): Promise<any> {
+  public waitForLanguageLoaded(): Promise<void> {
     return new Promise( resolve => {
       if ( this.languageLoaded ) {
         resolve();

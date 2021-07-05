@@ -2,7 +2,7 @@ $animationSpeed: 0.3s;
 
 :host {
     display: block;
-    border: 1px solid #333;
+    border: 1px solid #4b4b4b;
     margin-bottom: -1px;
 }
 
@@ -43,4 +43,8 @@ h2 {
     transition: height $animationSpeed ease-out;
     height: 0;
     overflow: hidden;
+}
+
+.panel-title {
+    background: #102739;
 }

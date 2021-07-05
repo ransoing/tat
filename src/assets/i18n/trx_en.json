@@ -73,6 +73,7 @@
   },
   "misc": {
     "buttons": {
+      "accept": "Accept",
       "cancel": "Cancel",
       "close": "Close",
       "continue": "Continue",
@@ -119,7 +120,8 @@
     "other": "Other (please specify)",
     "required": "Required",
     "setLanguage": "Set language",
-    "success": "Success"
+    "success": "Success",
+    "videoPlayerWarning": "This video may use a large amount of data."
   },
   "nav": {
     "home": "Home",

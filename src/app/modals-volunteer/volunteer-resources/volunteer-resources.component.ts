@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { MiscService, UserDataService, DynamicURLsService } from '../../services';
 import { VolunteerType } from '../../models/user-data';
 import { DomSanitizer } from '@angular/platform-browser';
-import { VideoType } from '../../models/video';
 
 @Component({
   selector: 'app-volunteer-resources',
@@ -12,9 +11,8 @@ import { VideoType } from '../../models/video';
 export class VolunteerResourcesComponent {
 
   public modal: HTMLIonModalElement;
-  public video: any;
   public VolunteerType = VolunteerType;
-  public VideoType = VideoType;
+  public videoUrl: string;
 
   constructor(
     public miscService: MiscService,
@@ -23,8 +21,7 @@ export class VolunteerResourcesComponent {
     public domSanitizer: DomSanitizer
   ) {
     this.dynamicUrls.getURLs().then( urls => {
-      this.video = miscService.getEmbeddableVideo( urls.videos.resources['tat-training'] );
-      this.video.url = this.domSanitizer.bypassSecurityTrustResourceUrl( this.video.url );
+      this.videoUrl = urls.videos.resources['tat-training'];
     });
   }
 

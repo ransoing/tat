@@ -8,17 +8,18 @@ import { ResponsiveImageComponent } from './responsive-image/responsive-image.co
 import { ChevronSVG } from './chevron-svg/chevron-svg.component';
 import { IndustrySelectorComponent } from './industry-selector/industry-selector.component';
 import { CollapsiblePanelComponent } from './collapsible-panel/collapsible-panel.component';
+import { VideoPlayerComponent } from './video-player/video-player.component';
 
 @NgModule({
   imports: [IonicModule, CommonModule, TranslateModule, FormsModule],
   exports: [
     TranslateModule,
     ImageButtonComponent, ResponsiveImageComponent, ChevronSVG, IndustrySelectorComponent,
-    CollapsiblePanelComponent
+    CollapsiblePanelComponent, VideoPlayerComponent
   ],
   declarations: [
     ImageButtonComponent, ResponsiveImageComponent, ChevronSVG, IndustrySelectorComponent,
-    CollapsiblePanelComponent
+    CollapsiblePanelComponent, VideoPlayerComponent
   ]
 })
 export class CommonComponentsModule {}

@@ -9,9 +9,9 @@
 
   <hr>
 
-  <app-industry-selector></app-industry-selector>
-
   <h3 *ngIf="settings.industry === undefined">{{ 'redFlagsMisc.selectIndustry.noneSelected' | translate }}</h3>
+  
+  <app-industry-selector></app-industry-selector>
 
   <ng-container *ngIf="settings.industry !== undefined">
 

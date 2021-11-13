@@ -311,19 +311,44 @@ ion-ripple-effect {
 .flags-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 40px;
+
+    h2 {
+        margin: 2em 0 1.5em 0;
+    }
+
+    + hr {
+        margin-top: 1em;
+    }
+
+    > * > * {
+        display: block;
+        margin-bottom: 80px;
+    }
+    > *:last-child > *:last-child {
+        margin-bottom: 0;
+    }
 }
 
 @media (min-width: 992px) {
     .flags-grid {
         grid-template-columns: 1fr 1fr;
-        > :last-child:nth-child(odd) {
-            grid-column: 1 / span 2;
+        gap: 60px;
+
+        > * > *:last-child {
+            margin-bottom: 0;
         }
     }
 
     .span-all {
         grid-column: 1 / span 2;
+    }
+}
+
+.button-grid {
+    image-button {
+        display: block;
+        margin-bottom: calc( 2 * var(--ion-grid-column-padding-sm,var(--ion-grid-column-padding,5px)) );
+        &:last-child { margin-bottom: 0 }
     }
 }
 

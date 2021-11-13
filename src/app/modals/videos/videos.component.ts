@@ -50,6 +50,12 @@ export class VideosComponent implements OnInit {
         desc: 'resources.videos.video4.description',
         url: resourceVideos['wallet-card-webinar']
       });
+
+      this.videos.push({
+        title: 'resources.videos.video5.title',
+        desc: 'resources.videos.video5.description',
+        url: resourceVideos['addressing-demand']
+      });
     });
   }
 

@@ -6,7 +6,6 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ImageButtonComponent } from './image-button/image-button.component';
 import { ResponsiveImageComponent } from './responsive-image/responsive-image.component';
 import { ChevronSVG } from './chevron-svg/chevron-svg.component';
-import { IndustrySelectorComponent } from './industry-selector/industry-selector.component';
 import { CollapsiblePanelComponent } from './collapsible-panel/collapsible-panel.component';
 import { VideoPlayerComponent } from './video-player/video-player.component';
 
@@ -14,11 +13,11 @@ import { VideoPlayerComponent } from './video-player/video-player.component';
   imports: [IonicModule, CommonModule, TranslateModule, FormsModule],
   exports: [
     TranslateModule,
-    ImageButtonComponent, ResponsiveImageComponent, ChevronSVG, IndustrySelectorComponent,
+    ImageButtonComponent, ResponsiveImageComponent, ChevronSVG,
     CollapsiblePanelComponent, VideoPlayerComponent
   ],
   declarations: [
-    ImageButtonComponent, ResponsiveImageComponent, ChevronSVG, IndustrySelectorComponent,
+    ImageButtonComponent, ResponsiveImageComponent, ChevronSVG,
     CollapsiblePanelComponent, VideoPlayerComponent
   ]
 })

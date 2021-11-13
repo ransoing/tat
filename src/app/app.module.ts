@@ -62,7 +62,7 @@ import { CommonComponentsModule } from './components/common-components.module';
 import {
   WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
   AboutTatComponent, HumanTraffickingLawsComponent, PodcastsComponent,
-  CaseStudyBComponent, CaseStudyDComponent, GenericModalComponent,
+  CaseStudyBComponent, CaseStudyDComponent, GenericModalComponent
 } from './modals';
 import {
   VolunteerSettingsComponent, VolunteerResourcesComponent, SurveyComponent,

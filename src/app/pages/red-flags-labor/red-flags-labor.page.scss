@@ -3,3 +3,21 @@
         padding-left: 1.2em;
     }
 }
+
+.flags-grid > * > * {
+    display: block;
+    margin-bottom: 0;
+}
+
+@media (min-width: 992px) {
+    .flags-grid {
+        grid-template-rows: auto 1fr;
+        grid-template-areas:
+            'sectors indicators'
+            'help indicators';
+    }
+
+    .sectors { grid-area: sectors }
+    .help { grid-area: help }
+    .indicators { grid-area: indicators }
+}

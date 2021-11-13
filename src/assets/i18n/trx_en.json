@@ -157,16 +157,7 @@
     }
   },
   "redFlagsMisc": {
-    "selectIndustry": {
-      "label": "Your industry",
-      "noneSelected": "Select your industry to view red flags",
-      "options": {
-        "local": "Local driver",
-        "mover": "Mover",
-        "other": "Other"
-      },
-      "placeholder": "Select one"
-    },
+    "genericTitle": "Red Flags",
     "takeawaysTitle": "Takeaways"
   },
   "redFlagsSex": {
@@ -214,7 +205,7 @@
       },
       "otr": {
         "part1": "<ul>\n    <li>Any time you see a minor engage in a commercial sex act</li>\n    <li>Any time you believe you are witnessing someone under the control of a pimp, regardless of the age or gender of the victim</li>\n    <li>If a passenger vehicle pulls into the truck parking area of a rest area or truck stop and multiple people (usually females) get out of the vehicle and begin going from truck to truck</li>\n    <li>Any time you hear a suspected victim mentioning that they have to make a quota</li>\n    <li>People that seem to have a lack of knowledge of their surroundings or area</li>\n    <li>Someone that appears to have restricted or controlled communication or is unable to speak for her/himself</li>\n    <li>Suspected victims that have signs of branding (tattooing that would indicate ownership of a particular trafficker)</li>\n</ul>",
-        "title": "Red flags: On the road"
+        "title": "Red flags: On the move"
       },
       "rideshare": {
         "part1": "<li>Do you hear talk about a pimp or needing to make a quota?</li>\n<li>Does the individual seem distressed at all?</li>\n<li>If they are with someone else, do you detect any coercion?</li>",
@@ -232,13 +223,18 @@
         "neighborhood": "Wherever your route takes you, when you're in and around homes, apartment complexes and local businesses, keep an eye out for the following red flags:",
         "otr": "Whether loading or unloading, parked on a break or to fuel up, keep an eye out for the following red flags:",
         "rideshare": "Make sure to pay attention to those in your vehicle especially, as sometimes your services are used to transport victims in between dates.",
-        "takeaways": "<p>It is important to remember that this crime knows no racial, gender, or socioeconomic bounds when it comes to who could be the victims and also who could be the perpetrators.</p>\n<p>One red flag on its own may not mean anything, but if you are noticing multiple red flags or other parts of the story don’t add up, please make an immediate call to the national hotline. </p>\n<p>We recognize that drivers are not social workers, nor are we asking you to be. But if things don’t add up and multiple red flag indicators are present, please take a second look and be willing to make a call.</p>"
+        "takeaways": "<p>It is important to remember that this crime knows no racial, gender, or socioeconomic bounds when it comes to who could be the victims and also who could be the perpetrators.</p>\n<p>One red flag on its own may not mean anything, but if you are noticing multiple red flags or other parts of the story don’t add up, please make an immediate call to the national hotline. </p>\n<p>We recognize that drivers are not social workers, nor are we asking you to be. But if things don’t add up and multiple red flag indicators are present, please take a second look and be willing to make a call.</p>",
+        "title": "Red flags for Local Drivers"
       },
       "mover": {
         "brothel": "Movers may have the opportunity to witness signs of human trafficking taking place at a residential brothel or home of exploitation by either physically entering the home or noticing red flags going on in a neighborhood in which you are working. Red flags may look like:",
         "otr": "Whether the van operator is an OTR driver, or operating regionally/locally, many of the same red flags apply:",
         "takeaways": "<p>It is important to remember that this crime knows no racial, gender, or socioeconomic bounds when it comes to who could be the victims and also who could be the perpetrators. Traffickers have been known to like to live in gated communities, as it helps to control the flow of access to the home, both in and out. We also have evidence of trafficking taking place in otherwise regular neighborhoods: it does not have to be “the slum,” and it does not have to be a million-dollar home&mdash;but it could be happening in each, and in every kind of home in between.</p>\n<p>One red flag on its own may not mean anything, but if you are noticing multiple red flags or other parts of the story don’t add up, please make an immediate call to the national hotline.</p>\n<p>We recognize that movers are not social workers, nor are we asking you to be. But if things don’t add up and multiple red flag indicators are present, please take a second look and be willing to make a call.</p>",
+        "title": "Red flags for Movers and Home Delivery",
         "traffickersHome": "Movers may also have the opportunity to notice human trafficking red flags if the job they are at is the home of the trafficker and his victim(s). In these situations, red flags may be:"
+      },
+      "otr": {
+        "title": "Red flags for Over the Road Drivers"
       }
     },
     "intro": "<p>Human trafficking is modern-day slavery. Traffickers use force, fraud and coercion to control their victims. Any minor engaged in commercial sex is a victim of human trafficking. While the initial purchase of victims may occur online, the real-time sale of victims can happen in many locations, including truck stops, restaurants, rest areas, hotels/motels, strip clubs, private homes, etc.</p>\n  <p>Truckers are the eyes and the ears of our nation’s highways. If you see a minor working any of those areas or suspect that the person selling sex is under someone else’s control in order to make a quota, call the National Human Trafficking Hotline and report your tip.</p>\n  <p><b>Warning: Please do not approach traffickers.</b> Allow law enforcement to deal with traffickers and recover victims. Approaching traffickers is not only dangerous for you and their victims but could lead to problems in the eventual prosecution of traffickers.</p>",
@@ -360,6 +356,10 @@
       "video4": {
         "description": "<p>A brief training on the elements of the TAT wallet card.</p>",
         "title": "TAT Wallet Card Webinar"
+      },
+      "video5": {
+        "description": "Explore the idea of how addressing the demand for sex-buying combats human trafficking.",
+        "title": "Addressing Demand: Man to Man"
       }
     }
   },

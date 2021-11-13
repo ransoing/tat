@@ -56,8 +56,7 @@ export class SettingsService implements IUserSettings {
   async saveSettings() {
     // save to storage
     return this.storage.set( this.settingsStorageKey, {
-      language: this.language,
-      industry: this.industry
+      language: this.language
     });
   }
 
@@ -67,7 +66,6 @@ export class SettingsService implements IUserSettings {
     if ( settings ) {
       // apply settings
       this.language = settings.language;
-      this.industry = settings.industry;
     }
     return !!settings;
   }

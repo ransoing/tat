@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar></ion-toolbar>
+</ion-header>
+<ion-content fullscreen padding>
+  <h1>{{ 'redFlagsSex.industries.mover.title' | translate }}</h1>
+  <ion-icon name="md-close" class="modal-close-btn" slot="fixed" (click)="modal.dismiss()"></ion-icon>
+
+  <div class="flags-grid">
+    <div>
+      <app-red-flags-sex-section section="generic"></app-red-flags-sex-section>
+      <app-red-flags-sex-section section="on-the-road" introKey="redFlagsSex.industries.mover.otr"></app-red-flags-sex-section>
+      <app-red-flags-sex-section section="residential-brothel" introKey="redFlagsSex.industries.mover.brothel"></app-red-flags-sex-section>
+    </div>
+    <div>
+      <app-red-flags-sex-section section="traffickers-home" introKey="redFlagsSex.industries.mover.traffickersHome"></app-red-flags-sex-section>
+      <app-red-flags-sex-section section="questions"></app-red-flags-sex-section>
+      <div class="flags-section">
+        <h2>{{ 'redFlagsMisc.takeawaysTitle' | translate }}</h2>
+        <div [innerHTML]="'redFlagsSex.industries.mover.takeaways' | translate"></div>
+      </div>
+    </div>
+  </div>
+</ion-content>

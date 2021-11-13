@@ -14,6 +14,7 @@ export class RedFlagsSexSectionComponent {
 
   @Input() section: 'generic' | 'on-the-road' | 'in-the-neighborhood' | 'rideshare' | 'residential-brothel' | 'traffickers-home' | 
     'questions';
+  @Input() introKey?: string;
 
   CaseStudyBComponent = CaseStudyBComponent;
   CaseStudyDComponent = CaseStudyDComponent;

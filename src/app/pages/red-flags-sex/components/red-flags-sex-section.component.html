@@ -1,4 +1,5 @@
 <ng-container *ngIf="section === 'generic'">
+    <h2>{{ 'redFlagsSex.flags.generic.subtitle' | translate }}</h2>
     <ul>
         <li>{{ 'redFlagsSex.flags.generic.1' | translate }}</li>
         <li>{{ 'redFlagsSex.flags.generic.2' | translate }}</li>
@@ -19,11 +20,15 @@
 
 
 <ng-container *ngIf="section === 'on-the-road'">
+    <h2>{{ 'redFlagsSex.flags.otr.title' | translate }}</h2>
+    <p><b>{{ introKey | translate }}</b></p>
     <div [innerHTML]="'redFlagsSex.flags.otr.part1' | translate"></div>
 </ng-container>
 
 
 <ng-container *ngIf="section === 'in-the-neighborhood'">
+    <h2>{{ 'redFlagsSex.flags.neighborhood.title' | translate }}</h2>
+    <p><b>{{ introKey | translate }}</b></p>
     <ul [innerHTML]="'redFlagsSex.flags.neighborhood.part1' | translate"></ul>
     <ul>
         <li>
@@ -37,6 +42,8 @@
 
 
 <ng-container *ngIf="section === 'rideshare'">
+    <h2>{{ 'redFlagsSex.flags.rideshare.title' | translate }}</h2>
+    <p><b>{{ introKey | translate }}</b></p>
     <ul [innerHTML]="'redFlagsSex.flags.rideshare.part1' | translate"></ul>
     <ul>
         <li>
@@ -52,6 +59,8 @@
 
 
 <ng-container *ngIf="section === 'residential-brothel'">
+    <h2>{{ 'redFlagsSex.flags.brothel.title' | translate }}</h2>
+    <p><b>{{ introKey | translate }}</b></p>
     <p>{{ 'redFlagsSex.flags.brothel.home.intro' | translate }}</p>
     <ul [innerHTML]="'redFlagsSex.flags.brothel.home.part1' | translate"></ul>
     <ul>
@@ -71,11 +80,14 @@
 
 
 <ng-container *ngIf="section === 'traffickers-home'">
+    <h2>{{ 'redFlagsSex.flags.traffickersHome.title' | translate }}</h2>
+    <p><b>{{ introKey | translate }}</b></p>
     <div [innerHTML]="'redFlagsSex.flags.traffickersHome.part1' | translate"></div>
 </ng-container>
 
 
 <ng-container *ngIf="section === 'questions'">
+    <h2>{{ 'redFlagsSex.questions.title' | translate }}</h2>
     <p>
         <b>{{ 'redFlagsSex.questions.subtitle' | translate }}</b>
     </p>

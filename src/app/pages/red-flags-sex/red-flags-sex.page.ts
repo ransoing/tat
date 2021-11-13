@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { MiscService, SettingsService } from '../../services';
+import { RedFlagsSexLocalComponent, RedFlagsSexMoversComponent, RedFlagsSexOtrComponent } from '../../modals';
+import { MiscService, ModalService, SettingsService } from '../../services';
 
 @Component({
   selector: 'app-red-flags-sex',
@@ -9,9 +10,14 @@ import { MiscService, SettingsService } from '../../services';
 })
 export class RedFlagsSexPage {
 
+  RedFlagsSexOtrComponent = RedFlagsSexOtrComponent;
+  RedFlagsSexLocalComponent = RedFlagsSexLocalComponent;
+  RedFlagsSexMoversComponent = RedFlagsSexMoversComponent;
+
   constructor(
     public navCtrl: NavController,
     public miscService: MiscService,
-    public settings: SettingsService
+    public settings: SettingsService,
+    public modalService: ModalService
   ) {}
 }

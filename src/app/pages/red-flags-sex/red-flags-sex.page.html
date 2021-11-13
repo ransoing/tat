@@ -7,80 +7,20 @@
 
   <div [innerHTML]="'redFlagsSex.intro' | translate"></div>
 
-  <hr>
+  <div class="button-grid">
+    <image-button image="red-flags-sex-otr.jpg" (click)="modalService.open(RedFlagsSexOtrComponent)">
+      {{ 'redFlagsSex.industries.otr.title' | translate }}
+    </image-button>
+    <image-button image="red-flags-sex-local.jpg" (click)="modalService.open(RedFlagsSexLocalComponent)">
+      {{ 'redFlagsSex.industries.local.title' | translate }}
+    </image-button>
+    <image-button image="red-flags-sex-movers.jpg" (click)="modalService.open(RedFlagsSexMoversComponent)">
+      {{ 'redFlagsSex.industries.mover.title' | translate }}
+    </image-button>
+  </div>
 
-  <h3 *ngIf="settings.industry === undefined">{{ 'redFlagsMisc.selectIndustry.noneSelected' | translate }}</h3>
-  
-  <app-industry-selector></app-industry-selector>
+  <hr style="margin-top: 2em">
 
-  <ng-container *ngIf="settings.industry !== undefined">
-
-    <div class="flags-grid" *ngIf="settings.industry === 'local'">
-      <div class="span-all">
-        <h2>{{ 'redFlagsSex.flags.generic.subtitle' | translate }}</h2>
-        <app-red-flags-sex-section section="generic"></app-red-flags-sex-section>
-      </div>
-      <div class="span-all">
-        <collapsible-panel [title]="'redFlagsSex.flags.otr.title' | translate">
-          <p><b>{{ 'redFlagsSex.industries.local.otr' | translate }}</b></p>
-          <app-red-flags-sex-section section="on-the-road"></app-red-flags-sex-section>
-        </collapsible-panel>
-        <collapsible-panel [title]="'redFlagsSex.flags.neighborhood.title' | translate">
-          <p><b>{{ 'redFlagsSex.industries.local.neighborhood' | translate }}</b></p>
-          <app-red-flags-sex-section section="in-the-neighborhood"></app-red-flags-sex-section>
-        </collapsible-panel>
-        <collapsible-panel [title]="'redFlagsSex.flags.rideshare.title' | translate">
-          <p><b>{{ 'redFlagsSex.industries.local.rideshare' | translate }}</b></p>
-          <app-red-flags-sex-section section="rideshare"></app-red-flags-sex-section>
-        </collapsible-panel>
-        <collapsible-panel [title]="'redFlagsMisc.takeawaysTitle' | translate">
-          <div [innerHTML]="'redFlagsSex.industries.local.takeaways' | translate"></div>
-        </collapsible-panel>
-        <collapsible-panel [title]="'redFlagsSex.questions.title' | translate">
-          <app-red-flags-sex-section section="questions"></app-red-flags-sex-section>
-        </collapsible-panel>
-      </div>
-    </div>
-
-    <div class="flags-grid" *ngIf="settings.industry === 'mover'">
-      <div class="span-all">
-        <h2>{{ 'redFlagsSex.flags.generic.subtitle' | translate }}</h2>
-        <app-red-flags-sex-section section="generic"></app-red-flags-sex-section>
-      </div>
-      <div class="span-all">
-        <collapsible-panel [title]="'redFlagsSex.flags.otr.title' | translate">
-          <p><b>{{ 'redFlagsSex.industries.mover.otr' | translate }}</b></p>
-          <app-red-flags-sex-section section="on-the-road"></app-red-flags-sex-section>
-        </collapsible-panel>
-        <collapsible-panel [title]="'redFlagsSex.flags.brothel.title' | translate">
-          <p><b>{{ 'redFlagsSex.industries.mover.brothel' | translate }}</b></p>
-          <app-red-flags-sex-section section="residential-brothel"></app-red-flags-sex-section>
-        </collapsible-panel>
-        <collapsible-panel [title]="'redFlagsSex.flags.traffickersHome.title' | translate">
-          <p><b>{{ 'redFlagsSex.industries.mover.traffickersHome' | translate }}</b></p>
-          <app-red-flags-sex-section section="traffickers-home"></app-red-flags-sex-section>
-        </collapsible-panel>
-        <collapsible-panel [title]="'redFlagsMisc.takeawaysTitle' | translate">
-          <div [innerHTML]="'redFlagsSex.industries.mover.takeaways' | translate"></div>
-        </collapsible-panel>
-        <collapsible-panel [title]="'redFlagsSex.questions.title' | translate">
-          <app-red-flags-sex-section section="questions"></app-red-flags-sex-section>
-        </collapsible-panel>
-      </div>
-    </div>
-
-    <div *ngIf="settings.industry === 'other'">
-      <h2>{{ 'redFlagsSex.flags.generic.subtitle' | translate }}</h2>
-      <app-red-flags-sex-section section="generic"></app-red-flags-sex-section>
-
-      <collapsible-panel [title]="'redFlagsSex.questions.title' | translate">
-        <app-red-flags-sex-section section="questions"></app-red-flags-sex-section>
-      </collapsible-panel>
-    </div>
-
-    <hr style="margin-top: 2em">
-
-    <p>{{ 'redFlagsSex.post1' | translate }} <a (click)="miscService.openExternalLink('https://education.truckersagainsttrafficking.org/lesson/the-tat-training-video/')">{{ 'redFlagsSex.post1Link' | translate }}</a>.</p>
-  </ng-container>
+  <p>{{ 'redFlagsSex.post1' | translate }} <a (click)="miscService.openExternalLink('https://education.truckersagainsttrafficking.org/lesson/the-tat-training-video/')">{{ 'redFlagsSex.post1Link' | translate }}</a>.</p>
 
 </ion-content>

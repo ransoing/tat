@@ -15,8 +15,8 @@
     "start-android": "ionic cordova run android",
     "start-android-live": "ionic cordova run android -l",
     "build-apk": "ionic cordova build android --release --prod",
-    "sign-apk": "jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ./release.keystore ./platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk truckersagainsttrafficking",
     "zip-apk": "zipalign -v 4 ./platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk tat-release.apk",
+    "sign-apk": "apksigner sign --ks ./release.keystore --verbose ./tat-release.apk",
     "build-ipa": "npx ionic cordova prepare ios --prod --release && open ./platforms/ios/Truckers\\ Against\\ Trafficking.xcworkspace/"
   },
   "private": true,

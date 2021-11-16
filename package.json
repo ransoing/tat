@@ -1,6 +1,6 @@
 {
   "name": "truckers-against-trafficking-app",
-  "version": "3.5.0",
+  "version": "3.5.1",
   "author": "Ransom Christofferson and TAT",
   "homepage": "https://truckersagainsttrafficking.org/",
   "license": "MIT",
@@ -70,7 +70,7 @@
     "cordova-plugin-splashscreen": "~5.0.2",
     "cordova-plugin-statusbar": "~2.4.2",
     "cordova-plugin-whitelist": "~1.3.3",
-    "cordova-sqlite-storage": "~3.0.0",
+    "cordova-sqlite-storage": "6.0.0",
     "cordova-universal-links-plugin": "git+https://github.com/walteram/cordova-universal-links-plugin.git#c648d3025643731c244f615ff5bbf2e375dea544",
     "cordova-universal-links-plugin-fix": "~1.2.1",
     "core-js": "2.5.4",
@@ -131,14 +131,14 @@
         "ANDROID_PATHPREFIX": "/"
       },
       "cordova-universal-links-plugin": {},
-      "cordova-sqlite-storage": {},
       "cordova-plugin-firebasex": {
         "ANDROID_ICON_ACCENT": "#FF060606",
         "FIREBASE_ANALYTICS_COLLECTION_ENABLED": "true",
         "FIREBASE_PERFORMANCE_COLLECTION_ENABLED": "true",
         "FIREBASE_CRASHLYTICS_COLLECTION_ENABLED": "true"
       },
-      "cordova-plugin-sim": {}
+      "cordova-plugin-sim": {},
+      "cordova-sqlite-storage": {}
     },
     "platforms": [
       "browser",

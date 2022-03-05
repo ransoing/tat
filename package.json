@@ -1,6 +1,6 @@
 {
   "name": "truckers-against-trafficking-app",
-  "version": "3.5.2",
+  "version": "3.5.3",
   "author": "Ransom Christofferson and TAT",
   "homepage": "https://truckersagainsttrafficking.org/",
   "license": "MIT",
@@ -17,7 +17,7 @@
     "build-apk": "ionic cordova build android --release --prod",
     "zip-apk": "zipalign -v 4 ./platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk tat-release.apk",
     "sign-apk": "apksigner sign --ks ./release.keystore --verbose ./tat-release.apk",
-    "build-ipa": "npx ionic cordova prepare ios --prod --release && open ./platforms/ios/Truckers\\ Against\\ Trafficking.xcworkspace/"
+    "build-ipa": "ionic cordova prepare ios --prod --release && open ./platforms/ios/Truckers\\ Against\\ Trafficking.xcworkspace/"
   },
   "private": true,
   "dependencies": {

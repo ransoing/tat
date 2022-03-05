@@ -183,8 +183,9 @@ export class MiscService implements IMiscService {
         type: VideoType.YOUTUBE
       };
     } else if ( url.substr(0,18) === 'https://vimeo.com/' ) {
-      // format: https://vimeo.com/{videoId}/some-other-parameters
-      videoId = url.substr( 18 ).split( '/' )[0];
+      // format: https://vimeo.com/{videoId}/{moreStuff}
+      // Turn this into {videoId}?h={moreStuff}
+      videoId = url.substr( 18 ).replace( '/', '?h=' );
       return {
         url: this.makeVimeoEmbedURL( videoId ),
         type: VideoType.VIMEO
@@ -198,7 +199,7 @@ export class MiscService implements IMiscService {
     return 'https://www.youtube.com/embed/' + videoId + '?rel=0&enablejsapi=1';
   }
   private makeVimeoEmbedURL( videoId: string ): string {
-    return 'https://player.vimeo.com/video/' + videoId + '?title=0&portrait=0';
+    return 'https://player.vimeo.com/video/' + videoId + ( videoId.includes('?') ? '&' : '?' ) + 'title=0&portrait=0';
   }
 
 }

@@ -3,7 +3,7 @@ import { prod as prodKey } from '../../google-api-keys.json';
 
 export const environment = {
   production: true,
-  eld: true,
+  eld: false,
   version: version,
   firebaseConfig: {
     apiKey: prodKey,

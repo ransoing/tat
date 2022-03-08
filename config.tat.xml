@@ -1,0 +1,151 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget android-packageName="sherprog.walletcards.tat" android-versionCode="30503" ios-CFBundleIdentifier="org.truckersagainsttrafficking.walletcard" ios-CFBundleVersion="3.5.3.0" version="3.5.3" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Truckers Against Trafficking</name>
+    <description>Make the call, save lives. Use this simple app to help you identify and report instances of human trafficking.</description>
+    <author email="appdev@truckersagainsttrafficking.org" href="http://www.truckersagainsttrafficking.org/">Truckers Against Trafficking</author>
+    <content src="index.html" />
+    <access origin="*" />
+    <comment>launch-external is required for phone number, SMS, and mailto links to work properly</comment>
+    <access launch-external="yes" origin="mailto:*" />
+    <access launch-external="yes" origin="tel:*" />
+    <access launch-external="yes" origin="sms:*" />
+    <access launch-external="yes" origin="geo:*" />
+    <access launch-external="yes" origin="maps:*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <allow-intent href="maps:*" />
+    <comment>
+        The allow-navigation tags let OAuth work better, since OAuth requires opening up a new webpage on a third-party
+        site. Using allow-navigation lets this happen within the app, instead of swithing to Chrome or Safari.
+    </comment>
+    <allow-navigation href="https://*" />
+    <allow-navigation href="http://*" />
+    <comment>
+        Since ionic serves the app over http:// instead of file:// (which is the default Cordova behavior), The firebase
+        library (and thus the login widget) thinks the app isn't running in a mobile environment, which screws with OAuth.
+        Firebase then runs in a sort of "desktop" auth mode and opens a webpage to authenticate, but that webpage thinks
+        that the Cordova webview is an unsafe client to authenticate in (and doesn't allow authentication), so we spoof
+        the user agent to get it to work.
+    </comment>
+    <preference name="OverrideUserAgent" value="Mozilla/5.0 (Linux; Android 8.0.0; moto g(6)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.99 Mobile Safari/537.36" />
+    <preference name="loadUrlTimeoutValue" value="40000" />
+    <preference name="ScrollEnabled" value="false" />
+    <preference name="android-minSdkVersion" value="19" />
+    <preference name="BackupWebStorage" value="none" />
+    <preference name="ShowSplashScreen" value="true" />
+    <preference name="AutoHideSplashScreen" value="false" />
+    <preference name="SplashMaintainAspectRatio" value="true" />
+    <preference name="FadeSplashScreen" value="true" />
+    <preference name="FadeSplashScreenDuration" value="300" />
+    <preference name="SplashShowOnlyFirstTime" value="true" />
+    <preference name="SplashScreen" value="screen" />
+    <preference name="SplashScreenDelay" value="3000" />
+    <preference name="phonegap-version" value="cli-8.0.0" />
+    <preference name="fullscreen" value="false" />
+    <preference name="StatusBarBackgroundColor" value="#000000" />
+    <preference name="StatusBarStyle" value="blackopaque" />
+    <preference name="StatusBarOverlaysWebView" value="false" />
+    <platform name="android">
+        <allow-intent href="market:*" />
+        <comment>Some HTTP calls are needed</comment>
+        <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
+            <application android:usesCleartextTraffic="true" />
+        </edit-config>
+        <config-file parent="/manifest/application" target="AndroidManifest.xml">
+            <meta-data android:name="com.google.firebase.messaging.default_notification_icon" android:resource="@drawable/notification_icon" />
+        </config-file>
+        <comment>Notification icons</comment>
+        <resource-file src="resources/android/notification-icon/mdpi.png" target="app/src/main/res/drawable-mdpi/notification_icon.png" />
+        <resource-file src="resources/android/notification-icon/hdpi.png" target="app/src/main/res/drawable-hdpi/notification_icon.png" />
+        <resource-file src="resources/android/notification-icon/xhdpi.png" target="app/src/main/res/drawable-xhdpi/notification_icon.png" />
+        <resource-file src="resources/android/notification-icon/xxhdpi.png" target="app/src/main/res/drawable-xxhdpi/notification_icon.png" />
+        <resource-file src="resources/android/notification-icon/xxxhdpi.png" target="app/src/main/res/drawable-xxxhdpi/notification_icon.png" />
+        <comment>Colors and misc xml</comment>
+        <source-file src="resources/android/colors/drawable/" target="app/src/main/res" />
+        <source-file src="resources/android/colors/drawable-v24/" target="app/src/main/res" />
+        <source-file src="resources/android/colors/layout/" target="app/src/main/res" />
+        <source-file src="resources/android/colors/mipmap-anydpi-v26/" target="app/src/main/res" />
+        <source-file src="resources/android/colors/values/" target="app/src/main/res" />
+        <resource-file src="resources/android/colors/values/colors.xml" target="/app/src/main/res/values/colors.xml" />
+        <comment>Adaptive icons</comment>
+        <icon background="@color/background" density="mdpi" foreground="resources/android/icon/adaptive/mdpi-foreground.png" />
+        <icon background="@color/background" density="hdpi" foreground="resources/android/icon/adaptive/hdpi-foreground.png" />
+        <icon background="@color/background" density="xhdpi" foreground="resources/android/icon/adaptive/xhdpi-foreground.png" />
+        <icon background="@color/background" density="xxhdpi" foreground="resources/android/icon/adaptive/xxhdpi-foreground.png" />
+        <icon background="@color/background" density="xxxhdpi" foreground="resources/android/icon/adaptive/xxxhdpi-foreground.png" />
+        <comment>Standard icons</comment>
+        <icon density="mdpi" src="resources/android/icon/standard/mdpi.png" />
+        <icon density="hdpi" src="resources/android/icon/standard/hdpi.png" />
+        <icon density="xhdpi" src="resources/android/icon/standard/xhdpi.png" />
+        <icon density="xxhdpi" src="resources/android/icon/standard/xxhdpi.png" />
+        <icon density="xxxhdpi" src="resources/android/icon/standard/xxxhdpi.png" />
+        <comment>Splash screen</comment>
+        <splash density="land-ldpi" src="resources/android/splash/drawable-land-ldpi-screen.png" />
+        <splash density="land-mdpi" src="resources/android/splash/drawable-land-mdpi-screen.png" />
+        <splash density="land-hdpi" src="resources/android/splash/drawable-land-hdpi-screen.png" />
+        <splash density="land-xhdpi" src="resources/android/splash/drawable-land-xhdpi-screen.png" />
+        <splash density="land-xxhdpi" src="resources/android/splash/drawable-land-xxhdpi-screen.png" />
+        <splash density="land-xxxhdpi" src="resources/android/splash/drawable-land-xxxhdpi-screen.png" />
+        <splash density="port-ldpi" src="resources/android/splash/drawable-port-ldpi-screen.png" />
+        <splash density="port-mdpi" src="resources/android/splash/drawable-port-mdpi-screen.png" />
+        <splash density="port-hdpi" src="resources/android/splash/drawable-port-hdpi-screen.png" />
+        <splash density="port-xhdpi" src="resources/android/splash/drawable-port-xhdpi-screen.png" />
+        <splash density="port-xxhdpi" src="resources/android/splash/drawable-port-xxhdpi-screen.png" />
+        <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
+        <preference name="android-minSdkVersion" value="19" />
+        <preference name="android-targetSdkVersion" value="30" />
+        <comment>singleTask is needed for the OAuth process, to prevent multiple instances of the app from potentially being spawned</comment>
+        <preference name="AndroidLaunchMode" value="singleTask" />
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+        <icon height="57" src="resources/ios/icon/icon.png" width="57" />
+        <icon height="114" src="resources/ios/icon/icon@2x.png" width="114" />
+        <icon height="40" src="resources/ios/icon/icon-40.png" width="40" />
+        <icon height="80" src="resources/ios/icon/icon-40@2x.png" width="80" />
+        <icon height="120" src="resources/ios/icon/icon-40@3x.png" width="120" />
+        <icon height="50" src="resources/ios/icon/icon-50.png" width="50" />
+        <icon height="100" src="resources/ios/icon/icon-50@2x.png" width="100" />
+        <icon height="60" src="resources/ios/icon/icon-60.png" width="60" />
+        <icon height="120" src="resources/ios/icon/icon-60@2x.png" width="120" />
+        <icon height="180" src="resources/ios/icon/icon-60@3x.png" width="180" />
+        <icon height="72" src="resources/ios/icon/icon-72.png" width="72" />
+        <icon height="144" src="resources/ios/icon/icon-72@2x.png" width="144" />
+        <icon height="76" src="resources/ios/icon/icon-76.png" width="76" />
+        <icon height="152" src="resources/ios/icon/icon-76@2x.png" width="152" />
+        <icon height="167" src="resources/ios/icon/icon-83.5@2x.png" width="167" />
+        <icon height="29" src="resources/ios/icon/icon-small.png" width="29" />
+        <icon height="58" src="resources/ios/icon/icon-small@2x.png" width="58" />
+        <icon height="87" src="resources/ios/icon/icon-small@3x.png" width="87" />
+        <icon height="1024" src="resources/ios/icon/icon-1024.png" width="1024" />
+        <splash height="1136" src="resources/ios/splash/Default-568h@2x~iphone.png" width="640" />
+        <splash height="1334" src="resources/ios/splash/Default-667h.png" width="750" />
+        <splash height="2208" src="resources/ios/splash/Default-736h.png" width="1242" />
+        <splash height="1242" src="resources/ios/splash/Default-Landscape-736h.png" width="2208" />
+        <splash height="1536" src="resources/ios/splash/Default-Landscape@2x~ipad.png" width="2048" />
+        <splash height="2048" src="resources/ios/splash/Default-Landscape@~ipadpro.png" width="2732" />
+        <splash height="768" src="resources/ios/splash/Default-Landscape~ipad.png" width="1024" />
+        <splash height="2048" src="resources/ios/splash/Default-Portrait@2x~ipad.png" width="1536" />
+        <splash height="2732" src="resources/ios/splash/Default-Portrait@~ipadpro.png" width="2048" />
+        <splash height="1024" src="resources/ios/splash/Default-Portrait~ipad.png" width="768" />
+        <splash height="960" src="resources/ios/splash/Default@2x~iphone.png" width="640" />
+        <splash height="480" src="resources/ios/splash/Default~iphone.png" width="320" />
+        <splash height="2732" src="resources/ios/splash/Default@2x~universal~anyany.png" width="2732" />
+    </platform>
+    <comment>Universal links are potentially used during the OAuth process</comment>
+    <universal-links>
+        <host name="truckersagainsttrafficking.page.link" scheme="https" />
+        <host name="truckers-against-trafficking.firebaseapp.com" scheme="https">
+            <path url="/__/auth/handler" />
+            <path url="/__/auth/callback" />
+        </host>
+    </universal-links>
+    <engine name="ios" spec="5.0.0" />
+    <engine name="android" spec="8.1.0" />
+    <engine name="browser" spec="5.0.4" />
+</widget>

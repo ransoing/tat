@@ -1,5 +1,5 @@
 {
-  "name": "truckers-against-trafficking-eld-app",
+  "name": "truckers-against-trafficking-app",
   "version": "3.5.3",
   "author": "Ransom Christofferson and TAT",
   "homepage": "https://truckersagainsttrafficking.org/",
@@ -122,6 +122,19 @@
       "cordova-plugin-buildinfo": {},
       "cordova-plugin-browsertab": {},
       "cordova-plugin-inappbrowser": {},
+      "cordova-plugin-customurlscheme": {
+        "URL_SCHEME": "org.truckersagainsttrafficking.walletcard",
+        "ANDROID_SCHEME": " ",
+        "ANDROID_HOST": " ",
+        "ANDROID_PATHPREFIX": "/"
+      },
+      "cordova-universal-links-plugin": {},
+      "cordova-plugin-firebasex": {
+        "ANDROID_ICON_ACCENT": "#FF060606",
+        "FIREBASE_ANALYTICS_COLLECTION_ENABLED": "true",
+        "FIREBASE_PERFORMANCE_COLLECTION_ENABLED": "true",
+        "FIREBASE_CRASHLYTICS_COLLECTION_ENABLED": "true"
+      },
       "cordova-plugin-sim": {}
     },
     "platforms": [

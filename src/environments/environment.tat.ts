@@ -7,7 +7,7 @@ import { dev as devKey } from '../../google-api-keys.json';
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 export const environment = {
   production: false,
-  eld: true,
+  eld: false,
   version: version,
   firebaseConfig: {
     apiKey: devKey,

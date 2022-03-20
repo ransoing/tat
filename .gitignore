@@ -38,4 +38,5 @@ UserInterfaceState.xcuserstate
 *.keystore
 GoogleService-Info.plist
 google-services.json
-google-api-keys.json
+google-api-key-dev.json
+google-api-key-prod.json

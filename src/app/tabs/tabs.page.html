@@ -12,11 +12,11 @@
       <ion-icon name="redflag"></ion-icon>
       <ion-label>{{ 'nav.redFlags' | translate }}</ion-label>
     </ion-tab-button>
-    <ion-tab-button tab="resources">
+    <ion-tab-button tab="resources" (click)="environment.app === AppMode.ELD ? showResourcesQr($event) : null">
       <ion-icon name="magnifier"></ion-icon>
       <ion-label>{{ 'nav.resources' | translate }}</ion-label>
     </ion-tab-button>
-    <ion-tab-button tab="volunteer">
+    <ion-tab-button *ngIf="environment.app === AppMode.TAT" tab="volunteer">
       <ion-icon name="volunteer"></ion-icon>
       <ion-label>{{ 'nav.volunteer' | translate }}</ion-label>
     </ion-tab-button>

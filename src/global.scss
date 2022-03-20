@@ -103,6 +103,19 @@ ion-app > ion-router-outlet > app-tabs > ion-tabs {
     height: 100vh;
 }
 
+// ...but setting to 100vh hides the nav in a mobile browser, when the app is deployed as a website
+body.build-target-web {
+    height: 100%;
+
+    ion-app,
+    ion-app > ion-router-outlet,
+    ion-app > ion-router-outlet > app-tabs,
+    ion-app > ion-router-outlet > app-tabs > ion-tabs {
+        height: 100%;
+    }
+}
+
+
 // fix some tab nav styles
 $numTabs: 5;
 ion-tabs > ion-tab-bar > ion-tab-button {

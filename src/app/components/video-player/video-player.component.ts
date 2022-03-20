@@ -2,6 +2,8 @@ import { Component, OnChanges, OnDestroy, OnInit, Input, ViewChild, ElementRef, 
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Network } from '@ionic-native/network/ngx';
 import { Subscription } from 'rxjs';
+import { environment } from '../../../environments/environment';
+import { AppMode } from '../../models/app-mode';
 import { VideoType } from '../../models/video';
 import { MiscService } from '../../services';
 
@@ -15,6 +17,9 @@ export class VideoPlayerComponent implements OnChanges, OnDestroy, OnInit {
   @Input() url: string;
   @Input() onVideoLoad: Function;
 
+  environment = environment;
+
+  AppMode = AppMode;
   VideoType = VideoType;
 
   isUnmeteredConnection: boolean;
@@ -24,8 +29,8 @@ export class VideoPlayerComponent implements OnChanges, OnDestroy, OnInit {
   subscription: Subscription;
 
   constructor(
+    public miscService: MiscService,
     private _network: Network,
-    private _miscService: MiscService,
     private _domSanitizer: DomSanitizer,
     private _changeDetector: ChangeDetectorRef
   ) {
@@ -63,7 +68,7 @@ export class VideoPlayerComponent implements OnChanges, OnDestroy, OnInit {
 
   private _initializeVideo() {
     if ( this.url ) {
-      const video = this._miscService.getEmbeddableVideo( this.url );
+      const video = this.miscService.getEmbeddableVideo( this.url );
       this.type = video.type;
       this.sanitizedUrl = this._domSanitizer.bypassSecurityTrustResourceUrl( video.url );
     }

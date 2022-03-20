@@ -83,6 +83,7 @@
       "ok": "OK",
       "retry": "Retry",
       "submit": "Submit",
+      "viewVideo": "View video",
       "yes": "Yes"
     },
     "chooseMultiple": "Choose as many options as you'd like.",
@@ -118,6 +119,13 @@
     },
     "none": "None",
     "other": "Other (please specify)",
+    "qrCode": {
+      "call": "call {{target}}",
+      "instructions": "Scan the QR code with your phone or personal device to",
+      "sendEmail": "send an email to {{target}}",
+      "sendSms": "send a text message to {{target}}",
+      "visit": "visit {{target}}"
+    },
     "required": "Required",
     "setLanguage": "Set language",
     "success": "Success",

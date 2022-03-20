@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { environment } from '../../../environments/environment';
+import { AppMode } from '../../models/app-mode';
 import { MiscService } from '../../services';
 
 @Component({
@@ -9,6 +11,8 @@ import { MiscService } from '../../services';
 export class HumanTraffickingLawsComponent {
 
   public modal: HTMLIonModalElement;
+  environment = environment;
+  AppMode = AppMode;
   
   constructor( public miscService: MiscService ) { }
 

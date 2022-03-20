@@ -1,16 +1,20 @@
 import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Platform, IonRouterOutlet, AlertController, NavController } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
 import { FirebaseX } from '@ionic-native/firebase-x/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { TranslateService } from '@ngx-translate/core';
 import { SettingsService, ModalService, MiscService, UserDataService, TrxService } from './services';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { skip } from 'rxjs/operators';
 import { LoginComponent, SurveyComponent } from './modals-volunteer';
 import { SurveyService } from './services/surveys.service';
 import { VolunteerType, UserDataRequestFlags } from './models/user-data';
 import { NotificationType, INotificationData } from './models/notification';
+import { environment } from '../environments/environment';
+import { AppMode, BuildTarget } from './models/app-mode';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +23,8 @@ import { NotificationType, INotificationData } from './models/notification';
 export class AppComponent {
   // get a reference to the IonRouterOutlet element
   @ViewChild( IonRouterOutlet, {static: false} ) routerOutlet: IonRouterOutlet;
+
+  private readonly doNotShowContentWarningStorageKey = 'doNotShowContentWarning';
 
   constructor(
     public miscService: MiscService,
@@ -35,8 +41,19 @@ export class AppComponent {
     private navCtrl: NavController,
     private firebase: FirebaseX,
     private splash: SplashScreen,
-    private router: Router
+    private router: Router,
+    private storage: Storage
   ) {
+    if ( environment.app === AppMode.ELD ) {
+      // for ELD mode, change the content security policy to be super restrictive, so it won't load anything from external servers.
+      // this should be done before anything else happens
+      const cspMetaTag = Array.from( document.head.querySelectorAll('meta') ).find(
+        ( tag: HTMLMetaElement ) => tag.getAttribute( 'http-equiv' ) === 'Content-Security-Policy'
+      );
+      if ( cspMetaTag != null ) {
+        cspMetaTag.setAttribute( 'content', `default-src 'self' 'unsafe-inline' 'unsafe-eval' data: gap: ws://*` );
+      }
+    }
     this.statusBar.styleBlackOpaque();
     this.statusBar.show();
     this.statusBar.overlaysWebView( false );
@@ -44,6 +61,11 @@ export class AppComponent {
   }
 
   async initializeApp() {
+    // set a class on the body to override styles for the web version
+    if ( environment.buildTarget === BuildTarget.WEB ) {
+      document.body.classList.add( 'build-target-web' );
+    }
+
     await this.platform.ready();
 
     // @@ fix back button behavior on android
@@ -57,6 +79,24 @@ export class AppComponent {
 
     setTimeout( () => this.splash.hide(), 5000 ); // in case the home.page fails to hide the splash
 
+    // wait one second before triggering the content warning
+    setTimeout( () => this.triggerContentWarning(), 1000 );
+
+    // configure translations
+    this.settings.waitForReady().then( () => {
+      this.translate.setDefaultLang( 'en' );
+      // wait until the most recent translations have loaded (or timed out) before we show the app content.
+      // Otherwise, the user will see the translation keys, like `home.buttonLabels.redFlags`
+      this.translate.use( this.settings.language ).toPromise().then( () => this.miscService.languageLoaded = true );
+    });
+
+    if ( environment.app === AppMode.TAT ) {
+      this.initializeAppTatOnlyFeatures();
+    }
+  }
+
+  /** Initializes many things, but intended only for the TAT app, and not for the ELD app */
+  async initializeAppTatOnlyFeatures() {
     // if cordova is not available, this is a dev machine. Overload some functions that don't work in a dev environment
     if ( !window.cordova ) {
       this.firebase.getToken = () => Promise.resolve( 'Computer dev user' );
@@ -97,15 +137,6 @@ export class AppComponent {
       }
     });
 
-
-    // configure translations
-    this.settings.waitForReady().then( () => {
-      this.translate.setDefaultLang( 'en' );
-      // wait until the most recent translations have loaded (or timed out) before we show the app content.
-      // Otherwise, the user will see the translation keys, like `home.buttonLabels.redFlags`
-      this.translate.use( this.settings.language ).toPromise().then( () => this.miscService.languageLoaded = true );
-    });
-
     // configure behavior for when the user logs out
     // Behavior for logging in is defined in login.component
     // this observable will fire when the app starts up, so it's not just when the user has actively logged in or out
@@ -114,6 +145,11 @@ export class AppComponent {
         // logged out.
         this.miscService.isLoggedIn = false;
         this.userDataService.clearData();
+      }
+    });
+    // except for the first authState change when the app loads, redirect a logged out user to the home page
+    this.angularFireAuth.authState.pipe( skip(1) ).subscribe( async response => {
+      if ( !response ) {
         // only redirect the user and notify that he has logged out if he isn't already on the home page
         if ( ['/tabs/home', '/', ''].indexOf(this.router.url) === -1 ) {
           // kick the user to the homepage and close the current modal
@@ -149,6 +185,34 @@ export class AppComponent {
     if ( redirectUrl ) {
       localStorage.removeItem( LoginComponent.LOGIN_REDIRECT_URL_KEY );
       this.navCtrl.navigateRoot( redirectUrl );
+    }
+  }
+
+  async triggerContentWarning() {
+    await this.miscService.waitForLanguageLoaded();
+    const avoidWarning = await this.storage.get( this.doNotShowContentWarningStorageKey );
+    if (
+      !avoidWarning &&
+      (
+        // show the warning on any page when hosted as a web site; otherwise show the warning only on the home page
+        environment.buildTarget === BuildTarget.WEB ||
+        environment.buildTarget === BuildTarget.MOBILE && ['/tabs/home', '/', ''].includes( this.router.url )
+      )
+    ) {
+      const alert = await this.alertCtrl.create({
+        message: await this.trx.t( 'home.contentWarning' ),
+        buttons: [{
+          text: await this.trx.t( 'misc.buttons.doNotShow'),
+          handler: () => {
+            // save to storage that we should avoid this warning
+            this.storage.set( this.doNotShowContentWarningStorageKey, true );
+          }
+        }, {
+          text: await this.trx.t( 'misc.buttons.continue'),
+          role: 'cancel'
+        }]
+      });
+      alert.present();
     }
   }
 

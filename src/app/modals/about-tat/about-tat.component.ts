@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MiscService } from '../../services';
-import { version } from '../../,./../../../package.json';
+import { environment } from '../../../environments/environment';
 
 @Component({
   templateUrl: './about-tat.component.html'
@@ -9,7 +9,7 @@ export class AboutTatComponent {
 
   public modal: HTMLIonModalElement;
   public lastYear = ( new Date().getFullYear() ) - 1;
-  public version = version;
+  environment = environment
 
   constructor( public miscService: MiscService ) { }
 

@@ -3,6 +3,12 @@
 </ion-header>
 
 <ion-content padding>
+  <div *ngIf="!environment.production">
+    app: {{ environment.app }}<br>
+    target: {{ environment.buildTarget }}<br>
+    prod? {{ environment.production ? 'yes' : 'no' }}
+  </div>
+
   <img src="assets/images/tat-logo.png" class="logo">
 
   <ion-grid class="button-grid">
@@ -16,23 +22,32 @@
           <ion-icon name="redflag"></ion-icon>
           {{ 'home.redFlagsSex' | translate }}
         </image-button>
-        <image-button image="home.labor-red-flags.jpg" (click)="navCtrl.navigateRoot('/tabs/red-flags/labor')">
-          <ion-icon name="redflag"></ion-icon>
-          {{ 'home.redFlagsLabor' | translate }}
-        </image-button>
+        <ng-container *ngIf="environment.app === AppMode.TAT">
+          <ng-container *ngTemplateOutlet="redFlagsLabor"></ng-container>
+        </ng-container>
       </ion-col>
       <ion-col size-xs="12" size-sm="6">
-        <image-button image="home.resources.jpg" (click)="navCtrl.navigateRoot('/tabs/resources')">
+        <ng-container *ngIf="environment.app === AppMode.ELD">
+          <ng-container *ngTemplateOutlet="redFlagsLabor"></ng-container>
+        </ng-container>
+        <image-button image="home.resources.jpg" (click)="environment.app === AppMode.ELD ? miscService.openExternalLink( environment.webAppResourcesPage ) : navCtrl.navigateRoot('/tabs/resources')">
           <ion-icon name="magnifier"></ion-icon>
           {{ 'home.resources' | translate }}
         </image-button>
-        <image-button image="home.volunteer-login.jpg" (click)="navCtrl.navigateRoot('/tabs/volunteer')">
+        <image-button *ngIf="environment.app === AppMode.TAT" image="home.volunteer-login.jpg" (click)="navCtrl.navigateRoot('/tabs/volunteer')">
           <ion-icon name="volunteer"></ion-icon>
           {{ (miscService.isLoggedIn ? 'volunteer.title' : 'volunteer.loginTitle') | translate }}
         </image-button>
       </ion-col>
     </ion-row>
   </ion-grid>
+
+  <ng-template #redFlagsLabor>
+    <image-button image="home.labor-red-flags.jpg" (click)="navCtrl.navigateRoot('/tabs/red-flags/labor')">
+      <ion-icon name="redflag"></ion-icon>
+      {{ 'home.redFlagsLabor' | translate }}
+    </image-button>
+  </ng-template>
 
   <ion-item class="language-select">
     <ion-label><ion-icon name="globe"></ion-icon> {{ 'misc.setLanguage' | translate }}</ion-label>

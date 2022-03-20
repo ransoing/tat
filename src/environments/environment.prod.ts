@@ -1,19 +1,26 @@
-import { version } from '../../package.json';
-import { prod as prodKey } from '../../google-api-keys.json';
+import { key } from '../../google-api-key-prod.json';
+import { commonEnvironment, commonFirebaseConfig } from './common';
 
 export const environment = {
   production: true,
-  eld: true,
-  version: version,
-  firebaseConfig: {
-    apiKey: prodKey,
-    authDomain: 'truckers-against-trafficking.firebaseapp.com',
-    databaseURL: 'https://truckers-against-trafficking.firebaseio.com',
-    projectId: 'truckers-against-trafficking',
-    storageBucket: 'truckers-against-trafficking.appspot.com',
-    messagingSenderId: '1062876332765'
-  },
+  emailVerificationRequired: true,
+
   proxyServerURL: 'https://app-proxy.truckersagainsttrafficking.org/api/',
   externalResourcesURL: 'https://app-proxy.truckersagainsttrafficking.org/external-resources/',
-  emailVerificationRequired: true
+
+  webAppResourcesPage: commonEnvironment.webAppResourcesPage,
+
+  firebaseConfig: {
+    apiKey: key,
+    authDomain: commonFirebaseConfig.authDomain,
+    databaseURL: commonFirebaseConfig.databaseURL,
+    projectId: commonFirebaseConfig.projectId,
+    storageBucket: commonFirebaseConfig.storageBucket,
+    messagingSenderId: commonFirebaseConfig.messagingSenderId
+  },
+
+  app: commonEnvironment.app,
+  buildTarget: commonEnvironment.buildTarget,
+  version: commonEnvironment.version
+
 };

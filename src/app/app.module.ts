@@ -62,7 +62,8 @@ import { CommonComponentsModule } from './components/common-components.module';
 import {
   WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
   AboutTatComponent, HumanTraffickingLawsComponent, PodcastsComponent,
-  CaseStudyBComponent, CaseStudyDComponent, GenericModalComponent
+  CaseStudyBComponent, CaseStudyDComponent, GenericModalComponent,
+  QrModalComponent
 } from './modals';
 import {
   VolunteerSettingsComponent, VolunteerResourcesComponent, SurveyComponent,
@@ -77,17 +78,17 @@ import { RedFlagsPopover } from './tabs/popovers/red-flags/red-flags.popover';
     WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
     AboutTatComponent, HumanTraffickingLawsComponent, PodcastsComponent,
     CaseStudyBComponent, CaseStudyDComponent, GenericModalComponent,
+    QrModalComponent, RedFlagsPopover,
     VolunteerSettingsComponent, VolunteerResourcesComponent, SurveyComponent,
-    TrainingVideoComponent, LoginComponent, PostOutreachSelectionComponent,
-    RedFlagsPopover
+    TrainingVideoComponent, LoginComponent, PostOutreachSelectionComponent
   ],
   entryComponents: [
     WhatToReportComponent, VideosComponent, RecommendedBooksComponent,
     AboutTatComponent, HumanTraffickingLawsComponent, PodcastsComponent,
     CaseStudyBComponent, CaseStudyDComponent, GenericModalComponent,
+    QrModalComponent, RedFlagsPopover,
     VolunteerSettingsComponent, VolunteerResourcesComponent, SurveyComponent,
-    TrainingVideoComponent, LoginComponent, PostOutreachSelectionComponent,
-    RedFlagsPopover
+    TrainingVideoComponent, LoginComponent, PostOutreachSelectionComponent
   ],
   imports: [
     BrowserModule,
@@ -107,17 +108,17 @@ import { RedFlagsPopover } from './tabs/popovers/red-flags/red-flags.popover';
         useClass: SelfReferentialCompiler
       }
     }),
+    CommonComponentsModule,
+    TabsPageModule,
     AngularFireModule.initializeApp( environment.firebaseConfig ),
     AngularFireAuthModule, AngularFireDatabaseModule,
-    FirebaseUIModule.forRoot( firebaseuiAuthConfig ),
-    CommonComponentsModule,
-    TabsPageModule
+    FirebaseUIModule.forRoot( firebaseuiAuthConfig )
   ],
   providers: [
-    StatusBar, SplashScreen, Dialogs, Network, AndroidPermissions, FirebaseX, Sim,
-    AuthGuard,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    StatusBar, SplashScreen, Dialogs, Network, AndroidPermissions, Sim,
+    AuthGuard, FirebaseX,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [ AppComponent ]
 })
 export class AppModule {}

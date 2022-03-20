@@ -212,7 +212,7 @@ export class ReportPage {
             encodeURIComponent(body)
         );
 
-        return new Promise( (resolve,reject) => resolve() );
+        return new Promise( (resolve,reject) => resolve(null) );
       }
     };
     

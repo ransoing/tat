@@ -63,6 +63,14 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true
+            },
+            "web": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/buildTargets/target.ts",
+                  "with": "src/environments/buildTargets/target.web.ts"
+                }
+              ]
             }
           }
         },
@@ -74,6 +82,9 @@
           "configurations": {
             "production": {
               "browserTarget": "app:build:production"
+            },
+            "web": {
+              "browserTarget": "app:build:web"
             }
           }
         },

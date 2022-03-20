@@ -39,8 +39,7 @@ function buildPaths( mode?: Mode ) {
     // add a dot before the mode if it isn't empty
     const modePath = mode ? `.${mode}` : '';
     return {
-        env:        `./src/environments/environment${modePath}.ts`,
-        prodEnv:    `./src/environments/environment${modePath}.prod.ts`,
+        envApp:     `./src/environments/apps/app${modePath}.ts`,
         package:    `./package${modePath}.json`,
         config:     `./config${modePath}.xml`
     };
@@ -70,14 +69,12 @@ if ( doesntExist ) {
 }
 
 // rename current active files, "deactivating" them
-fs.renameSync( paths.active.env, paths.currentMode.env );
-fs.renameSync( paths.active.prodEnv, paths.currentMode.prodEnv );
+fs.renameSync( paths.active.envApp, paths.currentMode.envApp );
 fs.renameSync( paths.active.package, paths.currentMode.package );
 fs.renameSync( paths.active.config, paths.currentMode.config );
 
 // "activate" files for the desired mode by renaming the new mode files to "active"
-fs.renameSync( paths.newMode.env, paths.active.env );
-fs.renameSync( paths.newMode.prodEnv, paths.active.prodEnv );
+fs.renameSync( paths.newMode.envApp, paths.active.envApp );
 fs.renameSync( paths.newMode.package, paths.active.package );
 fs.renameSync( paths.newMode.config, paths.active.config );
 
@@ -85,9 +82,10 @@ fs.renameSync( paths.newMode.config, paths.active.config );
 fsx.remove( './platforms' );
 fsx.remove( './plugins' );
 
-// copy some item from old package to new package.
+// copy some items from old package to new package.json.
 // there will be many compiler errors if the installed packages don't remain the same between the two apps.
 // however, the cordova plugins should stay different.
+// config.xml files should also stay different.
 const currentPack = JSON.parse( fs.readFileSync(paths.currentMode.package, { encoding: 'utf-8' }) );
 const activePack = JSON.parse( fs.readFileSync(paths.active.package, { encoding: 'utf-8' }) );
 activePack.scripts = currentPack.scripts;

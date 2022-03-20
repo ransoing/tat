@@ -24,9 +24,7 @@ export class VideosComponent implements OnInit {
     public dynamicUrls: DynamicURLsService,
     public miscService: MiscService
   ) {
-    this.dynamicUrls.getURLs().then( urls => {
-      const resourceVideos = urls.videos.resources;
-
+    this.dynamicUrls.getVideoResourceUrls().then( resourceVideos => {
       this.videos.push({
         title: 'resources.videos.video1.title',
         desc: 'resources.videos.video1.description',

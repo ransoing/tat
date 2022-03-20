@@ -56,4 +56,9 @@ export class DynamicURLsService {
     }
   }
 
+  /** A shortcut to fetch just the video resource URLs */
+  async getVideoResourceUrls() {
+      return ( await this.getURLs() ).videos.resources;
+  }
+
 }

@@ -26,7 +26,7 @@
           image="report.text.jpg"
           [hint]="hasSim ? null : 'report.textTo' | translate:{phoneNumber: '233733'}"
           [hasLargeHint]="true"
-          (click)="miscService.openExternalLink('sms:233733')">
+          (click)="miscService.openExternalLink('sms:233733?body=HELP')">
           {{ 'report.textBtn' | translate }}
         </image-button>
       </ion-col>

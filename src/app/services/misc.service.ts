@@ -5,6 +5,9 @@ import { TrxService } from './trx.service';
 import { ModalService } from './modal.service';
 import { IEmbeddableVideo, VideoType } from '../models/video';
 import { IMiscService } from '../models/services';
+import { QrModalComponent } from '../modals/qr/qr-modal.component';
+import { environment } from '../../environments/environment';
+import { AppMode } from '../models/app-mode';
 
 export enum StorageKeys {
   USER_DATA = 'user_data'
@@ -48,7 +51,12 @@ export class MiscService implements IMiscService {
   }
 
   public openExternalLink( url ) {
+    if ( environment.app === AppMode.TAT ) {
       window.open( url, '_system' );
+    } else {
+      // show a QR code that will lead the user to the content
+      this.modalService.open( QrModalComponent, { url: url } );
+    }
   }
 
   /**

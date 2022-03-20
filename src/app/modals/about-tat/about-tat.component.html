@@ -36,5 +36,5 @@
     <a (click)="miscService.openExternalLink('https://truckersagainsttrafficking.org/events/category/freedom-drivers-project/')">{{ 'resources.about.freedomDriversLink.2' | translate }}</a>.
   </p>
 
-  <p style="opacity: 0.15">Version {{version}}</p>
+  <p style="opacity: 0.15">Version {{environment.app}}:{{environment.buildTarget}}@{{environment.version}}</p>
 </ion-content>

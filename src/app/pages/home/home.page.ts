@@ -1,9 +1,11 @@
 import { Component, AfterViewInit } from '@angular/core';
-import { NavController, AlertController } from '@ionic/angular';
+import { NavController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
-import { SettingsService, MiscService, TrxService, UserDataService } from '../../services';
+import { SettingsService, MiscService, UserDataService } from '../../services';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { Storage } from '@ionic/storage';
+
+import { environment } from '../../../environments/environment';
+import { AppMode } from '../../models/app-mode';
 
 @Component({
   selector: 'app-home',
@@ -12,8 +14,10 @@ import { Storage } from '@ionic/storage';
 })
 export class HomePage implements AfterViewInit {
 
-  private readonly doNotShowContentWarningStorageKey = 'doNotShowContentWarning';
   simdata;
+
+  environment = environment;
+  AppMode = AppMode;
 
   constructor(
     public navCtrl: NavController,
@@ -21,36 +25,8 @@ export class HomePage implements AfterViewInit {
     public settings: SettingsService,
     public miscService: MiscService,
     public splashScreen: SplashScreen,
-    private trx: TrxService,
-    private alertController: AlertController,
-    private storage: Storage,
     private userDataService: UserDataService
-  ) {
-    // wait one second before triggering the warning
-    setTimeout( () => this.triggerContentWarning(), 1000 );
-  }
-
-  async triggerContentWarning() {
-    await this.miscService.waitForLanguageLoaded();
-    // show a content warning, unless the user has chosen not to see the warning
-    const avoidWarning = await this.storage.get( this.doNotShowContentWarningStorageKey );
-    if ( !avoidWarning ) {
-      const alert = await this.alertController.create({
-        message: await this.trx.t( 'home.contentWarning' ),
-        buttons: [{
-          text: await this.trx.t( 'misc.buttons.doNotShow'),
-          handler: () => {
-            // save to storage that we should avoid this warning
-            this.storage.set( this.doNotShowContentWarningStorageKey, true );
-          }
-        }, {
-          text: await this.trx.t( 'misc.buttons.continue'),
-          role: 'cancel'
-        }]
-      });
-      alert.present();
-    }
-  }
+  ) {}
 
   onSetLanguage() {
     this.translate.use( this.settings.language );

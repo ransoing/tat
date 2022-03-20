@@ -1,31 +1,41 @@
-import { version } from '../../package.json';
-import { dev as devKey } from '../../google-api-keys.json';
+import { key } from '../../google-api-key-dev.json';
+import { commonEnvironment, commonFirebaseConfig } from './common';
+
 
 // The file contents for the current environment will overwrite these during build.
 // The build system defaults to the dev environment which uses `environment.ts`, but if you do
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
+
+// Both environment files take items from `commonEnvironment`. You cannot use Object.assign() to cleverly combine
+// this with the common environment properties, because AOT can't properly analyze things when Object.assign() is used.
+
 export const environment = {
   production: false,
-  eld: true,
-  version: version,
-  firebaseConfig: {
-    apiKey: devKey,
-    authDomain: 'truckers-against-trafficking.firebaseapp.com',
-    databaseURL: 'https://truckers-against-trafficking.firebaseio.com',
-    projectId: 'truckers-against-trafficking',
-    storageBucket: 'truckers-against-trafficking.appspot.com',
-    messagingSenderId: '1062876332765'
-  },
-  // proxyServerURL: 'https://tatproxy.ransomchristofferson.com/api/',
-  proxyServerURL: 'http://localhost/~christof/tatproxy/api/',
-  // a URL which should contain the contents of `external/dist/`, after running `npm run build-external`
-  // externalResourcesURL: 'https://tatproxy.ransomchristofferson.com/external-resources/',
-  externalResourcesURL: 'http://localhost/~christof/tatproxy/external-resources/',
-  // proxyServerURL: 'https://app-proxy.truckersagainsttrafficking.org/api/',
-  // externalResourcesURL: 'https://app-proxy.truckersagainsttrafficking.org/external-resources/',
+  emailVerificationRequired: false,
 
-  emailVerificationRequired: false
+  // proxyServerURL: 'https://tatproxy.ransomchristofferson.com/api/',
+  // externalResourcesURL: 'https://tatproxy.ransomchristofferson.com/external-resources/',
+  proxyServerURL: 'http://localhost/~christof/tatproxy/api/',
+  externalResourcesURL: 'http://localhost/~christof/tatproxy/external-resources/',
+  // a URL which should contain the contents of `external/dist/`, after running `npm run build-external`
+  // proxyServerURL: 'https://app-proxy.truckersagainsttrafficking.org/api/',
+  // externalResourcesURL: 'https://app-proxy.truckersagainsttrafficking.org/external-resources/'
+
+  webAppResourcesPage: commonEnvironment.webAppResourcesPage,
+
+  firebaseConfig: {
+    apiKey: key,
+    authDomain: commonFirebaseConfig.authDomain,
+    databaseURL: commonFirebaseConfig.databaseURL,
+    projectId: commonFirebaseConfig.projectId,
+    storageBucket: commonFirebaseConfig.storageBucket,
+    messagingSenderId: commonFirebaseConfig.messagingSenderId
+  },
+
+  app: commonEnvironment.app,
+  buildTarget: commonEnvironment.buildTarget,
+  version: commonEnvironment.version
 };
 
 /*

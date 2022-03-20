@@ -18,8 +18,8 @@ export class CaseStudyBComponent {
     public miscService: MiscService,
     public dynamicUrls: DynamicURLsService
   ) {
-    this.dynamicUrls.getURLs().then( urls => {
-      this.videoUrl = urls.videos.resources['be-a-changemaker'];
+    this.dynamicUrls.getVideoResourceUrls().then( videoUrls => {
+      this.videoUrl = videoUrls['be-a-changemaker'];
     });
   }
 }

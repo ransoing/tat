@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-toolbar></ion-toolbar>
+</ion-header>
+<ion-content fullscreen padding>
+  <ion-icon name="md-close" class="modal-close-btn" slot="fixed" (click)="modal.dismiss()"></ion-icon>
+
+  <div class="layout">
+    <div>
+      <canvas #canvas></canvas>
+    </div>
+    <p>{{ 'misc.qrCode.instructions' | translate }} {{ action }}</p>
+  </div>
+</ion-content>

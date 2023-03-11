@@ -1,11 +1,12 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
-import { SettingsService, MiscService, UserDataService } from '../../services';
+import { SettingsService, MiscService, UserDataService, ModalService } from '../../services';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 
 import { environment } from '../../../environments/environment';
 import { AppMode } from '../../models/app-mode';
+import { AboutTatComponent } from '../../modals';
 
 @Component({
   selector: 'app-home',
@@ -18,6 +19,7 @@ export class HomePage implements AfterViewInit {
 
   environment = environment;
   AppMode = AppMode;
+  AboutTatComponent = AboutTatComponent;
 
   constructor(
     public navCtrl: NavController,
@@ -25,6 +27,7 @@ export class HomePage implements AfterViewInit {
     public settings: SettingsService,
     public miscService: MiscService,
     public splashScreen: SplashScreen,
+    public modalService: ModalService,
     private userDataService: UserDataService
   ) {}
 

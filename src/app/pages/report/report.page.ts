@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { Sim } from '@ionic-native/sim/ngx';
 import { WhatToReportComponent } from '../../modals';
-import { ModalService, MiscService } from '../../services';
+import { GeocoderService, ModalService, MiscService } from '../../services';
 import { SurveyComponent } from '../../modals-volunteer';
 import { ISurvey, SurveyFieldType } from '../../models/survey';
+import { AppMode } from '../../models/app-mode';
+import { environment } from '../../../environments/environment';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-report',
@@ -15,14 +19,56 @@ export class ReportPage {
   WhatToReportComponent = WhatToReportComponent;
   hasSim = false;
 
+  country: string = null; // 'USA', 'CAN', 'MEX', null, or possibly others
+  gettingCountry = true;
+  countryTimeout;
+  pageUrl: string;
+
+  textNumberTrxOptions = { phoneNumber: '233733' };
+
   constructor(
     public modalService: ModalService,
     public miscService: MiscService,
-    private sim: Sim
+    private sim: Sim,
+    private geocoder: GeocoderService,
+    private router: Router
   ) {
-    this.sim.getSimInfo()
-    .then( simData => this.hasSim = simData != null && !!simData.carrierName )
-    .catch( e => this.hasSim = false );
+    // in ELD mode, act like there's no SIM, because even if there is, we don't want to use it.
+    // so, only get SIM info for TAT app, not for ELD app.
+    if ( environment.app === AppMode.TAT ) {
+      this.sim.getSimInfo()
+      .then( simData => this.hasSim = simData != null && !!simData.carrierName )
+      .catch( e => this.hasSim = false );
+    }
+
+    // get the country when this page is navigated to (which includes right now)
+    this.pageUrl = window.location.href;
+    this.router.events.pipe(
+      filter( event => event instanceof NavigationEnd && window.location.href === this.pageUrl )
+    ).subscribe( () => this._getCountry() );
+  }
+
+  private async _getCountry() {
+    this.gettingCountry = true;
+    // only try to fetch country for a few seconds. If it takes longer than that, assume we won't know the country
+    if ( this.countryTimeout != null ) {
+      clearTimeout( this.countryTimeout );
+    }
+    // maybe we'll enable this timeout at some point later
+    // this.countryTimeout = setTimeout( () => this._countryFetchDone(), 4000 );
+    this.geocoder.getCountryCode().then( countryCode => {
+      // don't let this component know of the country if the timeout already expired
+      if ( this.gettingCountry ) {
+        this.country = countryCode;
+        clearTimeout( this.countryTimeout );
+        this._countryFetchDone();
+      }
+    });
+  }
+
+  private _countryFetchDone() {
+    this.gettingCountry = false;
+    this.countryTimeout = null;
   }
 
   private _yesNoOptions = [

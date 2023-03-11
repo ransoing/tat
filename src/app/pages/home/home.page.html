@@ -22,14 +22,12 @@
           <ion-icon name="redflag"></ion-icon>
           {{ 'home.redFlagsSex' | translate }}
         </image-button>
-        <ng-container *ngIf="environment.app === AppMode.TAT">
-          <ng-container *ngTemplateOutlet="redFlagsLabor"></ng-container>
-        </ng-container>
+        <image-button image="home.labor-red-flags.jpg" (click)="navCtrl.navigateRoot('/tabs/red-flags/labor')">
+          <ion-icon name="redflag"></ion-icon>
+          {{ 'home.redFlagsLabor' | translate }}
+        </image-button>
       </ion-col>
       <ion-col size-xs="12" size-sm="6">
-        <ng-container *ngIf="environment.app === AppMode.ELD">
-          <ng-container *ngTemplateOutlet="redFlagsLabor"></ng-container>
-        </ng-container>
         <image-button image="home.resources.jpg" (click)="environment.app === AppMode.ELD ? miscService.openExternalLink( environment.webAppResourcesPage ) : navCtrl.navigateRoot('/tabs/resources')">
           <ion-icon name="magnifier"></ion-icon>
           {{ 'home.resources' | translate }}
@@ -38,16 +36,15 @@
           <ion-icon name="volunteer"></ion-icon>
           {{ (miscService.isLoggedIn ? 'volunteer.title' : 'volunteer.loginTitle') | translate }}
         </image-button>
+        <ng-container *ngIf="environment.app === AppMode.ELD">
+          <image-button image="resources.about-tat.jpg" (click)="modalService.open(AboutTatComponent)">
+            <ion-icon name="info"></ion-icon>
+            {{ 'resources.btns.aboutTAT' | translate }}
+          </image-button>
+        </ng-container>
       </ion-col>
     </ion-row>
   </ion-grid>
-
-  <ng-template #redFlagsLabor>
-    <image-button image="home.labor-red-flags.jpg" (click)="navCtrl.navigateRoot('/tabs/red-flags/labor')">
-      <ion-icon name="redflag"></ion-icon>
-      {{ 'home.redFlagsLabor' | translate }}
-    </image-button>
-  </ng-template>
 
   <ion-item class="language-select">
     <ion-label><ion-icon name="globe"></ion-icon> {{ 'misc.setLanguage' | translate }}</ion-label>

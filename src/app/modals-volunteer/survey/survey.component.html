@@ -12,7 +12,9 @@
           <h2 *ngIf="page.rendered.titleText">{{ page.rendered.titleText }}</h2>
           <p *ngIf="page.rendered.topTextTranslationKey" [innerHTML]="page.rendered.topTextTranslationKey | translate"></p>
           <p *ngIf="page.rendered.topText" [innerHTML]="page.rendered.topText"></p>
-          <p *ngIf="page.rendered.fields.length > 1 && pageHasRequiredFields(page.rendered)" class="required-warning"><span class="star">*</span> = {{ 'misc.required' | translate }}</p>
+          <p *ngIf="pageHasRequiredFields(page.rendered)" class="required-warning">
+            <span class="star">*</span><span *ngIf="page.rendered.fields.length > 1"> = </span>{{ 'misc.required' | translate }}
+          </p>
           <ng-container *ngFor="let field of page.rendered.fields">
             <p *ngIf="field.preFieldTextTranslationKey">{{ field.preFieldTextTranslationKey | translate }}</p>
             <div class="input-wrapper input-type-{{field.type}}">

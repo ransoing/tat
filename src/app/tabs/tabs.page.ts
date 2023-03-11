@@ -2,9 +2,10 @@ import { Component, ViewChild } from '@angular/core';
 import { PopoverController, IonTabs } from '@ionic/angular';
 import { RedFlagsPopover } from './popovers/red-flags/red-flags.popover';
 import { Router } from '@angular/router';
-import { MiscService } from '../services';
+import { MiscService, ModalService } from '../services';
 import { environment } from '../../environments/environment';
 import { AppMode } from '../models/app-mode';
+import { AboutTatComponent } from '../modals';
 
 @Component({
   selector: 'app-tabs',
@@ -17,11 +18,13 @@ export class TabsPage {
 
   environment = environment;
   AppMode = AppMode;
+  AboutTatComponent = AboutTatComponent;
 
   constructor(
     public popover: PopoverController,
     public router: Router,
-    public miscService: MiscService
+    public miscService: MiscService,
+    public modalService: ModalService
   ) {}
 
   showResourcesQr( $event ) {

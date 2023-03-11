@@ -5,10 +5,13 @@ export enum VolunteerType {
   AMBASSADOR_VOLUNTEER = 'ambassadorVolunteer'
 }
 
+/** Outreach location types match api names in salesforce */
 export enum OutreachLocationType {
   CDL_SCHOOL = 'cdlSchool',
   TRUCKING_COMPANY = 'truckingCompany',
-  TRUCK_STOP = 'truckStop'
+  TRUCK_STOP = 'truckStop',
+  SCHOOL_BUS = 'schoolBus',
+  TRANSIT_COMPANY = 'transitCompany'
 }
 
 // bitmask flags for passing into fetchUserData()

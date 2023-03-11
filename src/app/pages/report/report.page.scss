@@ -1,12 +1,44 @@
 .short-text {
     font-size: 75%;
+    display: contents;
 }
 
-.alt-hotlines hr { display: none }
+.flex-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -10px;
+    > * {
+        flex: 1 0 auto;
+        margin: 10px 10px 0 0;
+    }
+}
+
+.flag {
+    height: 0.7em;
+    box-shadow: 2px 2px 3px rgb(0 0 0 / 70%);
+}
+
+.alt-hotlines {
+    hr { display: none }
+    ion-button {
+        white-space: pre-wrap;
+        text-align: left;
+    }
+}
+
+.flex-row image-button {
+    max-width: calc( 100% - 10px );
+}
+
+ion-button {
+    height: auto;
+    > div {
+        padding: 12px 0;
+    }
+}
 
 @media only screen and (max-width: 400px) {
     .alt-hotlines {
-        ion-button { white-space: pre-wrap }
         hr { display: block }
     }
 }

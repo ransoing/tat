@@ -27,6 +27,7 @@ import { Network } from '@ionic-native/network/ngx';
 import { FirebaseX } from '@ionic-native/firebase-x/ngx';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { IonicStorageModule } from '@ionic/storage';
+import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
 
 // firebase and firebase auth
 import * as firebaseuiNamespace from 'firebaseui-en-es/dist'; // just for the namespace
@@ -116,7 +117,7 @@ import { RedFlagsPopover } from './tabs/popovers/red-flags/red-flags.popover';
   ],
   providers: [
     StatusBar, SplashScreen, Dialogs, Network, AndroidPermissions, Sim,
-    AuthGuard, FirebaseX,
+    AuthGuard, FirebaseX, Geolocation,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [ AppComponent ]

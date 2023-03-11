@@ -9,3 +9,4 @@ export * from './script.service';
 export * from './surveys.service';
 export * from './dynamic-urls.service';
 export * from './proxy-api.service';
+export * from './geocoder.service';

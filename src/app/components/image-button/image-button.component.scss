@@ -1,13 +1,26 @@
 $primary-color: #2e90d0;
 
-$topPadding: 0.3em;
 $sidePadding: 0.5em;
+$vertPadding: 0.25em;
+$bottomExtraPadding: 5px;
+
+:host {
+    display: block;
+
+    &.disabled {
+        pointer-events: none;
+    }
+}
 
 .wrap {
-    display: block;
-    align-items: center;
-    padding: $topPadding $sidePadding;
+    height: 100%;
+    padding: $vertPadding $sidePadding calc( #{$vertPadding} + #{$bottomExtraPadding} ) $sidePadding;
     position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
 
     background-color: #333;
     background-position: center center;
@@ -25,6 +38,10 @@ $sidePadding: 0.5em;
         display: none;
         font-size: 35%;
         font-family: var( --ion-font-family );
+    }
+
+    &.has-hint .hint {
+        display: block;
     }
 
     &.has-large-hint .hint {
@@ -50,18 +67,8 @@ $sidePadding: 0.5em;
     }
 
     &.tall {
-        padding-top: #{ $topPadding + 1em };
-        padding-bottom: #{ $topPadding + 1em };
-    }
-
-    &.has-hint {
-        padding-top: #{ $topPadding - 0.22em };
-        padding-bottom: #{ topPadding - 0.142em };
-        &.tall {
-            padding-top: #{ $topPadding + 1em - 0.22em };
-            padding-bottom: #{ topPadding + 1em - 0.142em };
-        }
-        .hint { display: block }
+        padding-top: 1em;
+        padding-bottom: calc( 1em + #{$bottomExtraPadding} );
     }
 
     &.required {
@@ -75,7 +82,7 @@ $sidePadding: 0.5em;
     &.disabled {
         opacity: 0.3;
         background-blend-mode: unset;
-        cursor: default;
+        pointer-events: none;
     }
 }
 

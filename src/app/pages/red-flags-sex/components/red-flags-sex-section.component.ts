@@ -20,6 +20,24 @@ export class RedFlagsSexSectionComponent {
   CaseStudyDComponent = CaseStudyDComponent;
   GenericModalComponent = GenericModalComponent;
 
+  rideshareCaseStudyAProps = {
+    title: 'redFlagsSex.caseStudy.title',
+    bodyHtml: 'redFlagsSex.caseStudy.rideshareA',
+    source: {
+      label: 'redFlagsSex.caseStudy.source.nbcNews',
+      link: 'https://www.nbcnews.com/news/latino/uber-driver-saves-16-year-old-girl-sex-trafficking-n701241'
+    }
+  };
+
+  caseStudyLocalAProps = {
+    title: 'redFlagsSex.caseStudy.title',
+    bodyHtml: 'redFlagsSex.caseStudy.localA',
+    source: {
+      label: 'redFlagsSex.caseStudy.source.abc7',
+      link: 'https://abc7chicago.com/postal-worker-sex-trafficking-teen-saved-from/3882907/'
+    }
+  };
+
   constructor( public modalService: ModalService ) {}
 
 }

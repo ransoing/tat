@@ -7,7 +7,10 @@ import { Storage } from '@ionic/storage';
 
 export interface IUserSettings {
   language: 'en' | 'es',
-  industry: 'local' | 'mover' | 'other'
+  location: {
+    countryCode: string;
+    savedTime: Date;
+  }
 }
 
 @Injectable({
@@ -16,7 +19,7 @@ export interface IUserSettings {
 export class SettingsService implements IUserSettings {
 
   public language: IUserSettings['language'];
-  public industry: IUserSettings['industry'];
+  public location: IUserSettings['location'];
 
   private isReady: boolean = false;
   
@@ -33,7 +36,11 @@ export class SettingsService implements IUserSettings {
       let defaultLang = (window.navigator['userLanguage'] || window.navigator.language).substr( 0, 2 );
       if ( defaultLang !== 'en' && defaultLang !== 'es' ) defaultLang = 'es';
 
-      this.language = defaultLang,
+      this.language = defaultLang;
+      this.location = {
+        countryCode: null,
+        savedTime: null
+      };
 
       this.saveSettings();
     }
@@ -56,7 +63,8 @@ export class SettingsService implements IUserSettings {
   async saveSettings() {
     // save to storage
     return this.storage.set( this.settingsStorageKey, {
-      language: this.language
+      language: this.language,
+      location: this.location
     });
   }
 
@@ -66,6 +74,7 @@ export class SettingsService implements IUserSettings {
     if ( settings ) {
       // apply settings
       this.language = settings.language;
+      this.location = settings.location;
     }
     return !!settings;
   }

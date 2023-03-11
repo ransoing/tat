@@ -33,7 +33,7 @@
     <ul>
         <li>
             {{ 'redFlagsSex.flags.neighborhood.part2' | translate }}
-            <image-button image="red-flags.example-5.jpg" (click)="modalService.open(GenericModalComponent, {title: 'redFlagsSex.caseStudy.title', bodyHtml: 'redFlagsSex.caseStudy.localA'})">
+            <image-button image="red-flags.example-5.jpg" (click)="modalService.open(GenericModalComponent, caseStudyLocalAProps)">
                 {{ 'redFlagsSex.example' | translate }}
             </image-button>
         </li>
@@ -49,7 +49,7 @@
         <li>
             {{ 'redFlagsSex.flags.rideshare.part2' | translate }}
             <!-- @@ need a new image here -->
-            <image-button image="red-flags.example-3.jpg" (click)="modalService.open(GenericModalComponent, {title: 'redFlagsSex.caseStudy.title', bodyHtml: 'redFlagsSex.caseStudy.rideshareA'})">
+            <image-button image="red-flags.example-3.jpg" (click)="modalService.open(GenericModalComponent, rideshareCaseStudyAProps)">
                 {{ 'redFlagsSex.example' | translate }}
             </image-button>
         </li>

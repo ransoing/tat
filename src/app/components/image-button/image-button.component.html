@@ -7,7 +7,9 @@
 [class.not-completed]="!completed"
 [class.disabled]="disabled"
 (click)="onButtonClick($event)">
-  <ng-content></ng-content>
+  <div>
+    <ng-content></ng-content>
+  </div>
   <div class="hint">{{hint}}</div>
   <div class="alert-dot"></div>
 </div>

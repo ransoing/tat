@@ -1,11 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'image-button',
   templateUrl: './image-button.component.html',
   styleUrls: ['./image-button.component.scss']
 })
-export class ImageButtonComponent implements OnInit {
+export class ImageButtonComponent implements OnInit, OnChanges {
   // the image is assumed to be at /src/assets/image-buttons/
   @Input() image: string;
   // 'hint' is shown below the main button text
@@ -20,12 +20,16 @@ export class ImageButtonComponent implements OnInit {
 
   bgCss: string;
 
-  constructor() { }
+  constructor( private element: ElementRef<HTMLElement> ) { }
 
   ngOnInit() {
     if ( this.image ) {
       this.bgCss = 'url(assets/image-buttons/' + this.image + ')';
     }
+  }
+
+  ngOnChanges( changes: SimpleChanges ) {
+    this.element.nativeElement.classList.toggle( 'disabled', this.disabled );
   }
 
   // intercept the click event; don't allow (click) handlers on host if the button is disabled

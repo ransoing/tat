@@ -89,7 +89,7 @@ export class SurveyComponent implements OnInit {
     // assign default values to optional functions
     let noopTrue = () => true;
     let noopTruePromise = () => {
-      return new Promise( (resolve,reject) => resolve() );
+      return new Promise( (resolve,reject) => resolve(null) );
     };
 
     page.canContinue = page.canContinue || noopTrue;

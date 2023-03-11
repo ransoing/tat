@@ -66,8 +66,10 @@ class SurveyService {
           name: `locations[${locationNumber}].type`,
           options: [
             { value: OutreachLocationType.CDL_SCHOOL, labelTranslationKey: 'volunteer.forms.preOutreach.labels.locationTypes.cdlSchool' },
+            { value: OutreachLocationType.SCHOOL_BUS, labelTranslationKey: 'volunteer.forms.preOutreach.labels.locationTypes.schoolBus' },
+            { value: OutreachLocationType.TRANSIT_COMPANY, labelTranslationKey: 'volunteer.forms.preOutreach.labels.locationTypes.transitCompany' },
             { value: OutreachLocationType.TRUCK_STOP, labelTranslationKey: 'volunteer.forms.preOutreach.labels.locationTypes.truckStop' },
-            { value: OutreachLocationType.TRUCKING_COMPANY, labelTranslationKey: 'volunteer.forms.preOutreach.labels.locationTypes.truckingCompany' }
+            { value: OutreachLocationType.TRUCKING_COMPANY, labelTranslationKey: 'volunteer.forms.preOutreach.labels.locationTypes.truckingCompany' },
           ],
           isRequired: true
         }, {
@@ -290,6 +292,26 @@ class SurveyService {
           options: [{
             value: 'willUseTatTraining',
             labelTranslationKey: 'volunteer.forms.postOutreach.labels.cdlSchool.willUseTatTraining'
+          }]
+        }, {
+          type: SurveyFieldType.TEXTAREA,
+          name: 'otherAccomplishments',
+          labelTranslationKey: 'misc.other'
+        }]
+      }}, () => { return {
+        // Transit company or School bus
+        isVisible: vals => location.type === OutreachLocationType.TRANSIT_COMPANY || location.type === OutreachLocationType.SCHOOL_BUS,
+        topTextTranslationKey: 'volunteer.forms.postOutreach.labels.whichAccomplishments',
+        fields: [{
+          type: SurveyFieldType.CHOICE,
+          name: 'accomplishments',
+          multi: true,
+          options: [{
+            value: 'busHangPoster',
+            labelTranslationKey: 'volunteer.forms.postOutreach.labels.busTransit.busHangPoster'
+          }, {
+            value: 'busShowVideo',
+            labelTranslationKey: 'volunteer.forms.postOutreach.labels.busTransit.busShowVideo'
           }]
         }, {
           type: SurveyFieldType.TEXTAREA,

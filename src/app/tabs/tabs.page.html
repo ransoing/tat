@@ -20,5 +20,9 @@
       <ion-icon name="volunteer"></ion-icon>
       <ion-label>{{ 'nav.volunteer' | translate }}</ion-label>
     </ion-tab-button>
+    <ion-tab-button *ngIf="environment.app === AppMode.ELD" (click)="modalService.open(AboutTatComponent)">
+      <ion-icon name="info"></ion-icon>
+      <ion-label>{{ 'resources.btns.aboutTAT' | translate }}</ion-label>
+    </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>

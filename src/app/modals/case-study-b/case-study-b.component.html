@@ -6,8 +6,8 @@
   <ion-icon name="md-close" class="modal-close-btn" slot="fixed" (click)="modal.dismiss()"></ion-icon>
 
   <p>{{ 'redFlagsSex.caseStudy.b' | translate }}</p>
-  <p><a (click)="showVideo = !showVideo">&#65339;{{ showVideo ? '&#65293;' : '&#65291;' }}&#65341; {{ 'redFlagsSex.caseStudy.watchVideo' | translate }}</a></p>
-  <video-player *ngIf="showVideo && videoUrl" [url]="videoUrl"></video-player>
+  <p><a (click)="showVideo()">&#65339;{{ videoExpanded ? '&#65293;' : '&#65291;' }}&#65341; {{ 'redFlagsSex.caseStudy.watchVideo' | translate }}</a></p>
+  <video-player *ngIf="videoExpanded && videoUrl" [url]="videoUrl"></video-player>
   <p><a (click)="showFullStory = !showFullStory">&#65339;{{ showFullStory ? '&#65293;' : '&#65291;' }}&#65341; {{ 'redFlagsSex.caseStudy.readFullStory' | translate }}</a></p>
   <div *ngIf="showFullStory" [innerHTML]="'redFlagsSex.caseStudy.bFull' | translate"></div>
 </ion-content>

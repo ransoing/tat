@@ -1,6 +1,6 @@
 {
-  "name": "truckers-against-trafficking-eld-app",
-  "version": "3.5.3",
+  "name": "truckers-against-trafficking-app",
+  "version": "3.6.0",
   "author": "Ransom Christofferson and TAT",
   "homepage": "https://truckersagainsttrafficking.org/",
   "license": "MIT",
@@ -11,14 +11,14 @@
     "start-live:web": "ionic serve -l --configuration web",
     "start:web": "ng serve --configuration web",
     "start:prod": "ng serve --configuration production",
-    "start:web:prod": "ng serve --configuration production,web",
+    "start:web:prod": "ng serve --configuration production-web",
     "start:android": "ionic cordova run android",
     "start:android-live": "ionic cordova run android -l",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build:external": "node build-external.js",
-    "build:web": "ng build --configuration prod,web",
+    "build:web": "ng build --configuration production-web",
     "build:apk": "ionic cordova build android --release --prod",
     "zip-apk": "zipalign -v 4 ./platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk tat-release.apk",
     "sign-apk": "apksigner sign --ks ./release.keystore --verbose ./tat-release.apk",
@@ -39,6 +39,8 @@
     "@angular/platform-browser": "~8.1.2",
     "@angular/platform-browser-dynamic": "~8.1.2",
     "@angular/router": "~8.1.2",
+    "@awesome-cordova-plugins/core": "^5.42.0",
+    "@awesome-cordova-plugins/geolocation": "^5.42.0",
     "@ionic-native/android-permissions": "~5.19.1",
     "@ionic-native/core": "~5.19.1",
     "@ionic-native/dialogs": "~5.19.1",
@@ -67,6 +69,7 @@
     "cordova-plugin-device": "~2.0.2",
     "cordova-plugin-dialogs": "~2.0.1",
     "cordova-plugin-firebasex": "~7.0.1",
+    "cordova-plugin-geolocation": "4.1.0",
     "cordova-plugin-inappbrowser": "~3.0.0",
     "cordova-plugin-ionic-keyboard": "~2.1.3",
     "cordova-plugin-ionic-webview": "~2.5.1",
@@ -131,7 +134,31 @@
       "cordova-plugin-buildinfo": {},
       "cordova-plugin-browsertab": {},
       "cordova-plugin-inappbrowser": {},
-      "cordova-plugin-sim": {}
+      "cordova-plugin-customurlscheme": {
+        "URL_SCHEME": "org.truckersagainsttrafficking.walletcard",
+        "ANDROID_SCHEME": " ",
+        "ANDROID_HOST": " ",
+        "ANDROID_PATHPREFIX": "/"
+      },
+      "cordova-universal-links-plugin": {},
+      "cordova-plugin-firebasex": {
+        "ANDROID_ICON_ACCENT": "#FF060606",
+        "FIREBASE_ANALYTICS_COLLECTION_ENABLED": "true",
+        "FIREBASE_PERFORMANCE_COLLECTION_ENABLED": "true",
+        "FIREBASE_CRASHLYTICS_COLLECTION_ENABLED": "true",
+        "ANDROID_PLAY_SERVICES_TAGMANAGER_VERSION": "17.0.0",
+        "ANDROID_FIREBASE_ANALYTICS_VERSION": "17.2.1",
+        "ANDROID_FIREBASE_MESSAGING_VERSION": "20.0.0",
+        "ANDROID_FIREBASE_CONFIG_VERSION": "19.0.3",
+        "ANDROID_FIREBASE_PERF_VERSION": "19.0.1",
+        "ANDROID_FIREBASE_AUTH_VERSION": "19.1.0",
+        "ANDROID_CRASHLYTICS_VERSION": "2.10.1",
+        "ANDROID_CRASHLYTICS_NDK_VERSION": "2.1.1"
+      },
+      "cordova-plugin-sim": {},
+      "cordova-plugin-geolocation": {
+        "GPS_REQUIRED": "true"
+      }
     },
     "platforms": [
       "browser",

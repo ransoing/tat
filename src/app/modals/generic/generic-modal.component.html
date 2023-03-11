@@ -6,4 +6,6 @@
   <ion-icon name="md-close" class="modal-close-btn" slot="fixed" (click)="modal.dismiss()"></ion-icon>
 
   <div [innerHTML]="bodyHtml | translate"></div>
+
+  <p *ngIf="source">{{ 'misc.source' | translate }}: <a (click)="miscService.openExternalLink(source.link)">{{ source.label | translate }}</a></p>
 </ion-content>

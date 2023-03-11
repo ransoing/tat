@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MiscService } from '../../services';
 
 @Component({
   selector: 'app-generic-modal',
@@ -9,10 +10,14 @@ export class GenericModalComponent implements OnInit {
 
   @Input() title: string;
   @Input() bodyHtml: string;
+  @Input() source?: {
+    label: string;
+    link: string;
+  }
 
   public modal: HTMLIonModalElement;
   
-  constructor() { }
+  constructor( public miscService: MiscService ) { }
 
   ngOnInit() {
   }

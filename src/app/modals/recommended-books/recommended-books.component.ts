@@ -1,12 +1,18 @@
 import { Component, OnInit } from '@angular/core';
+import { staticImplements } from '../../models/static-implements';
 import { MiscService } from '../../services';
+import { IViewLoggedModal } from '../../services/analytics.service';
 
+@staticImplements<IViewLoggedModal>()
 @Component({
   selector: 'app-recommended-books',
   templateUrl: './recommended-books.component.html',
   styleUrls: ['./recommended-books.component.scss']
 })
 export class RecommendedBooksComponent implements OnInit {
+
+  /** required for analytics to log a view to this modal */
+  static screenName = 'Resources / Recommended Books';
 
   public modal: HTMLIonModalElement;
   

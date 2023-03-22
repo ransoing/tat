@@ -8,6 +8,7 @@ import { IMiscService } from '../models/services';
 import { QrModalComponent } from '../modals/qr/qr-modal.component';
 import { environment } from '../../environments/environment';
 import { AppMode } from '../models/app-mode';
+import { AnalyticsService } from './analytics.service';
 
 export enum StorageKeys {
   USER_DATA = 'user_data'
@@ -30,7 +31,8 @@ export class MiscService implements IMiscService {
     private trx: TrxService,
     private navCtrl: NavController,
     private modalService: ModalService,
-    private loadingController: LoadingController
+    private loadingController: LoadingController,
+    private analyticsService: AnalyticsService
   ) {
     // listen for route changes. This subscriber is used for onRouteHere
     this.router.events.subscribe( event => {
@@ -50,8 +52,19 @@ export class MiscService implements IMiscService {
     });
   }
 
-  public openExternalLink( url ) {
+  public openExternalLink( url: string ) {
+    // log event to firebase before opening the link
     if ( environment.app === AppMode.TAT ) {
+      if ( url.startsWith('mailto:') ) {
+        this.analyticsService.logEmailLink( url );
+      } else if ( url.startsWith('tel:') ) {
+        this.analyticsService.logPhoneNumberLink( url );
+      } else if ( url.startsWith('sms:') ) {
+        this.analyticsService.logTextMessageLink( url );
+      } else {
+        this.analyticsService.logUrlLink( url );
+      }
+
       window.open( url, '_system' );
     } else {
       // show a QR code that will lead the user to the content

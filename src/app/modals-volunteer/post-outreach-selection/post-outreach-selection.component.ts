@@ -10,6 +10,10 @@ import { ProxyAPIService } from '../../services/proxy-api.service';
   styleUrls: ['./post-outreach-selection.component.scss']
 })
 export class PostOutreachSelectionComponent implements AfterViewInit {
+
+  /** required for analytics to log a view to this modal */
+  static screenName = 'Volunteer / Post-outreach Selection';
+
   public modal: HTMLIonModalElement;
   
   constructor(

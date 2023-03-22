@@ -10,6 +10,9 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class VolunteerResourcesComponent {
 
+  /** required for analytics to log a view to this modal */
+  static screenName = 'Volunteer / Volunteer Resources';
+
   public modal: HTMLIonModalElement;
   public VolunteerType = VolunteerType;
   public videoUrl: string;

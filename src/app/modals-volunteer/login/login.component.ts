@@ -12,6 +12,9 @@ import { UserDataRequestFlags } from '../../models/user-data';
 })
 export class LoginComponent implements AfterViewInit, OnDestroy {
 
+  /** required for analytics to log a view to this modal */
+  static screenName = 'Volunteer / Log In';
+
   public static LOGIN_REDIRECT_URL_KEY = 'loginRedirectUrl';
 
   @ViewChild( 'firebaseUi', { static: true, read: ViewContainerRef } ) firebaseUi: ViewContainerRef;
@@ -48,7 +51,7 @@ export class LoginComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
     const modalHasPresented = new Promise( resolve => {
-      this.modal.addEventListener( 'ionModalDidPresent', () => resolve() );
+      this.modal.addEventListener( 'ionModalDidPresent', () => resolve(null) );
     });
 
     this.triggerNotice();

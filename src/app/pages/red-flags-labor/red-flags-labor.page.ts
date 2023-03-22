@@ -1,16 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { ModalService, MiscService, SettingsService } from '../../services';
 import {
   GenericModalComponent
 } from '../../modals';
+import { AnalyticsService } from '../../services/analytics.service';
 
 @Component({
   selector: 'app-red-flags-labor',
   templateUrl: './red-flags-labor.page.html',
   styleUrls: ['./red-flags-labor.page.scss'],
 })
-export class RedFlagsLaborPage {
+export class RedFlagsLaborPage implements OnInit {
 
   GenericModalComponent = GenericModalComponent;
 
@@ -27,6 +28,11 @@ export class RedFlagsLaborPage {
     public navCtrl: NavController,
     public modalService: ModalService,
     public miscService: MiscService,
-    public settings: SettingsService
+    public settings: SettingsService,
+    private _analyticsService: AnalyticsService
   ) { }
+
+  ngOnInit(): void {
+    this._analyticsService.logPageView( 'Labor Trafficking Red Flags' );
+  }
 }

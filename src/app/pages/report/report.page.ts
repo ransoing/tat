@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Sim } from '@ionic-native/sim/ngx';
 import { WhatToReportComponent } from '../../modals';
@@ -8,13 +8,14 @@ import { ISurvey, SurveyFieldType } from '../../models/survey';
 import { AppMode } from '../../models/app-mode';
 import { environment } from '../../../environments/environment';
 import { filter } from 'rxjs/operators';
+import { AnalyticsService } from '../../services/analytics.service';
 
 @Component({
   selector: 'app-report',
   templateUrl: './report.page.html',
   styleUrls: ['./report.page.scss'],
 })
-export class ReportPage {
+export class ReportPage implements OnInit {
 
   WhatToReportComponent = WhatToReportComponent;
   hasSim = false;
@@ -31,7 +32,8 @@ export class ReportPage {
     public miscService: MiscService,
     private sim: Sim,
     private geocoder: GeocoderService,
-    private router: Router
+    private router: Router,
+    private analyticsService: AnalyticsService
   ) {
     // in ELD mode, act like there's no SIM, because even if there is, we don't want to use it.
     // so, only get SIM info for TAT app, not for ELD app.
@@ -46,6 +48,10 @@ export class ReportPage {
     this.router.events.pipe(
       filter( event => event instanceof NavigationEnd && window.location.href === this.pageUrl )
     ).subscribe( () => this._getCountry() );
+  }
+
+  ngOnInit(): void {
+    this.analyticsService.logPageView( 'Report Activity' );
   }
 
   private async _getCountry() {

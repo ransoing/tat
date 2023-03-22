@@ -11,6 +11,9 @@ import { FirebaseX } from '@ionic-native/firebase-x/ngx';
 })
 export class VolunteerSettingsComponent {
 
+  /** required for analytics to log a view to this modal */
+  static screenName = 'Volunteer / Settings';
+
   public modal: HTMLIonModalElement;
   public VolunteerType = VolunteerType;
   // a mirror of the notification settings. This is needed because the setting

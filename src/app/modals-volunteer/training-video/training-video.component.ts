@@ -9,6 +9,9 @@ import { VideoPlayerComponent } from '../../components/video-player/video-player
 })
 export class TrainingVideoComponent implements OnInit {
 
+  /** required for analytics to log a view to this modal */
+  static screenName = 'Volunteer / Training Video';
+
   @ViewChild( VideoPlayerComponent, { static: false } ) videoPlayer: VideoPlayerComponent;
   // one of the keys in the firebase dynamic urls, under urls->videos->volunteer-training
   @Input ('videoUrlKey') videoUrlKey: string;

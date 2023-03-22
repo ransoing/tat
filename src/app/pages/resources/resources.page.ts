@@ -8,6 +8,7 @@ import {
   VideosComponent
 } from '../../modals/';
 import { ModalService } from '../../services';
+import { AnalyticsService } from '../../services/analytics.service';
 
 @Component({
   selector: 'app-resources',
@@ -16,7 +17,11 @@ import { ModalService } from '../../services';
 })
 export class ResourcesPage implements OnInit {
 
-  constructor( public modalService: ModalService, public navCtrl: NavController ) { }
+  constructor(
+    public modalService: ModalService,
+    public navCtrl: NavController,
+    private _analyticsService: AnalyticsService
+  ) { }
 
   AboutTatComponent = AboutTatComponent;
   RecommendedBooksComponent = RecommendedBooksComponent;
@@ -24,7 +29,8 @@ export class ResourcesPage implements OnInit {
   VideosComponent = VideosComponent;
   PodcastsComponent = PodcastsComponent;
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this._analyticsService.logPageView( 'Resources' );
   }
 
 }

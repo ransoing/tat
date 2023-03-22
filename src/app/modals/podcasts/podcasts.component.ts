@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { staticImplements } from '../../models/static-implements';
 import { DynamicURLsService, MiscService } from '../../services';
+import { IViewLoggedModal } from '../../services/analytics.service';
 
 interface IPodcastApp {
   trxKey: string;
@@ -17,12 +19,16 @@ interface IPodcast {
   }[];
 }
 
+@staticImplements<IViewLoggedModal>()
 @Component({
   selector: 'app-podcasts',
   templateUrl: './podcasts.component.html',
   styleUrls: ['./podcasts.component.scss']
 })
 export class PodcastsComponent implements OnInit {
+
+  /** required for analytics to log a view to this modal */
+  static screenName = 'Resources / Podcasts';
 
   public modal: HTMLIonModalElement;
 

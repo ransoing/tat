@@ -2,13 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { DynamicURLsService, MiscService } from '../../services';
 import { VideoType } from '../../models/video';
+import { staticImplements } from '../../models/static-implements';
+import { IViewLoggedModal } from '../../services/analytics.service';
 
+@staticImplements<IViewLoggedModal>()
 @Component({
   selector: 'app-videos',
   templateUrl: './videos.component.html',
   styleUrls: ['./videos.component.scss']
 })
 export class VideosComponent implements OnInit {
+
+  /** required for analytics to log a view to this modal */
+  static screenName = 'Resources / Videos';
 
   public modal: HTMLIonModalElement;
   public VideoType = VideoType;

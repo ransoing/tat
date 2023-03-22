@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavController, AlertController, LoadingController } from '@ionic/angular';
 import {
   PostOutreachSelectionComponent, 
@@ -9,13 +9,14 @@ import { ModalService, UserDataService, MiscService, SurveyService, TrxService, 
 import { UserDataRequestFlags, VolunteerType } from '../../models/user-data';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ProxyAPIService } from '../../services/proxy-api.service';
+import { AnalyticsService } from '../../services/analytics.service';
 
 @Component({
   selector: 'app-volunteer',
   templateUrl: './volunteer.page.html',
   styleUrls: ['./volunteer.page.scss'],
 })
-export class VolunteerPage {
+export class VolunteerPage implements OnInit {
 
   public VolunteerResourcesComponent = VolunteerResourcesComponent;
   public PostOutreachSelectionComponent = PostOutreachSelectionComponent;
@@ -39,7 +40,8 @@ export class VolunteerPage {
     private surveys: SurveyService,
     private trx: TrxService,
     private proxyAPI: ProxyAPIService,
-    private settings: SettingsService
+    private settings: SettingsService,
+    private analyticsService: AnalyticsService
   ) {
     this.miscService.onRouteHere(() => {
       // don't have two instances of intervals running
@@ -79,6 +81,10 @@ export class VolunteerPage {
       this.alertCtrl.getTop().then( alert => this.alertIsVisible = !!alert );
       this.loadingCtrl.getTop().then( loading => this.loadingIsVisible = !! loading );
     }, 200 );
+  }
+
+  ngOnInit(): void {
+    this.analyticsService.logPageView( 'Volunteer' );
   }
 
   sendVerificationEmail() {

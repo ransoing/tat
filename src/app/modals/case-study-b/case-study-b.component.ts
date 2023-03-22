@@ -2,13 +2,19 @@ import { Component } from '@angular/core';
 import { MiscService, DynamicURLsService } from '../../services';
 import { environment } from '../../../environments/environment';
 import { AppMode } from '../../models/app-mode';
+import { staticImplements } from '../../models/static-implements';
+import { IViewLoggedModal } from '../../services/analytics.service';
 
+@staticImplements<IViewLoggedModal>()
 @Component({
   selector: 'app-case-study-b',
   templateUrl: './case-study-b.component.html',
   styleUrls: ['./case-study-b.component.scss']
 })
 export class CaseStudyBComponent {
+
+  /** required for analytics to log a view to this modal */
+  static screenName = 'Sex Trafficking Red Flags / Case Study: Kevin Kimmel';
 
   public videoExpanded: boolean = false;
   public showFullStory: boolean = false;

@@ -25,6 +25,9 @@ import { ISurvey, ISurveyField, SurveyFieldType, ISurveyPage, ISurveyPageFunc } 
 })
 export class SurveyComponent implements OnInit {
 
+  /** required for analytics to log a view to this modal */
+  static screenName = 'Volunteer / Survey';
+
   @Input('titleTranslationKey') titleTranslationKey: string;
   @Input('successTranslationKey') successTranslationKey?: string;
   @Input('survey') survey: ISurvey;

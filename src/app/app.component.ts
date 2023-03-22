@@ -53,6 +53,10 @@ export class AppComponent {
       if ( cspMetaTag != null ) {
         cspMetaTag.setAttribute( 'content', `default-src 'self' 'unsafe-inline' 'unsafe-eval' data: gap: ws://*` );
       }
+      // turn off Firebase plugin reporting
+      firebase.setAnalyticsCollectionEnabled( false );
+      firebase.setPerformanceCollectionEnabled( false );
+      firebase.setCrashlyticsCollectionEnabled( false );
     }
     this.statusBar.styleBlackOpaque();
     this.statusBar.show();

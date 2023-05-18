@@ -37,6 +37,33 @@ ion-button {
     }
 }
 
+.location-error-wrap {
+    text-align: center;
+}
+
+.location-error {
+    display: inline-block;
+    border: 1px solid #888;
+    border-radius: 4px;
+    padding: 0.6em;
+    text-align: left;
+
+    p { margin-top: 0 }
+
+    &__button-wrap {
+        display: flex;
+        justify-content: flex-end;
+    }
+}
+
+::ng-deep .loading-location-alert {
+    ion-spinner {
+        margin-bottom: -0.4em;
+        margin-right: 0.5em;
+        color: var(--ion-color-primary);
+    }
+}
+
 @media only screen and (max-width: 400px) {
     .alt-hotlines {
         hr { display: block }

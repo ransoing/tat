@@ -13,7 +13,7 @@ This app is built with Ionic (which uses Angular) and packaged as a native app u
 
 ## Quickstart
 
-`npm install` and `npm start` to run the app in the browser. Some features will not work in the browser.
+`npm i && npm start` to run the app in the browser. Some features will not work in the browser.
 
 To develop new volunteer features without touching the live Salesforce database, you'll need to run a local copy of the Salesforce proxy (see the "Salesforce proxy" section below). Edit `environment.ts` and change `proxyServerURL` and `externalResourcesURL`.
 

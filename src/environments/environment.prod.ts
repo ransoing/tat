@@ -16,7 +16,8 @@ export const environment = {
     databaseURL: commonFirebaseConfig.databaseURL,
     projectId: commonFirebaseConfig.projectId,
     storageBucket: commonFirebaseConfig.storageBucket,
-    messagingSenderId: commonFirebaseConfig.messagingSenderId
+    messagingSenderId: commonFirebaseConfig.messagingSenderId,
+    measurementId: commonFirebaseConfig.measurementId
   },
 
   app: commonEnvironment.app,

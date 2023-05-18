@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
 import { Sim } from '@ionic-native/sim/ngx';
 import { WhatToReportComponent } from '../../modals';
 import { GeocoderService, ModalService, MiscService } from '../../services';
@@ -7,8 +6,9 @@ import { SurveyComponent } from '../../modals-volunteer';
 import { ISurvey, SurveyFieldType } from '../../models/survey';
 import { AppMode } from '../../models/app-mode';
 import { environment } from '../../../environments/environment';
-import { filter } from 'rxjs/operators';
 import { AnalyticsService } from '../../services/analytics.service';
+import { BehaviorSubject, Subscription } from 'rxjs';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-report',
@@ -21,60 +21,77 @@ export class ReportPage implements OnInit {
   hasSim = false;
 
   country: string = null; // 'USA', 'CAN', 'MEX', null, or possibly others
-  gettingCountry = true;
-  countryTimeout;
+  countryFetched = false;
   pageUrl: string;
 
   textNumberTrxOptions = { phoneNumber: '233733' };
 
+  country$ = new BehaviorSubject<string>( null );
+  countrySubscription: Subscription;
+
   constructor(
     public modalService: ModalService,
     public miscService: MiscService,
+    private alertController: AlertController,
     private sim: Sim,
     private geocoder: GeocoderService,
-    private router: Router,
     private analyticsService: AnalyticsService
   ) {
     // in ELD mode, act like there's no SIM, because even if there is, we don't want to use it.
     // so, only get SIM info for TAT app, not for ELD app.
+    // If no SIM is detected, the phone numbers will appear on the 'call' buttons.
     if ( environment.app === AppMode.TAT ) {
       this.sim.getSimInfo()
       .then( simData => this.hasSim = simData != null && !!simData.carrierName )
       .catch( e => this.hasSim = false );
     }
 
-    // get the country when this page is navigated to (which includes right now)
-    this.pageUrl = window.location.href;
-    this.router.events.pipe(
-      filter( event => event instanceof NavigationEnd && window.location.href === this.pageUrl )
-    ).subscribe( () => this._getCountry() );
+    // get the user's current country
+    this.getCountry();
   }
 
   ngOnInit(): void {
     this.analyticsService.logPageView( 'Report Activity' );
   }
 
-  private async _getCountry() {
-    this.gettingCountry = true;
-    // only try to fetch country for a few seconds. If it takes longer than that, assume we won't know the country
-    if ( this.countryTimeout != null ) {
-      clearTimeout( this.countryTimeout );
-    }
-    // maybe we'll enable this timeout at some point later
-    // this.countryTimeout = setTimeout( () => this._countryFetchDone(), 4000 );
+  async getCountry() {
+    this.countryFetched = false;
+
+    const alert = await this.alertController.create({
+      backdropDismiss: false,
+      cssClass: 'loading-location-alert',
+      message: '<ion-spinner class="sc-ion-loading-md md spinner-crescent hydrated" role="progressbar"></ion-spinner> Getting your location...<br><br>This helps us show you the correct hotline phone numbers.',
+      buttons: [{
+        text: 'Cancel',
+        role: 'cancel',
+        handler: () => {
+          // cancel the location fetch.
+          this.countrySubscription.unsubscribe();
+          this.countryFetched = true;
+          alert.dismiss();
+        }
+      }]
+    });
+
+    // if the location has been fetched recently, it will take a very short time, resulting in the alert showing for a split second.
+    // Avoid this by waiting to show the alert.
+    setTimeout( () => {
+      if ( !this.countryFetched ) {
+        alert.present();
+      }
+    }, 250 );
+
+    this.countrySubscription = this.country$.subscribe( countryCode => {
+      this.country = countryCode;
+    });
+
     this.geocoder.getCountryCode().then( countryCode => {
-      // don't let this component know of the country if the timeout already expired
-      if ( this.gettingCountry ) {
-        this.country = countryCode;
-        clearTimeout( this.countryTimeout );
-        this._countryFetchDone();
+      if ( !this.countryFetched ) {
+        this.country$.next( countryCode );
+        this.countryFetched = true;
+        alert.dismiss();
       }
     });
-  }
-
-  private _countryFetchDone() {
-    this.gettingCountry = false;
-    this.countryTimeout = null;
   }
 
   private _yesNoOptions = [

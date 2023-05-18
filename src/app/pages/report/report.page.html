@@ -7,6 +7,15 @@
   
   <div [innerHTML]="'report.intro' | translate"></div>
 
+  <div *ngIf="countryFetched && country == null" class="location-error-wrap">
+    <div class="location-error">
+      <p>Could not determine your location.</p>
+      <div class="location-error__button-wrap">
+        <ion-button fill="solid" color="primary" (click)="getCountry()"><div>Try again</div></ion-button>
+      </div>
+    </div>
+  </div>
+
   <ng-container *ngIf="country === 'USA'">
     <ng-container *ngTemplateOutlet="callUsa"></ng-container>
     <div class="flex-row">

@@ -24,5 +24,6 @@ export const commonFirebaseConfig = {
     databaseURL: 'https://truckers-against-trafficking.firebaseio.com',
     projectId: 'truckers-against-trafficking',
     storageBucket: 'truckers-against-trafficking.appspot.com',
-    messagingSenderId: '1062876332765'
+    messagingSenderId: '1062876332765',
+    measurementId: 'G-JEZ0ZXJPQG' // not yet used. could be used to track usage, instead of relying on firebase logging. would be helpful for the web release of the app.
 }

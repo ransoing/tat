@@ -39,7 +39,7 @@ export class AppComponent {
     private trx: TrxService,
     private surveys: SurveyService,
     private navCtrl: NavController,
-    private firebase: FirebaseX,
+    private firebaseX: FirebaseX,
     private splash: SplashScreen,
     private router: Router,
     private storage: Storage
@@ -54,9 +54,9 @@ export class AppComponent {
         cspMetaTag.setAttribute( 'content', `default-src 'self' 'unsafe-inline' 'unsafe-eval' data: gap: ws://*` );
       }
       // turn off Firebase plugin reporting
-      firebase.setAnalyticsCollectionEnabled( false );
-      firebase.setPerformanceCollectionEnabled( false );
-      firebase.setCrashlyticsCollectionEnabled( false );
+      firebaseX.setAnalyticsCollectionEnabled( false );
+      firebaseX.setPerformanceCollectionEnabled( false );
+      firebaseX.setCrashlyticsCollectionEnabled( false );
     }
     this.statusBar.styleBlackOpaque();
     this.statusBar.show();
@@ -103,11 +103,11 @@ export class AppComponent {
   async initializeAppTatOnlyFeatures() {
     // if cordova is not available, this is a dev machine. Overload some functions that don't work in a dev environment
     if ( !window.cordova ) {
-      this.firebase.getToken = () => Promise.resolve( 'Computer dev user' );
+      this.firebaseX.getToken = () => Promise.resolve( 'Computer dev user' );
     }
 
     // listen for when a notification is received
-    this.firebase.onMessageReceived().subscribe( message => {
+    this.firebaseX.onMessageReceived().subscribe( message => {
       // do something only when the notification is tapped on.
       // (this observable also triggers when the notification is simply received.)
       if ( !message.tap ) {

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-packageName="sherprog.walletcards.tat" android-versionCode="30600" ios-CFBundleIdentifier="org.truckersagainsttrafficking.walletcard" ios-CFBundleVersion="3.6.0.0" version="3.6.0" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-packageName="sherprog.walletcards.tat" android-versionCode="30701" ios-CFBundleIdentifier="org.truckersagainsttrafficking.walletcard" ios-CFBundleVersion="3.7.0.1" version="3.7.0" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Truckers Against Trafficking</name>
     <description>Make the call, save lives. Use this simple app to help you identify and report instances of human trafficking.</description>
     <author email="appdev@truckersagainsttrafficking.org" href="http://www.truckersagainsttrafficking.org/">Truckers Against Trafficking</author>
@@ -34,7 +34,6 @@
     <preference name="OverrideUserAgent" value="Mozilla/5.0 (Linux; Android 8.0.0; moto g(6)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.99 Mobile Safari/537.36" />
     <preference name="loadUrlTimeoutValue" value="40000" />
     <preference name="ScrollEnabled" value="false" />
-    <preference name="android-minSdkVersion" value="19" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="ShowSplashScreen" value="true" />
     <preference name="AutoHideSplashScreen" value="false" />
@@ -55,6 +54,14 @@
         <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
             <application android:usesCleartextTraffic="true" />
         </edit-config>
+        <comment>Android API 31+ requires explicit declaration of `android:exported` on tags that contain intent-filter tags (which previously defaulted to the value "true")</comment>
+        <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application/activity">
+            <activity android:exported="true" />
+        </edit-config>
+        <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application/service[@android:name='org.apache.cordova.firebase.FirebasePluginMessagingService']">
+            <service android:exported="true" />
+        </edit-config>
+        <comment>Add a tag to get notification icons to work</comment>
         <config-file parent="/manifest/application" target="AndroidManifest.xml">
             <meta-data android:name="com.google.firebase.messaging.default_notification_icon" android:resource="@drawable/notification_icon" />
         </config-file>
@@ -91,7 +98,7 @@
         <splash density="xxhdpi" src="resources/tat/android/splash/drawable-xxhdpi-screen.png" />
         <splash density="xxxhdpi" src="resources/tat/android/splash/drawable-xxxhdpi-screen.png" />
         <preference name="android-minSdkVersion" value="19" />
-        <preference name="android-targetSdkVersion" value="30" />
+        <preference name="android-targetSdkVersion" value="31" />
         <comment>singleTask is needed for the OAuth process, to prevent multiple instances of the app from potentially being spawned</comment>
         <preference name="AndroidLaunchMode" value="singleTask" />
     </platform>

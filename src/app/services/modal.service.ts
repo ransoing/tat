@@ -45,6 +45,7 @@ export class ModalService {
     // pop off the stack when it's dismissed
     modal.onDidDismiss().then( data => {
       this.stack.pop();
+
       // if the modal that was just shown had a screen name, log the screen name that's highest on the stack
       // (because the user is now viewing a different screen)
       if ( component.screenName != null ) {

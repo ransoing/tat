@@ -9,6 +9,7 @@ export interface IUserSettings {
   language: 'en' | 'es',
   location: {
     countryCode: string;
+    stateCode: string;
     savedTime: Date;
   }
 }
@@ -39,6 +40,7 @@ export class SettingsService implements IUserSettings {
       this.language = defaultLang;
       this.location = {
         countryCode: null,
+        stateCode: null,
         savedTime: null
       };
 

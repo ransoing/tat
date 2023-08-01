@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { ReportPage } from './report.page';
 import { CommonComponentsModule } from '../../components/common-components.module';
+import { Device } from '@ionic-native/device/ngx';
 
 const routes: Routes = [
   {
@@ -21,6 +22,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     CommonComponentsModule
   ],
+  providers: [ Device ],
   declarations: [ReportPage]
 })
 export class ReportPageModule {}

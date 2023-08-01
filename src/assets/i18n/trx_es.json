@@ -263,10 +263,15 @@
     "CAN": "CAN",
     "MEX": "MÉX",
     "USA": "EE.UU.",
+    "USA-NJ": "Nueva Jersey",
     "callHotline": "Llame a la línea de ayuda",
     "emailBtn": "Reporte por correo electrónico",
     "emailBtnHint": "Es mucho más recomendable que usted haga una llamada",
+    "gettingLocation": "Determinando su ubicación...",
+    "gettingLocationWhy": "Usamos su ubicación para mostrarle los números de teléfono para la línea directa correcta.",
     "intro": "<p><b>Inmediatamente:</b> Si usted ve que se está cometiendo un delito, llame al 911 y luego llame a la línea de ayuda. Si usted está en una parada de camiones o lugar de descanso para viajeros o en cualquier otro lugar de negocios, por favor avísele al gerente en turno sobre la actividad sospechosa, esa persona debe enterarse de lo que está sucediendo en la propiedad y ayudar a ponerle fin.</p><p>Los operadores de la línea de ayuda contra la trata de personas están disponibles las 24 horas del día, los 7 días de la semana, para tomar reportes de posibles casos de trata de personas. Todos los reportes son confidenciales y usted puede permanecer anónimo. Se cuenta con intérpretes de idiomas. La información que usted proporcione será revisada por la línea de ayuda nacional y se enviará a autorizadas policíacas especializadas y/o a proveedores de servicios cuando sea adecuado.</p>",
+    "locationError": "No se puede determinar su ubicación.",
+    "openSettings": "Configuración",
     "textBtn": "Envíe un texto que diga INFO o HELP (Información o ayuda)",
     "textTo": "a {{phoneNumber}}",
     "title": "Reporte la Actividad",
@@ -290,6 +295,7 @@
         "header": "Nuestras tres metas son:"
       },
       "intro": "Somos una organización sin fines de lucro cuya razón de ser es educar, preparar y movilizar a los miembros de la industria de camiones y autobuses y la industria de energía, para combatir la trata de personas como parte cotidiana de su trabajo.",
+      "privacyPolicy": "Política de Privacidad",
       "supportLink": {
         "1": "Para apoyo comuníquese:"
       },

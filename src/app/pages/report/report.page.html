@@ -7,44 +7,55 @@
   
   <div [innerHTML]="'report.intro' | translate"></div>
 
-  <div *ngIf="countryFetched && country == null" class="location-error-wrap">
+  <div *ngIf="locationFetched && location.countryCode == null" class="location-error-wrap">
     <div class="location-error">
-      <p>Could not determine your location.</p>
+      <p>{{ 'report.locationError' | translate }} {{ 'report.gettingLocationWhy' | translate }}</p>
       <div class="location-error__button-wrap">
-        <ion-button fill="solid" color="primary" (click)="getCountry()"><div>Try again</div></ion-button>
+        <ion-button *ngIf="device.platform && device.platform.toLowerCase() === 'ios'" fill="solid" color="primary" (click)="openLocationSettings()"><div>{{ 'report.openSettings' | translate }}</div></ion-button>
+        <ion-button fill="solid" color="primary" (click)="getLocation()"><div>{{ 'misc.buttons.retry' | translate }}</div></ion-button>
       </div>
     </div>
   </div>
 
-  <ng-container *ngIf="country === 'USA'">
-    <ng-container *ngTemplateOutlet="callUsa"></ng-container>
+  <ng-container *ngIf="location.countryCode === 'USA'">
+    <div class="flex-row" *ngIf="location.stateCode === 'USA-NJ'">
+      <ng-container *ngTemplateOutlet="callUsaNj"></ng-container>
+    </div>
+    <div class="flex-row">
+      <ng-container *ngTemplateOutlet="callUsa"></ng-container>
+    </div>
     <div class="flex-row">
       <ng-container *ngTemplateOutlet="alternateOptions"></ng-container>
     </div>
   </ng-container>
 
-  <ng-container *ngIf="country === 'CAN'">
-    <ng-container *ngTemplateOutlet="callCanada"></ng-container>
+  <ng-container *ngIf="location.countryCode === 'CAN'">
+    <div class="flex-row">
+      <ng-container *ngTemplateOutlet="callCanada"></ng-container>
+    </div>
   </ng-container>
 
-  <ng-container *ngIf="country === 'MEX'">
-    <ng-container *ngTemplateOutlet="callMexico"></ng-container>
+  <ng-container *ngIf="location.countryCode === 'MEX'">
+    <div class="flex-row">
+      <ng-container *ngTemplateOutlet="callMexico"></ng-container>
+    </div>
   </ng-container>
 
-  <ng-container *ngIf="country === null">
+  <ng-container *ngIf="location.countryCode === null">
     <div class="flex-row">
       <ng-container *ngTemplateOutlet="callUsa"></ng-container>
       <ng-container *ngTemplateOutlet="callCanada"></ng-container>
       <ng-container *ngTemplateOutlet="callMexico"></ng-container>
     </div>
     <div class="flex-row">
+      <ng-container *ngTemplateOutlet="callUsaNj"></ng-container>
       <ng-container *ngTemplateOutlet="alternateOptions"></ng-container>
     </div>
   </ng-container>
 
 
-  <div *ngIf="country != null" class="alt-hotlines" margin-top>
-    <ion-button *ngIf="country !== 'CAN'" fill="solid" color="dark" (click)="miscService.openExternalLink('tel:+18339001010')">
+  <div *ngIf="location.countryCode != null" class="alt-hotlines" margin-top>
+    <ion-button *ngIf="location.countryCode !== 'CAN'" fill="solid" color="dark" (click)="miscService.openExternalLink('tel:+18339001010')">
       <div>
         {{ 'report.callHotline' | translate }}
         <ng-container *ngTemplateOutlet="labelCan"></ng-container>
@@ -52,7 +63,7 @@
       </div>
     </ion-button>
 
-    <ion-button *ngIf="country !== 'MEX'" fill="solid" color="dark" (click)="miscService.openExternalLink('tel:+018005533000')">
+    <ion-button *ngIf="location.countryCode !== 'MEX'" fill="solid" color="dark" (click)="miscService.openExternalLink('tel:+018005533000')">
       <div>
         {{ 'report.callHotline' | translate }}
         <ng-container *ngTemplateOutlet="labelMex"></ng-container>
@@ -60,7 +71,7 @@
       </div>
     </ion-button>
 
-    <ng-container *ngIf="country !== 'USA'">
+    <ng-container *ngIf="location.countryCode !== 'USA'">
       <ion-button fill="solid" color="dark" (click)="miscService.openExternalLink('tel:+18883737888')">
         <div>
           {{ 'report.callHotline' | translate }}
@@ -80,6 +91,16 @@
       
       <ion-button fill="solid" color="dark" (click)="openEmailReportSurvey()">
         {{ 'report.emailBtn' | translate }} <ng-container *ngTemplateOutlet="labelUsa"></ng-container>
+      </ion-button>
+    </ng-container>
+
+    <ng-container *ngIf="location.stateCode !== 'USA-NJ'">
+      <ion-button fill="solid" color="dark" (click)="miscService.openExternalLink('tel:8553636548')">
+        <div>
+          {{ 'report.callHotline' | translate }}
+          <ng-container *ngTemplateOutlet="labelUsaNj"></ng-container>
+          <ng-container *ngIf="!hasSim"><br> 855-363-6548</ng-container>
+        </div>
       </ion-button>
     </ng-container>
   </div>
@@ -138,6 +159,17 @@
   </image-button>
 </ng-template>
 
+<ng-template #callUsaNj>
+  <image-button
+    image="report.hotline.jpg"
+    [tall]="true"
+    [hint]="hasSim ? null : '855-363-6548'"
+    [hasLargeHint]="true"
+    (click)="miscService.openExternalLink('tel:8553636548')">
+    {{ 'report.callHotline' | translate }} <ng-container *ngTemplateOutlet="labelUsaNj"></ng-container>
+  </image-button>
+</ng-template>
+
 
 
 <ng-template #labelUsa>
@@ -158,5 +190,11 @@
   <span class="short-text">
     (<img class="flag" src="assets/images/flags/mx.svg">
     {{ 'report.MEX' | translate }})
+  </span>
+</ng-template>
+
+<ng-template #labelUsaNj>
+  <span class="short-text">
+    ({{ 'report.USA-NJ' | translate }})
   </span>
 </ng-template>

@@ -2,6 +2,13 @@ import { Injectable } from '@angular/core';
 import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
 import { SettingsService } from './settings.service';
 
+export interface ILocation {
+  /** 'USA', 'CAN', 'MEX', null, or possibly others */
+  countryCode: string;
+  /** 'USA-AL', 'USA-CO', etc */
+  stateCode: string;
+}
+
 /**
  * The features in this file are originally from
  * https://github.com/totemstech/country-reverse-geocoding/blob/master/lib/country_reverse_geocoding.js
@@ -366,8 +373,8 @@ export class GeocoderService {
     }
   }
   
-  /** Gets the user's country code, using location services if needed. Keeps a cache of the user's current country. */
-  async getCountryCode( allowableCacheAgeMs = 3600 * 1000 ) {
+  /** Gets the user's country and state codes, using location services if needed. Keeps a cache of the user's current country. */
+  async getLocation( allowableCacheAgeMs = 3600 * 1000 ): Promise<ILocation> {
     try {
       // get the location, allowing a system cached location result
       await this.settings.loadSettings();
@@ -379,21 +386,30 @@ export class GeocoderService {
         new Date().getTime() - this.settings.location.savedTime.getTime() > allowableCacheAgeMs
       ) {
         const position = await this.geolocation.getCurrentPosition( {maximumAge: allowableCacheAgeMs} );
-        const country = this._getCountry( position.coords.latitude, position.coords.longitude );
-        // save the new country info to a cache
+        const [ lat, lon ] = [ position.coords.latitude, position.coords.longitude ];
+        const country = this._getCountry( lat, lon );
+        // save the new country and state info to a cache
         if ( country != null ) {
           this.settings.location = {
             countryCode: country.code,
+            stateCode: country.code === 'USA' ? this._getUsState( lat, lon ).code
+              : null, // add calls to determine other countries' states/provinces here
             savedTime: new Date()
           };
           this.settings.saveSettings();
         }
       }
 
-      return this.settings.location.countryCode;
+      return {
+        countryCode: this.settings.location.countryCode,
+        stateCode: this.settings.location.stateCode
+      };
 
     } catch ( e ) {
-      return null;
+      return {
+        countryCode: null,
+        stateCode: null
+      };
     }
   }
 
